@@ -1,5 +1,6 @@
 import greenfoot.*;
 import java.awt.Point;
+import java.util.List;
 /**
  * Write a description of class ExtendedWorld here.
  * 
@@ -13,6 +14,11 @@ public class ExtendedWorld extends World
     public static final int GAME_HEIGHT = 400;
     public static final int GAME_WIDTH = 600;
     public static final int GAME_SPEED = 50;
+    public static final int CAMERA_HORIZONAL_BUFFER = 100;
+    public static final int CAMERA_VERTICAL_BUFFER = 100;
+    
+    protected GreenfootImage fullBackground;
+    private ExtendedActor focus;
     private int cameraX = 0;
     private int cameraY = 0;
     /**
@@ -22,7 +28,8 @@ public class ExtendedWorld extends World
     public ExtendedWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(GAME_WIDTH, GAME_HEIGHT, 1); 
+        super(GAME_WIDTH, GAME_HEIGHT, 1,false); 
+        fullBackground = getBackground();
         WORLD_HEIGHT = getWorldHeight();
         WORLD_WIDTH = getWorldWidth();
     }
@@ -33,6 +40,9 @@ public class ExtendedWorld extends World
     public void act(){
         //set game speed every tick so it cant be changed by the slider
         Greenfoot.setSpeed(GAME_SPEED);
+    }
+    public void setFocus(ExtendedActor obj){
+        focus = obj;
     }
     public int getWorldHeight(){
         return 1000;
@@ -51,9 +61,19 @@ public class ExtendedWorld extends World
         cameraX = x;
         cameraY = y;
     }
-    public void transposeCamera(Integer x, Integer y){
-        if (x!=null) cameraX+=x;
-        if (y!=null) cameraY+=y;
+    public void redrawBackground(){
+        getBackground().drawImage(fullBackground,cameraX, cameraY);
+    }
+
+    public void transposeCamera(int x, int y){
+        cameraX+=x;
+        cameraY+=y;
+        for (Object obj:getObjects(ExtendedActor.class)){
+            System.out.println("transposing to"+ (((ExtendedActor)obj).getX()+x)+" "+(((ExtendedActor)obj).getY()+y) );
+            ((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+x,((ExtendedActor)obj).getY()+y);
+        }
+        redrawBackground();
+
     }
     public void centreCameraOn(ExtendedActor obj){
         

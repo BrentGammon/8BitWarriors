@@ -15,6 +15,12 @@ public class World1 extends ExtendedWorld
      */
     public World1()
     {
-        addObject(new Player(),100,100);
+        Player p = new Player();
+        fullBackground = new GreenfootImage("images/bliss.jpg");
+        redrawBackground();
+        addObject(p,100,100);
+        addObject(new Terrain(),300,300);
+        addObject(new Terrain(),100,300);
+        
     }
 }

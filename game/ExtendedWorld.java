@@ -13,7 +13,7 @@ public class ExtendedWorld extends World
     public static int WORLD_WIDTH;
     public static final int GAME_HEIGHT = 400;
     public static final int GAME_WIDTH = 600;
-    public static final int GAME_SPEED = 50;
+    public static final int GAME_SPEED = 70;
     public static final int CAMERA_HORIZONAL_BUFFER = 100;
     public static final int CAMERA_VERTICAL_BUFFER = 100;
     
@@ -53,6 +53,12 @@ public class ExtendedWorld extends World
     public Point getCameraOrigin(){
         return new Point(cameraX,cameraY);
     }
+    public int getCameraX(){
+        return cameraX;
+    }
+    public int getCameraY(){
+        return cameraY;
+    }
     public void setCameraOrigin(Point p){
         cameraX = (int)p.getX();
         cameraY = (int)p.getY();
@@ -72,7 +78,7 @@ public class ExtendedWorld extends World
             System.out.println("transposing to"+ (((ExtendedActor)obj).getX()+x)+" "+(((ExtendedActor)obj).getY()+y) );
             ((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+x,((ExtendedActor)obj).getY()+y);
         }
-        redrawBackground();
+       redrawBackground();
 
     }
     public void centreCameraOn(ExtendedActor obj){

@@ -37,21 +37,30 @@ public class ExtendedActor extends Actor
     }
     public void setLocation(int x,int y){
         if (!ignoreNextMove){
+            int newx = x;
+            int newy = y;
             if (worldX==-10000){
-                System.out.println("Location Set:"+x+y);
+               // System.out.println("Location Set:"+x+y);
                 worldX = x;
                 worldY = y;
             }else{
-                System.out.println("moved:"+x+y);
+                //System.out.println("moved:"+x+y);
                               
                 World world = getWorld();
                 if (hasFocus && world instanceof ExtendedWorld){
-                    int dx = getX()-x;
-                    int dy = getY()-y;
                     
+                    int dx = 0;
+                    int dy = 0;
+                    //check if the new location will result in actor position outside of buffer
                     ExtendedWorld eworld = (ExtendedWorld)world;
-                    if (eworld.)
-                    ignoreNextMove = true;
+                    if ( eworld.CAMERA_HORIZONAL_BUFFER > x && eworld.getCameraX()>0){
+                        dx = getX()-x;
+                    }else if(eworld.GAME_WIDTH-eworld.CAMERA_HORIZONAL_BUFFER<x && eworld.getCameraX()+eworld.GAME_WIDTH<eworld.WORLD_WIDTH){
+                        dx = getX()-x;
+                    }else{
+                        ignoreNextMove = true;
+                        super.setLocation(x,y);
+                    }
                     eworld.transposeCamera(dx,dy);
                 }else{
                     super.setLocation(x,y);
@@ -59,7 +68,7 @@ public class ExtendedActor extends Actor
             }
         }else{
             ignoreNextMove = false;
-            System.out.println("ignored");
+            //System.out.println("ignored");
         }
     }
     public void move(int x){

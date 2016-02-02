@@ -75,10 +75,8 @@ public class ExtendedWorld extends World
         cameraX-=x;
         cameraY-=y;
         for (Object obj:getObjects(ExtendedActor.class)){
-            System.out.println("transposing to"+ (((ExtendedActor)obj).getX()+x)+" "+(((ExtendedActor)obj).getY()+y) );
             ((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+x,((ExtendedActor)obj).getY()+y);
         }
-        System.out.println(cameraX);
        redrawBackground();
 
     }

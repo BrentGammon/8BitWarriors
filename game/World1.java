@@ -15,6 +15,7 @@ public class World1 extends ExtendedWorld
      */
     public World1()
     {
+        WORLD_WIDTH = 1920;
         Player p = new Player();
         fullBackground = new GreenfootImage("images/bliss.jpg");
         redrawBackground();

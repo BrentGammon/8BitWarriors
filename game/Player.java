@@ -24,6 +24,15 @@ public class Player extends ExtendedActor
         }else if(Greenfoot.isKeyDown("RIGHT")){
             setRotation(0);
             move(MOVE_SPEED);
+        }else if(Greenfoot.isKeyDown("DOWN")){
+            setRotation(90);
+            move(MOVE_SPEED);
+        }else if(Greenfoot.isKeyDown("UP")){
+            setRotation(270);
+            move(MOVE_SPEED);
         }
     }    
+    private void fall(){
+        
+    }
 }

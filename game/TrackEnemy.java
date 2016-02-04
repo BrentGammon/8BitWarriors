@@ -6,15 +6,19 @@ import java.util.*;
  * @author Brent Gammon 
  * @version 0.1
  */
-public class TrackEnemy extends ExtendedActor
+public class TrackEnemy extends Entity
 {
-    private List<Actor>nearObjects;
+    public static final int GRAVITY = 2; 
+    
+    private List<Actor> nearObjects;
     private GreenfootImage standing;
     private GreenfootImage left1;
     private GreenfootImage left2;
     private GreenfootImage right1;
     private GreenfootImage right2;
     protected boolean goLeft = false;
+    
+    private int vertVelocity = 0;
     public TrackEnemy()
     {
         standing = new GreenfootImage("stripe standing.png");
@@ -32,16 +36,15 @@ public class TrackEnemy extends ExtendedActor
     public void act() 
     {
         // Add your action code here.
+        fall();
         int count = 0;
         nearObjects = new ArrayList<Actor>();
-        nearObjects = getObjectsInRange(350,Player.class);
-        
+        nearObjects = getObjectsInRange(350,null);
        if(endPlatform()&&onPlatform()){
             if(nearObjects != null){
                 for(Actor x:nearObjects){
                     if(x instanceof Player){
                         count++;
-
                         int playerX = x.getX();
                         int playerY = x.getY();
                         int enemyX = getX();
@@ -122,5 +125,29 @@ public class TrackEnemy extends ExtendedActor
         }
     }
 
-
+    public void fall(){
+        if (!onPlatform()){
+            vertVelocity+=GRAVITY;
+            if(vertVelocity>0){
+                
+                for(int i=0;i<vertVelocity;i++){
+                    moveLocation(0,1);
+                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
+                        vertVelocity = 0;
+                    }
+                }
+            } else if(vertVelocity>0){
+                
+                for(int i=0;i>vertVelocity;i--){
+                    moveLocation(0,-1);
+                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
+                        vertVelocity = 0;
+                    }
+                }
+            }
+        }else{
+            vertVelocity = 0;
+        }
+    }
 }
+

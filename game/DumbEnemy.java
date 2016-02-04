@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author Brent Gammon 
  * @version 0.1
  */
-public class DumbEnemy extends ExtendedActor
+public class DumbEnemy extends Entity
 {
     private int health = 10;
     private int speed = 5;
@@ -35,26 +35,6 @@ public class DumbEnemy extends ExtendedActor
             changeDirection();
             direction();
         }
-    }
-    
-    public boolean endPlatform()
-    {
-        int xPost = getX()+5;
-        Actor actor = getOneObjectAtOffset(0,getImage().getHeight()/2,Terrain.class);
-        if(actor instanceof Terrain){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-    
-    public boolean onPlatform()
-    {
-        if(isTouching(Terrain.class)){
-            return true;
-        }
-        return false;
     }
 
     public void changeDirection()

@@ -41,7 +41,7 @@ public class TrackEnemy extends ExtendedActor
                 for(Actor x:nearObjects){
                     if(x instanceof Player){
                         count++;
-                        System.out.println("Player Near");
+
                         int playerX = x.getX();
                         int playerY = x.getY();
                         int enemyX = getX();

@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class ExtendedWorld extends World
 {
-    public static int WORLD_HEIGHT;
-    public static int WORLD_WIDTH;
+    protected int WORLD_HEIGHT =1000;
+    protected int WORLD_WIDTH = 20000;
     public static final int GAME_HEIGHT = 400;
     public static final int GAME_WIDTH = 600;
     public static final int GAME_SPEED = 70;
@@ -45,10 +45,10 @@ public class ExtendedWorld extends World
         focus = obj;
     }
     public int getWorldHeight(){
-        return 1000;
+        return WORLD_HEIGHT;
     }
     public int getWorldWidth(){
-        return 20000;
+        return WORLD_WIDTH;
     }
     public Point getCameraOrigin(){
         return new Point(cameraX,cameraY);
@@ -68,14 +68,13 @@ public class ExtendedWorld extends World
         cameraY = y;
     }
     public void redrawBackground(){
-        getBackground().drawImage(fullBackground,cameraX, cameraY);
+        getBackground().drawImage(fullBackground,-cameraX, -cameraY);
     }
 
     public void transposeCamera(int x, int y){
-        cameraX+=x;
-        cameraY+=y;
+        cameraX-=x;
+        cameraY-=y;
         for (Object obj:getObjects(ExtendedActor.class)){
-            System.out.println("transposing to"+ (((ExtendedActor)obj).getX()+x)+" "+(((ExtendedActor)obj).getY()+y) );
             ((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+x,((ExtendedActor)obj).getY()+y);
         }
        redrawBackground();

@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Wall here.
  * 
- * @author (your name) 
+ * @author (your name) aa
  * @version (a version number or a date)
  */
 public class Wall extends ExtendedActor

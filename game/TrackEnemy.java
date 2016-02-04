@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class TrackEnemy extends ExtendedActor
 {
-    private List<Actor>nearObjects;
+    private List<Actor> nearObjects;
     private GreenfootImage standing;
     private GreenfootImage left1;
     private GreenfootImage left2;
@@ -34,7 +34,7 @@ public class TrackEnemy extends ExtendedActor
         // Add your action code here.
         int count = 0;
         nearObjects = new ArrayList<Actor>();
-        nearObjects = getObjectsInRange(350,Player.class);
+        nearObjects = getObjectsInRange(350,null);
         
        if(endPlatform()&&onPlatform()){
             if(nearObjects != null){

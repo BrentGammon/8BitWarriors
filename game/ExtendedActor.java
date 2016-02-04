@@ -114,6 +114,9 @@ public class ExtendedActor extends Actor
             //System.out.println("ignored");
         }
     }
+    public void moveLocation(int x,int y){
+        setLocation(getX()+x,getY()+y);
+    }
     public void move(int x){
         super.move(x);
     }

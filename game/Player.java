@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends ExtendedActor
 {
-    public static final int MOVE_SPEED = 2;
+    public static final int MOVE_SPEED = 5;
     Player(){
         setFocus(true);
     }

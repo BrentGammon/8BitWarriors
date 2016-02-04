@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ act()
+comment0.text=\r\n\ Act\ -\ do\ whatever\ the\ DumbEnemy\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.params=
+comment1.target=void\ moving()
+comment2.params=
+comment2.target=boolean\ endPlatform()
+comment3.params=
+comment3.target=boolean\ onPlatform()
+comment4.params=
+comment4.target=void\ changeDirection()
+comment5.params=
+comment5.target=void\ direction()
+comment6.params=
+comment6.target=void\ getLength()
+numComments=7

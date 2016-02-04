@@ -22,5 +22,8 @@ public class World1 extends ExtendedWorld
         addObject(new Terrain(),300,300);
         addObject(new Terrain(),100,300);
         
+        
+        addObject(new TrackEnemy(),600,100);
+        
     }
 }

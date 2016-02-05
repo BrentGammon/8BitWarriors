@@ -9,8 +9,6 @@ import java.util.*;
 public class TrackEnemy extends Entity
 {
     public static final int GRAVITY = 2; 
-    
-    private List<Actor> nearObjects;
     private GreenfootImage standing;
     private GreenfootImage left1;
     private GreenfootImage left2;
@@ -36,10 +34,11 @@ public class TrackEnemy extends Entity
     public void act() 
     {
         // Add your action code here.
+        
         fall();
         int count = 0;
-        nearObjects = new ArrayList<Actor>();
-        nearObjects = getObjectsInRange(350,null);
+        List<Player> nearObjects = new ArrayList<Player>();
+        nearObjects = getObjectsInRange(350,Player.class);
        if(endPlatform()&&onPlatform()){
             if(nearObjects != null){
                 for(Actor x:nearObjects){
@@ -56,7 +55,7 @@ public class TrackEnemy extends Entity
                             else{
                                 setImage(right2);
                             }
-                            move(1);
+                            move(5);
                             goLeft = false;
                         }else if(playerX<enemyX){
                             if (getImage() == left2){
@@ -65,7 +64,7 @@ public class TrackEnemy extends Entity
                             else{
                                 setImage(left2);
                             }
-                            move(-1);
+                            move(-5);
                             goLeft = true;
                         }
                     }else{
@@ -88,6 +87,15 @@ public class TrackEnemy extends Entity
                 setLocation(x,y);
             }
         }
+        
+        Actor a = getOneIntersectingObject(Player.class);
+        if (a != null){
+            
+            Greenfoot.setWorld(new World1());
+            return;
+            
+        }
+        
     }
     
     /**

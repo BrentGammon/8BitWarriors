@@ -1,7 +1,7 @@
 #Greenfoot project file
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=c54d7b5ab4d4419e339f71322afe37d3be6ab5c5
+>>>>>>>=7b014b21d1871a57dd42a691b14cc63f3b4ae751
 class.DumbEnemy.image=ppl3.png
 class.DumbEnemy.superclass=Entity
 class.Entity.superclass=ExtendedActor
@@ -106,6 +106,10 @@ target10.typeParameters=
 target10.width=100
 target10.x=10
 target10.y=190
+target11.editor.height=700
+target11.editor.width=900
+target11.editor.x=0
+target11.editor.y=0
 target11.height=50
 target11.name=ExtendedWorld
 target11.naviview.expanded=true
@@ -206,6 +210,10 @@ target8.typeParameters=
 target8.width=100
 target8.x=100
 target8.y=130
+target9.editor.height=700
+target9.editor.width=900
+target9.editor.x=0
+target9.editor.y=0
 target9.height=50
 target9.name=Grass
 target9.showInterface=false

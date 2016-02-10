@@ -1,4 +1,19 @@
 #BlueJ class context
+<<<<<<< HEAD
+comment0.params=
+comment0.target=void\ act()
+comment1.params=world
+comment1.target=void\ addedToWorld(greenfoot.World)
+comment2.params=
+comment2.target=boolean\ isFocus()
+comment3.params=x\ y
+comment3.target=void\ setLocation(int,\ int)
+comment4.params=x\ y
+comment4.target=void\ moveLocation(int,\ int)
+comment5.params=x
+comment5.target=void\ move(int)
+numComments=6
+=======
 comment0.target=ExtendedActor
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ ExtendedActor\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
@@ -14,3 +29,4 @@ comment5.target=void\ moveLocation(int,\ int)
 comment6.params=x
 comment6.target=void\ move(int)
 numComments=7
+>>>>>>> 7b014b21d1871a57dd42a691b14cc63f3b4ae751

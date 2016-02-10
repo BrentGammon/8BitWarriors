@@ -75,7 +75,7 @@ public class ExtendedWorld extends World
         cameraX-=x;
         cameraY-=y;
         for (Object obj:getObjects(ExtendedActor.class)){
-            ((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+x,((ExtendedActor)obj).getY()+y);
+            if(!((ExtendedActor)obj).isFocus())((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+x,((ExtendedActor)obj).getY()+y);
         }
        redrawBackground();
 

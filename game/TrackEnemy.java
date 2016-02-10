@@ -15,7 +15,7 @@ public class TrackEnemy extends Entity
     private GreenfootImage right1;
     private GreenfootImage right2;
     protected boolean goLeft = false;
-    
+
     private int vertVelocity = 0;
     public TrackEnemy()
     {
@@ -34,12 +34,12 @@ public class TrackEnemy extends Entity
     public void act() 
     {
         // Add your action code here.
-        
+
         fall();
         int count = 0;
         List<Player> nearObjects = new ArrayList<Player>();
         nearObjects = getObjectsInRange(350,Player.class);
-       if(endPlatform()&&onPlatform()){
+        if(endPlatform()&&onPlatform()){
             if(nearObjects != null){
                 for(Actor x:nearObjects){
                     if(x instanceof Player){
@@ -76,7 +76,7 @@ public class TrackEnemy extends Entity
                 setImage(standing);
             }   
         }
-       if(!endPlatform()){
+        if(!endPlatform()){
             int x = getX();
             int y = getY();
             if(goLeft){
@@ -87,17 +87,17 @@ public class TrackEnemy extends Entity
                 setLocation(x,y);
             }
         }
-        
+
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-            
+
             Greenfoot.setWorld(new World1());
             return;
-            
+
         }
-        
+
     }
-    
+
     /**
      * When invoked this will flip the value of goLeft
      */
@@ -137,7 +137,7 @@ public class TrackEnemy extends Entity
         if (!onPlatform()){
             vertVelocity+=GRAVITY;
             if(vertVelocity>0){
-                
+
                 for(int i=0;i<vertVelocity;i++){
                     moveLocation(0,1);
                     if (!getIntersectingObjects(Terrain.class).isEmpty()){
@@ -145,7 +145,7 @@ public class TrackEnemy extends Entity
                     }
                 }
             } else if(vertVelocity>0){
-                
+
                 for(int i=0;i>vertVelocity;i--){
                     moveLocation(0,-1);
                     if (!getIntersectingObjects(Terrain.class).isEmpty()){
@@ -157,5 +157,14 @@ public class TrackEnemy extends Entity
             vertVelocity = 0;
         }
     }
+
+    public void die()
+    {
+        if(isTouching(Attack.class)){
+            World world = getWorld();
+            world.removeObject(this);
+        }
+    }
 }
+
 

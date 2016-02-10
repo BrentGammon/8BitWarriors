@@ -1,6 +1,4 @@
 #BlueJ class context
-comment0.target=FallingActor
-comment0.text=\r\n\ The\ interface\ Falling\ Actor\ is\ to\ be\ used\ by\ any\ actor\ that\ wants\ to\ be\ told\ to\ fall\ due\ to\ gravity\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=void\ fall()
-numComments=2
+comment0.params=
+comment0.target=void\ fall()
+numComments=1

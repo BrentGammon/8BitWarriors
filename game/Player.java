@@ -8,19 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Entity implements IFalling
 {
-    public int MOVE_SPEED = 3;
-    public int JUMP_SPEED = -20;
-    public int MOVE_SPEED_CAP = 10;
-    public int VERT_SPEED_CAP = 15;
+    public static int MOVE_SPEED = 3;
+    public static int JUMP_SPEED = -20;
+    public static  int MOVE_SPEED_CAP = 10;
+    public static  int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
-    
-    private static final int SPEED_BOOST_TIMER = 360;
-    private static final int JUMP_BOOST_TIMER = 520;
+
+    private final int SPEED_BOOST_TIMER = 360;
+    private final int JUMP_BOOST_TIMER = 520;
     private int jumpBoostTimeLeft = JUMP_BOOST_TIMER;
     boolean gotJumpBoost = false;
     private int speedBoostTimeLeft = SPEED_BOOST_TIMER;
     boolean gotSpeedBoost = false;
-
+    
     private int vertVelocity = 0;
     private int horzVelocity = 0;
 
@@ -51,6 +51,13 @@ public class Player extends Entity implements IFalling
         if(Greenfoot.isKeyDown("UP")&&onPlatform()){
                 moveLocation(0,-1);
                 vertVelocity = JUMP_SPEED;
+            }
+            
+        else if(Greenfoot.isKeyDown("V")){
+            World world = getWorld();
+            int x = getX()+40;
+            int y = getY();
+            world.addObject(new Attack(),x,y);
         }
         horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
         move();
@@ -60,13 +67,12 @@ public class Player extends Entity implements IFalling
         if (pu != null){
             int kind = pu.getType();
             getWorld().removeObject(pu);
-            if (kind == Powerup.SPEED_PU){ 
+            if (kind == Powerup.SPEED_PU) { 
                 gotSpeedBoost = true;
                 MOVE_SPEED_CAP += 3;
                 VERT_SPEED_CAP += 3;
 
             }
-       
             if (kind == Powerup.JUMP_PU) {
                 gotJumpBoost = true;
                 JUMP_SPEED -= 10;    

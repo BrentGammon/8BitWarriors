@@ -11,11 +11,12 @@ public class ExtendedWorld extends World
 {
     protected int WORLD_HEIGHT = 1000;
     protected int WORLD_WIDTH = 20000;
-    public static final int GAME_HEIGHT = 400;
-    public static final int GAME_WIDTH = 600;
+    protected int GRAVITY = 2;
+    public static final int GAME_HEIGHT = 600;
+    public static final int GAME_WIDTH = 800;
     public static final int GAME_SPEED = 50;
-    public static final int CAMERA_HORIZONAL_BUFFER = 100;
-    public static final int CAMERA_VERTICAL_BUFFER = 100;
+    public static final int CAMERA_HORIZONAL_BUFFER = 300;
+    public static final int CAMERA_VERTICAL_BUFFER = 150;
     
     protected GreenfootImage fullBackground;
     private ExtendedActor focus;
@@ -40,6 +41,12 @@ public class ExtendedWorld extends World
     public void act(){
         //set game speed every tick so it cant be changed by the slider
         Greenfoot.setSpeed(GAME_SPEED);
+        
+        //do gravity
+        List<IFalling> actors = getObjects(IFalling.class);
+        for(IFalling actor:actors){
+            actor.fall(GRAVITY);
+        }
     }
     public void setFocus(ExtendedActor obj){
         focus = obj;
@@ -68,6 +75,7 @@ public class ExtendedWorld extends World
         cameraY = y;
     }
     public void redrawBackground(){
+        getBackground().fill();
         getBackground().drawImage(fullBackground,-cameraX, -cameraY);
     }
 
@@ -81,6 +89,13 @@ public class ExtendedWorld extends World
 
     }
     public void centreCameraOn(ExtendedActor obj){
+        int x = obj.getX();
+        int y = obj.getY();
+        int cx = GAME_WIDTH/2;
+        int cy = GAME_HEIGHT/2;
+        transposeCamera(cx-x, cy-y);
+        System.out.println(" "+obj.isFocus()+cx+cy);
+        if(obj.isFocus()) obj.setWindowLocation(cx,cy);
         
     }
 }

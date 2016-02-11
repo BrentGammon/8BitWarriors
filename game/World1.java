@@ -20,28 +20,30 @@ public class World1 extends ExtendedWorld
         fullBackground = new GreenfootImage("images/bliss.jpg");
         
         redrawBackground();
-        addObject(p,100,100);
-        addObject(new Grass(),50,300);
-        addObject(new Grass(),100,300);
-        addObject(new Grass(),150,300);
-        addObject(new Grass(),200,300);
-        addObject(new Grass(),250,300);
-        addObject(new Grass(),300,300);
-        addObject(new Grass(),400,300);
-        addObject(new Grass(),450,300);
-        addObject(new Grass(),500,300);
-        addObject(new Grass(),550,300);
-        addObject(new Grass(),600,300);
-        addObject(new Grass(),650,300);
-        addObject(new Grass(),700,300);
-        addObject(new Grass(),750,300);
-        addObject(new Grass(),800,300);
-        addObject(new Grass(),850,300);
-        addObject(new Grass(),900,300);
-        addObject(new Grass(),950,300);
+        addObject(p,100,600);
+        addObject(new Grass(),150,800);
+        addObject(new Grass(),100,800);
+        addObject(new Grass(),150,800);
+        addObject(new Grass(),200,800);
+        addObject(new Grass(),250,800);
+        addObject(new Grass(),300,800);
+        addObject(new Grass(),400,800);
+        addObject(new Grass(),450,800);
+        addObject(new Grass(),500,800);
+        addObject(new Grass(),550,800);
+        addObject(new Grass(),600,800);
+        addObject(new Grass(),650,800);
+        addObject(new Grass(),700,800);
+        addObject(new Grass(),750,800);
+        addObject(new Grass(),800,800);
+        addObject(new Grass(),850,800);
+        addObject(new Grass(),900,800);
+        addObject(new Grass(),950,800);
         
+        addObject(new Powerup(1),200,700);
+        addObject(new TrackEnemy(),600,600);
         
-        addObject(new TrackEnemy(),600,100);
+        centreCameraOn(p);
         
     }
 }

@@ -3,17 +3,12 @@ import greenfoot.*;
 /**
  * Write a description of class Terrain here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell
+ * @version S1 1
  */
-public class Terrain extends ExtendedActor
+public class Terrain extends ExtendedActor implements IPlatform
 {
-    /**
-     * Act - do whatever the Terrain wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+    public boolean canSupportActor(Actor a){
+        return true;
+    }
 }

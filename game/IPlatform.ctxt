@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=a
+comment0.target=boolean\ canSupportActor(greenfoot.Actor)
+comment0.text=\r\n\ Main\ function\ of\ the\ interface.\ Returns\ the\ boolean\ representing\ if\ the\ given\ actor\r\n\ can\ stand\ on\ it.\r\n
+numComments=1

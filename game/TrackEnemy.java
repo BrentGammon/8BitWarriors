@@ -6,7 +6,7 @@ import java.util.*;
  * @author Brent Gammon 
  * @version 0.1
  */
-public class TrackEnemy extends Entity
+public class TrackEnemy extends Entity implements IFalling
 {
     public static final int GRAVITY = 2; 
     private GreenfootImage standing;
@@ -35,7 +35,7 @@ public class TrackEnemy extends Entity
     {
         // Add your action code here.
 
-        fall();
+        //fall();
         int count = 0;
         List<Player> nearObjects = new ArrayList<Player>();
         nearObjects = getObjectsInRange(350,Player.class);
@@ -133,9 +133,9 @@ public class TrackEnemy extends Entity
         }
     }
 
-    public void fall(){
+    public void fall(int g){
         if (!onPlatform()){
-            vertVelocity+=GRAVITY;
+            vertVelocity+=g;
             if(vertVelocity>0){
 
                 for(int i=0;i<vertVelocity;i++){
@@ -160,10 +160,10 @@ public class TrackEnemy extends Entity
 
     public void die()
     {
-        if(isTouching(Attack.class)){
+        //if(isTouching(Attack.class)){
             World world = getWorld();
             world.removeObject(this);
-        }
+        //}
     }
 }
 

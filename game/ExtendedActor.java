@@ -16,7 +16,6 @@ public class ExtendedActor extends Actor
     private int worldY=-10000;
     private boolean locationSet=false;
     protected boolean hasFocus;
-    private boolean ignoreNextMove = false;
     public void act() 
     {
     }
@@ -64,7 +63,6 @@ public class ExtendedActor extends Actor
                 }else{
                     //we are moving the character
                     doMove = true;
-                    ignoreNextMove = true;
                 }
                 
                 if ( eworld.CAMERA_VERTICAL_BUFFER > y && eworld.getCameraY()>0){
@@ -86,7 +84,6 @@ public class ExtendedActor extends Actor
                 }else{
                     //we are moving the character
                     doMove = true;
-                    ignoreNextMove = true;
                 }
                 
             }else{
@@ -102,6 +99,9 @@ public class ExtendedActor extends Actor
     }
     public void moveLocation(int x,int y){
         setLocation(getX()+x,getY()+y);
+    }
+    public void setWindowLocation(int x, int y){
+        super.setLocation(x,y);
     }
     public void move(int x){
         super.move(x);

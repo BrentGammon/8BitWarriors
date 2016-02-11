@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) aa
  * @version (a version number or a date)
  */
-public class Wall extends ExtendedActor
+public class Wall extends Terrain
 {
     /**
      * Act - do whatever the Wall wants to do. This method is called whenever

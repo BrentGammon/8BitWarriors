@@ -18,30 +18,23 @@ public class World1 extends ExtendedWorld
         WORLD_WIDTH = 1920;
         Player p = new Player();
         fullBackground = new GreenfootImage("images/bliss.jpg");
-        
+
         redrawBackground();
         addObject(p,100,100);
-        addObject(new Grass(),50,300);
-        addObject(new Grass(),100,300);
-        addObject(new Grass(),150,300);
-        addObject(new Grass(),200,300);
-        addObject(new Grass(),250,300);
-        addObject(new Grass(),300,300);
-        addObject(new Grass(),400,300);
-        addObject(new Grass(),450,300);
-        addObject(new Grass(),500,300);
-        addObject(new Grass(),550,300);
-        addObject(new Grass(),600,300);
-        addObject(new Grass(),650,300);
-        addObject(new Grass(),700,300);
-        addObject(new Grass(),750,300);
-        addObject(new Grass(),800,300);
-        addObject(new Grass(),850,300);
-        addObject(new Grass(),900,300);
-        addObject(new Grass(),950,300);
+        for(int i =50;i<=950;i+=50){
+            if(!(i==300||i==350)){
+                addObject(new Grass(),i,300);
+            }
+        }
         
+        for(int i =50;i<=1100;i+=50){
+                addObject(new Grass(),i,600);
+        }
+        
+        
+
         
         addObject(new TrackEnemy(),600,100);
-        
+        addObject(new DumbEnemy(),50,500);
     }
 }

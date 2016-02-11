@@ -16,7 +16,6 @@ public class Player extends Entity
     public static final int GRAVITY = 2;
     int powerupTimer = 900;
 
-  
     
     private int vertVelocity = 0;
     private int horzVelocity = 0;
@@ -38,25 +37,22 @@ public class Player extends Entity
             horzVelocity -= MOVE_SPEED;
         }else if(Greenfoot.isKeyDown("RIGHT")){
             horzVelocity += MOVE_SPEED;
-        }else if(Greenfoot.isKeyDown("DOWN")){
-            setRotation(90);
-            moveLocation(0,MOVE_SPEED);
-        }
+        }else if(Greenfoot.isKeyDown("UP")){
+            if(onPlatform()){
 
-        {
-
-            if(Greenfoot.isKeyDown("UP")){
-                if(onPlatform()){
-
-                    moveLocation(0,-1);
-                    vertVelocity = JUMP_SPEED;
-                }
-
+                moveLocation(0,-1);
+                vertVelocity = JUMP_SPEED;
             }
-            horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
-            move();
-            fall();
+
+        }else if(Greenfoot.isKeyDown("V")){
+            World world = getWorld();
+            int x = getX()+40;
+            int y = getY();
+            world.addObject(new Attack(),x,y);
         }
+        horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
+        move();
+        fall();
 
         Powerup pu = (Powerup)getOneObjectAtOffset(0, 0, Powerup.class);
         if (pu != null){
@@ -67,9 +63,7 @@ public class Player extends Entity
                 MOVE_SPEED_CAP = 13;
                 VERT_SPEED_CAP = 18;
 
-             
             }
-
             if (kind == Powerup.JUMP_PU) {
                 JUMP_SPEED = -40;  
             }

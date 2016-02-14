@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Write a description of class DumbEnemy here.
+ * DumbEnemy will move left and right while in contact with the terrian.
  * 
  * @author Brent Gammon 
  * @version 0.1
@@ -19,28 +19,25 @@ public class DumbEnemy extends Entity
      */
     public void act() 
     {
-        // Add your action code here.
         fall();
         moving(); 
-         Actor a = getOneIntersectingObject(Player.class);
+        Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-
             Greenfoot.setWorld(new World1());
             return;
-
         }
     }   
-    
     
     public void moving()
     {
         if(onPlatform()&&!isAtEdge()&&endPlatform()){
-            //move(1);
             direction();
-        }else if(onPlatform()&&!isAtEdge()&&!endPlatform()){
+        }
+        if(onPlatform()&&!isAtEdge()&&!endPlatform()){
             changeDirection();
             direction();
-        }else if(onPlatform()&&isAtEdge()&&endPlatform()){
+        }
+        if(onPlatform()&&isAtEdge()&&endPlatform()){
             changeDirection();
             direction();
         }
@@ -68,7 +65,6 @@ public class DumbEnemy extends Entity
         if (!onPlatform()){
             vertVelocity+=GRAVITY;
             if(vertVelocity>0){
-
                 for(int i=0;i<vertVelocity;i++){
                     moveLocation(0,1);
                     if (!getIntersectingObjects(Terrain.class).isEmpty()){
@@ -76,7 +72,6 @@ public class DumbEnemy extends Entity
                     }
                 }
             } else if(vertVelocity>0){
-
                 for(int i=0;i>vertVelocity;i--){
                     moveLocation(0,-1);
                     if (!getIntersectingObjects(Terrain.class).isEmpty()){
@@ -88,8 +83,6 @@ public class DumbEnemy extends Entity
             vertVelocity = 0;
         }
     }
-
-    
 
     public void getLength()
     {

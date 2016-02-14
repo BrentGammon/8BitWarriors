@@ -8,6 +8,12 @@ import java.util.*;
  */
 public class Attack extends Entity
 {
+    private boolean direction;
+    
+    public Attack(boolean direction){
+        this.direction = direction;
+    }
+    
     /**
      * Act - do whatever the Attack wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -15,7 +21,12 @@ public class Attack extends Entity
     public void act() 
     {
         // Add your action code here.
-        move(5);
+        if(direction){
+            move(5);
+        }else{
+            move(-5);
+        }
+        
         if(isTouching(TrackEnemy.class)){
             World world = getWorld();
             List<TrackEnemy>holds = new ArrayList<TrackEnemy>();

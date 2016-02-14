@@ -1,7 +1,7 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class TrackEnemy here.
+ * TrackEnemy will move towards the player when they are in range.
  * 
  * @author Brent Gammon 
  * @version 0.1
@@ -90,12 +90,9 @@ public class TrackEnemy extends Entity implements IFalling
 
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-
             Greenfoot.setWorld(new World1());
             return;
-
         }
-
     }
 
     /**
@@ -122,6 +119,10 @@ public class TrackEnemy extends Entity implements IFalling
         return false;
     }
 
+    /**
+     * Checks if TrackEnemy is on the terrain
+     * @return boolean true if TrackEnemy is on the terrain
+     */
     public boolean endPlatform()
     {
         int xPost = getX()+5;
@@ -137,7 +138,6 @@ public class TrackEnemy extends Entity implements IFalling
         if (!onPlatform()){
             vertVelocity+=g;
             if(vertVelocity>0){
-
                 for(int i=0;i<vertVelocity;i++){
                     moveLocation(0,1);
                     if (!getIntersectingObjects(Terrain.class).isEmpty()){
@@ -145,7 +145,6 @@ public class TrackEnemy extends Entity implements IFalling
                     }
                 }
             } else if(vertVelocity>0){
-
                 for(int i=0;i>vertVelocity;i--){
                     moveLocation(0,-1);
                     if (!getIntersectingObjects(Terrain.class).isEmpty()){
@@ -156,14 +155,6 @@ public class TrackEnemy extends Entity implements IFalling
         }else{
             vertVelocity = 0;
         }
-    }
-
-    public void die()
-    {
-        //if(isTouching(Attack.class)){
-            World world = getWorld();
-            world.removeObject(this);
-        //}
     }
 }
 

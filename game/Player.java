@@ -20,9 +20,12 @@ public class Player extends Entity implements IFalling
     boolean gotJumpBoost = false;
     private int speedBoostTimeLeft = SPEED_BOOST_TIMER;
     boolean gotSpeedBoost = false;
-    
+
     private int vertVelocity = 0;
     private int horzVelocity = 0;
+
+    private final int SHOOT_COOL_DOWN = 60;
+    private int currentCoolDown = 0;
 
     Player(){
         hasFocus = true;
@@ -34,7 +37,7 @@ public class Player extends Entity implements IFalling
      */
     public void act() 
     {
-
+        
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
         if (Greenfoot.isKeyDown("LEFT")){
             horzVelocity -= MOVE_SPEED;
@@ -49,15 +52,33 @@ public class Player extends Entity implements IFalling
             jumpBoostTimer();
         }
         if(Greenfoot.isKeyDown("UP")&&onPlatform()){
-                moveLocation(0,-1);
-                vertVelocity = JUMP_SPEED;
+            moveLocation(0,-1);
+            vertVelocity = JUMP_SPEED;
+        }
+
+        if(Greenfoot.isKeyDown("V")){
+            if(currentCoolDown==0){
+                currentCoolDown = SHOOT_COOL_DOWN;
+                int x = getX()+40;
+                World world = getWorld();
+                int y = getY();
+                world.addObject(new Attack(true),x,y);
+
+            }else{
+             currentCoolDown--;   
             }
-            
-        else if(Greenfoot.isKeyDown("V")){
-            World world = getWorld();
-            int x = getX()+40;
-            int y = getY();
-            world.addObject(new Attack(),x,y);
+        }
+        if(Greenfoot.isKeyDown("X")){
+            if(currentCoolDown==0){
+                currentCoolDown = SHOOT_COOL_DOWN;
+                boolean shootDirection;
+                int x = getX()-60;
+                World world = getWorld();
+                int y = getY();
+                world.addObject(new Attack(false),x,y);
+            }else{
+                currentCoolDown--;
+            }
         }
         horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
         move();
@@ -79,6 +100,7 @@ public class Player extends Entity implements IFalling
             }
 
         }
+        
     }
 
     public void speedBoostTimer(){

@@ -7,6 +7,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class World1 extends ExtendedWorld
 {
+   // private GreenfootSound backgroundMusic = new GreenfootSound("lilwayne.wav");
+   boolean begin;
     /**
      * Constructor for objects of class World1.
      * 
@@ -16,7 +18,7 @@ public class World1 extends ExtendedWorld
         WORLD_WIDTH = 1920;
         Player p = new Player();
         layer3 = new GreenfootImage("images/bliss.jpg");
-
+        
         redrawBackground();
         addObject(p,100,100);
         addObject(new Grass(6),135,300);
@@ -37,5 +39,23 @@ public class World1 extends ExtendedWorld
         
         addObject(new TrackEnemy(),600,100);
         addObject(new DumbEnemy(),50,500);
+        //addObject(new MuteControl(),700,500);
+       addObject(new Moving(), 300, 450);
+        /*if(begin){
+            addObject(new MuteControl(),700,50);
+        }*/
+        //addObject(new MuteControl(),700,50);
+        addObject(new Counter(),100,50);
     }
+    
+    public void started()
+    {
+        addObject(new MuteControl(),700,50);
+    }
+    
+    /*public void stopped()
+    {
+        removeObject(MuteControl);
+    }*/
 }
+

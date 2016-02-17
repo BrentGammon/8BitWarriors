@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends Entity implements IFalling
 {
     public static int MOVE_SPEED = 3;
-    public static int JUMP_SPEED = -20;
+    public static int JUMP_SPEED = -30;
     public static  int MOVE_SPEED_CAP = 10;
     public static  int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
@@ -64,7 +64,7 @@ public class Player extends Entity implements IFalling
      */
     public void act() 
     {
-        
+
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
         if (Greenfoot.isKeyDown("LEFT")){
             horzVelocity -= MOVE_SPEED;
@@ -96,7 +96,7 @@ public class Player extends Entity implements IFalling
                 world.addObject(new Attack(true),x,y);
 
             }else{
-             currentCoolDown--;   
+                currentCoolDown--;   
             }
         }
         if(Greenfoot.isKeyDown("X")){
@@ -130,7 +130,7 @@ public class Player extends Entity implements IFalling
             }
 
         }
-        
+
     }
 
     public void speedBoostTimer(){

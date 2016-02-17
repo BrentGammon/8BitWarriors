@@ -1,19 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
 /**
- * Write a description of class World1 here.
+ * Write a description of class PhysicsTestWorld here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class World1 extends ExtendedWorld
+public class PhysicsTestWorld extends ExtendedWorld
 {
+
     /**
-     * Constructor for objects of class World1.
+     * Constructor for objects of class PhysicsTestWorld.
      * 
      */
-    public World1()
+    public PhysicsTestWorld()
     {
-        WORLD_WIDTH = 1920;
         Player p = new Player();
         layer3 = new GreenfootImage("images/bliss.jpg");
 

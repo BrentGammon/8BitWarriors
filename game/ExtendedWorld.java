@@ -18,7 +18,10 @@ public class ExtendedWorld extends World
     public static final int CAMERA_HORIZONAL_BUFFER = 300;
     public static final int CAMERA_VERTICAL_BUFFER = 150;
     
-    protected GreenfootImage fullBackground;
+    protected GreenfootImage layer1;
+    protected GreenfootImage layer2;
+    protected GreenfootImage layer3;
+    
     private ExtendedActor focus;
     private int cameraX = 0;
     private int cameraY = 0;
@@ -30,7 +33,7 @@ public class ExtendedWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(GAME_WIDTH, GAME_HEIGHT, 1,false); 
-        fullBackground = getBackground();
+
         WORLD_HEIGHT = getWorldHeight();
         WORLD_WIDTH = getWorldWidth();
     }
@@ -47,6 +50,8 @@ public class ExtendedWorld extends World
         for(IFalling actor:actors){
             actor.fall(GRAVITY);
         }
+        
+         centreCameraOn(focus);
     }
     public void setFocus(ExtendedActor obj){
         focus = obj;
@@ -76,7 +81,9 @@ public class ExtendedWorld extends World
     }
     public void redrawBackground(){
         getBackground().fill();
-        getBackground().drawImage(fullBackground,-cameraX, -cameraY);
+        if (layer1!=null) getBackground().drawImage(layer1,0,0);
+        if (layer2!=null) getBackground().drawImage(layer2,-cameraX/3, -cameraY/3);
+        if (layer3!=null) getBackground().drawImage(layer3,-cameraX/2, -cameraY/2);
     }
 
     public void transposeCamera(int x, int y){

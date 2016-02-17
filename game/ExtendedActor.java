@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.awt.Point;
 /**
  * Write a description of class ExtendedActor here.
  * 
@@ -25,78 +25,7 @@ public class ExtendedActor extends Actor
     public boolean isFocus(){
         return hasFocus;
     }
-    public void setLocation(int x,int y){
     
-        int newx = x;
-        int newy = y;
-        int dx = 0;
-        int dy = 0;
-        boolean doMove = false;
-        boolean doCameraMove = false;
-        if (locationSet){
-            //System.out.println("moved:"+x+y);
-                          
-            World world = getWorld();
-            ExtendedWorld eworld = (ExtendedWorld)world;
-            if (hasFocus && world instanceof ExtendedWorld){
-                
-                
-                //check if the new location will result in actor position outside of buffer
-                
-                //if actor is within left buffer area and camera isnt at the left wall
-                if ( eworld.CAMERA_HORIZONAL_BUFFER > x && eworld.getCameraX()>0){
-                    //we are moving the camera
-                    doCameraMove = true;
-                    
-                    //keep character still
-                    newx = getX();
-                    //set vertical panning disntance the same as movement distance.
-                    dx = newx-x;
-                    //if actor is within right buffer area and camera isnt at the right wall
-                }else if(eworld.GAME_WIDTH-eworld.CAMERA_HORIZONAL_BUFFER<x && eworld.getCameraX()+eworld.GAME_WIDTH<eworld.getWorldWidth()){
-                    //we are moving the camera
-                    doCameraMove = true;
-                    //keep character still
-                    newx = getX();
-                    //set vertical panning disntance the same as movement distance.
-                    dx = newx-x;
-                }else{
-                    //we are moving the character
-                    doMove = true;
-                }
-                
-                if ( eworld.CAMERA_VERTICAL_BUFFER > y && eworld.getCameraY()>0){
-                    //we are moving the camera
-                    doCameraMove = true;
-                    
-                    //keep character still  
-                    newy = getY();
-                    //set vertical panning disntance the same as movement distance.
-                    dy = newy-y;
-                    //if actor is within right buffer area and camera isnt at the right wall
-                }else if(eworld.GAME_HEIGHT-eworld.CAMERA_VERTICAL_BUFFER<y && eworld.getCameraY()+eworld.GAME_HEIGHT<eworld.getWorldHeight()){
-                    //we are moving the camera
-                    doCameraMove = true;
-                    //keep character still
-                    newy = getY();
-                    //set vertical panning disntance the same as movement distance.
-                    dy = newy-y;
-                }else{
-                    //we are moving the character
-                    doMove = true;
-                }
-                
-            }else{
-                doMove = true;
-            }
-            if(doMove)super.setLocation(newx,newy);
-            if(doCameraMove)eworld.transposeCamera(dx,dy);
-        }else{
-            locationSet = true;
-            worldX = x;
-            worldY = y;
-        }
-    }
     public void moveLocation(int x,int y){
         setLocation(getX()+x,getY()+y);
     }
@@ -105,5 +34,11 @@ public class ExtendedActor extends Actor
     }
     public void move(int x){
         super.move(x);
+    }
+    public int getHeight(){
+        return getImage().getHeight();
+    }
+    public int getWidth(){
+        return getImage().getWidth();
     }
 }

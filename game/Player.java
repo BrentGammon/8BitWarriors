@@ -26,11 +26,38 @@ public class Player extends Entity implements IFalling
 
     private final int SHOOT_COOL_DOWN = 60;
     private int currentCoolDown = 0;
-
+    
+    private GreenfootImage front = new GreenfootImage("Player/front.png");
+    private GreenfootImage standingRight = new GreenfootImage("Player/standing.png");
+    private GreenfootImage standingLeft;
+    private GreenfootImage jump1Right = new GreenfootImage("Player/jump1.png");
+    private GreenfootImage jump2Right = new GreenfootImage("Player/jump2.png");
+    private GreenfootImage jump1Left;
+    private GreenfootImage jump2Left;
+    
+    private GreenfootImage moveRight = new GreenfootImage("Player/move.png");
+    private GreenfootImage moveLeft;
+    
+    private boolean facingLeft = false;
+    
     Player(){
+        standingLeft = new GreenfootImage(standingRight);
+        standingLeft.mirrorHorizontally();
+        jump1Left = new GreenfootImage(jump1Right);
+        jump1Left.mirrorHorizontally();
+        jump2Left = new GreenfootImage(jump2Right);
+        jump2Left.mirrorHorizontally();
+        moveLeft = new GreenfootImage(moveRight);
+        moveLeft.mirrorHorizontally();
+        
         hasFocus = true;
+        
+        setImage(front);
+    }   
+    @Override
+    public void addedToWorld(World w){
+        ((ExtendedWorld)w).setFocus(this);
     }
-
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -41,8 +68,12 @@ public class Player extends Entity implements IFalling
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
         if (Greenfoot.isKeyDown("LEFT")){
             horzVelocity -= MOVE_SPEED;
+            facingLeft = true;
+            setImage(onPlatform()?standingLeft:jump1Left);
         }else if(Greenfoot.isKeyDown("RIGHT")){
             horzVelocity += MOVE_SPEED;
+            setImage(onPlatform()?standingRight:jump1Right);
+            facingLeft = false;
         }
         if (Greenfoot.isKeyDown("c"))((ExtendedWorld)getWorld()).centreCameraOn(this);
         if (gotSpeedBoost){
@@ -82,7 +113,6 @@ public class Player extends Entity implements IFalling
         }
         horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
         move();
-        //fall();
 
         Powerup pu = (Powerup)getOneObjectAtOffset(0, 0, Powerup.class);
         if (pu != null){
@@ -127,12 +157,17 @@ public class Player extends Entity implements IFalling
     }
 
     public void move(){
-        moveLocation(horzVelocity,0);
+        boolean movingLeft = horzVelocity<0;
+        if (collideMoveLocation(horzVelocity,vertVelocity)){
+            if (directionBlocked(movingLeft?"left":"right")) horzVelocity = 0;
+        }
+        System.out.println("h:"+horzVelocity+" v:"+vertVelocity);
     }
 
     public void fall(int g){
         if (!onPlatform()){
             vertVelocity+=g;
+            /*
             if(vertVelocity>0){
                 for(int i=0;i<vertVelocity;i++){
                     moveLocation(0,1);
@@ -149,6 +184,7 @@ public class Player extends Entity implements IFalling
                     }
                 }
             }
+            */
         }else{
             vertVelocity = 0;
         }

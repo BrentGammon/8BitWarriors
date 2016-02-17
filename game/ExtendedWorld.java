@@ -33,11 +33,9 @@ public class ExtendedWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(GAME_WIDTH, GAME_HEIGHT, 1,false); 
-
         WORLD_HEIGHT = getWorldHeight();
         WORLD_WIDTH = getWorldWidth();
     }
-    
     /**
      * Called Every tick of the world BEFORE any objects are so per tick
      * operations can be performed here
@@ -86,6 +84,7 @@ public class ExtendedWorld extends World
         if (layer2!=null) getBackground().drawImage(layer2,-cameraX/3, -cameraY/3);
         if (layer3!=null) getBackground().drawImage(layer3,-cameraX/2, -cameraY/2);
     }
+
     public void transposeCamera(int x, int y){
         cameraX-=x;
         cameraY-=y;

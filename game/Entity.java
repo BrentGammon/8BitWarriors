@@ -55,6 +55,7 @@ public class Entity extends ExtendedActor
         */
     }  
     //http://gamedev.stackexchange.com/questions/18302/2d-platformer-collisions
+    
     public boolean collideMoveLocation(int dx, int dy){
         moveLocation(dx,dy);
         List<Terrain> c = getIntersectingObjects(Terrain.class);

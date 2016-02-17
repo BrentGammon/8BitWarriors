@@ -9,6 +9,7 @@ public class World1 extends ExtendedWorld
 {
    // private GreenfootSound backgroundMusic = new GreenfootSound("lilwayne.wav");
    boolean begin;
+ 
     /**
      * Constructor for objects of class World1.
      * 
@@ -17,6 +18,7 @@ public class World1 extends ExtendedWorld
     {
         WORLD_WIDTH = 1920;
         Player p = new Player();
+        
         layer3 = new GreenfootImage("images/bliss.jpg");
         
         redrawBackground();
@@ -51,6 +53,7 @@ public class World1 extends ExtendedWorld
     public void started()
     {
         addObject(new MuteControl(),700,50);
+        
     }
     
     /*public void stopped()

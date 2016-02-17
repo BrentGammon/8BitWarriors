@@ -80,16 +80,17 @@ public class TrackEnemy extends Entity implements IFalling
             int x = getX();
             int y = getY();
             if(goLeft){
-                x=x+3;
+                x=x+1;
                 setLocation(x,y);
             }else{
-                x=x-3;
+                x=x-1;
                 setLocation(x,y);
             }
         }
 
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
+            //MuteControl.stop();
             Greenfoot.setWorld(new World1());
             return;
         }

@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends Entity implements IFalling
 {
     public static int MOVE_SPEED = 3;
-    public static int JUMP_SPEED = -20;
+    public static int JUMP_SPEED = -30;
     public static  int MOVE_SPEED_CAP = 10;
     public static  int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
@@ -29,6 +29,9 @@ public class Player extends Entity implements IFalling
 
     Player(){
         hasFocus = true;
+        GreenfootImage image = getImage();
+        image.scale(50,50);
+        setImage(image);
     }
 
     /**

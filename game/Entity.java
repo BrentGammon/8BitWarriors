@@ -22,7 +22,7 @@ public class Entity extends ExtendedActor
     
     public boolean onPlatform()
     {
-        if(isTouching(Terrain.class)){
+        if(isTouching(Terrain.class) || isTouching(Moving.class) ){
             return true;
         }
         return false;

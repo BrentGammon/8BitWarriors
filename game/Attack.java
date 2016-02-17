@@ -28,6 +28,7 @@ public class Attack extends Entity
         }
         
         if(isTouching(TrackEnemy.class)){
+            getWorld().getObjects(Counter.class).get(0).add(1);
             World world = getWorld();
             List<TrackEnemy>holds = new ArrayList<TrackEnemy>();
             holds=getIntersectingObjects(TrackEnemy.class);
@@ -38,6 +39,7 @@ public class Attack extends Entity
             }
         }   
         if(isTouching(DumbEnemy.class)){
+            getWorld().getObjects(Counter.class).get(0).add(1);
             World world = getWorld();
             List<DumbEnemy>holds = new ArrayList<DumbEnemy>();
             holds=getIntersectingObjects(DumbEnemy.class);

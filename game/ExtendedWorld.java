@@ -34,6 +34,7 @@ public class ExtendedWorld extends World
         WORLD_HEIGHT = getWorldHeight();
         WORLD_WIDTH = getWorldWidth();
     }
+    
     /**
      * Called Every tick of the world BEFORE any objects are so per tick
      * operations can be performed here
@@ -78,7 +79,6 @@ public class ExtendedWorld extends World
         getBackground().fill();
         getBackground().drawImage(fullBackground,-cameraX, -cameraY);
     }
-
     public void transposeCamera(int x, int y){
         cameraX-=x;
         cameraY-=y;

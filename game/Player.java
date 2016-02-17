@@ -40,7 +40,7 @@ public class Player extends Entity implements IFalling
      */
     public void act() 
     {
-        
+
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
         if (Greenfoot.isKeyDown("LEFT")){
             horzVelocity -= MOVE_SPEED;
@@ -68,7 +68,7 @@ public class Player extends Entity implements IFalling
                 world.addObject(new Attack(true),x,y);
 
             }else{
-             currentCoolDown--;   
+                currentCoolDown--;   
             }
         }
         if(Greenfoot.isKeyDown("X")){
@@ -103,7 +103,7 @@ public class Player extends Entity implements IFalling
             }
 
         }
-        
+
     }
 
     public void speedBoostTimer(){

@@ -1,15 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 /**
- * Write a description of class Attack here.
+ * Attack class will be used for when the player is attacking  
  * 
  * @author Brent Gammon 
- * @version (a version number or a date)
+ * @version (0.1)
  */
 public class Attack extends Entity
 {
     private boolean direction;
-    
+    /**
+     * Used for the direction of where the object will spawn agisnt the player
+     */
     public Attack(boolean direction){
         this.direction = direction;
     }
@@ -20,15 +22,14 @@ public class Attack extends Entity
      */
     public void act() 
     {
-        // Add your action code here.
         if(direction){
             move(5);
         }else{
             move(-5);
         }
-        
         if(isTouching(TrackEnemy.class)){
-            getWorld().getObjects(Counter.class).get(0).add(1);
+            Counter counter =(Counter) getWorld().getObjects(Counter.class).get(0);
+            counter.add(1);
             World world = getWorld();
             List<TrackEnemy>holds = new ArrayList<TrackEnemy>();
             holds=getIntersectingObjects(TrackEnemy.class);
@@ -39,7 +40,8 @@ public class Attack extends Entity
             }
         }   
         if(isTouching(DumbEnemy.class)){
-            getWorld().getObjects(Counter.class).get(0).add(1);
+            Counter counter =(Counter) getWorld().getObjects(Counter.class).get(0);
+            counter.add(1);
             World world = getWorld();
             List<DumbEnemy>holds = new ArrayList<DumbEnemy>();
             holds=getIntersectingObjects(DumbEnemy.class);

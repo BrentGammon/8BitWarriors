@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MuteControl extends ExtendedActor
 {
-    private GreenfootSound backgroundMusic = new GreenfootSound("lilwayne.wav");
+    private GreenfootSound backgroundMusic = new GreenfootSound("01ANightOfDizzySpells.mp3");
     private boolean isMuted;
     /**
      * Act - do whatever the MuteControl wants to do. This method is called whenever

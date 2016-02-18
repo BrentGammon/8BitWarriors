@@ -3,13 +3,5 @@ comment0.params=
 comment0.target=World1()
 comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ World1.\r\n\ \r\n
 comment1.params=
-<<<<<<< HEAD
 comment1.target=void\ started()
 numComments=2
-=======
-comment1.target=World1()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ World1.\r\n\ \r\n
-comment2.params=
-comment2.target=void\ started()
-numComments=3
->>>>>>> dcae77f6d04a993f4e5f2c79d1113ee0a0fad719

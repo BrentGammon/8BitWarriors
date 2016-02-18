@@ -13,6 +13,8 @@ public class Player extends Entity implements IFalling
     public static  int MOVE_SPEED_CAP = 10;
     public static  int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
+    protected int realY;
+    protected int realX;
 
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
@@ -130,6 +132,7 @@ public class Player extends Entity implements IFalling
             }
 
         }
+        checkOutOfBounds();
 
     }
 
@@ -163,7 +166,7 @@ public class Player extends Entity implements IFalling
         }
         System.out.println("h:"+horzVelocity+" v:"+vertVelocity);
     }
-
+    
     public void fall(int g){
         if (!onPlatform()){
             vertVelocity+=g;
@@ -188,5 +191,20 @@ public class Player extends Entity implements IFalling
         }else{
             vertVelocity = 0;
         }
+    }
+    
+    public void die(){
+        if(realY > 2000){
+            
+            Greenfoot.setWorld(new World1());
+            
+            
+        }
+    }
+    
+    private void checkOutOfBounds(){
+        realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
+        realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
+        System.out.println("x:"+realX+" y:"+realY);
     }
 }

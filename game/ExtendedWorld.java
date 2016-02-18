@@ -10,6 +10,7 @@ import java.util.List;
 public class ExtendedWorld extends World
 {
     protected int WORLD_HEIGHT = 1000;
+    protected int WORLD_END = WORLD_HEIGHT;
     protected int WORLD_WIDTH = 20000;
     protected int GRAVITY = 2;
     public static final int GAME_HEIGHT = 600;
@@ -17,6 +18,8 @@ public class ExtendedWorld extends World
     public static final int GAME_SPEED = 45;
     public static final int CAMERA_HORIZONAL_BUFFER = 300;
     public static final int CAMERA_VERTICAL_BUFFER = 150;
+    
+    protected int timeLimit = 99999;
     
     protected GreenfootImage layer1;
     protected GreenfootImage layer2;

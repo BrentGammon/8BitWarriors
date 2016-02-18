@@ -87,6 +87,7 @@ public class ExtendedWorld extends World
         if (layer2!=null) getBackground().drawImage(layer2,-cameraX/3, -cameraY/3);
         if (layer3!=null) getBackground().drawImage(layer3,-cameraX/2, -cameraY/2);
     }
+
     public void transposeCamera(int x, int y){
         cameraX-=x;
         cameraY-=y;

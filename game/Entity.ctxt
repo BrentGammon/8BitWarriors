@@ -1,12 +1,14 @@
 #BlueJ class context
-comment0.params=p\ q
-comment0.target=int\ gcd(int,\ int)
-comment1.params=
-comment1.target=boolean\ endPlatform()
-comment2.params=direction
-comment2.target=boolean\ directionBlocked(java.lang.String)
-comment3.params=
-comment3.target=boolean\ onPlatform()
-comment4.params=dx\ dy
-comment4.target=boolean\ collideMoveLocation(int,\ int)
-numComments=5
+comment0.target=Entity
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Entity\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=p\ q
+comment1.target=int\ gcd(int,\ int)
+comment2.params=
+comment2.target=boolean\ endPlatform()
+comment3.params=direction
+comment3.target=boolean\ directionBlocked(java.lang.String)
+comment4.params=
+comment4.target=boolean\ onPlatform()
+comment5.params=dx\ dy
+comment5.target=boolean\ collideMoveLocation(int,\ int)
+numComments=6

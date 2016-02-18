@@ -1,5 +1,6 @@
 import greenfoot.*;
 
+
  
 public class Powerup extends Entity
 {
@@ -9,7 +10,6 @@ public class Powerup extends Entity
     int puType; // a value from the list of static final ints above
     int lifespan = 300; // about 5 to 6 seconds
     
- 
     // a Powerup object can be created with 'new Powerup(Powerup.SPEED_PU)' or similar
     public Powerup(int type)
     {

@@ -10,6 +10,7 @@ import java.awt.Transparency;  // (World, Actor, GreenfootImage, Greenfoot and M
  */
 public class Player extends Entity implements IFalling
 {
+
     public  int MOVE_SPEED = 3;
     public  int JUMP_SPEED = -30;
     public  int MOVE_SPEED_CAP = 10;
@@ -18,6 +19,7 @@ public class Player extends Entity implements IFalling
     protected int realY;
     protected int realX;
     boolean isDead = false;
+
 
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
@@ -45,9 +47,6 @@ public class Player extends Entity implements IFalling
     
     private boolean facingLeft = false;
     
-    String empty = "No power up active";
-    String speed = "Speed";
-    String jump = "Jump time";
    
     
     Player(){
@@ -74,7 +73,9 @@ public class Player extends Entity implements IFalling
      */
     public void act() 
     {
-
+       boosts();
+       checkOutOfBounds();
+       die();
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
         if (Greenfoot.isKeyDown("LEFT")){
             horzVelocity -= MOVE_SPEED;
@@ -124,9 +125,6 @@ public class Player extends Entity implements IFalling
         horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
         move();
 
-       boosts();
-        checkOutOfBounds();
-        die();
 
     }
     public void boosts(){
@@ -206,10 +204,14 @@ public class Player extends Entity implements IFalling
             vertVelocity = 0;
         }
     }
-       protected void checkOutOfBounds(){
-        realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
-        realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
+
+    
+    protected void checkOutOfBounds(){
+        int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
+        int realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
+
         System.out.println("x:"+realX+" y:"+realY);
+            
     }
     
     protected void die(){
@@ -218,12 +220,13 @@ public class Player extends Entity implements IFalling
             Greenfoot.setWorld(new World1());
             return;
         }    
-      int sideCheck = -400;
+        int sideCheck = -400;
         if (realX < sideCheck) {
             isDead = true;
             Greenfoot.setWorld(new World1());
             return;
     }
 }
- 
 }
+
+

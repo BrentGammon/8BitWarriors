@@ -193,23 +193,12 @@ public class Player extends Entity implements IFalling
     private void checkOutOfBounds(){
         int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
         int realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
-        System.out.println("x:"+realX+" y:"+realY);
-            
+        if(realY > 2000 || realX < -400){
+            die();
+        }
     }
     
-    protected void die(){
-         if(realY > 2000){
-            isDead = true;
-            Greenfoot.setWorld(new World1());
-            return;
-        }    
-        int sideCheck = -400;
-        if (realX < sideCheck) {
-            isDead = true;
-            Greenfoot.setWorld(new World1());
-            return;
-    }
 }
-}
+
 
 

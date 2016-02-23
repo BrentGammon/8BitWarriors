@@ -20,10 +20,8 @@ public class Player extends Entity implements IFalling
     boolean gotJumpBoost = false;
     private int speedBoostTimeLeft = SPEED_BOOST_TIMER;
     boolean gotSpeedBoost = false;
-
-    private int vertVelocity = 0;
-    private int horzVelocity = 0;
-
+    
+    
     private final int SHOOT_COOL_DOWN = 60;
     private int currentCoolDown = 0;
     
@@ -39,6 +37,8 @@ public class Player extends Entity implements IFalling
     private GreenfootImage moveLeft;
     
     private boolean facingLeft = false;
+    
+    private Attack weapon;
     
     Player(){
         standingLeft = new GreenfootImage(standingRight);
@@ -57,6 +57,8 @@ public class Player extends Entity implements IFalling
     @Override
     public void addedToWorld(World w){
         ((ExtendedWorld)w).setFocus(this);
+        weapon = new BasicAttack(facingLeft,this);
+        w.addObject(weapon,getX(),getY());
     }
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
@@ -64,8 +66,9 @@ public class Player extends Entity implements IFalling
      */
     public void act() 
     {
-
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
+        
+        if (currentCoolDown>0) currentCoolDown--;
         if (Greenfoot.isKeyDown("LEFT")){
             horzVelocity -= MOVE_SPEED;
             facingLeft = true;
@@ -86,30 +89,11 @@ public class Player extends Entity implements IFalling
             moveLocation(0,-1);
             vertVelocity = JUMP_SPEED;
         }
-
-        if(Greenfoot.isKeyDown("V")){
-            if(currentCoolDown==0){
-                currentCoolDown = SHOOT_COOL_DOWN;
-                int x = getX()+40;
-                World world = getWorld();
-                int y = getY();
-                world.addObject(new Attack(true),x,y);
-
-            }else{
-                currentCoolDown--;   
-            }
-        }
-        if(Greenfoot.isKeyDown("X")){
-            if(currentCoolDown==0){
-                currentCoolDown = SHOOT_COOL_DOWN;
-                boolean shootDirection;
-                int x = getX()-60;
-                World world = getWorld();
-                int y = getY();
-                world.addObject(new Attack(false),x,y);
-            }else{
-                currentCoolDown--;
-            }
+        weapon.setDirection(facingLeft);
+        if(Greenfoot.isKeyDown("V") && currentCoolDown==0){
+            weapon.fire();
+        }else if(Greenfoot.isKeyDown("X") && currentCoolDown==0){
+            weapon.fire();
         }
         horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
         move();
@@ -162,7 +146,6 @@ public class Player extends Entity implements IFalling
         if (collideMoveLocation(horzVelocity,vertVelocity)){
             if (directionBlocked(movingLeft?"left":"right")) horzVelocity = 0;
         }
-        System.out.println("h:"+horzVelocity+" v:"+vertVelocity);
     }
     
     public void fall(int g){
@@ -191,8 +174,9 @@ public class Player extends Entity implements IFalling
         }
     }
     
-    public void die(){
-            Greenfoot.setWorld(new World1());
+    public boolean die(){
+        Greenfoot.setWorld(new World1());
+        return true;
     }
     
     private void checkOutOfBounds(){

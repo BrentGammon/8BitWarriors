@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=goLeft\ source
+comment0.target=BasicSlash(boolean,\ ExtendedActor)
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=boolean\ doDamage()
+comment3.params=
+comment3.target=boolean\ hit()
+numComments=4

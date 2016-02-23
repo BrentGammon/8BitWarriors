@@ -103,7 +103,6 @@ public class ExtendedWorld extends World
         int cx = GAME_WIDTH/2;
         int cy = GAME_HEIGHT/2;
         transposeCamera(cx-x, cy-y);
-        System.out.println(" "+obj.isFocus()+cx+cy);
         if(obj.isFocus()) obj.setWindowLocation(cx,cy);
         
     }

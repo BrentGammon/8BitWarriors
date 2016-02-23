@@ -207,8 +207,8 @@ public class Player extends Entity implements IFalling
 
     
     protected void checkOutOfBounds(){
-        int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
-        int realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
+      realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
+      realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
 
         System.out.println("x:"+realX+" y:"+realY);
             

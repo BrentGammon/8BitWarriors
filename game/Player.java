@@ -10,6 +10,7 @@ import java.awt.Transparency;  // (World, Actor, GreenfootImage, Greenfoot and M
  */
 public class Player extends Entity implements IFalling
 {
+<<<<<<< HEAD
     public  int MOVE_SPEED = 3;
     public  int JUMP_SPEED = -30;
     public  int MOVE_SPEED_CAP = 10;
@@ -18,6 +19,13 @@ public class Player extends Entity implements IFalling
     protected int realY;
     protected int realX;
     boolean isDead = false;
+=======
+    public static int MOVE_SPEED = 3;
+    public static int JUMP_SPEED = -20;
+    public static  int MOVE_SPEED_CAP = 10;
+    public static  int VERT_SPEED_CAP = 15;
+    public static final int FRICTION = 1;
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
@@ -206,10 +214,23 @@ public class Player extends Entity implements IFalling
             vertVelocity = 0;
         }
     }
+<<<<<<< HEAD
        protected void checkOutOfBounds(){
         realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
         realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
+=======
+    
+    public void die(){
+            Greenfoot.setWorld(new World1());
+    }
+    
+    private void checkOutOfBounds(){
+        int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
+        int realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
         System.out.println("x:"+realX+" y:"+realY);
+        if(realY > 2000) die();
+            
     }
     
     protected void die(){

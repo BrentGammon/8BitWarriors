@@ -120,6 +120,7 @@ dependency34.type=UsesDependency
 dependency35.from=World1
 dependency35.to=Timer
 dependency35.type=UsesDependency
+<<<<<<< HEAD
 dependency36.from=Timer
 dependency36.to=World1
 dependency36.type=UsesDependency
@@ -132,6 +133,8 @@ dependency38.type=UsesDependency
 dependency39.from=PowerupDisplay
 dependency39.to=Powerup
 dependency39.type=UsesDependency
+=======
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 dependency4.from=ExtendedActor
 dependency4.to=ExtendedWorld
 dependency4.type=UsesDependency
@@ -171,19 +174,28 @@ editor.swing.1.height=745
 editor.swing.1.width=697
 editor.swing.1.x=676
 editor.swing.1.y=0
+<<<<<<< HEAD
 mainWindow.height=1056
 mainWindow.width=1932
 mainWindow.x=-8
 mainWindow.y=0
 package.numDependencies=42
 package.numTargets=22
+=======
+mainWindow.height=754
+mainWindow.width=1382
+mainWindow.x=-8
+mainWindow.y=-8
+package.numDependencies=34
+package.numTargets=21
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 project.charset=UTF-8
 readme.height=58
 readme.name=@README
 readme.width=47
 readme.x=10
 readme.y=10
-simulation.speed=50
+simulation.speed=45
 target1.editor.height=700
 target1.editor.width=900
 target1.editor.x=129
@@ -207,9 +219,15 @@ target10.naviview.expanded=true
 target10.showInterface=false
 target10.type=ClassTarget
 target10.typeParameters=
+<<<<<<< HEAD
 target10.width=120
 target10.x=10
 target10.y=550
+=======
+target10.width=80
+target10.x=110
+target10.y=430
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target11.editor.height=735
 target11.editor.width=697
 target11.editor.x=885
@@ -221,12 +239,21 @@ target11.showInterface=false
 target11.type=ClassTarget
 target11.typeParameters=
 target11.width=80
+<<<<<<< HEAD
 target11.x=190
 target11.y=250
 target12.editor.height=700
 target12.editor.width=900
 target12.editor.x=0
 target12.editor.y=0
+=======
+target11.x=100
+target11.y=490
+target12.editor.height=735
+target12.editor.width=697
+target12.editor.x=885
+target12.editor.y=248
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target12.height=50
 target12.name=Particle
 target12.naviview.expanded=true
@@ -236,9 +263,15 @@ target12.typeParameters=
 target12.width=80
 target12.x=100
 target12.y=250
+<<<<<<< HEAD
 target13.editor.height=735
 target13.editor.width=697
 target13.editor.x=676
+=======
+target13.editor.height=700
+target13.editor.width=900
+target13.editor.x=0
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target13.editor.y=0
 target13.height=50
 target13.name=Counter
@@ -251,15 +284,20 @@ target13.x=200
 target13.y=430
 target14.editor.height=735
 target14.editor.width=697
-target14.editor.x=-7
+target14.editor.x=676
 target14.editor.y=0
 target14.height=50
+<<<<<<< HEAD
 target14.name=Timer
+=======
+target14.name=Terrain
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target14.naviview.expanded=true
 target14.showInterface=false
 target14.type=ClassTarget
 target14.typeParameters=
 target14.width=80
+<<<<<<< HEAD
 target14.x=100
 target14.y=490
 target15.editor.height=700
@@ -268,11 +306,22 @@ target15.editor.x=537
 target15.editor.y=231
 target15.height=50
 target15.name=Terrain
+=======
+target14.x=10
+target14.y=130
+target15.editor.height=735
+target15.editor.width=697
+target15.editor.x=-7
+target15.editor.y=0
+target15.height=50
+target15.name=ExtendedActor
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target15.naviview.expanded=true
 target15.showInterface=false
 target15.type=ClassTarget
 target15.typeParameters=
 target15.width=80
+<<<<<<< HEAD
 target15.x=10
 target15.y=130
 target16.editor.height=735
@@ -281,49 +330,84 @@ target16.editor.x=602
 target16.editor.y=126
 target16.height=50
 target16.name=ExtendedActor
+=======
+target15.x=190
+target15.y=70
+target16.editor.height=700
+target16.editor.width=900
+target16.editor.x=537
+target16.editor.y=231
+target16.height=50
+target16.name=Moving
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target16.naviview.expanded=true
 target16.showInterface=false
 target16.type=ClassTarget
 target16.typeParameters=
 target16.width=80
-target16.x=190
-target16.y=70
-target17.editor.height=700
-target17.editor.width=900
-target17.editor.x=537
-target17.editor.y=231
+target16.x=10
+target16.y=490
+target17.editor.height=735
+target17.editor.width=697
+target17.editor.x=602
+target17.editor.y=126
 target17.height=50
+<<<<<<< HEAD
 target17.name=Moving
+=======
+target17.name=World1
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target17.naviview.expanded=true
 target17.showInterface=false
 target17.type=ClassTarget
 target17.typeParameters=
+<<<<<<< HEAD
 target17.width=80
 target17.x=10
 target17.y=490
+=======
+target17.width=110
+target17.x=70
+target17.y=10
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target18.editor.height=700
 target18.editor.width=900
-target18.editor.x=557
-target18.editor.y=139
+target18.editor.x=537
+target18.editor.y=231
 target18.height=50
+<<<<<<< HEAD
 target18.name=World1
+=======
+target18.name=Powerup
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target18.naviview.expanded=true
 target18.showInterface=false
 target18.type=ClassTarget
 target18.typeParameters=
+<<<<<<< HEAD
 target18.width=110
 target18.x=70
 target18.y=10
+=======
+target18.width=80
+target18.x=10
+target18.y=310
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target19.editor.height=700
 target19.editor.width=900
-target19.editor.x=40
-target19.editor.y=20
+target19.editor.x=557
+target19.editor.y=139
 target19.height=50
+<<<<<<< HEAD
 target19.name=Powerup
+=======
+target19.name=DumbEnemy
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target19.naviview.expanded=true
 target19.showInterface=false
 target19.type=ClassTarget
 target19.typeParameters=
+<<<<<<< HEAD
 target19.width=80
 target19.x=10
 target19.y=310
@@ -331,6 +415,15 @@ target2.editor.height=735
 target2.editor.width=697
 target2.editor.x=-7
 target2.editor.y=0
+=======
+target19.width=100
+target19.x=100
+target19.y=130
+target2.editor.height=735
+target2.editor.width=697
+target2.editor.x=534
+target2.editor.y=231
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target2.height=50
 target2.name=Player
 target2.naviview.expanded=true
@@ -342,29 +435,33 @@ target2.x=190
 target2.y=10
 target20.editor.height=700
 target20.editor.width=900
-target20.editor.x=0
-target20.editor.y=0
+target20.editor.x=40
+target20.editor.y=20
 target20.height=50
+<<<<<<< HEAD
 target20.name=DumbEnemy
+=======
+target20.name=TrackEnemy
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target20.naviview.expanded=true
 target20.showInterface=false
 target20.type=ClassTarget
 target20.typeParameters=
 target20.width=100
-target20.x=100
-target20.y=130
+target20.x=10
+target20.y=190
 target21.editor.height=700
 target21.editor.width=900
 target21.editor.x=0
 target21.editor.y=0
 target21.height=50
-target21.name=TrackEnemy
+target21.name=ExtendedWorld
 target21.naviview.expanded=true
 target21.showInterface=false
 target21.type=ClassTarget
 target21.typeParameters=
-target21.width=100
-target21.x=10
+target21.width=110
+target21.x=120
 target21.y=190
 target22.editor.height=703
 target22.editor.width=900
@@ -449,11 +546,16 @@ target8.editor.width=697
 target8.editor.x=676
 target8.editor.y=0
 target8.height=50
+<<<<<<< HEAD
 target8.name=Attack
+=======
+target8.name=FallingActor
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target8.naviview.expanded=true
 target8.showInterface=false
 target8.type=ClassTarget
 target8.typeParameters=
+<<<<<<< HEAD
 target8.width=80
 target8.x=100
 target8.y=310
@@ -461,14 +563,29 @@ target9.editor.height=737
 target9.editor.width=1327
 target9.editor.x=409
 target9.editor.y=98
+=======
+target8.width=90
+target8.x=190
+target8.y=250
+target9.editor.height=735
+target9.editor.width=697
+target9.editor.x=676
+target9.editor.y=0
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 target9.height=50
-target9.name=Grass
+target9.name=Attack
 target9.naviview.expanded=true
 target9.showInterface=false
 target9.type=ClassTarget
 target9.typeParameters=
 target9.width=80
+<<<<<<< HEAD
 target9.x=110
 target9.y=430
 version=2.8.0
+=======
+target9.x=100
+target9.y=310
+version=2.7.1
+>>>>>>> 95ca3a824b6f2678d886f270e6ff24ac6abb5171
 world.lastInstantiated=World1

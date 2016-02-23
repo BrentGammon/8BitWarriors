@@ -1,13 +1,13 @@
 #BlueJ class context
-comment0.params=
-comment0.target=void\ act()
-comment0.text=\r\n\ Act\ -\ do\ whatever\ the\ DumbEnemy\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment0.target=DumbEnemy
+comment0.text=\r\n\ DumbEnemy\ will\ move\ left\ and\ right\ while\ in\ contact\ with\ the\ terrian.\r\n\ \r\n\ @author\ Brent\ Gammon\ \r\n\ @version\ 0.1\r\n
 comment1.params=
-comment1.target=void\ moving()
+comment1.target=void\ act()
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ DumbEnemy\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment2.params=
-comment2.target=void\ changeDirection()
+comment2.target=void\ moving()
 comment3.params=
-comment3.target=void\ direction()
+comment3.target=void\ changeDirection()
 comment4.params=g
 comment4.target=void\ fall(int)
 comment5.params=

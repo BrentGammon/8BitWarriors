@@ -1,4 +1,6 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
+import java.awt.Color;
+import java.awt.Transparency;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Player here.
@@ -8,18 +10,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Entity implements IFalling
 {
-    public static int MOVE_SPEED = 3;
-    public static int JUMP_SPEED = -20;
-    public static  int MOVE_SPEED_CAP = 10;
-    public static  int VERT_SPEED_CAP = 15;
+
+    public  int MOVE_SPEED = 3;
+    public  int JUMP_SPEED = -30;
+    public  int MOVE_SPEED_CAP = 10;
+    public  int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
+    protected int realY;
+    protected int realX;
+    boolean isDead = false;
+
 
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
     private int jumpBoostTimeLeft = JUMP_BOOST_TIMER;
-    boolean gotJumpBoost = false;
+    static boolean gotJumpBoost = false;
     private int speedBoostTimeLeft = SPEED_BOOST_TIMER;
-    boolean gotSpeedBoost = false;
+    static boolean gotSpeedBoost = false;
     
     
     private final int SHOOT_COOL_DOWN = 60;
@@ -98,7 +105,10 @@ public class Player extends Entity implements IFalling
         horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
         move();
 
-        Powerup pu = (Powerup)getOneObjectAtOffset(0, 0, Powerup.class);
+
+    }
+    public void boosts(){
+      Powerup pu = (Powerup)getOneObjectAtOffset(0, 0, Powerup.class);
         if (pu != null){
             int kind = pu.getType();
             getWorld().removeObject(pu);
@@ -106,22 +116,22 @@ public class Player extends Entity implements IFalling
                 gotSpeedBoost = true;
                 MOVE_SPEED_CAP += 3;
                 VERT_SPEED_CAP += 3;
-
+                
             }
-            if (kind == Powerup.JUMP_PU) {
+            
+            if (kind == Powerup.JUMP_PU){
                 gotJumpBoost = true;
-                JUMP_SPEED -= 10;    
+                JUMP_SPEED -= 10;
+                
             }
-
+            
         }
-        checkOutOfBounds();
-
+    
     }
 
     public void speedBoostTimer(){
         speedBoostTimeLeft--;
         if (speedBoostTimeLeft <= 0){
-
             gotSpeedBoost = false;
             MOVE_SPEED_CAP -= 3;
             VERT_SPEED_CAP -= 3;
@@ -173,6 +183,7 @@ public class Player extends Entity implements IFalling
             vertVelocity = 0;
         }
     }
+
     
     public boolean die(){
         Greenfoot.setWorld(new World1());
@@ -183,7 +194,22 @@ public class Player extends Entity implements IFalling
         int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
         int realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
         System.out.println("x:"+realX+" y:"+realY);
-        if(realY > 2000) die();
             
     }
+    
+    protected void die(){
+         if(realY > 2000){
+            isDead = true;
+            Greenfoot.setWorld(new World1());
+            return;
+        }    
+        int sideCheck = -400;
+        if (realX < sideCheck) {
+            isDead = true;
+            Greenfoot.setWorld(new World1());
+            return;
+    }
 }
+}
+
+

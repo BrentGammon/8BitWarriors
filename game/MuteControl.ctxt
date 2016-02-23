@@ -1,11 +1,15 @@
 #BlueJ class context
-comment0.params=
-comment0.target=MuteControl()
-comment0.text=\ public\ void\ started(){\r\n\ \ \ \ \ \ \ \ backgroundMusic.playLoop();\r\n}
+comment0.target=MuteControl
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ MuteControl\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=void\ act()
+comment1.target=MuteControl()
+comment1.text=\ public\ void\ started(){\r\n\ \ \ \ \ \ \ \ backgroundMusic.playLoop();\r\n}
 comment2.params=
-comment2.target=void\ updateState()
+comment2.target=void\ act()
 comment3.params=
-comment3.target=void\ stop()
-numComments=4
+comment3.target=int\ getVolume()
+comment4.params=
+comment4.target=void\ updateState()
+comment5.params=
+comment5.target=void\ stop()
+numComments=6

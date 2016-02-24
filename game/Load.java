@@ -21,6 +21,19 @@ public class Load extends MenuItems
     
     public void act() 
     {
+       MouseInfo mouse = Greenfoot.getMouseInfo();
+        if(mouse != null){
+            Actor actor = mouse.getActor();
+            if(actor!=null){
+                if(actor.equals(this)){
+                    start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGameON.png");
+                    setImage(start);
+                }else{
+                    start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
+                    setImage(start);
+                }
+            }
+        } 
        if(Greenfoot.mouseClicked(this)){
           System.out.println("Load button has been clicked");
        }

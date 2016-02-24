@@ -1,10 +1,10 @@
 import greenfoot.*;
-import javax.swing.*;
+//mport javax.swing.*;
 /**
- * Write a description of class UPControl here.
+ * This is used to allow the player to set the key binding for jump UPControl here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon
+ * @version v0.1
  */
 public class UPControl extends Actor
 {
@@ -16,8 +16,9 @@ public class UPControl extends Actor
     {
         if(Greenfoot.mouseClicked(this))
        {
-          Player.keyJump = JOptionPane.showInputDialog("Jump Key");
-          
+          //Player.keyJump = JOptionPane.showInputDialog("Jump Key");
+          String x= Greenfoot.ask("Jump Key");
+          Player.keyJump = x;
        }
     }    
 }

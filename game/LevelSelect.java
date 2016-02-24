@@ -25,6 +25,19 @@ public class LevelSelect extends MenuItems
      */
     public void act() 
     {
+        MouseInfo mouse = Greenfoot.getMouseInfo();
+        if(mouse != null){
+            Actor actor = mouse.getActor();
+            if(actor!=null){
+                if(actor.equals(this)){
+                    start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelectON.png");
+                    setImage(start);
+                }else{
+                    start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelect.png");
+                    setImage(start);
+                }
+            }
+        }
        if(Greenfoot.mouseClicked(this)){
           System.out.println("Level Select has been clicked");
        }

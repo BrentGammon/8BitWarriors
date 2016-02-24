@@ -60,7 +60,7 @@ public class World1 extends ExtendedWorld
         //addObject(new MuteControl(),700,50);
         addObject(new Counter(),100,50);
         
-        addObject(new UPControl(),100,20);
+       // addObject(new UPControl(),100,20);
         
        // addObject(new TextField("", 20),100,100);
     }

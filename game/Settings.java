@@ -20,8 +20,24 @@ public class Settings extends MenuItems
     
     public void act() 
     {
+       MouseInfo mouse = Greenfoot.getMouseInfo();
+        if(mouse != null){
+            Actor actor = mouse.getActor();
+            if(actor!=null){
+                if(actor.equals(this)){
+                    start = new GreenfootImage("images/Graphics/MENUV2/M2SettingsON.png");
+                    setImage(start);
+                }else{
+                    start = new GreenfootImage("images/Graphics/MENUV2/M2Settings.png");
+                    setImage(start);
+                }
+            }
+        } 
        if(Greenfoot.mouseClicked(this)){
-          System.out.println("Settings has been clicked");
+          //System.out.println("Settings has been clicked");
+          World world = getWorld();
+            MenuSettings world1 = new MenuSettings();
+            Greenfoot.setWorld(world1);
        }
     }    
 }

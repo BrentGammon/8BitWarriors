@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=direction\ source
+comment0.target=BasicAttack(boolean,\ ExtendedActor)
+comment1.params=
+comment1.target=void\ fire()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=isLeft
+comment3.target=void\ setDirection(boolean)
+comment4.params=
+comment4.target=void\ doDamage()
+numComments=5

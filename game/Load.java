@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Load here.
+ * Load button that is on the game menu
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon
+ * @version v0.1
  */
 public class Load extends MenuItems
 {
@@ -18,4 +18,11 @@ public class Load extends MenuItems
         start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
         setImage(start);
     }   
+    
+    public void act() 
+    {
+       if(Greenfoot.mouseClicked(this)){
+          System.out.println("Load button has been clicked");
+       }
+    }    
 }

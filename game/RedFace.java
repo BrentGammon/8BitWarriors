@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Redface here.
+ * The enemy face that is present on the menu
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon 
+ * @version v0.1
  */
 public class RedFace extends MenuItems
 {
@@ -17,13 +17,4 @@ public class RedFace extends MenuItems
         start = new GreenfootImage("images/Graphics/MENUV2/M2RedFace.png");
         setImage(start);
     }
-    
-    /**
-     * Act - do whatever the Redface wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-   
-    }    
 }

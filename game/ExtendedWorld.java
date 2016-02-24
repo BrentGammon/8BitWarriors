@@ -10,17 +10,29 @@ import java.util.List;
 public class ExtendedWorld extends World
 {
     protected int WORLD_HEIGHT = 1000;
+    protected int WORLD_END = WORLD_HEIGHT;
     protected int WORLD_WIDTH = 20000;
     protected int GRAVITY = 2;
     public static final int GAME_HEIGHT = 600;
     public static final int GAME_WIDTH = 800;
-    public static final int GAME_SPEED = 50;
+    public static final int GAME_SPEED = 45;
     public static final int CAMERA_HORIZONAL_BUFFER = 300;
     public static final int CAMERA_VERTICAL_BUFFER = 150;
 
+    protected int timeLimit = 99999;
+    
     protected GreenfootImage layer1;
+    protected int layer1_xoffset = 0;
+    protected int layer1_yoffset = 0;
+    protected boolean layer1_ytile = true;
     protected GreenfootImage layer2;
+    protected int layer2_xoffset = 0;
+    protected int layer2_yoffset= 0;
+    protected boolean layer2_ytile = true;
     protected GreenfootImage layer3;
+    protected int layer3_xoffset = 0;
+    protected int layer3_yoffset = 0;
+    protected boolean layer3_ytile = true;
 
     private ExtendedActor focus;
     private int cameraX = 0;
@@ -95,10 +107,47 @@ public class ExtendedWorld extends World
     }
 
     public void redrawBackground(){
-        getBackground().fill();
-        if (layer1!=null) getBackground().drawImage(layer1,0,0);
-        if (layer2!=null) getBackground().drawImage(layer2,-cameraX/3, -cameraY/3);
-        if (layer3!=null) getBackground().drawImage(layer3,-cameraX/2, -cameraY/2);
+        GreenfootImage bg = getBackground();
+        bg.fill();
+        if (layer1!=null){
+            if(layer1_ytile){
+                int y = layer1_yoffset;
+                int x = layer1_xoffset;
+                for (int i = x;i<GAME_WIDTH;i+=layer1.getWidth()){
+                    bg.drawImage(layer1,i,y);
+                }
+                
+            }else{
+                bg.drawImage(layer1,0,0);
+            }
+            
+        }
+        if (layer2!=null){
+            if(layer2_ytile){
+                int y = layer2_yoffset -cameraY/3;
+                int x = layer2_xoffset -cameraX/3;
+                for (int i = x;i<GAME_WIDTH;i+=layer2.getWidth()){
+                    bg.drawImage(layer2,i,y);
+                }
+                
+            }else{
+                bg.drawImage(layer2,-cameraX/3, -cameraY/3);
+            }
+        }
+        if (layer3!=null){
+            if(layer3_ytile){
+                int y = layer3_yoffset -cameraY/2;
+                int x = layer3_xoffset -cameraX/2;
+                for (int i = x;i<GAME_WIDTH;i+=layer3.getWidth()){
+                    bg.drawImage(layer3,i,y);
+                }
+                
+            }else{
+                bg.drawImage(layer3,-cameraX/3, -cameraY/3);
+            }
+        }else{
+            bg.drawImage(layer3,-cameraX/3, -cameraY/3);
+        }
 
     }
 
@@ -118,7 +167,6 @@ public class ExtendedWorld extends World
         int cx = GAME_WIDTH/2;
         int cy = GAME_HEIGHT/2;
         transposeCamera(cx-x, cy-y);
-        System.out.println(" "+obj.isFocus()+cx+cy);
         if(obj.isFocus()) obj.setWindowLocation(cx,cy);
 
     }

@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class PlayerFace here.
+ * Image of the player face that is present on the menu
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon 
+ * @version v0.1
  */
 public class PlayerFace extends MenuItems
 {

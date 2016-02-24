@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class MenuItems here.
+ * Super class for the menu elements
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon
+ * @version v0.1
  */
 public class MenuItems extends Actor
 {
@@ -14,11 +14,6 @@ public class MenuItems extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
+   
     } 
-    
-    public void printXY()
-    {
-        System.out.print("X : "+ getX() + "    Y: " + getY());
-    }
 }

@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Settings here.
+ * The button for the settings om the menu
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon
+ * @version v0.1
  */
 public class Settings extends MenuItems
 {
@@ -17,4 +17,11 @@ public class Settings extends MenuItems
         start = new GreenfootImage("images/Graphics/MENUV2/M2Settings.png");
         setImage(start);
     }   
+    
+    public void act() 
+    {
+       if(Greenfoot.mouseClicked(this)){
+          System.out.println("Settings has been clicked");
+       }
+    }    
 }

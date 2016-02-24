@@ -10,6 +10,10 @@ public class MuteControl extends Actor
 {
     private GreenfootSound backgroundMusic = new GreenfootSound("01ANightOfDizzySpells.mp3");
     private boolean isMuted;
+    protected int currentVolume;
+    private int volume = 100;
+    private boolean oDown;
+    private boolean pDown;
     /**
      * Act - do whatever the MuteControl wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -23,15 +27,40 @@ public class MuteControl extends Actor
     
     public void act() 
     {
-      //backgroundMusic.playLoop();
+      // backgroundMusic.playLoop();
        if(Greenfoot.mouseClicked(this))
        {
           isMuted = !isMuted;
           updateState();
           
        }
-    }    
+       if(!oDown && Greenfoot.isKeyDown("o") && isMuted == false ){
+           oDown = true;
+           volume -= 10;
+           backgroundMusic.setVolume(volume);
+       }
+       if (oDown && !Greenfoot.isKeyDown("o") && isMuted == false ){
+           
+           oDown = false;
+       }
+       if(!pDown && Greenfoot.isKeyDown("p") && isMuted == false && volume <= 99 ){
+           pDown = true;
+           volume += 10;
+           backgroundMusic.setVolume(volume);
+       }
+       if(pDown && !Greenfoot.isKeyDown("p") && isMuted == false && volume <= 99 ){
+           
+           pDown = false;
+        }
+        
+    }
+   
+
     
+    public int getVolume(){
+    return currentVolume;
+
+    }
     private void updateState()
     {
         GreenfootImage img1 = new GreenfootImage("button-red.png");
@@ -39,12 +68,12 @@ public class MuteControl extends Actor
         if(isMuted)
         {
             setImage(img1);
-            backgroundMusic.stop();
+            backgroundMusic.pause();
         }
         else {
             setImage(img2);
-            
             backgroundMusic.playLoop();
+
         }
     }
     

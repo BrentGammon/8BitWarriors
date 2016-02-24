@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Start here.
+ * Start button for the menu
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon 
+ * @version v0.1
  */
 public class Start extends MenuItems
 {
@@ -21,9 +21,7 @@ public class Start extends MenuItems
     
     public void act() 
     {
-        // Add your action code here.
-         if(Greenfoot.mouseClicked(this))
-       {
+       if(Greenfoot.mouseClicked(this)){
           World world = getWorld();
           World1 world1 = new World1();
           Greenfoot.setWorld(world1);

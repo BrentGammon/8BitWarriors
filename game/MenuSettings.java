@@ -15,5 +15,6 @@ public class MenuSettings extends ExtendedWorld
      */
     public MenuSettings()
     {
+        super(false);
     }
 }

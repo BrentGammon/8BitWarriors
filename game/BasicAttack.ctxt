@@ -1,12 +1,14 @@
 #BlueJ class context
-comment0.params=direction\ source
-comment0.target=BasicAttack(boolean,\ ExtendedActor)
-comment1.params=
-comment1.target=void\ fire()
+comment0.target=BasicAttack
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ BasicAttack\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=direction\ source
+comment1.target=BasicAttack(boolean,\ ExtendedActor)
 comment2.params=
-comment2.target=void\ act()
-comment3.params=isLeft
-comment3.target=void\ setDirection(boolean)
-comment4.params=
-comment4.target=void\ doDamage()
-numComments=5
+comment2.target=void\ fire()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=isLeft
+comment4.target=void\ setDirection(boolean)
+comment5.params=
+comment5.target=void\ doDamage()
+numComments=6

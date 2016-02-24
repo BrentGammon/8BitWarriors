@@ -1,9 +1,11 @@
 #BlueJ class context
-comment0.params=direction\ source
-comment0.target=Attack(boolean,\ ExtendedActor)
-comment0.text=\r\n\ Used\ for\ the\ direction\ of\ where\ the\ object\ will\ spawn\ agisnt\ the\ player\r\n
-comment1.params=direction
-comment1.target=void\ setDirection(boolean)
-comment2.params=
-comment2.target=void\ fire()
-numComments=3
+comment0.target=Attack
+comment0.text=\r\n\ Attack\ class\ will\ be\ used\ for\ when\ the\ player\ is\ attacking\ \ \r\n\ \r\n\ @author\ Brent\ Gammon\ \r\n\ @version\ (0.1)\r\n
+comment1.params=direction\ source
+comment1.target=Attack(boolean,\ ExtendedActor)
+comment1.text=\r\n\ Used\ for\ the\ direction\ of\ where\ the\ object\ will\ spawn\ agisnt\ the\ player\r\n
+comment2.params=direction
+comment2.target=void\ setDirection(boolean)
+comment3.params=
+comment3.target=void\ fire()
+numComments=4

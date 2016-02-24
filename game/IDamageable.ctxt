@@ -1,5 +1,7 @@
 #BlueJ class context
-comment0.params=attacker\ damage
-comment0.target=int\ doDamage(greenfoot.Actor,\ int)
-comment0.text=\r\n\ do\ damage\ to\ this\ object.\ Returns\ damage\ done.\r\n
-numComments=1
+comment0.target=IDamageable
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ IDamageable\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=attacker\ damage
+comment1.target=int\ doDamage(greenfoot.Actor,\ int)
+comment1.text=\r\n\ do\ damage\ to\ this\ object.\ Returns\ damage\ done.\r\n
+numComments=2

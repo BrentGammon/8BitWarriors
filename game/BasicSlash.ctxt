@@ -1,10 +1,12 @@
 #BlueJ class context
-comment0.params=goLeft\ source
-comment0.target=BasicSlash(boolean,\ ExtendedActor)
-comment1.params=
-comment1.target=void\ act()
+comment0.target=BasicSlash
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ BasicSlash\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=goLeft\ source
+comment1.target=BasicSlash(boolean,\ ExtendedActor)
 comment2.params=
-comment2.target=boolean\ doDamage()
+comment2.target=void\ act()
 comment3.params=
-comment3.target=boolean\ hit()
-numComments=4
+comment3.target=boolean\ doDamage()
+comment4.params=
+comment4.target=boolean\ hit()
+numComments=5

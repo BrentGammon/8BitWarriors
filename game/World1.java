@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.TextField;
 /**
  * Write a description of class World1 here.
  * 
@@ -15,6 +16,10 @@ public class World1 extends ExtendedWorld
      */
     public World1()
     {
+        //call to superclass to use centreCameraOn function
+        super(true);
+        
+        
         WORLD_WIDTH = 1920;
         Player p = new Player();
         layer3 = new GreenfootImage("images/bliss.jpg");
@@ -46,6 +51,10 @@ public class World1 extends ExtendedWorld
         }*/
         //addObject(new MuteControl(),700,50);
         addObject(new Counter(),100,50);
+        
+        addObject(new UPControl(),100,20);
+        
+       // addObject(new TextField("", 20),100,100);
     }
     
     public void started()

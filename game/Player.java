@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import javax.swing.*;
 /**
  * Write a description of class Player here.
  * 
@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends Entity implements IFalling
 {
     public static int MOVE_SPEED = 3;
-    public static int JUMP_SPEED = -30;
+    public static int JUMP_SPEED = -20;
     public static  int MOVE_SPEED_CAP = 10;
     public static  int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
@@ -26,7 +26,7 @@ public class Player extends Entity implements IFalling
 
     private final int SHOOT_COOL_DOWN = 60;
     private int currentCoolDown = 0;
-    
+
     private GreenfootImage front = new GreenfootImage("Player/front.png");
     private GreenfootImage standingRight = new GreenfootImage("Player/standing.png");
     private GreenfootImage standingLeft;
@@ -34,13 +34,23 @@ public class Player extends Entity implements IFalling
     private GreenfootImage jump2Right = new GreenfootImage("Player/jump2.png");
     private GreenfootImage jump1Left;
     private GreenfootImage jump2Left;
-    
+
     private GreenfootImage moveRight = new GreenfootImage("Player/move.png");
     private GreenfootImage moveLeft;
-    
+
     private boolean facingLeft = false;
+
     
+    
+    //     private String keyLeft;
+    //     private String keyRight;
+    public static String keyJump;
+
     Player(){
+        ///keyLeft = JOptionPane.showInputDialog("Left Key");
+        //keyRight = JOptionPane.showInputDialog("Right Key");
+        //keyJump = JOptionPane.showInputDialog("Jump Key");
+
         standingLeft = new GreenfootImage(standingRight);
         standingLeft.mirrorHorizontally();
         jump1Left = new GreenfootImage(jump1Right);
@@ -49,15 +59,17 @@ public class Player extends Entity implements IFalling
         jump2Left.mirrorHorizontally();
         moveLeft = new GreenfootImage(moveRight);
         moveLeft.mirrorHorizontally();
-        
+
         hasFocus = true;
-        
+
         setImage(front);
     }   
+
     @Override
     public void addedToWorld(World w){
         ((ExtendedWorld)w).setFocus(this);
     }
+
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -74,6 +86,10 @@ public class Player extends Entity implements IFalling
             horzVelocity += MOVE_SPEED;
             setImage(onPlatform()?standingRight:jump1Right);
             facingLeft = false;
+        }else{
+            setImage(front);
+            facingLeft = false;
+
         }
         if (Greenfoot.isKeyDown("c"))((ExtendedWorld)getWorld()).centreCameraOn(this);
         if (gotSpeedBoost){
@@ -82,9 +98,19 @@ public class Player extends Entity implements IFalling
         if (gotJumpBoost){
             jumpBoostTimer();
         }
-        if(Greenfoot.isKeyDown("UP")&&onPlatform()){
-            moveLocation(0,-1);
-            vertVelocity = JUMP_SPEED;
+
+        if(keyJump==null)
+        {
+            if(Greenfoot.isKeyDown("SPACE")&&onPlatform()){
+                moveLocation(0,-1);
+                vertVelocity = JUMP_SPEED;
+            }
+        }else{
+            if(Greenfoot.isKeyDown(keyJump)&&onPlatform()){
+                moveLocation(0,-1);
+                vertVelocity = JUMP_SPEED;
+            }
+
         }
 
         if(Greenfoot.isKeyDown("V")){
@@ -95,8 +121,9 @@ public class Player extends Entity implements IFalling
                 int y = getY();
                 world.addObject(new Attack(true),x,y);
 
-            }else{
-                currentCoolDown--;   
+                //             }else{
+                //                 currentCoolDown--;   
+                //             }
             }
         }
         if(Greenfoot.isKeyDown("X")){
@@ -107,10 +134,16 @@ public class Player extends Entity implements IFalling
                 World world = getWorld();
                 int y = getY();
                 world.addObject(new Attack(false),x,y);
-            }else{
-                currentCoolDown--;
+                //             }else{
+                //                 currentCoolDown--;
+                //             }
             }
         }
+
+        if(!(currentCoolDown==0)){
+            currentCoolDown--;
+        }
+
         horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
         move();
 
@@ -169,22 +202,22 @@ public class Player extends Entity implements IFalling
             vertVelocity+=g;
             /*
             if(vertVelocity>0){
-                for(int i=0;i<vertVelocity;i++){
-                    moveLocation(0,1);
-                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
-                        vertVelocity = 0;
-                    }
-                }
+            for(int i=0;i<vertVelocity;i++){
+            moveLocation(0,1);
+            if (!getIntersectingObjects(Terrain.class).isEmpty()){
+            vertVelocity = 0;
+            }
+            }
             } else if(vertVelocity<0){
 
-                for(int i=0;i>vertVelocity;i--){
-                    moveLocation(0,-1);
-                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
-                        vertVelocity = 0;
-                    }
-                }
+            for(int i=0;i>vertVelocity;i--){
+            moveLocation(0,-1);
+            if (!getIntersectingObjects(Terrain.class).isEmpty()){
+            vertVelocity = 0;
             }
-            */
+            }
+            }
+             */
         }else{
             vertVelocity = 0;
         }

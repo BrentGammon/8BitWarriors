@@ -1,6 +1,4 @@
 #BlueJ class context
-comment0.target=IFalling
-comment0.text=\r\n\ IFalling\ Actors\ should\ impliment\ the\ fall\ method\ which\ contains\ all\ the\ logic\ necessary\ for\ when\r\n\ they\ need\ to\ fall\ due\ to\ gravity.\ This\ will\ be\ called\ by\ the\ world\ class\ to\ force\ them\ all\ down.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=gravity
-comment1.target=void\ fall(int)
-numComments=2
+comment0.params=gravity
+comment0.target=void\ fall(int)
+numComments=1

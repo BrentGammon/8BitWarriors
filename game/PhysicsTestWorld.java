@@ -15,6 +15,7 @@ public class PhysicsTestWorld extends ExtendedWorld
      */
     public PhysicsTestWorld()
     {
+        super(true);
         Player p = new Player();
         layer3 = new GreenfootImage("images/bliss.jpg");
 

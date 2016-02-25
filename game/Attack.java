@@ -6,50 +6,20 @@ import java.util.*;
  * @author Brent Gammon 
  * @version (0.1)
  */
-public class Attack extends Entity
+public abstract class Attack extends Entity
 {
     private boolean direction;
+    private ExtendedActor source;
     /**
      * Used for the direction of where the object will spawn agisnt the player
      */
-    public Attack(boolean direction){
+    public Attack(boolean direction, ExtendedActor source){
+        this.source = source;
         this.direction = direction;
     }
-    
-    /**
-     * Act - do whatever the Attack wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        if(direction){
-            move(5);
-        }else{
-            move(-5);
-        }
-        if(isTouching(TrackEnemy.class)){
-            Counter counter =(Counter) getWorld().getObjects(Counter.class).get(0);
-            counter.add(1);
-            World world = getWorld();
-            List<TrackEnemy>holds = new ArrayList<TrackEnemy>();
-            holds=getIntersectingObjects(TrackEnemy.class);
-            for(Actor x:holds){
-                if(x instanceof TrackEnemy){
-                    world.removeObject(x);
-                }
-            }
-        }   
-        if(isTouching(DumbEnemy.class)){
-            Counter counter =(Counter) getWorld().getObjects(Counter.class).get(0);
-            counter.add(1);
-            World world = getWorld();
-            List<DumbEnemy>holds = new ArrayList<DumbEnemy>();
-            holds=getIntersectingObjects(DumbEnemy.class);
-            for(Actor x:holds){
-                if(x instanceof DumbEnemy){
-                    world.removeObject(x);
-                }
-            }
-        }    
+    public void setDirection(boolean direction){
+        this.direction=direction;
     }
+    public abstract void fire();
+
 }

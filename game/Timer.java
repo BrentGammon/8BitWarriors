@@ -9,7 +9,7 @@ public class Timer extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private int time = 0;
-    private int count = 65;
+    private int count = 45;
     public void act() 
     {
         // Add your action code here.
@@ -18,7 +18,7 @@ public class Timer extends Actor
         if(counter())
         {
             time++;
-            count = 65;
+            count = 45;
         }
         display();
       

@@ -9,13 +9,20 @@ import java.util.List;
 public class Entity extends ExtendedActor
 {
     //http://codereview.stackexchange.com/questions/26697/best-way-to-get-the-smallest-possible-integer-ratio-between-two-numbers
-    
+    protected int vertVelocity=0;
+    protected int horzVelocity=0;
     
     int gcd(int p, int q) {
         if (q == 0) return p;
         else return gcd(q, p % q);
     }
 
+    public int getHorzVelocity(){
+        return horzVelocity;
+    }
+    public int getVertVelocity(){
+        return vertVelocity;
+    }
     public boolean endPlatform()
     {
         int xPost = getX()+5;
@@ -99,5 +106,10 @@ public class Entity extends ExtendedActor
             return true;
         }
         return false;
+    }
+    
+    public boolean die(){
+        getWorld().removeObject(this);
+        return true;
     }
 }

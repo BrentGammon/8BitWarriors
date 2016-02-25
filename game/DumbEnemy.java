@@ -6,20 +6,20 @@ import greenfoot.*;
  * @author Brent Gammon 
  * @version 0.1
  */
-public class DumbEnemy extends Entity
+public class DumbEnemy extends Entity implements IDamageable,IFalling
 {
-    private int health = 10;
+    private int health = 2;
     private int speed = 5;
     private int vertVelocity = 0;
     protected boolean goLeft = false;
-     public static final int GRAVITY = 2; 
+    
+    private boolean hit = false;
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * the 'Act' or 'Run' button gets pre ssed in the environment.
      */
     public void act() 
     {
-        fall();
         moving(); 
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
@@ -61,9 +61,9 @@ public class DumbEnemy extends Entity
         }
     }
     
-    public void fall(){
+    public void fall(int g){
         if (!onPlatform()){
-            vertVelocity+=GRAVITY;
+            vertVelocity+=g;
             if(vertVelocity>0){
                 for(int i=0;i<vertVelocity;i++){
                     moveLocation(0,1);
@@ -89,4 +89,14 @@ public class DumbEnemy extends Entity
         System.out.println(getImage().getWidth());
         System.out.println(getImage().getHeight());
     }   
+    
+    public int doDamage(Actor attacker, int damage){
+        health -= damage;
+        if (health<=0) die();
+        return damage;
+    }
+    public boolean die(){
+        getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
+        return super.die();
+    }
 }

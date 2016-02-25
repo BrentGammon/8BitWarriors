@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=IPlatform
-comment0.text=\r\n\ Classes\ that\ support\ IStandable\ will\ be\ able\ to\ be\ stood\ on\ by\ any\ actor\ that\ it\ wants\ to.\r\n\ The\ actual\ behavior\ that\ prevents\ the\ actor\ from\ falling\ should\ be\ contained\ within\ the\ actor.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=a
-comment1.target=boolean\ canSupportActor(greenfoot.Actor)
-comment1.text=\r\n\ Main\ function\ of\ the\ interface.\ Returns\ the\ boolean\ representing\ if\ the\ given\ actor\r\n\ can\ stand\ on\ it.\r\n
-numComments=2

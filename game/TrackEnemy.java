@@ -6,7 +6,7 @@ import java.util.*;
  * @author Brent Gammon 
  * @version 0.1
  */
-public class TrackEnemy extends Entity implements IFalling
+public class TrackEnemy extends Entity implements IFalling, IDamageable
 {
     public static final int GRAVITY = 2; 
     private GreenfootImage standing;
@@ -14,6 +14,7 @@ public class TrackEnemy extends Entity implements IFalling
     private GreenfootImage left2;
     private GreenfootImage right1;
     private GreenfootImage right2;
+    private int health = 1;
     protected boolean goLeft = false;
 
     private int vertVelocity = 0;
@@ -26,7 +27,11 @@ public class TrackEnemy extends Entity implements IFalling
         right2 = new GreenfootImage("StripeRight2.png");
         setImage(standing);
     }
-
+    public int doDamage(Actor attacker, int damage){
+        health -= damage;
+        if (health<=0) die();
+        return damage;
+    }
     /**
      * Act - do whatever the TrackEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -156,6 +161,12 @@ public class TrackEnemy extends Entity implements IFalling
         }else{
             vertVelocity = 0;
         }
+    }
+    
+    public boolean die(){
+        System.out.println(""+getX()+" "+getY());
+        getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
+        return super.die();
     }
 }
 

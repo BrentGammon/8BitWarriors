@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Moving extends ExtendedActor
 {
     private int speed = 2;
+    private int speedTot = 0;
     
     public Moving(){
         GreenfootImage image = getImage();
@@ -24,6 +25,7 @@ public class Moving extends ExtendedActor
     public void act() 
     {
         setLocation ( getX() + speed, getY() );
+        speedTot += 2;
         
         Actor actor = getOneIntersectingObject(null);
         if(actor != null){
@@ -31,12 +33,11 @@ public class Moving extends ExtendedActor
             
         }
         
-        if(atTurningPoint()){
+        if(speedTot == 100){
             speed = -speed;
+            speedTot = 0;
         }
     }    
     
-    public boolean atTurningPoint(){
-        return (getX() <= 250 || getX() >= 600);
-    }
+    
 }

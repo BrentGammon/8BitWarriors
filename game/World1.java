@@ -22,9 +22,9 @@ public class World1 extends ExtendedWorld
         
         WORLD_WIDTH = 1920;
         Player p = new Player();
-        layer3_xoffset = -200;
-        layer3_yoffset = -100;
-        layer3 = new GreenfootImage("images/jungleBig.png");
+        //layer1_xoffset = -200;
+        //layer1_yoffset = -100;
+        layer1 = new GreenfootImage("images/jungleBig.png");
         
         redrawBackground();
         addObject(p,100,100);

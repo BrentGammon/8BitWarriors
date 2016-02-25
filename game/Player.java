@@ -174,6 +174,7 @@ public class Player extends Entity implements IFalling
         boolean movingLeft = horzVelocity<0;
         if (collideMoveLocation(horzVelocity,vertVelocity)){
             if (directionBlocked(movingLeft?"left":"right")) horzVelocity = 0;
+            if (vertVelocity<0 && upBlocked()) vertVelocity = 0;
         }
     }
 

@@ -45,6 +45,18 @@ public class Entity extends ExtendedActor
             }
         return false;
     }
+    public boolean upBlocked(){
+        final int ow = getWidth()/2;
+        final int oh = getHeight()/2;
+        int y = -oh-1;
+        for (int i=-ow+1;i<ow;i++){
+            getWorld().addObject(new Particle(2),i+getX(),y+getY());
+            if (getOneObjectAtOffset(i,y,Terrain.class)!=null ){
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean onPlatform()
     {
         final int o = getWidth()/2;

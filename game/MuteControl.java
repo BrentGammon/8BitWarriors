@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MuteControl extends Actor
 {
-    private GreenfootSound backgroundMusic = new GreenfootSound("01ANightOfDizzySpells.mp3");
+    private static GreenfootSound backgroundMusic = new GreenfootSound("01ANightOfDizzySpells.mp3");
     private boolean isMuted;
     protected int currentVolume;
     private int volume = 100;
@@ -22,6 +22,7 @@ public class MuteControl extends Actor
     backgroundMusic.playLoop();
     }*/
     MuteControl(){
+        stop();
         updateState();
     }
 

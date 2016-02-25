@@ -18,49 +18,43 @@ public class MuteControl extends Actor
      * Act - do whatever the MuteControl wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-   /* public void started(){
-        backgroundMusic.playLoop();
+    /* public void started(){
+    backgroundMusic.playLoop();
     }*/
     MuteControl(){
         updateState();
     }
-    
+
     public void act() 
     {
-      // backgroundMusic.playLoop();
-       if(Greenfoot.mouseClicked(this))
-       {
-          isMuted = !isMuted;
-          updateState();
-          
-       }
-       if(!oDown && Greenfoot.isKeyDown("o") && isMuted == false ){
-           oDown = true;
-           volume -= 10;
-           backgroundMusic.setVolume(volume);
-       }
-       if (oDown && !Greenfoot.isKeyDown("o") && isMuted == false ){
-           
-           oDown = false;
-       }
-       if(!pDown && Greenfoot.isKeyDown("p") && isMuted == false && volume <= 99 ){
-           pDown = true;
-           volume += 10;
-           backgroundMusic.setVolume(volume);
-       }
-       if(pDown && !Greenfoot.isKeyDown("p") && isMuted == false && volume <= 99 ){
-           
-           pDown = false;
+        // backgroundMusic.playLoop();
+        if(Greenfoot.mouseClicked(this))
+        {
+            isMuted = !isMuted;
+            updateState();
         }
-        
+        if(!oDown && Greenfoot.isKeyDown("o") && isMuted == false ){
+            oDown = true;
+            volume -= 10;
+            backgroundMusic.setVolume(volume);
+        }
+        if (oDown && !Greenfoot.isKeyDown("o") && isMuted == false ){
+            oDown = false;
+        }
+        if(!pDown && Greenfoot.isKeyDown("p") && isMuted == false && volume <= 99 ){
+            pDown = true;
+            volume += 10;
+            backgroundMusic.setVolume(volume);
+        }
+        if(pDown && !Greenfoot.isKeyDown("p") && isMuted == false && volume <= 99 ){
+            pDown = false;
+        }
     }
-   
 
-    
     public int getVolume(){
-    return currentVolume;
-
+        return currentVolume;
     }
+
     private void updateState()
     {
         GreenfootImage img1 = new GreenfootImage("button-red.png");
@@ -76,8 +70,13 @@ public class MuteControl extends Actor
 
         }
     }
-    
+
     public void stop(){
         backgroundMusic.stop();
+    }
+    
+    public void play()
+    {
+        backgroundMusic.play();
     }
 }

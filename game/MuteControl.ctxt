@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.params=
 comment0.target=MuteControl()
-comment0.text=\ public\ void\ started(){\r\n\ \ \ \ \ \ \ \ backgroundMusic.playLoop();\r\n}
+comment0.text=\ public\ void\ started(){\r\n\ \ \ \ backgroundMusic.playLoop();\r\n}
 comment1.params=
 comment1.target=void\ act()
 comment2.params=
@@ -10,4 +10,6 @@ comment3.params=
 comment3.target=void\ updateState()
 comment4.params=
 comment4.target=void\ stop()
-numComments=5
+comment5.params=
+comment5.target=void\ play()
+numComments=6

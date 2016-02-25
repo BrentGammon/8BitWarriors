@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author Brent Gammon 
  * @version v0.1
  */
-public class RightControl extends Actor
+public class RightControl extends MenuItems
 {
     /**
      * Act - do whatever the RightControl wants to do. This method is called whenever

@@ -8,9 +8,8 @@ import java.awt.TextField;
  */
 public class World1 extends ExtendedWorld
 {
-   // private GreenfootSound backgroundMusic = new GreenfootSound("lilwayne.wav");
    boolean begin;
- 
+   private MuteControl muteControl;
     /**
      * Constructor for objects of class World1.
      * 
@@ -59,21 +58,26 @@ public class World1 extends ExtendedWorld
         }*/
         //addObject(new MuteControl(),700,50);
         addObject(new Counter(),100,50);
-        
+        muteControl = new MuteControl();
+        addObject(muteControl,700,50);
        // addObject(new UPControl(),100,20);
         
        // addObject(new TextField("", 20),100,100);
     }
     
+    /**
+     *When the application has been paused when this World is loaded it will stop the music 
+     */
+    public void stopped()
+    {
+        muteControl.stop();
+    }
+    /**
+     * When the application has started when this World is loaded it will play the music 
+     */
     public void started()
     {
-        addObject(new MuteControl(),700,50);
-        
+        muteControl.play();
     }
-    
-    /*public void stopped()
-    {
-        removeObject(MuteControl);
-    }*/
 }
 

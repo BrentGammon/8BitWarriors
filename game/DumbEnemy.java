@@ -16,7 +16,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private boolean hit = false;
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * the 'Act' or 'Run' button gets pre ssed in the environment.
      */
     public void act() 
     {
@@ -94,5 +94,9 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         health -= damage;
         if (health<=0)die();
         return damage;
+    }
+    public boolean die(){
+        getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
+        return super.die();
     }
 }

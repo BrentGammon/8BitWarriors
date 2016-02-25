@@ -11,22 +11,24 @@ import javax.swing.*;
 public class Player extends Entity implements IFalling
 {
 
-    public  int MOVE_SPEED = 3;
-    public  int JUMP_SPEED = -30;
-    public  int MOVE_SPEED_CAP = 10;
-    public  int VERT_SPEED_CAP = 15;
+    public static final int MOVE_SPEED = 3;
+    public static final int JUMP_SPEED = -30;
+    public static final int MOVE_SPEED_CAP = 10;
+    public static final int SPEED_BOOST_CAP = 15;
+    
+    public static final int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
     protected int realY;
     protected int realX;
     boolean isDead = false;
+    
 
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
-    private int jumpBoostTimeLeft = JUMP_BOOST_TIMER;
-    static boolean gotJumpBoost = false;
-    private int speedBoostTimeLeft = SPEED_BOOST_TIMER;
-    static boolean gotSpeedBoost = false;
-
+    
+    private int jumpBoostTimer = 0;
+    private int speedBoostTimer = 0;
+    
     private final int SHOOT_COOL_DOWN = 60;
     private int currentCoolDown = 0;
 
@@ -85,32 +87,26 @@ public class Player extends Entity implements IFalling
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
 
         if (currentCoolDown>0) currentCoolDown--;
-
+        boosts();
         if(!(Greenfoot.isKeyDown("RIGHT")||Greenfoot.isKeyDown("LEFT"))){
             setImage(front);
             facingLeft = false;
 
         }
         if (Greenfoot.isKeyDown("c"))((ExtendedWorld)getWorld()).centreCameraOn(this);
-        if (gotSpeedBoost){
+        if (hasSpeedBoost()){
             speedBoostTimer();
         }
-        if (gotJumpBoost){
+        if (hasJumpBoost()){
             jumpBoostTimer();
         }
 
-        if(keyJump==null)
-        {
-            if(Greenfoot.isKeyDown("SPACE")&&onPlatform()){
-                moveLocation(0,-1);
-                vertVelocity = JUMP_SPEED;
-            }
-        }else{
-            if(Greenfoot.isKeyDown(keyJump)&&onPlatform()){
-                moveLocation(0,-1);
-                vertVelocity = JUMP_SPEED;
-            }
+        
+        if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&&onPlatform()){
+            moveLocation(0,-1);
+            vertVelocity = (hasJumpBoost()?-5:0) +JUMP_SPEED;
         }
+        
 
         if(keyLeft==null){
             if (Greenfoot.isKeyDown("LEFT")){
@@ -140,17 +136,6 @@ public class Player extends Entity implements IFalling
             }
         }
 
-        //         if (Greenfoot.isKeyDown("LEFT")){
-        //             horzVelocity -= MOVE_SPEED;
-        //             facingLeft = true;
-        //             setImage(onPlatform()?standingLeft:jump1Left);
-        //         }
-        //         if(Greenfoot.isKeyDown("RIGHT")){
-        //             horzVelocity += MOVE_SPEED;
-        //             setImage(onPlatform()?standingRight:jump1Right);
-        //             facingLeft = false;
-        //         }
-
         weapon.setDirection(facingLeft);
         if(Greenfoot.isKeyDown("V") && currentCoolDown==0){
             weapon.fire();
@@ -161,28 +146,26 @@ public class Player extends Entity implements IFalling
         if(!(currentCoolDown==0)){
             currentCoolDown--;
         }
-
-        horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
+        
+        //horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
+        int cap = hasSpeedBoost()?MOVE_SPEED_CAP:SPEED_BOOST_CAP; 
+        horzVelocity = Math.min(Math.max(-cap,horzVelocity),cap);
         move();
+        checkOutOfBounds();
 
     }
 
     public void boosts(){
-        Powerup pu = (Powerup)getOneObjectAtOffset(0, 0, Powerup.class);
+        Powerup pu = (Powerup)getOneIntersectingObject(Powerup.class);
         if (pu != null){
             int kind = pu.getType();
-            getWorld().removeObject(pu);
+            pu.die();
             if (kind == Powerup.SPEED_PU) { 
-                gotSpeedBoost = true;
-                MOVE_SPEED_CAP += 3;
-                VERT_SPEED_CAP += 3;
-
+                speedBoostTimer = SPEED_BOOST_TIMER;
             }
 
             if (kind == Powerup.JUMP_PU){
-                gotJumpBoost = true;
-                JUMP_SPEED -= 10;
-
+                jumpBoostTimer = JUMP_BOOST_TIMER;
             }
 
         }
@@ -190,23 +173,14 @@ public class Player extends Entity implements IFalling
     }
 
     public void speedBoostTimer(){
-        speedBoostTimeLeft--;
-        if (speedBoostTimeLeft <= 0){
-            gotSpeedBoost = false;
-            MOVE_SPEED_CAP -= 3;
-            VERT_SPEED_CAP -= 3;
-            speedBoostTimeLeft = SPEED_BOOST_TIMER;
+        if (speedBoostTimer-- <= 0){
             System.out.println("Speed boost is over");
-
         }
     }
 
     public void jumpBoostTimer(){
-        jumpBoostTimeLeft--;
-        if(jumpBoostTimeLeft <= 0){
-            gotJumpBoost = false;
-            JUMP_SPEED += 10;
-            jumpBoostTimeLeft = SPEED_BOOST_TIMER;
+        
+        if(jumpBoostTimer-- == 1){
             System.out.println("Jump boost is over");
         }
     }
@@ -248,6 +222,14 @@ public class Player extends Entity implements IFalling
         Greenfoot.setWorld(new World1());
         return true;
     }
+
+    public boolean hasJumpBoost(){
+        return jumpBoostTimer > 0;
+    }
+    public boolean hasSpeedBoost(){
+        return speedBoostTimer > 0;
+    }
+  
 
     private void checkOutOfBounds(){
         int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();

@@ -33,6 +33,10 @@ public class ExtendedWorld extends World
     protected int layer3_xoffset = 0;
     protected int layer3_yoffset = 0;
     protected boolean layer3_ytile = true;
+    protected GreenfootImage layer4;
+    protected int layer4_xoffset = 0;
+    protected int layer4_yoffset = 0;
+    protected boolean layer4_ytile = true;
 
     private ExtendedActor focus;
     private int cameraX = 0;
@@ -145,8 +149,18 @@ public class ExtendedWorld extends World
             }else{
                 bg.drawImage(layer3,-cameraX/3, -cameraY/3);
             }
-        }else{
-            bg.drawImage(layer3,-cameraX/3, -cameraY/3);
+        }
+        if (layer4!=null){
+            if(layer4_ytile){
+                int y = layer4_yoffset -cameraY;
+                int x = layer4_xoffset -cameraX;
+                for (int i = x;i<GAME_WIDTH;i+=layer4.getWidth()){
+                    bg.drawImage(layer4,i,y);
+                }
+                
+            }else{
+                bg.drawImage(layer4,-cameraX, -cameraY);
+            }
         }
 
     }

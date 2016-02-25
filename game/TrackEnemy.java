@@ -162,6 +162,12 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
             vertVelocity = 0;
         }
     }
+    
+    public boolean die(){
+        System.out.println(""+getX()+" "+getY());
+        getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
+        return super.die();
+    }
 }
 
 

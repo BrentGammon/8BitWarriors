@@ -18,18 +18,23 @@ public class PowerupDisplay extends Actor
     String jump = "Jump PU";
     String speed = "Speed PU";
     String both = "Speed+Jump pu";
-
+    Player player;
+     Color transparent = new Color(0, 0, 0, 0);  
+     
+    PowerupDisplay(Player player){
+        this.player = player;
+    }
     public void act() 
     {
         display();
     }    
-    Color transparent = new Color(0, 0, 0, 0);  
+   
     public void display(){
-    if (Player.gotSpeedBoost == true){
+    if (player.hasSpeedBoost() == true){
     
        setImage(new GreenfootImage("PowerUP: " + speed , 25, Color.BLACK, transparent));
        
-   }else if (Player.gotJumpBoost == true){
+   }else if (player.hasJumpBoost() == true){
        
        setImage(new GreenfootImage("PowerUP: " + jump , 25, Color.BLACK, transparent));
   

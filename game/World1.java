@@ -45,14 +45,14 @@ public class World1 extends ExtendedWorld
 
         addObject(new Timer(),100,150);
         addObject(new Powerup(1),200,100);
-        addObject(new PowerupDisplay(),170,100);
+        addObject(new PowerupDisplay(p),170,100);
         addObject(new TrackEnemy(),600,100);
         addObject(new TrackEnemy(),650,100);
         addObject(new TrackEnemy(),700,100);
         
         addObject(new DumbEnemy(),50,500);
         //addObject(new MuteControl(),700,500);
-       addObject(new Moving(), 300, 450);
+       //addObject(new Moving(), 300, 450);
         /*if(begin){
             addObject(new MuteControl(),700,50);
         }*/

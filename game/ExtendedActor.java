@@ -12,13 +12,12 @@ public class ExtendedActor extends Actor
      * Act - do whatever the ExtendedActor wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    //
     private int worldX=-10000;
     private int worldY=-10000;
     private boolean locationSet=false;
     protected boolean hasFocus;
-    public void act() 
-    {
-    }
+
     public void addedToWorld(World world){
         super.addedToWorld(world);
     }

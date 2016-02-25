@@ -29,9 +29,6 @@ public class Player extends Entity implements IFalling
     private int jumpBoostTimer = 0;
     private int speedBoostTimer = 0;
     
-    private final int SHOOT_COOL_DOWN = 60;
-    private int currentCoolDown = 0;
-
     private GreenfootImage front = new GreenfootImage("Player/front.png");
     private GreenfootImage standingRight = new GreenfootImage("Player/standing.png");
     private GreenfootImage standingLeft;
@@ -84,16 +81,13 @@ public class Player extends Entity implements IFalling
      */
     public void act() 
     {
+        // if velocity is greater than how much friction reduces then reduce speed by friction (add if negative subtract if positive). Else set to 0
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
-
-        if (currentCoolDown>0) currentCoolDown--;
+        
+        // Check for powerups and apply them
         boosts();
-        if(!(Greenfoot.isKeyDown("RIGHT")||Greenfoot.isKeyDown("LEFT"))){
-            setImage(front);
-            facingLeft = false;
-
-        }
-        if (Greenfoot.isKeyDown("c"))((ExtendedWorld)getWorld()).centreCameraOn(this);
+        
+        //if player has powerup decrement timer.
         if (hasSpeedBoost()){
             speedBoostTimer();
         }
@@ -101,60 +95,51 @@ public class Player extends Entity implements IFalling
             jumpBoostTimer();
         }
 
-        
+        //if the jump key is being held and player is on a platform. Jump
         if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&&onPlatform()){
             moveLocation(0,-1);
             vertVelocity = (hasJumpBoost()?-5:0) +JUMP_SPEED;
         }
         
-
-        if(keyLeft==null){
-            if (Greenfoot.isKeyDown("LEFT")){
-                horzVelocity -= MOVE_SPEED;
-                facingLeft = true;
-                setImage(onPlatform()?standingLeft:jump1Left);
-            }
+        //if player is moving in a direction
+        if (Greenfoot.isKeyDown(keyLeft!=null?keyLeft:"LEFT")){
+            //apply speed in direction
+            horzVelocity -= MOVE_SPEED;
+            //set direction (whether or not facing left or not)
+            facingLeft = true;
+            //set image to standing if on the ground. jumping if in the air
+            setImage(onPlatform()?standingLeft:jump1Left);
+        }else if (Greenfoot.isKeyDown(keyRight!=null?keyRight:"RIGHT")){
+            horzVelocity += MOVE_SPEED;
+            setImage(onPlatform()?standingRight:jump1Right);
+            facingLeft = false;
         }else{
-            if (Greenfoot.isKeyDown(keyLeft)){
-                horzVelocity -= MOVE_SPEED;
-                facingLeft = true;
-                setImage(onPlatform()?standingLeft:jump1Left);
-            }
-        }
-
-        if(keyRight==null){
-            if (Greenfoot.isKeyDown("RIGHT")){
-                horzVelocity += MOVE_SPEED;
-                setImage(onPlatform()?standingRight:jump1Right);
-                facingLeft = false;
-            }
-        }else{
-            if (Greenfoot.isKeyDown(keyRight)){
-                horzVelocity += MOVE_SPEED;
-                setImage(onPlatform()?standingRight:jump1Right);
-                facingLeft = false;
-            }
-        }
-
-        weapon.setDirection(facingLeft);
-        if(Greenfoot.isKeyDown("V") && currentCoolDown==0){
-            weapon.fire();
-        }else if(Greenfoot.isKeyDown("X") && currentCoolDown==0){
-            weapon.fire();
-        }
-
-        if(!(currentCoolDown==0)){
-            currentCoolDown--;
+            //else set image to facing forward
+            setImage(front);
+            //facingLeft = false;
         }
         
-        //horzVelocity = horzVelocity > MOVE_SPEED_CAP?MOVE_SPEED_CAP:horzVelocity<-MOVE_SPEED_CAP?-MOVE_SPEED_CAP:horzVelocity;
-        int cap = hasSpeedBoost()?MOVE_SPEED_CAP:SPEED_BOOST_CAP; 
+        //tell weapon what direction we are facing
+        weapon.setDirection(facingLeft);
+        //if player is pressing an attack key; fire
+        if(Greenfoot.isKeyDown("V") || Greenfoot.isKeyDown("X")){
+            weapon.fire();
+        }
+        
+        //if player has speed boost cap speed at speed boost cap else do move speed cap
+        int cap = hasSpeedBoost()?SPEED_BOOST_CAP:MOVE_SPEED_CAP; 
         horzVelocity = Math.min(Math.max(-cap,horzVelocity),cap);
+        
+        // do motion with calculated
         move();
+        // check that the player is still within the world.
         checkOutOfBounds();
 
     }
 
+    /**
+     * This function checks whether or not the player is touching any powerup items and removes them. 
+     */
     public void boosts(){
         Powerup pu = (Powerup)getOneIntersectingObject(Powerup.class);
         if (pu != null){

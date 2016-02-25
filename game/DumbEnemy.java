@@ -92,7 +92,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     
     public int doDamage(Actor attacker, int damage){
         health -= damage;
-        if (health<=0) die();
+        if (health<=0)die();
         return damage;
     }
 }

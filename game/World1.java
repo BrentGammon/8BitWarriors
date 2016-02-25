@@ -52,7 +52,7 @@ public class World1 extends ExtendedWorld
         
         addObject(new DumbEnemy(),50,500);
         //addObject(new MuteControl(),700,500);
-       //addObject(new Moving(), 300, 450);
+       addObject(new Moving(), 300, 450);
         /*if(begin){
             addObject(new MuteControl(),700,50);
         }*/

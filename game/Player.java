@@ -8,7 +8,7 @@ import javax.swing.*;
  * @author Mitchell
  * @version (a version number or a date)
  */
-public class Player extends Entity implements IFalling
+public class Player extends Entity implements IFalling, IDamageable
 {
 
     public static final int MOVE_SPEED = 3;
@@ -181,24 +181,6 @@ public class Player extends Entity implements IFalling
     public void fall(int g){
         if (!onPlatform()){
             vertVelocity+=g;
-            /*
-            if(vertVelocity>0){
-            for(int i=0;i<vertVelocity;i++){
-            moveLocation(0,1);
-            if (!getIntersectingObjects(Terrain.class).isEmpty()){
-            vertVelocity = 0;
-            }
-            }
-            } else if(vertVelocity<0){
-
-            for(int i=0;i>vertVelocity;i--){
-            moveLocation(0,-1);
-            if (!getIntersectingObjects(Terrain.class).isEmpty()){
-            vertVelocity = 0;
-            }
-            }
-            }
-             */
         }else{
             vertVelocity = 0;
         }
@@ -223,6 +205,11 @@ public class Player extends Entity implements IFalling
         if(realY > 2000 || realX < -400){
             die();
         }
+    }
+    
+    public int doDamage(Actor a, int damage){
+        if (damage>0)die();
+        return damage;
     }
 
 }

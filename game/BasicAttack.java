@@ -51,7 +51,7 @@ public class BasicAttack extends Attack
     public void doDamage(){
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);
         for (IDamageable obj: objs){
-            obj.doDamage(this,DAMAGE);
+            if (obj!=source) obj.doDamage(this,DAMAGE);
         }
     }
 }

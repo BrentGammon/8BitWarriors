@@ -50,10 +50,11 @@ public class World1 extends ExtendedWorld
         addObject(new TrackEnemy(),600,100);
         addObject(new TrackEnemy(),650,100);
         addObject(new TrackEnemy(),700,100);
+        addObject(new MonkeyEnemy(),800,100);
         
         addObject(new DumbEnemy(),50,500);
         //addObject(new MuteControl(),700,500);
-       addObject(new Moving(), 300, 450);
+        //addObject(new Moving(), 300, 450);
         /*if(begin){
             addObject(new MuteControl(),700,50);
         }*/
@@ -61,9 +62,9 @@ public class World1 extends ExtendedWorld
         addObject(new Counter(),100,50);
         muteControl = new MuteControl();
         addObject(muteControl,700,50);
-       // addObject(new UPControl(),100,20);
+        // addObject(new UPControl(),100,20);
         
-       // addObject(new TextField("", 20),100,100);
+        // addObject(new TextField("", 20),100,100);
     }
     
     /**

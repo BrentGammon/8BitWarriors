@@ -6,7 +6,7 @@ import java.util.List;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Entity extends ExtendedActor
+public abstract class Entity extends ExtendedActor
 {
     //http://codereview.stackexchange.com/questions/26697/best-way-to-get-the-smallest-possible-integer-ratio-between-two-numbers
     protected int vertVelocity=0;
@@ -38,7 +38,7 @@ public class Entity extends ExtendedActor
         final int oh = getHeight()/2;
         int x = direction.equals("left")?-ow-1:ow+1;
         for (int i=-oh+1;i<oh;i++){
-                getWorld().addObject(new Particle(2),x+getX(),i+getY());
+                //getWorld().addObject(new Particle(2),x+getX(),i+getY());
                 if (getOneObjectAtOffset(x,i,Terrain.class)!=null ){
                     return true;
                 }
@@ -50,7 +50,7 @@ public class Entity extends ExtendedActor
         final int oh = getHeight()/2;
         int y = -oh-1;
         for (int i=-ow+1;i<ow;i++){
-            getWorld().addObject(new Particle(2),i+getX(),y+getY());
+            //getWorld().addObject(new Particle(2),i+getX(),y+getY());
             if (getOneObjectAtOffset(i,y,Terrain.class)!=null ){
                 return true;
             }
@@ -61,7 +61,7 @@ public class Entity extends ExtendedActor
     {
         final int o = getWidth()/2;
         for (int i=-o;i<-o+getWidth();i++){
-            getWorld().addObject(new Particle(2),i+getX(),getHeight()/2+getY()+1);
+            //getWorld().addObject(new Particle(2),i+getX(),getHeight()/2+getY()+1);
             if (getOneObjectAtOffset(i,getHeight()/2+1,Terrain.class)!=null ){
                 return true;
             }
@@ -119,7 +119,13 @@ public class Entity extends ExtendedActor
         }
         return false;
     }
-    
+    public void fall(int g){
+        if (!onPlatform()){
+            vertVelocity+=g;
+        }else{
+            vertVelocity = 0;
+        }
+    }
     public boolean die(){
         getWorld().removeObject(this);
         return true;

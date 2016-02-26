@@ -1,12 +1,12 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class TrackEnemy here.
+ * TrackEnemy will move towards the player when they are in range.
  * 
  * @author Brent Gammon 
  * @version 0.1
  */
-public class TrackEnemy extends Entity
+public class TrackEnemy extends Entity implements IFalling, IDamageable
 {
     public static final int GRAVITY = 2; 
     private GreenfootImage standing;
@@ -14,8 +14,9 @@ public class TrackEnemy extends Entity
     private GreenfootImage left2;
     private GreenfootImage right1;
     private GreenfootImage right2;
+    private int health = 1;
     protected boolean goLeft = false;
-    
+
     private int vertVelocity = 0;
     public TrackEnemy()
     {
@@ -26,7 +27,11 @@ public class TrackEnemy extends Entity
         right2 = new GreenfootImage("StripeRight2.png");
         setImage(standing);
     }
-
+    public int doDamage(Actor attacker, int damage){
+        health -= damage;
+        if (health<=0) die();
+        return damage;
+    }
     /**
      * Act - do whatever the TrackEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -34,12 +39,12 @@ public class TrackEnemy extends Entity
     public void act() 
     {
         // Add your action code here.
-        
-        fall();
+
+        //fall();
         int count = 0;
         List<Player> nearObjects = new ArrayList<Player>();
         nearObjects = getObjectsInRange(350,Player.class);
-       if(endPlatform()&&onPlatform()){
+        if(endPlatform()&&onPlatform()){
             if(nearObjects != null){
                 for(Actor x:nearObjects){
                     if(x instanceof Player){
@@ -76,28 +81,26 @@ public class TrackEnemy extends Entity
                 setImage(standing);
             }   
         }
-       if(!endPlatform()){
+        if(!endPlatform()){
             int x = getX();
             int y = getY();
             if(goLeft){
-                x=x+3;
+                x=x+1;
                 setLocation(x,y);
             }else{
-                x=x-3;
+                x=x-1;
                 setLocation(x,y);
             }
         }
-        
+
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-            
+            //MuteControl.stop();
             Greenfoot.setWorld(new World1());
             return;
-            
         }
-        
     }
-    
+
     /**
      * When invoked this will flip the value of goLeft
      */
@@ -122,6 +125,10 @@ public class TrackEnemy extends Entity
         return false;
     }
 
+    /**
+     * Checks if TrackEnemy is on the terrain
+     * @return boolean true if TrackEnemy is on the terrain
+     */
     public boolean endPlatform()
     {
         int xPost = getX()+5;
@@ -133,11 +140,10 @@ public class TrackEnemy extends Entity
         }
     }
 
-    public void fall(){
+    public void fall(int g){
         if (!onPlatform()){
-            vertVelocity+=GRAVITY;
+            vertVelocity+=g;
             if(vertVelocity>0){
-                
                 for(int i=0;i<vertVelocity;i++){
                     moveLocation(0,1);
                     if (!getIntersectingObjects(Terrain.class).isEmpty()){
@@ -145,7 +151,6 @@ public class TrackEnemy extends Entity
                     }
                 }
             } else if(vertVelocity>0){
-                
                 for(int i=0;i>vertVelocity;i--){
                     moveLocation(0,-1);
                     if (!getIntersectingObjects(Terrain.class).isEmpty()){
@@ -157,5 +162,12 @@ public class TrackEnemy extends Entity
             vertVelocity = 0;
         }
     }
+    
+    public boolean die(){
+        System.out.println(""+getX()+" "+getY());
+        getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
+        return super.die();
+    }
 }
+
 

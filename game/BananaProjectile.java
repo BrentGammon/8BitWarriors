@@ -9,7 +9,7 @@ import java.util.List;
 public class BananaProjectile extends Attack implements IFalling
 {   
     public static final int LIFE = 100;
-    public static final int MOVE_SPEED = 8;
+    public static final int MOVE_SPEED = 12;
     public static final int X_OFFSET = -8;
     public static final int Y_OFFSET = -22;
     public static final int DAMAGE = 1;
@@ -70,7 +70,7 @@ public class BananaProjectile extends Attack implements IFalling
     public boolean doDamage(){
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);
         for (IDamageable obj: objs){
-            if (obj != source && obj.doDamage(this,DAMAGE)>0){
+            if (obj == target && obj.doDamage(source,DAMAGE)>0){
                 return true;
             }
         }

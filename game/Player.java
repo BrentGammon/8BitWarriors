@@ -12,7 +12,7 @@ public class Player extends Entity implements IFalling, IDamageable
 {
 
     public static final int MOVE_SPEED = 3;
-    public static final int JUMP_SPEED = -30;
+    public static final int JUMP_SPEED = -20;
     public static final int MOVE_SPEED_CAP = 10;
     public static final int SPEED_BOOST_CAP = 15;
     

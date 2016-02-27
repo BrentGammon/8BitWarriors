@@ -49,7 +49,7 @@ public class BasicSlash extends Entity
     public boolean doDamage(){
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);
         for (IDamageable obj: objs){
-            if (obj != source && obj.doDamage(this,DAMAGE)>0){
+            if (obj != source && obj.doDamage(source,DAMAGE)>0){
                 hit = true;
                 setImage(new GreenfootImage(SPRITE_H,SPRITE_W));
                 frame = 0;

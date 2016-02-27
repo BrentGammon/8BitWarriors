@@ -44,6 +44,8 @@ public class ExtendedWorld extends World
 
     private boolean useCamera;
     
+    ///////////used for saving
+    protected String gameLevel;
     /**
      * Constructor for objects of class ExtendedWorld.
      * 
@@ -184,4 +186,19 @@ public class ExtendedWorld extends World
         if(obj.isFocus()) obj.setWindowLocation(cx,cy);
 
     }
+
+     /**
+     * THis method when invoked will 
+     * @return String 
+     */
+    protected String getLevel()
+    {
+        return gameLevel;
+    }
+    
+   
+    //public String getLevel()
+    //{
+        
+    //}
 }

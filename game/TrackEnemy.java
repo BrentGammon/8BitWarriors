@@ -92,13 +92,13 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
                 setLocation(x,y);
             }
         }
-
-        Actor a = getOneIntersectingObject(Player.class);
+            Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-            //MuteControl.stop();
             Greenfoot.setWorld(new World1());
             return;
+         
         }
+    
     }
 
     /**

@@ -187,6 +187,7 @@ public class Player extends Entity implements IFalling, IDamageable
     }
 
     public boolean die(){
+        
         Greenfoot.setWorld(new World1());
         return true;
     }

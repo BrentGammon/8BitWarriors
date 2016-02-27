@@ -10,8 +10,8 @@ public class PlayerFace extends MenuItems
 {
     private GreenfootImage start;
     /**
-     * Act - do whatever the Start wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constuctor of the class PlayerFace
+     * When invoked it will set the image for the object
      */
     public PlayerFace(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2PlayerFace.png");

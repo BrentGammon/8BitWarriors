@@ -30,14 +30,18 @@ public class PowerupDisplay extends Actor
     }    
    
     public void display(){
-    if (player.hasSpeedBoost() == true){
+    if (player.hasSpeedBoost() && !player.hasJumpBoost() ){
     
        setImage(new GreenfootImage("PowerUP: " + speed , 25, Color.BLACK, transparent));
        
-   }else if (player.hasJumpBoost() == true){
+   }else if (player.hasJumpBoost() && !player.hasSpeedBoost()){
        
        setImage(new GreenfootImage("PowerUP: " + jump , 25, Color.BLACK, transparent));
   
+   }else if (player.hasJumpBoost() && player.hasSpeedBoost()){
+       
+       setImage(new GreenfootImage("PowerUP: " +  jump + "  " +  speed , 25, Color.BLACK, transparent));
+        
    }else{
        
        setImage(new GreenfootImage("PowerUP: " + empty , 25, Color.BLACK, transparent));

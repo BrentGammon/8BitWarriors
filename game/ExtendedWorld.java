@@ -168,11 +168,14 @@ public class ExtendedWorld extends World
     }
 
     public void transposeCamera(int x, int y){
-        cameraX-=x;
-        cameraY-=y;
-        for (Object obj:getObjects(ExtendedActor.class)){
-            if(!((ExtendedActor)obj).isFocus())((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+x,((ExtendedActor)obj).getY()+y);
+        int dx = cameraX-x<0?cameraX:x;
+        int dy = cameraY-y<0?cameraY:y;
+        cameraX-=dx;
+        cameraY-=dy;
+        if(dy!=0||dx!=0) for(Object obj:getObjects(ExtendedActor.class)){
+            ((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+dx,((ExtendedActor)obj).getY()+dy);
         }
+        
         redrawBackground();
 
     }
@@ -183,7 +186,7 @@ public class ExtendedWorld extends World
         int cx = GAME_WIDTH/2;
         int cy = GAME_HEIGHT/2;
         transposeCamera(cx-x, cy-y);
-        if(obj.isFocus()) obj.setWindowLocation(cx,cy);
+
 
     }
 

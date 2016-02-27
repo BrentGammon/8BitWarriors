@@ -12,7 +12,6 @@ import javax.swing.*;
  */
 public class Load extends MenuItems
 {
-    /// Add your action code here.
     private GreenfootImage start;
     /**
      * Act - do whatever the Start wants to do. This method is called whenever
@@ -42,7 +41,10 @@ public class Load extends MenuItems
             loadGame();
         }
     }    
-
+    
+    /**
+     * 
+     */
     public void loadGame()
     {
         String[] data;
@@ -70,6 +72,10 @@ public class Load extends MenuItems
 
     }
     
+    /**
+     * This will load a game world and set the keyblindings to the player depending on the string values from the array
+     * @param array of String containing data about the items that ate going to be loaded into the game
+     */
     private void loadDetails(String[]array)
     {
         String level = array[0];
@@ -86,6 +92,7 @@ public class Load extends MenuItems
         switch (Integer.parseInt(level)){
             case 1:   worlds = new World1();
                         break;
+           //UNCOMMENT WHEN LEVELS ARE IMPLEMENTED INTO THR GAME             
            // case "2":   World2 world = new World2();
            //             break;
            // case "3":   World3 world = new World3();

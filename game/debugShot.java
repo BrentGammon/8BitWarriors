@@ -50,6 +50,6 @@ public class debugShot extends Entity
                     world.removeObject(x);
                 }
             }
-        }    
+        }  
     }
 }

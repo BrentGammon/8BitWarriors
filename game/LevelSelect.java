@@ -1,5 +1,4 @@
 import greenfoot.*;
-
 /**
  * The Level Select component on the menu
  * 
@@ -8,20 +7,17 @@ import greenfoot.*;
  */
 public class LevelSelect extends MenuItems
 {
-    
     private GreenfootImage start;
-    /**
-     * Act - do whatever the Start wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public LevelSelect(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelect.png");
         setImage(start);
     }
-    
+
     /**
      * Act - do whatever the LevelSelect wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
+     * Checks if the mouse is on the object if so then the image is changed to show the player that they are on the object
+     * if clicked it currently prints a message to the terminal
      */
     public void act() 
     {
@@ -38,8 +34,8 @@ public class LevelSelect extends MenuItems
                 }
             }
         }
-       if(Greenfoot.mouseClicked(this)){
-          System.out.println("Level Select has been clicked");
-       }
+        if(Greenfoot.mouseClicked(this)){
+            System.out.println("Level Select has been clicked");
+        }
     }    
 }

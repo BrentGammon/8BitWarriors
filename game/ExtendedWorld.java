@@ -13,8 +13,8 @@ public class ExtendedWorld extends World
     protected int WORLD_END = WORLD_HEIGHT;
     protected int WORLD_WIDTH = 20000;
     protected int GRAVITY = 2;
-    public static final int GAME_HEIGHT = 400;
-    public static final int GAME_WIDTH = 600;
+    public static final int GAME_HEIGHT = 600;
+    public static final int GAME_WIDTH = 800;
     public static final int GAME_SPEED = 45;
     public static final int CAMERA_HORIZONAL_BUFFER = 300;
     public static final int CAMERA_VERTICAL_BUFFER = 150;
@@ -44,6 +44,8 @@ public class ExtendedWorld extends World
 
     private boolean useCamera;
     
+    ///////////used for saving
+    protected String gameLevel;
     /**
      * Constructor for objects of class ExtendedWorld.
      * 
@@ -187,4 +189,19 @@ public class ExtendedWorld extends World
 
 
     }
+
+     /**
+     * THis method when invoked will 
+     * @return String 
+     */
+    protected String getLevel()
+    {
+        return gameLevel;
+    }
+    
+   
+    //public String getLevel()
+    //{
+        
+    //}
 }

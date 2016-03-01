@@ -28,6 +28,9 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         }
     }   
     
+    /**
+     * This will check the results of different logic methods to see what movment the object should do under certain scenario
+     */
     public void moving()
     {
         if(onPlatform()&&!isAtEdge()&&endPlatform()){
@@ -42,7 +45,10 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
             direction();
         }
     }
-
+    
+    /**
+     * When invoked it will flip the boolean value for goLeft
+     */
     public void changeDirection()
     {
         if(goLeft){
@@ -51,7 +57,10 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
             goLeft = true;
         }
     }
-
+    
+    /**
+     * Move the object 1 pixel direction will depend on the value of goLeft
+     */
     public void direction()
     {
         if(!goLeft){
@@ -84,17 +93,12 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         }
     }
 
-    public void getLength()
-    {
-        System.out.println(getImage().getWidth());
-        System.out.println(getImage().getHeight());
-    }   
-    
     public int doDamage(Actor attacker, int damage){
         health -= damage;
-        if (health<=0) die();
+        if (health<=0)die();
         return damage;
     }
+    
     public boolean die(){
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();

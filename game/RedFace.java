@@ -10,8 +10,8 @@ public class RedFace extends MenuItems
 {
     private GreenfootImage start;
     /**
-     * Act - do whatever the Start wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor for the class RedFace 
+     * when invoked it will set the omage for the object
      */
     public RedFace(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2RedFace.png");

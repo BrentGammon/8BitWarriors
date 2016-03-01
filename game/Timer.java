@@ -8,17 +8,16 @@ public class Timer extends Actor
      * Act - do whatever the Timer wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int count = 65;
-    private long baseTime;
-    private long time;
-    public void addedToWorld(World w){
-        baseTime = System.currentTimeMillis();
-    }
+
+    private long time = 0;
+    private int count = 0;
+    private static final int FPS = 50;
     public void act() 
     {
         // Add your action code here.
         reset();
-        time = (System.currentTimeMillis()-baseTime)/1000;
+        count = (count + 1)%FPS;
+        if (count == 0) time++;
         isTimeUp();
         display();
       
@@ -28,11 +27,6 @@ public class Timer extends Actor
     {
         Color transparent = new Color(0, 0, 0, 0);
         setImage(new GreenfootImage("Time: " + time, 25, Color.BLACK, transparent));
-    }
-     
-    public void setTime()
-    {
-        time = 0;
     }
      
     public boolean isTimeUp()

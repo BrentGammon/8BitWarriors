@@ -14,6 +14,8 @@ public class BananaProjectile extends Attack implements IFalling
     public static final int Y_OFFSET = -22;
     public static final int DAMAGE = 1;
     
+    private static final GreenfootImage SPRITE = new GreenfootImage("images/Projectiles/banana.png");
+    
     private boolean damaging = false;
     private boolean facingLeft;
     private boolean thrown = false;
@@ -23,7 +25,8 @@ public class BananaProjectile extends Attack implements IFalling
     
     BananaProjectile(boolean facingLeft, ExtendedActor source){
         super(facingLeft,source);
-        setImage("images/Graphics/Weapons/B1.png");
+        setImage(new GreenfootImage(SPRITE));
+        if(facingLeft) getImage().mirrorHorizontally();
         this.facingLeft = facingLeft;
         this.target = target;
         this.source = source;
@@ -54,17 +57,23 @@ public class BananaProjectile extends Attack implements IFalling
     public void act() 
     {
         if (thrown){
-            if (--life==0) die();
+            if (--life<=0) die();
             else{
+                
                 if(collideMoveLocation(horzVelocity, vertVelocity)||onPlatform()){
                     horzVelocity = 0;
                     damaging = false;
                 }
-                if (damaging && doDamage()) die();
-            }
+                if (damaging){
+                    if (doDamage()) die();
+                    else turn(facingLeft?-20:20);
+                }
+                
+               
+                
+            }   
         }else{
             setLocation(source.getX()+ (facingLeft?-X_OFFSET:X_OFFSET),source.getY()+Y_OFFSET);
-            
         }
     }
     public boolean doDamage(){
@@ -80,6 +89,7 @@ public class BananaProjectile extends Attack implements IFalling
         if(thrown) super.fall(g);
     }
     public void setDirection(boolean f){
+        if (!f && facingLeft)getImage().mirrorHorizontally();
         facingLeft = f;
     }
     

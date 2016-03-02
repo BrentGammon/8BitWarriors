@@ -22,6 +22,7 @@ public class debugShot extends Entity
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         if(direction){
             move(5);
         }else{

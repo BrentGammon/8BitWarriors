@@ -25,9 +25,11 @@ public class Player extends Entity implements IFalling, IDamageable
 
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
+    private final int ATTACK_BOOST_TIMER = 650;
     
     private int jumpBoostTimer = 0;
     private int speedBoostTimer = 0;
+    private int attackBoostTimer = 0;
     
     private GreenfootImage front = new GreenfootImage("Player/front.png");
     private GreenfootImage standingRight = new GreenfootImage("Player/standing.png");
@@ -43,11 +45,11 @@ public class Player extends Entity implements IFalling, IDamageable
     private boolean facingLeft = false;
 
     private Attack weapon;
-    //     private String keyLeft;
-    //     private String keyRight;
+
     public static String keyJump;
     public static String keyLeft;
     public static String keyRight;
+    public static String keyAttack;
 
     Player(){
         ///keyLeft = JOptionPane.showInputDialog("Left Key");
@@ -81,6 +83,8 @@ public class Player extends Entity implements IFalling, IDamageable
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
+        
         // if velocity is greater than how much friction reduces then reduce speed by friction (add if negative subtract if positive). Else set to 0
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
         
@@ -93,6 +97,9 @@ public class Player extends Entity implements IFalling, IDamageable
         }
         if (hasJumpBoost()){
             jumpBoostTimer();
+        }
+        if (hasAttackBoost()){
+            attackBoostTimer();
         }
 
         //if the jump key is being held and player is on a platform. Jump
@@ -122,7 +129,7 @@ public class Player extends Entity implements IFalling, IDamageable
         //tell weapon what direction we are facing
         weapon.setDirection(facingLeft);
         //if player is pressing an attack key; fire
-        if(Greenfoot.isKeyDown("V") || Greenfoot.isKeyDown("X")){
+        if(Greenfoot.isKeyDown(keyAttack!=null?keyAttack:"X")){
             weapon.fire();
         }
         
@@ -152,6 +159,10 @@ public class Player extends Entity implements IFalling, IDamageable
             if (kind == Powerup.JUMP_PU){
                 jumpBoostTimer = JUMP_BOOST_TIMER;
             }
+            
+            if (kind == Powerup.AMMO_PU){
+                attackBoostTimer = ATTACK_BOOST_TIMER;
+            }
 
         }
 
@@ -169,10 +180,20 @@ public class Player extends Entity implements IFalling, IDamageable
             System.out.println("Jump boost is over");
         }
     }
+    
+    public void attackBoostTimer(){
+    
+        if(attackBoostTimer-- <= 0){
+            System.out.println("Attack boost is over");
+        }
+    
+    }
+
 
     public void move(){
         boolean movingLeft = horzVelocity<0;
         if (collideMoveLocation(horzVelocity,vertVelocity)){
+            if (true) return;
             if (directionBlocked(movingLeft?"left":"right")) horzVelocity = 0;
             if (vertVelocity<0 && upBlocked()) vertVelocity = 0;
         }
@@ -198,12 +219,18 @@ public class Player extends Entity implements IFalling, IDamageable
     public boolean hasSpeedBoost(){
         return speedBoostTimer > 0;
     }
+    public boolean hasAttackBoost(){
+        return attackBoostTimer > 0;
+    }
   
 
     private void checkOutOfBounds(){
+        int buffer = 200;
         int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
         int realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
-        if(realY > 2000 || realX < -400){
+        int xBound = getExtendedWorld().getWorldWidth();
+        int yBound = getExtendedWorld().getWorldHeight();
+        if(realY > yBound+buffer || realX < 0-buffer || realX > xBound+buffer){
             die();
         }
     }

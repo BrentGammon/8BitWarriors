@@ -20,6 +20,7 @@ public class Powerup extends Entity
  
     public void act()
     {
+        if (getExtendedWorld().isPaused()) return;
         lifespan--;
         if (lifespan == 0) getWorld().removeObject(this);
      

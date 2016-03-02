@@ -50,8 +50,9 @@ public abstract class Entity extends ExtendedActor
         final int oh = getHeight()/2;
         int y = -oh-1;
         for (int i=-ow+1;i<ow;i++){
-            //getWorld().addObject(new Particle(2),i+getX(),y+getY());
-            if (getOneObjectAtOffset(i,y,Terrain.class)!=null ){
+            Actor a = getOneObjectAtOffset(i,y,Terrain.class);
+            Terrain t = (Terrain)a;
+            if (a!=null && !(t instanceof IPlatform)){
                 return true;
             }
         }
@@ -59,20 +60,17 @@ public abstract class Entity extends ExtendedActor
     }
     public boolean onPlatform()
     {
+        if (vertVelocity<0) return false;
         final int o = getWidth()/2;
         for (int i=-o;i<-o+getWidth();i++){
             //getWorld().addObject(new Particle(2),i+getX(),getHeight()/2+getY()+1);
-            if (getOneObjectAtOffset(i,getHeight()/2+1,Terrain.class)!=null ){
+            Actor a = getOneObjectAtOffset(i,getHeight()/2+1,Terrain.class);
+            Terrain t = (Terrain)a;
+            if (a!=null && t.canSupportEntity(this)){
                 return true;
             }
         }
         return false;
-        /*
-        if(isTouching(Terrain.class)){
-            return true;
-        }
-        return false;
-        */
     }  
     //http://gamedev.stackexchange.com/questions/18302/2d-platformer-collisions
     
@@ -81,6 +79,7 @@ public abstract class Entity extends ExtendedActor
         List<Terrain> c = getIntersectingObjects(Terrain.class);
         if (c.size()>0&&(dx!=0||dy!=0)){
             for (Terrain t:c){
+                if (t instanceof IPlatform && dy<=0) continue;
                 //need to not let pen be higher than dx or dy
                 int cx = dx!=0?dx/Math.abs(dx):1;
                 int cy = dy!=0?dy/Math.abs(dy):1;
@@ -112,10 +111,10 @@ public abstract class Entity extends ExtendedActor
                     }
                     System.out.println("Collision! xpen"+xpen+" dx"+dx+" ypen"+ypen);
                     //set position to most shallow penetration
-                    if ( ypen<=Math.abs(dy)&&(ypen<xpen && xpen>Math.abs(dx)) )setLocation(ypen_x,ypen_y);
+                    if ( xpen>Math.abs(dx) ||ypen<=Math.abs(dy)&&(ypen<xpen) )setLocation(ypen_x,ypen_y);
                 }
+                return true;
             }
-            return true;
         }
         return false;
     }

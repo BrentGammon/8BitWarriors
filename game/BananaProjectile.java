@@ -56,6 +56,7 @@ public class BananaProjectile extends Attack implements IFalling
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         if (thrown){
             if (--life<=0) die();
             else{

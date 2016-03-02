@@ -20,6 +20,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         moving(); 
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){

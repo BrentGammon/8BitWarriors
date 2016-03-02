@@ -16,7 +16,6 @@ public class UPControl extends MenuItems
     {
         if(Greenfoot.mouseClicked(this))
        {
-          //Player.keyJump = JOptionPane.showInputDialog("Jump Key");
           String x= Greenfoot.ask("Jump Key");
           Player.keyJump = x;
        }

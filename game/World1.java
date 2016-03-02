@@ -10,6 +10,7 @@ public class World1 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
+   //private final String gameLevel = "1";
     /**
      * Constructor for objects of class World1.
      * 
@@ -19,6 +20,7 @@ public class World1 extends ExtendedWorld
         //call to superclass to use centreCameraOn function
         super(true);
         
+        gameLevel = "1";
         
         WORLD_WIDTH = 1920;
         Player p = new Player();
@@ -50,10 +52,11 @@ public class World1 extends ExtendedWorld
         addObject(new TrackEnemy(),600,100);
         addObject(new TrackEnemy(),650,100);
         addObject(new TrackEnemy(),700,100);
+        addObject(new MonkeyEnemy(),800,100);
         
         addObject(new DumbEnemy(),50,500);
         //addObject(new MuteControl(),700,500);
-       addObject(new Moving(), 300, 450);
+        //addObject(new Moving(), 300, 450);
         /*if(begin){
             addObject(new MuteControl(),700,50);
         }*/
@@ -61,10 +64,18 @@ public class World1 extends ExtendedWorld
         addObject(new Counter(),100,50);
         muteControl = new MuteControl();
         addObject(muteControl,700,50);
+        
+        addObject(new SaveGame(),750,50);
        // addObject(new UPControl(),100,20);
         
-       // addObject(new TextField("", 20),100,100);
+        // addObject(new TextField("", 20),100,100);
     }
+    
+    public String getLevel()
+    {
+        return gameLevel;
+    }
+   
     
     /**
      *When the application has been paused when this World is loaded it will stop the music 

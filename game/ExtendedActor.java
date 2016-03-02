@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+    import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Point;
 /**
  * Write a description of class ExtendedActor here.
@@ -12,13 +12,12 @@ public class ExtendedActor extends Actor
      * Act - do whatever the ExtendedActor wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    //
     private int worldX=-10000;
     private int worldY=-10000;
     private boolean locationSet=false;
     protected boolean hasFocus;
-    public void act() 
-    {
-    }
+
     public void addedToWorld(World world){
         super.addedToWorld(world);
     }
@@ -40,5 +39,9 @@ public class ExtendedActor extends Actor
     }
     public int getWidth(){
         return getImage().getWidth();
+    }
+    public int getDistanceTo(ExtendedActor target){
+        //System.out.println("( ("+getX()+" - "+target.getX()+")^2 + ("+getY()+"
+        return (int)Math.sqrt(Math.pow(getX()-target.getX(),2) + Math.pow(getY()-target.getY(),2));
     }
 }

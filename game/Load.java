@@ -82,11 +82,12 @@ public class Load extends MenuItems
         String upMove = array[1];
         String leftMove = array[2];
         String rightMove = array[3];
+        String attack = array.length>=5?array[4]:null;
         
         Player.keyJump = upMove;
         Player.keyLeft = leftMove;
         Player.keyRight = rightMove;
-        
+        Player.keyAttack = attack;
         World world = getWorld();
         ExtendedWorld worlds;
         switch (Integer.parseInt(level)){

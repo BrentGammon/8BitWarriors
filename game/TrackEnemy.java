@@ -38,6 +38,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         // Add your action code here.
 
         //fall();

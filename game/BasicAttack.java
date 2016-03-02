@@ -32,6 +32,7 @@ public class BasicAttack extends Attack
     }
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         setLocation(source.getX()+ (facingLeft?-X_OFFSET:X_OFFSET),source.getY());
         if (attackTime>0){
             attackTime--;

@@ -1,5 +1,6 @@
 import greenfoot.*;
 import java.awt.Point;
+import java.awt.Color;
 import java.util.List;
 /**
  * Write a description of class ExtendedWorld here.
@@ -13,8 +14,8 @@ public class ExtendedWorld extends World
     protected int WORLD_END = WORLD_HEIGHT;
     protected int WORLD_WIDTH = 20000;
     protected int GRAVITY = 2;
-    public static final int GAME_HEIGHT = 600;
-    public static final int GAME_WIDTH = 800;
+    public static final int GAME_HEIGHT = 400;
+    public static final int GAME_WIDTH = 600;
     public static final int GAME_SPEED = 45;
     public static final int CAMERA_HORIZONAL_BUFFER = 300;
     public static final int CAMERA_VERTICAL_BUFFER = 150;
@@ -41,8 +42,13 @@ public class ExtendedWorld extends World
     private ExtendedActor focus;
     private int cameraX = 0;
     private int cameraY = 0;
-
+    
     private boolean useCamera;
+    private boolean paused = false;
+    //debug stuff
+    public boolean drawGrid = true;
+    public int gridx = 50;
+    public int gridy = 50;
     
     ///////////used for saving
     protected String gameLevel;
@@ -58,6 +64,7 @@ public class ExtendedWorld extends World
         WORLD_WIDTH = getWorldWidth();
 
         this.useCamera = useCamera;
+        setPaintOrder();
     }
 
     /**
@@ -67,7 +74,7 @@ public class ExtendedWorld extends World
     public void act(){
         //set game speed every tick so it cant be changed by the slider
         Greenfoot.setSpeed(GAME_SPEED);
-
+        if (paused) return;
         //do gravity
         List<IFalling> actors = getObjects(IFalling.class);
         for(IFalling actor:actors){
@@ -76,6 +83,7 @@ public class ExtendedWorld extends World
         if(useCamera){
             centreCameraOn(focus);
         }
+        redrawBackground();
     }
 
     public void setFocus(ExtendedActor obj){
@@ -93,7 +101,7 @@ public class ExtendedWorld extends World
     public Point getCameraOrigin(){
         return new Point(cameraX,cameraY);
     }
-
+    
     public int getCameraX(){
         return cameraX;
     }
@@ -102,14 +110,8 @@ public class ExtendedWorld extends World
         return cameraY;
     }
 
-    public void setCameraOrigin(Point p){
-        cameraX = (int)p.getX();
-        cameraY = (int)p.getY();
-    }
-
-    public void setCameraOrigin(int x, int y){
-        cameraX = x;
-        cameraY = y;
+    public void setCamera(int x, int y){
+        transposeCamera(cameraX-x,cameraY-y);
     }
 
     public void redrawBackground(){
@@ -164,12 +166,30 @@ public class ExtendedWorld extends World
                 bg.drawImage(layer4,-cameraX, -cameraY);
             }
         }
-
+        
+        if (drawGrid){
+            bg.setColor(Color.WHITE);
+            for ( int x = gridx-cameraX%gridx; x<GAME_WIDTH && x+cameraX<WORLD_WIDTH; x+=gridx ){
+                bg.drawLine(x,0,x,GAME_HEIGHT);
+            }
+            
+            for ( int y = gridy-cameraY%gridy; y<GAME_HEIGHT && y+cameraY<WORLD_HEIGHT; y+=gridy ){
+                bg.drawLine(0,y,GAME_WIDTH,y);
+            }
+        }
+        
+        bg.setColor(Color.RED);
+        bg.drawString("cam x: "+cameraX+" y:"+cameraY,20,20);
+        if (paused) bg.drawString("PAUSED",200,200);
+      
     }
 
     public void transposeCamera(int x, int y){
         int dx = cameraX-x<0?cameraX:x;
+        dx = cameraX-dx> WORLD_WIDTH-GAME_WIDTH? -((WORLD_WIDTH-GAME_WIDTH) - cameraX):dx;
         int dy = cameraY-y<0?cameraY:y;
+        dy = cameraY-dy> WORLD_HEIGHT-GAME_HEIGHT? -((WORLD_HEIGHT-GAME_HEIGHT) - cameraY):dy;
+        
         cameraX-=dx;
         cameraY-=dy;
         if(dy!=0||dx!=0) for(Object obj:getObjects(ExtendedActor.class)){
@@ -187,7 +207,6 @@ public class ExtendedWorld extends World
         int cy = GAME_HEIGHT/2;
         transposeCamera(cx-x, cy-y);
 
-
     }
 
      /**
@@ -199,7 +218,14 @@ public class ExtendedWorld extends World
         return gameLevel;
     }
     
-   
+    public void setPaintOrder(){
+        super.setPaintOrder(UI.class,Attack.class,Player.class,Entity.class);
+    }
+    
+    public boolean isPaused(){
+        return paused;
+    }
+    
     //public String getLevel()
     //{
         

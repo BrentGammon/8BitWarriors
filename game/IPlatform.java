@@ -12,5 +12,7 @@ public interface IPlatform
      * Main function of the interface. Returns the boolean representing if the given actor
      * can stand on it.
      */
-    boolean canSupportActor(Actor a);
+    boolean canSupportEntity(Entity a);
+    
+    boolean bottomIsCollidable();
 }

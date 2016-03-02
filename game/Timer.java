@@ -1,8 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 import java.awt.Transparency;
- 
-public class Timer extends Actor
+
+public class Timer extends UI
 {
     /**
      * Act - do whatever the Timer wants to do. This method is called whenever
@@ -13,17 +13,18 @@ public class Timer extends Actor
     public void act() 
     {
         // Add your action code here.
-         reset();
-         isTimeUp();
+        if (getExtendedWorld().isPaused()) return;
+        reset();
+        isTimeUp();
         if(counter())
         {
             time++;
             count = 45;
         }
         display();
-      
+
     }    
-     
+
     private boolean counter()
     {
         if(count > 0)
@@ -32,32 +33,32 @@ public class Timer extends Actor
         }
         return count == 0;
     }
-     
+
     private void display()
     {
         Color transparent = new Color(0, 0, 0, 0);
         setImage(new GreenfootImage("Time: " + time, 25, Color.BLACK, transparent));
     }
-     
+
     public void setTime()
     {
         time = 0;
     }
-     
+
     public boolean isTimeUp()
     {
         return time == 999;
     }
-    
+
     public void reset(){
-        
+
         if(isTimeUp()){
-            
-           Greenfoot.setWorld(new World1());
-           return;
-            
+
+            Greenfoot.setWorld(new World1());
+            return;
+
         }
-        
+
     }
-     
+
 }

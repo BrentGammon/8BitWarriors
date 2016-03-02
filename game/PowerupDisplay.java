@@ -7,7 +7,7 @@ import java.awt.Transparency;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PowerupDisplay extends Actor
+public class PowerupDisplay extends UI
 {
     /**
      * Act - do whatever the PowerupDisplay wants to do. This method is called whenever

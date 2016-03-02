@@ -22,53 +22,27 @@ public class World1 extends ExtendedWorld
         
         gameLevel = "1";
         
-        WORLD_WIDTH = 1920;
+        WORLD_WIDTH = 9000;
+        WORLD_HEIGHT = 900;
         Player p = new Player();
         //layer1_xoffset = -200;
         //layer1_yoffset = -100;
         layer1 = new GreenfootImage("images/jungleBig.png");
         
         redrawBackground();
-        addObject(p,100,100);
-        addObject(new Grass(6),135,300);
-        addObject(new Grass(11),600,300);
-        addObject(new Wall(),190,240);
-        // for(int i =50;i<=950;i+=50){
-            // if(!(i==300||i==350)){
-                // addObject(new Grass(),i,300);
-            // }
-        // }
-        addObject(new Grass(20),450,600);
-        // for(int i =50;i<=1100;i+=50){
-                // addObject(new Grass(),i,600);
-        // }
-        
-        
-
-        addObject(new Timer(),100,150);
-        addObject(new Powerup(1),200,100);
-        addObject(new Powerup(0),300,500);
-        addObject(new PowerupDisplay(p),170,100);
-        addObject(new TrackEnemy(),600,100);
-        addObject(new TrackEnemy(),650,100);
-        addObject(new TrackEnemy(),700,100);
-        addObject(new MonkeyEnemy(),800,100);
-        
-        addObject(new DumbEnemy(),50,500);
-        //addObject(new MuteControl(),700,500);
-        //addObject(new Moving(), 300, 450);
-        /*if(begin){
-            addObject(new MuteControl(),700,50);
-        }*/
-        //addObject(new MuteControl(),700,50);
-        addObject(new Counter(),100,50);
+        addObject(p,100,826);
+        addObject(new Timer(),52,16);
+        addObject(new Counter(),133,16);
         muteControl = new MuteControl();
-        addObject(muteControl,700,50);
+        addObject(muteControl,300,16);
+        addObject(new SaveGame(),450,16);
+        addObject(new PowerupDisplay(p),122,40);
         
-        addObject(new SaveGame(),750,50);
-       // addObject(new UPControl(),100,20);
         
-        // addObject(new TextField("", 20),100,100);
+        addObject(new Grass(20),301,885);
+        addObject(new Grass(20),1350,885);
+        
+        addObject(new DumbEnemy(),696,825);
     }
     
     public String getLevel()
@@ -82,6 +56,7 @@ public class World1 extends ExtendedWorld
      */
     public void stopped()
     {
+        super.stopped();
         muteControl.stop();
     }
     /**
@@ -89,7 +64,7 @@ public class World1 extends ExtendedWorld
      */
     public void started()
     {
-        muteControl.play();
+        if (!isPaused())    muteControl.play();
     }
 }
 

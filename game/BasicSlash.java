@@ -34,6 +34,7 @@ public class BasicSlash extends Entity
     }
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         if (hit){
             hit();
         }else if(life-->0){

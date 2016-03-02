@@ -6,9 +6,12 @@ import greenfoot.*;
  * @author Mitchell
  * @version S1 1
  */
-public class Terrain extends ExtendedActor implements IPlatform
+public abstract class Terrain extends ExtendedActor
 {
-    public boolean canSupportActor(Actor a){
+    public boolean canSupportEntity(Entity a){
+        return true;
+    }
+    public boolean bottomIsCollidable(){
         return true;
     }
 }

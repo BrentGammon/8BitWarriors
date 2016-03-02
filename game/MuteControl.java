@@ -6,10 +6,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MuteControl extends Actor
+public class MuteControl extends UI
 {
     private static GreenfootSound backgroundMusic = new GreenfootSound("01ANightOfDizzySpells.mp3");
-    private boolean isMuted;
+    private boolean isMuted = true;
     protected int currentVolume;
     private int volume = 100;
     private boolean oDown;

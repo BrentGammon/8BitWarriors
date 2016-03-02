@@ -17,14 +17,11 @@ public class DeadEntity extends Entity implements IFalling
         vertVelocity = -Greenfoot.getRandomNumber(8)-2;
         rotSpeed = Greenfoot.getRandomNumber(10)+1;
     }
-    public void addedToWorld(World w){
-        System.out.println("new dead thing x"+getX()+" y"+getY());
-    }
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         moveLocation(horzVelocity,vertVelocity);
         turn(rotSpeed);
-        System.out.print(this); System.out.print(" "+horzVelocity); System.out.println(" "+vertVelocity);
         if (getY() > ExtendedWorld.GAME_HEIGHT) die();
     }
     public void fall(int g){

@@ -36,12 +36,13 @@ public class Counter extends UI
     private static final Color transparent = new Color(0,0,0,0);
     private GreenfootImage background;
     private int value;
-    private int target;
+    private static int target;
     private String prefix;
     
     public Counter()
     {
         this(new String());
+        setImage("Counter.png");
     }
 
     /**
@@ -75,9 +76,10 @@ public class Counter extends UI
      * Add a new score to the current counter value.  This will animate
      * the counter over consecutive frames until it reaches the new value.
      */
-    public void add(int score)
+    public static void add(int score)
     {
-        target += score;
+        setValue(score);
+       
     }
 
     /**

@@ -26,6 +26,7 @@ public class World1Debug extends ExtendedWorld
         layer1 = new GreenfootImage("images/jungleBig.png");
         redrawBackground();
         
+        
         addObject(new Counter(),100,50);
         muteControl = new MuteControl();
         addObject(muteControl,700,50);
@@ -91,5 +92,7 @@ public class World1Debug extends ExtendedWorld
     {
         muteControl.play();
     }
+    
+    
 }
 

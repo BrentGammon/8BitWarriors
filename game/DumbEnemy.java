@@ -96,12 +96,22 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
 
     public int doDamage(Actor attacker, int damage){
         health -= damage;
-        if (health<=0)die();
+        if (health<=0){
+            die();
+            
+        }
         return damage;
     }
     
     public boolean die(){
+        incCount();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
+       
+    }
+    
+    public void incCount(){
+        
+        Counter.add(1);
     }
 }

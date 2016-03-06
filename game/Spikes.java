@@ -26,6 +26,7 @@ public class Spikes extends Entity
     
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
             //MuteControl.stop();

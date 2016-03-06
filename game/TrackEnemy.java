@@ -4,7 +4,7 @@ import java.util.*;
  * TrackEnemy will move towards the player when they are in range.
  * 
  * @author Brent Gammon 
- * @version 0.1
+ * @version 0.5
  */
 public class TrackEnemy extends Entity implements IFalling, IDamageable
 {
@@ -18,6 +18,11 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     protected boolean goLeft = false;
 
     private int vertVelocity = 0;
+
+    private boolean dazed = false;
+    private int dazedCounter = 0;
+    private int standCounter = 0;
+    private boolean stand = false;
     public TrackEnemy()
     {
         standing = new GreenfootImage("stripe standing.png");
@@ -27,78 +32,121 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
         right2 = new GreenfootImage("StripeRight2.png");
         setImage(standing);
     }
+
     public int doDamage(Actor attacker, int damage){
         health -= damage;
         if (health<=0) die();
         return damage;
     }
+
     /**
      * Act - do whatever the TrackEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         // Add your action code here.
 
         //fall();
         int count = 0;
         List<Player> nearObjects = new ArrayList<Player>();
         nearObjects = getObjectsInRange(350,Player.class);
-        if(endPlatform()&&onPlatform()){
-            if(nearObjects != null){
-                for(Actor x:nearObjects){
-                    if(x instanceof Player){
-                        count++;
-                        int playerX = x.getX();
-                        int playerY = x.getY();
-                        int enemyX = getX();
+        if(stand==false){
+            if(dazed == false){
+                if(endPlatform()&&onPlatform()){
+                    if(nearObjects != null){
+                        for(Actor x:nearObjects){
+                            if(x instanceof Player){
+                                count++;
+                                int playerX = x.getX();
+                                int playerY = x.getY();
+                                int enemyX = getX();
 
-                        if(playerX>enemyX){
-                            if (getImage() == right2){
-                                setImage(right1);
+                                if(playerX>enemyX){
+                                    if (getImage() == right2){
+                                        setImage(right1);
+                                    }
+                                    else{
+                                        setImage(right2);
+                                    }
+                                    move(5);
+                                    goLeft = false;
+                                }else if(playerX<enemyX){
+                                    if (getImage() == left2){
+                                        setImage(left1);
+                                    }
+                                    else{
+                                        setImage(left2);
+                                    }
+                                    move(-5);
+                                    goLeft = true;
+                                }
+                            }else{
+                                setImage(standing);
                             }
-                            else{
-                                setImage(right2);
-                            }
-                            move(5);
-                            goLeft = false;
-                        }else if(playerX<enemyX){
-                            if (getImage() == left2){
-                                setImage(left1);
-                            }
-                            else{
-                                setImage(left2);
-                            }
-                            move(-5);
-                            goLeft = true;
                         }
-                    }else{
+                    }
+                    if(count==0){
                         setImage(standing);
+                    }   
+                }
+            }
+        }
+
+        //Dazed Code 
+        if(!endPlatform()){
+            dazed = true;
+            stand=false;
+        }
+        
+        if(dazed){
+            if(dazedCounter>50){
+                stand=true;
+            }
+        }
+
+        if(stand){
+            standCounter++;
+            setImage(standing);
+            if(standCounter>25){
+                stand=false;
+                dazed=false;
+                standCounter=0;
+                dazedCounter=0;
+            }
+        }
+        //if dazed move the other way
+        if(stand==false){
+            if(dazed){
+                dazedCounter++;
+                if(goLeft){
+                    move(5);
+                    if (getImage() == right2){
+                        setImage(right1);
+                    }
+                    else{
+                        setImage(right2);
+                    }
+                }else{
+                    move(-5);
+                    if (getImage() == left2){
+                        setImage(left1);
+                    }
+                    else{
+                        setImage(left2);
                     }
                 }
             }
-            if(count==0){
-                setImage(standing);
-            }   
         }
-        if(!endPlatform()){
-            int x = getX();
-            int y = getY();
-            if(goLeft){
-                x=x+1;
-                setLocation(x,y);
-            }else{
-                x=x-1;
-                setLocation(x,y);
-            }
-        }
-            Actor a = getOneIntersectingObject(Player.class);
+
+        Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
             Greenfoot.setWorld(new World1());
             return;
-         
+
         }
-    
+
     }
 
     /**
@@ -162,11 +210,10 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
             vertVelocity = 0;
         }
     }
-    
+
     public boolean die(){
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
     }
 }
-
 

@@ -22,6 +22,7 @@ public class Particle extends ExtendedActor
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         if (--life<0) getWorld().removeObject(this);
     }    
 }

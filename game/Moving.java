@@ -24,6 +24,7 @@ public class Moving extends ExtendedActor
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         setLocation ( getX() + speed, getY() );
         speedTot += 2;
         

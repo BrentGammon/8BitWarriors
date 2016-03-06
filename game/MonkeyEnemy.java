@@ -34,6 +34,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         if (cooldown>0&& cooldown-- == 1){
             weapon = new BananaProjectile(facingLeft,this);
             getWorld().addObject(weapon,getX(),getY());

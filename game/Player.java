@@ -43,11 +43,11 @@ public class Player extends Entity implements IFalling, IDamageable
     private boolean facingLeft = false;
 
     private Attack weapon;
-    //     private String keyLeft;
-    //     private String keyRight;
+
     public static String keyJump;
     public static String keyLeft;
     public static String keyRight;
+    public static String keyAttack;
 
     Player(){
         ///keyLeft = JOptionPane.showInputDialog("Left Key");
@@ -81,6 +81,8 @@ public class Player extends Entity implements IFalling, IDamageable
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
+        
         // if velocity is greater than how much friction reduces then reduce speed by friction (add if negative subtract if positive). Else set to 0
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
         
@@ -122,7 +124,7 @@ public class Player extends Entity implements IFalling, IDamageable
         //tell weapon what direction we are facing
         weapon.setDirection(facingLeft);
         //if player is pressing an attack key; fire
-        if(Greenfoot.isKeyDown("V") || Greenfoot.isKeyDown("X")){
+        if(Greenfoot.isKeyDown(keyAttack!=null?keyAttack:"X")){
             weapon.fire();
         }
         
@@ -173,6 +175,7 @@ public class Player extends Entity implements IFalling, IDamageable
     public void move(){
         boolean movingLeft = horzVelocity<0;
         if (collideMoveLocation(horzVelocity,vertVelocity)){
+            if (true) return;
             if (directionBlocked(movingLeft?"left":"right")) horzVelocity = 0;
             if (vertVelocity<0 && upBlocked()) vertVelocity = 0;
         }
@@ -187,7 +190,6 @@ public class Player extends Entity implements IFalling, IDamageable
     }
 
     public boolean die(){
-        
         Greenfoot.setWorld(new World1());
         return true;
     }
@@ -201,9 +203,12 @@ public class Player extends Entity implements IFalling, IDamageable
   
 
     private void checkOutOfBounds(){
+        int buffer = 200;
         int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
         int realY = getY() + ((ExtendedWorld)getWorld()).getCameraY();
-        if(realY > 2000 || realX < -400){
+        int xBound = getExtendedWorld().getWorldWidth();
+        int yBound = getExtendedWorld().getWorldHeight();
+        if(realY > yBound+buffer || realX < 0-buffer || realX > xBound+buffer){
             die();
         }
     }

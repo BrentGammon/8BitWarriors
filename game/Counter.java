@@ -31,7 +31,7 @@ import java.awt.Color;
  * @author Neil Brown and Michael Kölling 
  * @version 1.0
  */
-public class Counter extends Actor
+public class Counter extends UI
 {
     private static final Color transparent = new Color(0,0,0,0);
     private GreenfootImage background;

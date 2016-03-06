@@ -54,11 +54,16 @@ public class SaveGame extends MenuItems
             writer.write("\r\n");
             //rightkey
             writer.write(rightKey(Player.keyRight));
+            writer.write("\r\n");
+            //attackkey
+            writer.write(Player.keyAttack!=null? Player.keyAttack: "x");
+            writer.write("\r\n");
 
+            
             writer.close();
         }
         catch(IOException e){
-            JOptionPane.showMessageDialog(null, "Error in saving game", "Save Error",
+            JOptionPane.showMessageDialog(null, "Error in saving game", e.toString(),
                 JOptionPane.ERROR_MESSAGE);
         }
 

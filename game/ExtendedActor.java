@@ -40,6 +40,19 @@ public class ExtendedActor extends Actor
     public int getWidth(){
         return getImage().getWidth();
     }
+    public ExtendedWorld getExtendedWorld(){
+        if (getWorld() instanceof ExtendedWorld){
+            return (ExtendedWorld)getWorld();
+        }
+        return null;
+    }
+    public int getRealX(){
+        return getX() + getExtendedWorld().getCameraX();
+    }
+    public int getRealY(){
+        return getY() + getExtendedWorld().getCameraY();
+    }
+        
     public int getDistanceTo(ExtendedActor target){
         //System.out.println("( ("+getX()+" - "+target.getX()+")^2 + ("+getY()+"
         return (int)Math.sqrt(Math.pow(getX()-target.getX(),2) + Math.pow(getY()-target.getY(),2));

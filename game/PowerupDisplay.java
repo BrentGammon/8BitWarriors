@@ -17,7 +17,9 @@ public class PowerupDisplay extends UI
     String empty = "No powerup";
     String jump = "Jump PU";
     String speed = "Speed PU";
+    String ammo = "Attack PU";
     String both = "Speed+Jump pu";
+    String triple = "Speed + Jump + Attack pu";
     Player player;
      Color transparent = new Color(0, 0, 0, 0);  
      
@@ -30,21 +32,24 @@ public class PowerupDisplay extends UI
     }    
    
     public void display(){
-    if (player.hasSpeedBoost() && !player.hasJumpBoost() ){
+    if (player.hasSpeedBoost() && !player.hasJumpBoost() && !player.hasAttackBoost()){
     
-       setImage(new GreenfootImage("PowerUP: " + speed , 25, Color.BLACK, transparent));
+       setImage(new GreenfootImage("PowerUP: " + speed , 25, Color.WHITE, transparent));
        
-   }else if (player.hasJumpBoost() && !player.hasSpeedBoost()){
+   }else if (player.hasJumpBoost() && !player.hasSpeedBoost() && !player.hasAttackBoost()){
        
-       setImage(new GreenfootImage("PowerUP: " + jump , 25, Color.BLACK, transparent));
-  
-   }else if (player.hasJumpBoost() && player.hasSpeedBoost()){
+       setImage(new GreenfootImage("PowerUP: " + jump , 25, Color.WHITE, transparent));
+   }else if (!player.hasJumpBoost() && !player.hasSpeedBoost() && player.hasAttackBoost()){
        
-       setImage(new GreenfootImage("PowerUP: " +  jump + "  " +  speed , 25, Color.BLACK, transparent));
+       setImage(new GreenfootImage("PowerUP: " +  ammo + "  " +  speed , 25, Color.WHITE, transparent));
+        
+   }else if (player.hasJumpBoost() && player.hasSpeedBoost() && player.hasAttackBoost()){
+       
+       setImage(new GreenfootImage("PowerUP: " +  jump + "  " + ammo + "  " + speed , 25, Color.WHITE, transparent));
         
    }else{
        
-       setImage(new GreenfootImage("PowerUP: " + empty , 25, Color.BLACK, transparent));
+       setImage(new GreenfootImage("PowerUP: " + empty , 25, Color.WHITE, transparent));
        
    }
 }

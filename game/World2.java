@@ -6,7 +6,7 @@ import java.awt.TextField;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class World1 extends ExtendedWorld
+public class World2 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
@@ -15,12 +15,12 @@ public class World1 extends ExtendedWorld
      * Constructor for objects of class World1.
      * 
      */
-    public World1()
+    public World2()
     {
         //call to superclass to use centreCameraOn function
         super(true);
         
-        gameLevel = "1";
+        gameLevel = "2";
         
         WORLD_WIDTH = 20000;
         WORLD_HEIGHT = 900;
@@ -31,17 +31,17 @@ public class World1 extends ExtendedWorld
         
         redrawBackground();
         addObject(p,100,826);
-        addObject(new Timer(),52,40);
+        addObject(new Timer(),52,16);
         addObject(new Counter(),133,16);
         muteControl = new MuteControl();
         addObject(muteControl,300,16);
         addObject(new SaveGame(),450,16);
-        addObject(new PowerupDisplay(p),300,60);
+        addObject(new PowerupDisplay(p),122,40);
         
         
         addObject(new Grass(20),301,885);
         addObject(new Grass(20),1350,885);
-        
+        addObject(new DumbEnemy(),700,825);
         addObject(new DumbEnemy(),696,825);
     }
     
@@ -62,15 +62,9 @@ public class World1 extends ExtendedWorld
     /**
      * When the application has started when this World is loaded it will play the music 
      */
-    //check if plaused 
     public void started()
     {
-        if (!isPaused()){
-            if(!(muteControl.getIsMuted())){
-                muteControl.play();
-            }
-            
-        }
+        if (!isPaused())    muteControl.play();
     }
 }
 

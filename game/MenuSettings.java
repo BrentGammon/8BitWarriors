@@ -8,15 +8,17 @@ import java.awt.Color;
  */
 public class MenuSettings extends ExtendedWorld
 {
-
+    public static final int GAME_HEIGHT = 800;
+    public static final int GAME_WIDTH = 1000;
     /**
      * Constructor for objects of class MenuSettings.
      * 
      */
     public MenuSettings()
     {
-        super(false);
-       
+        //super(false);
+        super(GAME_HEIGHT,GAME_WIDTH,false); 
+        
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
         setBackground(layer1); 
         

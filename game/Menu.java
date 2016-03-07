@@ -8,12 +8,15 @@ import greenfoot.*;
  */
 public class Menu extends ExtendedWorld
 {
+    public static final int GAME_HEIGHT = 800;
+    public static final int GAME_WIDTH = 1000;
     /**
      * Constructor for objects of class Menu.
      */
     public Menu()
     {
-        super(false); 
+        super(GAME_HEIGHT,GAME_WIDTH,false); 
+        
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
         setBackground(layer1);
 

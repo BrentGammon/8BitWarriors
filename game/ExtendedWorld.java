@@ -66,6 +66,21 @@ public class ExtendedWorld extends World
         this.useCamera = useCamera;
         setPaintOrder();
     }
+    
+    /**
+     * Constructor for objects of class ExtendedWorld.
+     * 
+     */
+    public ExtendedWorld(int menuHeight,int menuLength,boolean useCamera)
+    {    
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(menuHeight, menuLength, 1,false); 
+        //WORLD_HEIGHT = getWorldHeight();
+        //WORLD_WIDTH = getWorldWidth();
+
+        //this.useCamera = useCamera;
+        //setPaintOrder();
+    }
 
     /**
      * Called Every tick of the world BEFORE any objects are so per tick

@@ -14,8 +14,8 @@ public class ExtendedWorld extends World
     protected int WORLD_END = WORLD_HEIGHT;
     protected int WORLD_WIDTH = 20000;
     protected int GRAVITY = 2;
-    public static final int GAME_HEIGHT = 400;
-    public static final int GAME_WIDTH = 600;
+    protected static  int GAME_HEIGHT = 600;
+    protected static  int GAME_WIDTH = 800;
     public static final int GAME_SPEED = 45;
     public static final int CAMERA_HORIZONAL_BUFFER = 300;
     public static final int CAMERA_VERTICAL_BUFFER = 150;
@@ -46,7 +46,7 @@ public class ExtendedWorld extends World
     private boolean useCamera;
     private boolean paused = false;
     //debug stuff
-    public boolean drawGrid = true;
+    public boolean drawGrid = false;
     public int gridx = 50;
     public int gridy = 50;
     
@@ -73,7 +73,7 @@ public class ExtendedWorld extends World
      */
     public void act(){
         //set game speed every tick so it cant be changed by the slider
-        Greenfoot.setSpeed(GAME_SPEED);
+        //Greenfoot.setSpeed(GAME_SPEED);
         if (paused) return;
         //do gravity
         List<IFalling> actors = getObjects(IFalling.class);

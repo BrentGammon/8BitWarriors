@@ -11,7 +11,4 @@ public abstract class Terrain extends ExtendedActor
     public boolean canSupportEntity(Entity a){
         return true;
     }
-    public boolean bottomIsCollidable(){
-        return true;
-    }
 }

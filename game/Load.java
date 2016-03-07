@@ -91,11 +91,11 @@ public class Load extends MenuItems
         World world = getWorld();
         ExtendedWorld worlds;
         switch (Integer.parseInt(level)){
-            case 1:   worlds = new World1();
+           case 1:   worlds = new World1();
                         break;
            //UNCOMMENT WHEN LEVELS ARE IMPLEMENTED INTO THR GAME             
-           // case "2":   World2 world = new World2();
-           //             break;
+           case 2:   worlds = new World2();
+                        break;
            // case "3":   World3 world = new World3();
            //             break;
            default:     worlds = new World1();

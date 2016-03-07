@@ -25,9 +25,11 @@ public class Player extends Entity implements IFalling, IDamageable
 
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
+    private final int ATTACK_BOOST_TIMER = 650;
     
     private int jumpBoostTimer = 0;
     private int speedBoostTimer = 0;
+    private int attackBoostTimer = 0;
     
     private GreenfootImage front = new GreenfootImage("Player/front.png");
     private GreenfootImage standingRight = new GreenfootImage("Player/standing.png");
@@ -96,6 +98,9 @@ public class Player extends Entity implements IFalling, IDamageable
         if (hasJumpBoost()){
             jumpBoostTimer();
         }
+        if (hasAttackBoost()){
+            attackBoostTimer();
+        }
 
         //if the jump key is being held and player is on a platform. Jump
         if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&&onPlatform()){
@@ -154,6 +159,10 @@ public class Player extends Entity implements IFalling, IDamageable
             if (kind == Powerup.JUMP_PU){
                 jumpBoostTimer = JUMP_BOOST_TIMER;
             }
+            
+            if (kind == Powerup.AMMO_PU){
+                attackBoostTimer = ATTACK_BOOST_TIMER;
+            }
 
         }
 
@@ -171,6 +180,15 @@ public class Player extends Entity implements IFalling, IDamageable
             System.out.println("Jump boost is over");
         }
     }
+    
+    public void attackBoostTimer(){
+    
+        if(attackBoostTimer-- <= 0){
+            System.out.println("Attack boost is over");
+        }
+    
+    }
+
 
     public void move(){
         boolean movingLeft = horzVelocity<0;
@@ -190,7 +208,6 @@ public class Player extends Entity implements IFalling, IDamageable
     }
 
     public boolean die(){
-        
         Greenfoot.setWorld(new World1());
         return true;
     }
@@ -200,6 +217,9 @@ public class Player extends Entity implements IFalling, IDamageable
     }
     public boolean hasSpeedBoost(){
         return speedBoostTimer > 0;
+    }
+    public boolean hasAttackBoost(){
+        return attackBoostTimer > 0;
     }
   
 

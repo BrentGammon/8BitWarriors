@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class ExtendedWorld extends World
 {
-    protected int WORLD_HEIGHT = 1000;
-    protected int WORLD_END = WORLD_HEIGHT;
-    protected int WORLD_WIDTH = 20000;
+    protected static int WORLD_HEIGHT = 900;
+    protected static int WORLD_END = WORLD_HEIGHT;
+    protected static int WORLD_WIDTH = 20000;
     protected int GRAVITY = 2;
     protected static  int GAME_HEIGHT = 600;
     protected static  int GAME_WIDTH = 800;

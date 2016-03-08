@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Tue Mar 08 16:10:35 GMT 2016
+#Tue Mar 08 19:06:54 GMT 2016
 target15.width=80
 target5.height=50
 dependency103.to=Entity
@@ -460,8 +460,8 @@ class.Portal.superclass=Entity
 dependency26.type=UsesDependency
 dependency59.type=UsesDependency
 dependency61.to=Player
-mainWindow.y=7
-mainWindow.x=-66
+mainWindow.y=187
+mainWindow.x=305
 target5.typeParameters=
 target38.name=RightControl
 target5.editor.y=176
@@ -491,7 +491,7 @@ dependency133.type=UsesDependency
 dependency49.from=debugShot
 target1.type=AbstractTarget
 target1.editor.y=67
-target1.editor.x=957
+target1.editor.x=739
 target33.naviview.expanded=true
 dependency52.to=DumbEnemy
 target44.y=490

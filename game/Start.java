@@ -8,7 +8,6 @@ import greenfoot.*;
 public class Start extends MenuItems
 {
     private GreenfootImage start;
-    private boolean isMouseON;
     public Start(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2StartGame.png");
         setImage(start);

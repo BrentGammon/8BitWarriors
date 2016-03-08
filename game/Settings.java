@@ -1,5 +1,4 @@
 import greenfoot.*;
-
 /**
  * The button for the settings on the menu
  * 
@@ -9,6 +8,10 @@ import greenfoot.*;
 public class Settings extends MenuItems
 {
     private GreenfootImage start;
+    /**
+     * Contructor for Settings
+     * When object is created it will set the image for that object
+     */
     public Settings(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2Settings.png");
         setImage(start);

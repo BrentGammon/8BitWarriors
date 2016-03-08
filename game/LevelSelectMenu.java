@@ -19,12 +19,9 @@ public class LevelSelectMenu extends ExtendedWorld
     public LevelSelectMenu(String levels)
     {
         super(GAME_HEIGHT,GAME_WIDTH,false); 
-       
-        //setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
+      
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
         addObject(new Home(),76,73);
-        
-        
         
         int view;
         if(levels==null){

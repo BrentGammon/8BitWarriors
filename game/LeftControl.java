@@ -9,7 +9,7 @@ import javax.swing.*;
 public class LeftControl extends KeyBindings
 {
     /**
-     * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for right movement
+     * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for left movement
      */
     public void act() 
     {

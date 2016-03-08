@@ -17,7 +17,6 @@ public class Level3 extends MenuItems
         setImage(start);
     }
     
-    
     /**
      *When clicked it will set the world to level 3 - at the moment print a message to the terminal
      */

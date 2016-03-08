@@ -9,8 +9,7 @@ import javax.swing.*;
 public class UPControl extends KeyBindings
 {
     /**
-     *The act method will check if the object has been clicked by the mouse 
-	 *Stores the answer from the ask to store the value to keybinding
+     * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for up movement
      */
     public void act() 
     {

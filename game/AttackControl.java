@@ -1,22 +1,24 @@
 import greenfoot.*;
 import javax.swing.*;
 /**
- * Write a description of class AttackControl here.
+ * This is used to allow the player to set the key binding for attack
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon 
+ * @version v0.1
  */
 public class AttackControl extends KeyBindings
 {
+    /**
+     * Construtor for AttackControl
+     * Will set the image of the object
+     */
     public AttackControl()
     {
         setImage("swordKey.png");
-
     }
 
     /**
-     * Act - do whatever the AttackControl wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+    * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for attack
      */
     public void act() 
     {

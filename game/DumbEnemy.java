@@ -94,6 +94,10 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         }
     }
     
+    /**
+     * When the object is not on the platform then the object will fall  
+     * @param int g This is the gravity of the object falling
+     */
     public void fall(int g){
         if (!onPlatform()){
             vertVelocity+=g;
@@ -116,22 +120,28 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
             vertVelocity = 0;
         }
     }
-
+    
+    /**
+     * Doe damage to the actor that has been passed into the paramter
+     * @param Actor attacker the actor that is going to have damage done to them
+     * @param int damage the strength of the damage
+     * @return int damage the amount done to the actor
+     */
     public int doDamage(Actor attacker, int damage){
         health -= damage;
         if (health<=0){
             die();
-            
         }
         return damage;
     }
     
+    /**
+     * When called this will increment the score counter and add DeadEntity to the world
+     * @return a super call to die
+     */
     public boolean die(){
         Counter.add();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
-       
     }
-    
-    
 }

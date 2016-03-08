@@ -14,6 +14,10 @@ import javax.swing.*;
  */
 public class SaveGame extends MenuItems
 {
+    /**
+     * Contructor for SaveGame
+     * This will set the image for the object
+     */
     public SaveGame()
     {
         GreenfootImage image = new GreenfootImage("images/saveIcon.png");
@@ -21,8 +25,8 @@ public class SaveGame extends MenuItems
     }
     
     /**
-     * Act - do whatever the SaveGame wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * This will check if the object has been activited by a click event 
+     * this will then save the game
      */
     public void act() 
     {
@@ -66,7 +70,6 @@ public class SaveGame extends MenuItems
             JOptionPane.showMessageDialog(null, "Error in saving game", e.toString(),
                 JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     /**
@@ -107,5 +110,4 @@ public class SaveGame extends MenuItems
         }
         return rightKey;
     }
-
 }

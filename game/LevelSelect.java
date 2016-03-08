@@ -1,4 +1,9 @@
 import greenfoot.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import javax.swing.*;
 /**
  * The Level Select component on the menu
  * 
@@ -14,10 +19,8 @@ public class LevelSelect extends MenuItems
     }
 
     /**
-     * Act - do whatever the LevelSelect wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
      * Checks if the mouse is on the object if so then the image is changed to show the player that they are on the object
-     * if clicked it currently prints a message to the terminal
+     * if the object is clicked then go into the level select menu
      */
     public void act() 
     {
@@ -35,7 +38,29 @@ public class LevelSelect extends MenuItems
             }
         }
         if(Greenfoot.mouseClicked(this)){
-            System.out.println("Level Select has been clicked");
+            LevelSelectMenu select = new LevelSelectMenu(getLevelAccess());
+            Greenfoot.setWorld(select);
         }
     }    
+    
+    /**
+     * When invoke this will load the save file and grap the value of the level that the player has saved at and will return it
+     * @return String returns the valuefof tje save level on the external file
+     * @exception level will be set to null
+     */
+    public String getLevelAccess()
+    {
+        String level = null;
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("SaveFile.txt"));
+            level = reader.readLine();
+            reader.close();
+        }catch(FileNotFoundException e){
+            level = null;
+        }
+        catch(IOException e){
+            level = null;
+        }
+        return level;
+    }
 }

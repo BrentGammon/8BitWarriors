@@ -8,18 +8,20 @@ import java.awt.Color;
  */
 public class MenuSettings extends ExtendedWorld
 {
-
+    public static final int GAME_HEIGHT = 800;
+    public static final int GAME_WIDTH = 600;
     /**
      * Constructor for objects of class MenuSettings.
      * 
      */
     public MenuSettings()
     {
-        super(false);
-       
-        layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
-        setBackground(layer1); 
+        //super(false);
+        super(GAME_HEIGHT,GAME_WIDTH,false); 
         
+        layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
+       
+        setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
         
         
         //setImage(new GreenfootImage("KeyBindings",20,Color.white,Color.red,Color.blue));

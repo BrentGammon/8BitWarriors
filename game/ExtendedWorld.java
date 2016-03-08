@@ -3,25 +3,38 @@ import java.awt.Point;
 import java.awt.Color;
 import java.util.List;
 /**
- * Write a description of class ExtendedWorld here.
+ * This class is the base class for any world that needs to scroll. It extends the base World class in several
+ * ways  and enables extended functionality to ExtendedActors. 
  * 
  * @author Mitchell 
- * @version Sprint1 0.1
+ * @version Sprint2 0.2
  */
 public class ExtendedWorld extends World
 {
+    /** Dimentions of the world. Only serves to bind the world within the camera and paint the backround */
     protected static int WORLD_HEIGHT = 900;
     protected static int WORLD_END = WORLD_HEIGHT;
     protected static int WORLD_WIDTH = 20000;
+    
+    /** The gravity applied to every IFalling actor */
     protected int GRAVITY = 2;
+    
+    /** Dimensions of the screen */
     protected static  int GAME_HEIGHT = 600;
     protected static  int GAME_WIDTH = 800;
+    
+    /** The speed to lock the world at */
     public static final int GAME_SPEED = 45;
-    public static final int CAMERA_HORIZONAL_BUFFER = 300;
-    public static final int CAMERA_VERTICAL_BUFFER = 150;
 
+    /** The time at which the game will kill the player */
     protected int timeLimit = 99999;
     
+    /** 
+     * Used to store the background images each image scrolls at a different rate in relation to the camera
+     * with layer 1 completely static and layer 2 moving realtime.
+     * layerx_offsets decide the offset at which to paint the background
+     * layerx_ytile decides whether or not to tile the background horizontally
+    */
     protected GreenfootImage layer1;
     protected int layer1_xoffset = 0;
     protected int layer1_yoffset = 0;
@@ -39,22 +52,28 @@ public class ExtendedWorld extends World
     protected int layer4_yoffset = 0;
     protected boolean layer4_ytile = true;
 
+    /** The Actor to center the camera on */
     private ExtendedActor focus;
+    
+    /** The current top left position of the camera */
     private int cameraX = 0;
     private int cameraY = 0;
     
+    /** Toggle the camera on or off */
     private boolean useCamera;
+    
+    /** Used to pause the game */
     private boolean paused = false;
+    
     //debug stuff
     public boolean drawGrid = false;
     public int gridx = 50;
     public int gridy = 50;
     
-    ///////////used for saving
+    /** a unique idenifier that is used in the save file to represent the world.*/
     protected String gameLevel;
     /**
      * Constructor for objects of class ExtendedWorld.
-     * 
      */
     public ExtendedWorld(boolean useCamera)
     {    
@@ -69,17 +88,10 @@ public class ExtendedWorld extends World
     
     /**
      * Constructor for objects of class ExtendedWorld.
-     * 
      */
     public ExtendedWorld(int menuHeight,int menuLength,boolean useCamera)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(menuHeight, menuLength, 1,false); 
-        //WORLD_HEIGHT = getWorldHeight();
-        //WORLD_WIDTH = getWorldWidth();
-
-        //this.useCamera = useCamera;
-        //setPaintOrder();
     }
 
     /**
@@ -101,34 +113,57 @@ public class ExtendedWorld extends World
         redrawBackground();
     }
 
+    /** Sets the focus of the world
+     * 
+     * @param obj ExtendedActor to focus on
+    */
     public void setFocus(ExtendedActor obj){
         focus = obj;
     }
 
+    /** Get the height of the world
+     * 
+     * @return World Height
+    */
     public int getWorldHeight(){
         return WORLD_HEIGHT;
     }
 
+    /** Get the width of the world
+     * 
+     * @return World width
+    */
     public int getWorldWidth(){
         return WORLD_WIDTH;
     }
-
-    public Point getCameraOrigin(){
-        return new Point(cameraX,cameraY);
-    }
     
+    /** Get the current camera X point of the world
+     * 
+     * @return Camera X position
+    */
     public int getCameraX(){
         return cameraX;
     }
 
+    /** Get the current camera Y point of the world
+     * 
+     * @return Camera Y position
+    */
     public int getCameraY(){
         return cameraY;
     }
-
+    
+    /**Set the Camera position
+     * 
+     * @param x Desired X coordinates for the camera
+     * @param y Desired Y coordinates for the camera
+    */
     public void setCamera(int x, int y){
         transposeCamera(cameraX-x,cameraY-y);
     }
-
+    
+    /** Composite the background images onto the world background
+    */
     public void redrawBackground(){
         GreenfootImage bg = getBackground();
         bg.fill();
@@ -199,6 +234,12 @@ public class ExtendedWorld extends World
       
     }
 
+    /**
+     *  Move the camera along by the given x and across by the given y.
+     *  
+     *  @param x horizonal distance to move the camera positive is left
+     *  @param y vertical distance io move the camera positive is up
+    */
     public void transposeCamera(int x, int y){
         int dx = cameraX-x<0?cameraX:x;
         dx = cameraX-dx> WORLD_WIDTH-GAME_WIDTH? -((WORLD_WIDTH-GAME_WIDTH) - cameraX):dx;
@@ -215,6 +256,11 @@ public class ExtendedWorld extends World
 
     }
 
+    /**
+     * Moves the camera so that the object is at the center of focus.
+     * 
+     * @param obj ExtendedActor to focus on
+    */
     public void centreCameraOn(ExtendedActor obj){
         int x = obj.getX();
         int y = obj.getY();
@@ -224,25 +270,27 @@ public class ExtendedWorld extends World
 
     }
 
-     /**
-     * THis method when invoked will 
-     * @return String 
+    /**
+     * This method when invoked will return the identifier for the level
+     * @return String The current level identifier
      */
     protected String getLevel()
     {
         return gameLevel;
     }
     
+    /**
+     * Set Order at which to paint objects in the world.
+    */
     public void setPaintOrder(){
         super.setPaintOrder(UI.class,Attack.class,Player.class,Entity.class);
     }
     
+    /**
+     * Is the world currenly paused or not.
+    */
     public boolean isPaused(){
         return paused;
     }
-    
-    //public String getLevel()
-    //{
-        
-    //}
+
 }

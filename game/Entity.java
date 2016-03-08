@@ -110,15 +110,17 @@ public abstract class Entity extends ExtendedActor
                         
                         moveLocation(-cx,0);
                     }
-                    System.out.println("Collision! xpen"+xpen+" dx"+dx+" ypen"+ypen);
+                    System.out.println("Collision! xpen"+xpen+" dx"+dx+" ypen"+ypen+" dy"+dy);
                     //set position to most shallow penetration
-                    if ( (ypen<xpen) && ypen<=Math.abs(dy) ) setLocation(ypen_x,ypen_y);
+                    if ( xpen>Math.abs(dx) && (ypen<xpen) || ypen<=Math.abs(dy) ) setLocation(ypen_x,ypen_y);
                     else if ( xpen>Math.abs(dx)){
+                        System.out.println("Could not resolve x");
                         setLocation(x,y);
                     }
                 }else if ( ypen>Math.abs(dy) ){
                     setLocation(x,y);
-                }
+                    System.out.println("Could not resolve y");
+                }else System.out.println("Collision!  ypen"+ypen+" dy"+dy);
             }
             return true;
         }

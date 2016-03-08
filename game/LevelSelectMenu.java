@@ -10,7 +10,7 @@ import greenfoot.*;
 public class LevelSelectMenu extends ExtendedWorld
 {
     public static final int GAME_HEIGHT = 800;
-    public static final int GAME_WIDTH = 1000;
+    public static final int GAME_WIDTH = 600;
     /**
      * Will populate the world with objects such as a home buttons and level select buttons will vary on the paramter value.
      * @param String levels This will be the amount for level select buttons for example if value is "3" then buttons 1,2,3 will be shown
@@ -19,15 +19,20 @@ public class LevelSelectMenu extends ExtendedWorld
     public LevelSelectMenu(String levels)
     {
         super(GAME_HEIGHT,GAME_WIDTH,false); 
+       
+        //setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
+        layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
+        addObject(new Home(),76,73);
+        
+        
+        
         int view;
         if(levels==null){
             view = 0;
         }else{
             view = Integer.parseInt(levels);
         }
-        layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
-        setBackground(layer1); 
-        addObject(new Home(),76,73);
+        
         switch(view){
             case 1: 
             addLevel1();

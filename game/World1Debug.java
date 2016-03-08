@@ -36,7 +36,7 @@ public class World1Debug extends ExtendedWorld
         
         addObject(new Grass(6),135,300);
         addObject(new Grass(11),600,300);
-        addObject(new Wall(),190,240);
+        addObject(new PushObject(),190,240);
         // for(int i =50;i<=950;i+=50){
             // if(!(i==300||i==350)){
                 // addObject(new Grass(),i,300);

@@ -48,7 +48,7 @@ public class Load extends MenuItems
     public void loadGame()
     {
         String[] data;
-        data = new String[4];
+        data = new String[5];
         try{
             BufferedReader reader = new BufferedReader(new FileReader("SaveFile.txt"));
             int i = 0;

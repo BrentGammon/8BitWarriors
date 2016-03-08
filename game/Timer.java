@@ -37,7 +37,7 @@ public class Timer extends UI
     private void display()
     {
         Color transparent = new Color(0, 0, 0, 0);
-        setImage(new GreenfootImage("Time: " + time, 25, Color.BLACK, transparent));
+        setImage(new GreenfootImage("Time: " + time, 25, Color.WHITE, transparent));
     }
 
     public void setTime()

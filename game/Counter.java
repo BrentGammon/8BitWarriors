@@ -38,6 +38,7 @@ public class Counter extends UI
     private int value;
     private static int target;
     private String prefix;
+    private static boolean increment;
     
     public Counter()
     {
@@ -62,23 +63,24 @@ public class Counter extends UI
      */
     public void act() 
     {
-        if (value < target) {
+        if (increment) {
             value++;
             updateImage();
+            increment = false;
         }
-        else if (value > target) {
-            value--;
-            updateImage();
+        
+        if(Greenfoot.mouseClicked(this)){
+            System.out.println("sadfj");
         }
-    }
+   }
 
     /**
      * Add a new score to the current counter value.  This will animate
      * the counter over consecutive frames until it reaches the new value.
      */
-    public static void add(int score)
+    public static void add()
     {
-        setValue(score);
+       increment = true;
        
     }
 
@@ -90,15 +92,7 @@ public class Counter extends UI
         return target;
     }
 
-    /**
-     * Set a new counter value.  This will not animate the counter.
-     */
-    public void setValue(int newValue)
-    {
-        target = newValue;
-        value = newValue;
-        updateImage();
-    }
+   
     
     /**
      * Sets a text prefix that should be displayed before
@@ -115,7 +109,7 @@ public class Counter extends UI
      */
     private void updateImage()
     {
-        GreenfootImage image = new GreenfootImage(background);
+        GreenfootImage image = new GreenfootImage("Counter.png");
         GreenfootImage text = new GreenfootImage(prefix + value, 22, Color.BLACK, transparent);
         
         if (text.getWidth() > image.getWidth() - 20)

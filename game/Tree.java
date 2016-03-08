@@ -28,7 +28,7 @@ public class Tree extends Decoration
                 setImage("Terrain/treex3.png");
                 break;
             case LARGE:
-                setImage("Terrain/madtree.png");
+                setImage("Terrain/bigTree.png");
                 break;
             default:
                 setImage("Terrain/tree.png");

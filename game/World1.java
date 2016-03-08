@@ -22,7 +22,7 @@ public class World1 extends ExtendedWorld
         
         gameLevel = "1";
         
-        WORLD_WIDTH = 9000;
+        WORLD_WIDTH = 20000;
         WORLD_HEIGHT = 900;
         Player p = new Player();
         //layer1_xoffset = -200;
@@ -31,16 +31,20 @@ public class World1 extends ExtendedWorld
         
         redrawBackground();
         addObject(p,100,826);
-        addObject(new Timer(),52,16);
+        addObject(new Timer(),52,40);
         addObject(new Counter(),133,16);
         muteControl = new MuteControl();
         addObject(muteControl,300,16);
         addObject(new SaveGame(),450,16);
-        addObject(new PowerupDisplay(p),122,40);
+        addObject(new PowerupDisplay(p),300,60);
         
         
-        addObject(new Grass(20),301,885);
+        addObject(new Grass(20),300,885);
         addObject(new Grass(20),1350,885);
+        addObject(new Grass(10),2375,735);
+        addObject(new WoodLog(),1875,807);
+        addObject(new WoodLog(),1975,807);
+        addObject(new WoodLog(),2075,807);
         
         addObject(new DumbEnemy(),696,825);
     }
@@ -62,9 +66,15 @@ public class World1 extends ExtendedWorld
     /**
      * When the application has started when this World is loaded it will play the music 
      */
+    //check if plaused 
     public void started()
     {
-        if (!isPaused())    muteControl.play();
+        if (!isPaused()){
+            if(!(muteControl.getIsMuted())){
+                muteControl.play();
+            }
+            
+        }
     }
 }
 

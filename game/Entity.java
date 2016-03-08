@@ -96,7 +96,7 @@ public abstract class Entity extends ExtendedActor
                     moveLocation(0,-cy);
                 }
                 //if was actually moving sideways ( need to check horizontal pen )
-                if (dx!=0){
+                if (dx!=0 && !(t instanceof IPlatform) ){
                     //move back and store
                     int ypen_x = getX();
                     int ypen_y = getY();
@@ -107,14 +107,20 @@ public abstract class Entity extends ExtendedActor
                     while (intersects(t)){
                         xpen++;
                         //System.out.println("cx: "+cx+", cy: "+cy+", x: "+getX()+", y: "+getY());
+                        
                         moveLocation(-cx,0);
                     }
                     System.out.println("Collision! xpen"+xpen+" dx"+dx+" ypen"+ypen);
                     //set position to most shallow penetration
-                    if ( xpen>Math.abs(dx) ||ypen<=Math.abs(dy)&&(ypen<xpen) )setLocation(ypen_x,ypen_y);
+                    if ( (ypen<xpen) && ypen<=Math.abs(dy) ) setLocation(ypen_x,ypen_y);
+                    else if ( xpen>Math.abs(dx)){
+                        setLocation(x,y);
+                    }
+                }else if ( ypen>Math.abs(dy) ){
+                    setLocation(x,y);
                 }
-                return true;
             }
+            return true;
         }
         return false;
     }

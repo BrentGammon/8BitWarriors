@@ -99,6 +99,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
         }
     }
     public boolean die(){
+        Counter.add();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
     }

@@ -9,10 +9,13 @@ import java.util.List;
  */
 public class BasicAttack extends Attack
 {
-    private static final int ATTACK_TIME = 8;
+    public static final int ATTACK_TIME = 8;
+    private static final int BOOSTED = ATTACK_TIME - 4;
     private static final int DAMAGE = 1;
     private static final int X_OFFSET = 10;
     private static final int Y_OFFSET = 2;
+    
+    protected int boostAttack = ATTACK_TIME;
     
     private int attackTime = 0;
     private boolean facingLeft = false;
@@ -25,7 +28,8 @@ public class BasicAttack extends Attack
     public void fire(){
         if (attackTime==0){
             getWorld().addObject(new BasicSlash(facingLeft, source),getX(),getY());
-            attackTime = ATTACK_TIME;
+            if( source instanceof Player && ((Player)source).hasAttackBoost()) attackTime = BOOSTED;
+            else attackTime = ATTACK_TIME;
             setImage("Weapons/swordSwing.png");
             if (facingLeft) getImage().mirrorHorizontally();
         }

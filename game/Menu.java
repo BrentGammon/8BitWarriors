@@ -11,10 +11,15 @@ public class Menu extends ExtendedWorld
     /**
      * Constructor for objects of class Menu.
      */
+    
+        protected int GAME_HEIGHT = 600;
+        protected int GAME_WIDTH = 800;
     public Menu()
     {
         super(false); 
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
+        
+
         setBackground(layer1);
 
         addObject(new PlayerFace(),125,85);

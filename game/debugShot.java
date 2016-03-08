@@ -30,7 +30,7 @@ public class debugShot extends Entity
         }
         if(isTouching(TrackEnemy.class)){
             Counter counter =(Counter) getWorld().getObjects(Counter.class).get(0);
-            counter.add(1);
+            counter.add();
             World world = getWorld();
             List<TrackEnemy>holds = new ArrayList<TrackEnemy>();
             holds=getIntersectingObjects(TrackEnemy.class);
@@ -42,7 +42,7 @@ public class debugShot extends Entity
         }   
         if(isTouching(DumbEnemy.class)){
             Counter counter =(Counter) getWorld().getObjects(Counter.class).get(0);
-            counter.add(1);
+            counter.add();
             World world = getWorld();
             List<DumbEnemy>holds = new ArrayList<DumbEnemy>();
             holds=getIntersectingObjects(DumbEnemy.class);

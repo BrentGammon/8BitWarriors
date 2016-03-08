@@ -8,8 +8,8 @@ import greenfoot.*;
  */
 public class Menu extends ExtendedWorld
 {
+    public static final int GAME_WIDTH = 600;
     public static final int GAME_HEIGHT = 800;
-    public static final int GAME_WIDTH = 1000;
     /**
      * Constructor for objects of class Menu.
      */

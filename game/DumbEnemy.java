@@ -2,7 +2,6 @@ import greenfoot.*;
 
 /**
  * DumbEnemy will move left and right while in contact with the terrian.
- * 
  * @author Brent Gammon 
  * @version 0.1
  */
@@ -12,9 +11,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private int speed = 5;
     private int vertVelocity = 0;
     protected boolean goLeft = false;
-    
     private boolean hit = false;
-    
     private int delayTime;
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever

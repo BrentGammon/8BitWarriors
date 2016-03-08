@@ -1,24 +1,31 @@
 import greenfoot.*;
 import javax.swing.*;
 /**
- * This is used to allow the player to set the key binding for left
+ * Write a description of class AttackControl here.
  * 
- * @author Brent Gammon
- * @version v0.1
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class LeftControl extends KeyBindings
+public class AttackControl extends KeyBindings
 {
+    public AttackControl()
+    {
+        setImage("swordKey.png");
+
+    }
+
     /**
-     * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for right movement
+     * Act - do whatever the AttackControl wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-       if(Greenfoot.mouseClicked(this))
+        if(Greenfoot.mouseClicked(this))
         {
-            String x= Greenfoot.ask("Left Key");
+            String x= Greenfoot.ask("Attack Key");
             if(validKey(x)){
                 if(!(keyInUse(x))){
-                    Player.keyLeft = x;
+                    Player.keyAttack = x;
                 }else{
                     JOptionPane.showMessageDialog(null, "Key already in use", "Input a key that is not in use",
                     JOptionPane.ERROR_MESSAGE);

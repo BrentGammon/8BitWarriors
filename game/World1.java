@@ -49,6 +49,11 @@ public class World1 extends ExtendedWorld
         addObject(new DumbEnemy(),696,825);
     }
     
+	
+	/**
+	*Method returns the String value of gameLevel
+	*@return String gameLevel
+	*/
     public String getLevel()
     {
         return gameLevel;
@@ -66,7 +71,6 @@ public class World1 extends ExtendedWorld
     /**
      * When the application has started when this World is loaded it will play the music 
      */
-    //check if plaused 
     public void started()
     {
         if (!isPaused()){

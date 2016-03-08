@@ -9,8 +9,6 @@ import greenfoot.*;
 public class RightControl extends MenuItems
 {
     /**
-     * Act - do whatever the RightControl wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
      * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for right movement
      */
     public void act() 

@@ -159,23 +159,32 @@ public class ExtendedWorld extends World
      * @param y Desired Y coordinates for the camera
     */
     public void setCamera(int x, int y){
+        //move the camera by the difference between the current position and the desired location
         transposeCamera(cameraX-x,cameraY-y);
     }
     
     /** Composite the background images onto the world background
     */
     public void redrawBackground(){
+        //fetch background
         GreenfootImage bg = getBackground();
+        //set draw color to white then clear the background
+        bg.setColor(Color.WHITE);
         bg.fill();
+        
+        //if layer1 is set
         if (layer1!=null){
+            //if layer1 tiles
             if(layer1_ytile){
                 int y = layer1_yoffset;
                 int x = layer1_xoffset;
+                //tile background till draw origin is off screen
                 for (int i = x;i<GAME_WIDTH;i+=layer1.getWidth()){
                     bg.drawImage(layer1,i,y);
                 }
                 
             }else{
+                //draw background image onto world background
                 bg.drawImage(layer1,0,0);
             }
             
@@ -241,17 +250,26 @@ public class ExtendedWorld extends World
      *  @param y vertical distance io move the camera positive is up
     */
     public void transposeCamera(int x, int y){
+        // if camera would have ended negative set distance to move the amount so camera reaches 0
         int dx = cameraX-x<0?cameraX:x;
+        //if camera would have ended off the right of the world set distance to move the amount so camera
+        //reaches world size
         dx = cameraX-dx> WORLD_WIDTH-GAME_WIDTH? -((WORLD_WIDTH-GAME_WIDTH) - cameraX):dx;
+        
+        //same as x
         int dy = cameraY-y<0?cameraY:y;
         dy = cameraY-dy> WORLD_HEIGHT-GAME_HEIGHT? -((WORLD_HEIGHT-GAME_HEIGHT) - cameraY):dy;
         
+        //update camera values
         cameraX-=dx;
         cameraY-=dy;
+        
+        //if the camera is moving in some direction move every object by camera amount
         if(dy!=0||dx!=0) for(Object obj:getObjects(ExtendedActor.class)){
             ((ExtendedActor)obj).setLocation(((ExtendedActor)obj).getX()+dx,((ExtendedActor)obj).getY()+dy);
         }
         
+        //redraw background
         redrawBackground();
 
     }
@@ -262,10 +280,15 @@ public class ExtendedWorld extends World
      * @param obj ExtendedActor to focus on
     */
     public void centreCameraOn(ExtendedActor obj){
+        // get objects positions
         int x = obj.getX();
         int y = obj.getY();
+        
+        //calculate center of screen
         int cx = GAME_WIDTH/2;
         int cy = GAME_HEIGHT/2;
+        
+        //move the actor
         transposeCamera(cx-x, cy-y);
 
     }
@@ -283,11 +306,14 @@ public class ExtendedWorld extends World
      * Set Order at which to paint objects in the world.
     */
     public void setPaintOrder(){
+        // draw order is left is top. anything not mentioned is drawn under.
         super.setPaintOrder(UI.class,Attack.class,Player.class,Entity.class);
     }
     
     /**
      * Is the world currenly paused or not.
+     * 
+     * @return is the world paused
     */
     public boolean isPaused(){
         return paused;

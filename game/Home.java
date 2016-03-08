@@ -9,8 +9,6 @@ import greenfoot.*;
 public class Home extends MenuItems
 {
     /**
-     * Act - do whatever the Home wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
      * When the object has been clicked it will load the menu world
      */
     public void act() 

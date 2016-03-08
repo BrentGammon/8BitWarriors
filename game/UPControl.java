@@ -9,8 +9,8 @@ import greenfoot.*;
 public class UPControl extends MenuItems
 {
     /**
-     * Act - do whatever the UPControl wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     *The act method will check if the object has been clicked by the mouse 
+	 *Stores the answer from the ask to store the value to keybinding
      */
     public void act() 
     {

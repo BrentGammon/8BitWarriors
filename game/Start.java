@@ -15,8 +15,6 @@ public class Start extends MenuItems
     }
     
     /**
-     * Act - do whatever the Start wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
      * Checks if the mouse is on the object if so then the image is changed to show the player that they are on the object
      * if clicked to change the world to the first level
      */

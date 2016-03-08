@@ -13,6 +13,7 @@ public class Menu extends ExtendedWorld
     /**
      * Constructor for objects of class Menu.
      */
+
     public Menu()
     {
         super(GAME_HEIGHT,GAME_WIDTH,false); 

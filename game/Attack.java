@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 /**
- * Attack class will be used for when the player is attacking  
+ * Attack is the super class for all attacking objects 
  * 
  * @author Brent Gammon 
  * @version (0.1)

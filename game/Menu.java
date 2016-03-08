@@ -13,12 +13,6 @@ public class Menu extends ExtendedWorld
     /**
      * Constructor for objects of class Menu.
      */
-    
-<<<<<<< HEAD
-        protected int GAME_HEIGHT = 600;
-        protected int GAME_WIDTH = 800;
-=======
->>>>>>> 77ec42fad0290e6de1412ab7596fd98e1d7392a2
     public Menu()
     {
         super(GAME_HEIGHT,GAME_WIDTH,false); 

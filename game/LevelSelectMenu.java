@@ -21,7 +21,9 @@ public class LevelSelectMenu extends ExtendedWorld
         super(GAME_HEIGHT,GAME_WIDTH,false); 
       
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
-        addObject(new Home(),76,73);
+        addObject(new Home(),40,87);
+        addObject(new LevelSelectBanner(),486,33);
+        addObject(new LevelSelectTitle(),412,98);
         
         int view;
         if(levels==null){
@@ -33,10 +35,13 @@ public class LevelSelectMenu extends ExtendedWorld
         switch(view){
             case 1: 
             addLevel1();
+            addLevel2Locked();
+            addLevel3Locked();
             break;
             case 2: 
             addLevel1();
             addLevel2();
+            addLevel3Locked();
             break;
             case 3: 
             addLevel1();
@@ -45,6 +50,8 @@ public class LevelSelectMenu extends ExtendedWorld
             break;
             default: 
             addLevel1();
+            addLevel2Locked();
+            addLevel3Locked();
             break;
         }
     }
@@ -53,20 +60,36 @@ public class LevelSelectMenu extends ExtendedWorld
      *When invoked it will add a Level1 instance into the world at a specifed location 
      */
     public void addLevel1(){
-        addObject(new Level1(),127,252);
+        addObject(new Level1(),140,367);
     }
     
     /**
      * When invoked it will add a Level2 instance into the world at a specifed location 
      */
     public void addLevel2(){
-        addObject(new Level2(),387,252);
+        addObject(new Level2(),409,367);
+        //need assets
     }
     
     /**
-     * When invoked it will add a Level1 instance into the world at a specifed location
+     * When invoked it will add a Level3 instance into the world at a specifed location
      */ 
     public void addLevel3(){
-        addObject(new Level3(),632,252);
+        addObject(new Level3(),670,367);
+        //need assets
+    }
+    
+    /**
+     * When invoked it will add a Level2Locked instance into the world at a specifed location
+     */
+    public void addLevel2Locked(){
+        addObject(new Level2Locked(),409,367);
+    }
+    
+    /**
+     * When invoked it will add a Level3Locked instance into the world at a specifed location
+     */
+    public void addLevel3Locked(){
+        addObject(new Level3Locked(),670,367);
     }
 }

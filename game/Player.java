@@ -30,15 +30,22 @@ public class Player extends Entity implements IFalling, IDamageable
     private int attackBoostTimer = 0;
     
     /** Images for the players animation*/
-    private GreenfootImage front = new GreenfootImage("Player/front.png");
-    private GreenfootImage standingRight = new GreenfootImage("Player/standing.png");
-    private GreenfootImage standingLeft;
+    private static final GreenfootImage front = new GreenfootImage("Player/front.png");
+
+    private static final GreenfootImage SHEET = new GreenfootImage("Player/PlayerSpritesheetV4.png");
+    private static final int SHEET_H = 1;
+    private static final int SHEET_W = 4;
+    private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
+    private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
+    private static final int STATE_FRONT = 1, STATE_LEFT = 2, STATE_RIGHT = 3;
+    
     private GreenfootImage jump1Right = new GreenfootImage("Player/jump1.png");
     private GreenfootImage jump2Right = new GreenfootImage("Player/jump2.png");
     private GreenfootImage jump1Left;
     private GreenfootImage jump2Left;
-    private GreenfootImage moveRight = new GreenfootImage("Player/move.png");
-    private GreenfootImage moveLeft;
+    private int frame = 0;
+    private int framestate = STATE_FRONT;
+
     
     /** is the player facing left or not */
     private boolean facingLeft = false;
@@ -58,14 +65,10 @@ public class Player extends Entity implements IFalling, IDamageable
      */
     Player(){
         //initiate the facing left sprites
-        standingLeft = new GreenfootImage(standingRight);
-        standingLeft.mirrorHorizontally();
         jump1Left = new GreenfootImage(jump1Right);
         jump1Left.mirrorHorizontally();
         jump2Left = new GreenfootImage(jump2Right);
         jump2Left.mirrorHorizontally();
-        moveLeft = new GreenfootImage(moveRight);
-        moveLeft.mirrorHorizontally();
 
         hasFocus = true;
 
@@ -121,18 +124,11 @@ public class Player extends Entity implements IFalling, IDamageable
             horzVelocity -= MOVE_SPEED;
             //set direction (whether or not facing left or not)
             facingLeft = true;
-            //set image to standing if on the ground. jumping if in the air
-            setImage(onPlatform()?standingLeft:jump1Left);
         }else if (Greenfoot.isKeyDown(keyRight!=null?keyRight:"RIGHT")){
             horzVelocity += MOVE_SPEED;
-            setImage(onPlatform()?standingRight:jump1Right);
             facingLeft = false;
-        }else{
-            //else set image to facing forward
-            setImage(front);
-            //facingLeft = false;
         }
-        
+        updateSprite();
         //tell weapon what direction we are facing
         weapon.setDirection(facingLeft);
         //if player is pressing an attack key; fire
@@ -272,6 +268,39 @@ public class Player extends Entity implements IFalling, IDamageable
     public int doDamage(Actor a, int damage){
         if (damage>0)die();
         return damage;
+    }
+    /**
+     * Internal method to set player sprite to apropriate image
+     */
+    private void updateSprite(){
+        //facing front
+        if (horzVelocity==0){
+                setImage(front);
+                framestate = STATE_FRONT;
+        }else if(facingLeft){
+            if (framestate != STATE_LEFT){
+                framestate = STATE_LEFT;
+                frame = 0;
+            }
+            setImage(jump1Left);
+            if (onPlatform()){
+                getImage().clear();
+                getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
+                getImage().mirrorHorizontally();
+                frame = frame + 1 % (SHEET_H* SHEET_W);
+            }
+        }else{
+            if (framestate != STATE_RIGHT){
+                framestate = STATE_RIGHT;
+                frame = 0;
+            }
+            setImage(jump1Right);
+            if (onPlatform()){
+                getImage().clear();
+                getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
+                frame = frame + 1 % (SHEET_H* SHEET_W);
+            }
+        }  
     }
 
 }

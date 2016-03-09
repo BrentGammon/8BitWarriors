@@ -40,6 +40,7 @@ public class Timer extends UI
         
     }
     
+    //this is a boolean counter that starts a loop counting down
     private boolean counter()
     {
         if(count > 0)
@@ -49,6 +50,7 @@ public class Timer extends UI
         return count == 0;
     }
 
+    //this is the display method to display the timer using greenfoot image
     private void display()
     {
         Color transparent = new Color(0, 0, 0, 0);
@@ -59,12 +61,13 @@ public class Timer extends UI
     {
         time = 0;
     }
-
+    //the time is set to high number which could be the maximum or could be increased in the future
     public boolean isTimeUp()
     {
         return time == 999;
     }
-
+    
+    //reset method for the timer
     public void reset(){
 
         if(isTimeUp()){

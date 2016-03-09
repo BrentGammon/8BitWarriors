@@ -1,18 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.TextField;
 /**
- * Write a description of class World1 here.
+ * Write a description of class World2 here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Viktor) 
+ * @version (1.2v)
  */
 public class World2 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
-   //private final String gameLevel = "1";
+   //private final String gameLevel = "2";
     /**
-     * Constructor for objects of class World1.
+     * Constructor for objects of class World2.
      * 
      */
     public World2()
@@ -45,6 +45,7 @@ public class World2 extends ExtendedWorld
         addObject(new DumbEnemy(),696,825);
     }
     
+    //gets the game level and returns it
     public String getLevel()
     {
         return gameLevel;

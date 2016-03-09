@@ -222,7 +222,8 @@ public class Player extends Entity implements IFalling, IDamageable
         }
     }
     /*
-     * On Player death reset the world
+     * when called, timer is frozen so that it sops increases, animation shows player falling off screen
+     * gameover image appears, weapon removed also
      */
     public boolean die(){
         Timer.freeze();

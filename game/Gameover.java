@@ -3,8 +3,8 @@ import greenfoot.*;
 /**
  * Write a description of class Gameover here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sharaz
+ * @version 1.0
  */
 public class Gameover extends UI
 {

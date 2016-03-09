@@ -2,7 +2,8 @@ import greenfoot.*;
 import java.util.List;
 
 /**
- * Write a description of class BasicAttack here.
+ * Players default weapon. Is its own entity for damage system simplicity
+ * and is effectively glued to the player.
  * 
  * @author Mitchell Rebuck-Watson
  * @version S2 1
@@ -45,6 +46,9 @@ public class BasicAttack extends Attack
             if (facingLeft) getImage().mirrorHorizontally();
         }
     }
+    /**
+     * Extended from Base Actor
+     */
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
@@ -58,12 +62,20 @@ public class BasicAttack extends Attack
             }
         }
     }
+    /**
+     * Properly intercept direction setting
+     * 
+     * @param isLeft direction
+     */
     public void setDirection(boolean isLeft){
         if(!isLeft == facingLeft){
             facingLeft = isLeft;
             getImage().mirrorHorizontally();
         }
     }
+    /**
+     * Do damage to all things that can be hurt by weapon
+     */
     public void doDamage(){
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);
         for (IDamageable obj: objs){

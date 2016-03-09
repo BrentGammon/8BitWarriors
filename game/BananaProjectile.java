@@ -99,6 +99,9 @@ public class BananaProjectile extends Attack implements IFalling
             setLocation(source.getX()+ (facingLeft?-X_OFFSET:X_OFFSET),source.getY()+Y_OFFSET);
         }
     }
+    /**
+     * Does damage to all things that touch the bananna
+     */
     public boolean doDamage(){
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);
         for (IDamageable obj: objs){
@@ -108,9 +111,15 @@ public class BananaProjectile extends Attack implements IFalling
         }
         return false;
     }
+    /**
+     * Implementation of IFalling
+     */
     public void fall(int g){
         if(thrown) super.fall(g);
     }
+    /*
+     * Properly set direction of image when do 
+     */
     public void setDirection(boolean f){
         if (!f && facingLeft)getImage().mirrorHorizontally();
         facingLeft = f;

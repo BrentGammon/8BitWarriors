@@ -124,6 +124,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
      * @return a super call to die
      */
     public boolean die(){
+        //scoreboard incremented by one
         Counter.add();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();

@@ -2,7 +2,8 @@ import greenfoot.*;
 import java.util.List;
 
 /**
- * Write a description of class BasicAttack here.
+ * Players default weapon. Is its own entity for damage system simplicity
+ * and is effectively glued to the player.
  * 
  * @author Mitchell Rebuck-Watson
  * @version S2 1
@@ -22,6 +23,8 @@ public class BasicAttack extends Attack
     private boolean facingLeft = false;
     private ExtendedActor source;
     
+    private static boolean stillAlive;
+    
     /**
      * Constructor for Basic Attack
      * 
@@ -32,6 +35,7 @@ public class BasicAttack extends Attack
         super(direction,source);
         setImage("Weapons/swordIdle.png");
         this.source = source;
+        stillAlive = true;
     }
     /**
      * Perform a swing
@@ -45,10 +49,13 @@ public class BasicAttack extends Attack
             if (facingLeft) getImage().mirrorHorizontally();
         }
     }
+    /**
+     * Extended from Base Actor
+     */
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
-        setLocation(source.getX()+ (facingLeft?-X_OFFSET:X_OFFSET),source.getY());
+        if(stillAlive){setLocation(source.getX()+ (facingLeft?-X_OFFSET:X_OFFSET),source.getY());}
         if (attackTime>0){
             attackTime--;
             doDamage();
@@ -58,12 +65,25 @@ public class BasicAttack extends Attack
             }
         }
     }
+    
+      public static void stopFind(){
+        stillAlive = false;
+    }
+    
+    /**
+     * Properly intercept direction setting
+     * 
+     * @param isLeft direction
+     */
     public void setDirection(boolean isLeft){
         if(!isLeft == facingLeft){
             facingLeft = isLeft;
             getImage().mirrorHorizontally();
         }
     }
+    /**
+     * Do damage to all things that can be hurt by weapon
+     */
     public void doDamage(){
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);
         for (IDamageable obj: objs){

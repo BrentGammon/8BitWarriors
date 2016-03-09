@@ -13,11 +13,13 @@ public class Gameover extends UI
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public Gameover() {
-        setImage("Counter.png");
+        setImage("gameover.jpg");
     }
     
     public void act() 
     {
-        // Add your action code here.
+        if(Greenfoot.mouseClicked(this)){
+            Greenfoot.setWorld(new World1());
+        }
     }    
 }

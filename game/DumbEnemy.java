@@ -12,14 +12,13 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private int vertVelocity = 0;
     protected boolean goLeft = false;
     private boolean hit = false;
-    private int delayTime;
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pre ssed in the environment.
      */
     
     public DumbEnemy(){
-        delayTime = 70;
+      
     }
     
     public void act() 
@@ -30,27 +29,15 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         Actor b = getOneIntersectingObject(BasicAttack.class);
         if (a != null){
          World world = getWorld();
-         //world.removeObject(a);
-         //world.removeObject(b);
+         world.removeObject(a);
+         world.removeObject(b);
+         ExtendedWorld.stopFind();
+         BasicAttack.stopFind();
          world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
-         delay();
          return;
         }
     }  
     
-    public void delay(){
-        if ( delayTime > 0 ) {
-            delayTime = delayTime - 1;
-            if(delayTime == 0){
-                createNew();
-            }
-        }
-    }
-    
-    public void createNew(){
-        Greenfoot.setWorld(new World1());
-        
-    }
     
     /**
      * This will check the results of different logic methods to see what movment the object should do under certain scenario

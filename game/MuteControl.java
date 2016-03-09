@@ -26,6 +26,11 @@ public class MuteControl extends UI
     MuteControl(){
         //stop();
         play();
+
+        
+
+        play();
+
     }
 
     public void act() 

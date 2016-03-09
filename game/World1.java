@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.TextField;
 /**
- * Write a description of class World1 here.
+ * First world for the game and the jungle world. Features simple design and monkeys as a themed enemy
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson
+ * @version S2 1
  */
 public class World1 extends ExtendedWorld
 {

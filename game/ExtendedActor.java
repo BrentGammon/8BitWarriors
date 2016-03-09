@@ -1,42 +1,58 @@
-    import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Point;
 /**
- * Write a description of class ExtendedActor here.
+ * Any actor that needs to scroll inside a world should extend this class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson
+ * @version S2 2
  */
 public class ExtendedActor extends Actor
-{
+{ 
     /**
-     * Act - do whatever the ExtendedActor wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * State variables
      */
-    //
-    private int worldX=-10000;
-    private int worldY=-10000;
+    private int worldX=0;
+    private int worldY=0;
     private boolean locationSet=false;
     protected boolean hasFocus;
 
-    public void addedToWorld(World world){
-        super.addedToWorld(world);
-    }
+    /**
+     * Does this Extended actor currenly have camera focus
+     * 
+     * @return Has focus
+     */
     public boolean isFocus(){
         return hasFocus;
     }
     
+    /**
+     * Move this Extended actor relative to current position
+     * 
+     * @param x change in x position
+     * @param y change in y position
+     */
     public void moveLocation(int x,int y){
         setLocation(getX()+x,getY()+y);
     }
+    /**
+     * Pass through for base setLocation if the default is overwritten
+     */
     public void setWindowLocation(int x, int y){
         super.setLocation(x,y);
     }
-    public void move(int x){
-        super.move(x);
-    }
+    /**
+     * Get the height of this Extended Actor derived from its image
+     * 
+     * @return Actors height
+     */
     public int getHeight(){
         return getImage().getHeight();
     }
+    /**
+     * Get the width of this Extended Actor derived from its image
+     * 
+     * @return Actors width
+     */
     public int getWidth(){
         return getImage().getWidth();
     }
@@ -46,13 +62,30 @@ public class ExtendedActor extends Actor
         }
         return null;
     }
+    /**
+     * Compute this actors x position in world using the camera position
+     * 
+     * @return Actors X position
+     * 
+     */
     public int getRealX(){
         return getX() + getExtendedWorld().getCameraX();
     }
+    /**
+     * Compute this actors y position in world using the camera position
+     * 
+     * @return Actors Y position
+     * 
+     */
     public int getRealY(){
         return getY() + getExtendedWorld().getCameraY();
     }
-        
+    /**
+     * Get the absolute distance between this and the target actor
+     * 
+     * @param target Actor to check distance for
+     * @return distance to the target
+     */
     public int getDistanceTo(ExtendedActor target){
         //System.out.println("( ("+getX()+" - "+target.getX()+")^2 + ("+getY()+"
         return (int)Math.sqrt(Math.pow(getX()-target.getX(),2) + Math.pow(getY()-target.getY(),2));

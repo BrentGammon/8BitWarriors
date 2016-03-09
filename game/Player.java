@@ -148,6 +148,7 @@ public class Player extends Entity implements IFalling, IDamageable
     }
     
     
+  
     
     /**
      * This function checks whether or not the player is touching any powerup items and removes them. 
@@ -216,7 +217,8 @@ public class Player extends Entity implements IFalling, IDamageable
      * On Player death reset the world
      */
     public boolean die(){
-        Greenfoot.setWorld(new World1());
+        World world = getWorld();
+        world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
         return true;
     }
     /**

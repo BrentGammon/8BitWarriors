@@ -32,11 +32,11 @@ public class World1 extends ExtendedWorld
         redrawBackground();
         addObject(p,100,826);
         addObject(new Timer(),52,40);
-        addObject(new Counter(),133,16);
+        addObject(new Counter(),55,67);
         muteControl = new MuteControl();
-        addObject(muteControl,300,16);
-        addObject(new SaveGame(),450,16);
-        addObject(new PowerupDisplay(p),300,60);
+        addObject(muteControl,676,29);
+        addObject(new SaveGame(),750,28);
+        addObject(new PowerupDisplay(p),114,96);
         
         
         addObject(new Grass(20),300,885);
@@ -49,6 +49,11 @@ public class World1 extends ExtendedWorld
         addObject(new DumbEnemy(),696,825);
     }
     
+	
+	/**
+	*Method returns the String value of gameLevel
+	*@return String gameLevel
+	*/
     public String getLevel()
     {
         return gameLevel;
@@ -66,7 +71,6 @@ public class World1 extends ExtendedWorld
     /**
      * When the application has started when this World is loaded it will play the music 
      */
-    //check if plaused 
     public void started()
     {
         if (!isPaused()){

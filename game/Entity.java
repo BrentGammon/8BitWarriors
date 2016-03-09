@@ -1,28 +1,40 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 /**
- * Write a description of class Entity here.
+ * Class represents any Moving object that actually is in the world. Has velocity and contains methods that
+ * impliment collision
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson 
+ * @version S2 1
  */
 public abstract class Entity extends ExtendedActor
 {
     //http://codereview.stackexchange.com/questions/26697/best-way-to-get-the-smallest-possible-integer-ratio-between-two-numbers
+    /** Object velocity*/
     protected int vertVelocity=0;
     protected int horzVelocity=0;
-    
-    int gcd(int p, int q) {
-        if (q == 0) return p;
-        else return gcd(q, p % q);
-    }
 
+    /**
+     * Returns the objects current horizontal velocity
+     * 
+     * @return horizontal velocity
+     */
     public int getHorzVelocity(){
         return horzVelocity;
     }
+    /**
+     * Returns the objects current vertical velocity
+     * 
+     * @return vertical velocity
+     */
     public int getVertVelocity(){
         return vertVelocity;
     }
+    /**
+     * Checks whether or not the actor has reached the end of the platform it is currently on
+     * 
+     * @return is the bottom center position of the actor empty
+     */
     public boolean endPlatform()
     {
         int xPost = getX()+5;
@@ -33,6 +45,11 @@ public abstract class Entity extends ExtendedActor
             return false;
         }
     }
+    /**
+     * Checks whether there is space in the direction specified direction
+     * 
+     * @return is there any Terrain one pixel in direction
+     */
     public boolean directionBlocked(String direction){
         final int ow = getWidth()/2;
         final int oh = getHeight()/2;
@@ -45,6 +62,11 @@ public abstract class Entity extends ExtendedActor
             }
         return false;
     }
+    /**
+     * Checks whether there is any space above the actor.
+     * 
+     * @return is there any terrain one pixel above
+     */
     public boolean upBlocked(){
         final int ow = getWidth()/2;
         final int oh = getHeight()/2;
@@ -58,10 +80,17 @@ public abstract class Entity extends ExtendedActor
         }
         return false;
     }
+    /**
+     * Is the entity on a platform. Is false when the entity is moving upwards
+     * 
+     * @return is touching platform
+     */
     public boolean onPlatform()
     {
+        //
         if (vertVelocity<0) return false;
         final int o = getWidth()/2;
+        
         for (int i=-o;i<-o+getWidth();i++){
             //getWorld().addObject(new Particle(2),i+getX(),getHeight()/2+getY()+1);
             Actor a = getOneObjectAtOffset(i,getHeight()/2+1,Terrain.class);
@@ -72,23 +101,35 @@ public abstract class Entity extends ExtendedActor
         }
         return false;
     }  
-    //http://gamedev.stackexchange.com/questions/18302/2d-platformer-collisions
-    
+
+    /**
+     * Attempt to move location by specified amount and resolve any resulting collisions
+     * basic algorith was learned from http://gamedev.stackexchange.com/questions/18302/2d-platformer-collisions
+     * but has been significantly changed for use in a 2d platformer
+     * 
+     * @param dx change in x position
+     * @param dy change in y position
+     * 
+     * @return whether the entity collided or not
+     */
     public boolean collideMoveLocation(int dx, int dy){
+        //move enity
         moveLocation(dx,dy);
         List<Terrain> c = getIntersectingObjects(Terrain.class);
+        //if actually moved and collided with something
         if (c.size()>0&&(dx!=0||dy!=0)){
+            //for every Terrain thats collided with
             for (Terrain t:c){
+                // if terrain is a platform and entity is moving up skip ignore it
                 if (t instanceof IPlatform && dy<=0) continue;
-                //need to not let pen be higher than dx or dy
+                // set sub unit to jump object when attempting to uncollide (move in the inverse of direction travelled
                 int cx = dx!=0?dx/Math.abs(dx):1;
                 int cy = dy!=0?dy/Math.abs(dy):1;
-                //if (Math.abs(t.getX()-getX())< Math.abs(t.getY()-getY()) ){
                 
-                //store curr pos
+                //store current position
                 int x = getX();
                 int y = getY();
-                //find y penetration
+                //find y penetration (move vertically till free
                 int ypen = 0;
                 while (intersects(t)){
                     ypen++;
@@ -97,7 +138,7 @@ public abstract class Entity extends ExtendedActor
                 }
                 //if was actually moving sideways ( need to check horizontal pen )
                 if (dx!=0 && !(t instanceof IPlatform) ){
-                    //move back and store
+                    //store position at end of ypen test and move back
                     int ypen_x = getX();
                     int ypen_y = getY();
                     setLocation(x,y);
@@ -107,23 +148,34 @@ public abstract class Entity extends ExtendedActor
                     while (intersects(t)){
                         xpen++;
                         //System.out.println("cx: "+cx+", cy: "+cy+", x: "+getX()+", y: "+getY());
-                        
                         moveLocation(-cx,0);
                     }
-                    System.out.println("Collision! xpen"+xpen+" dx"+dx+" ypen"+ypen);
-                    //set position to most shallow penetration
-                    if ( (ypen<xpen) && ypen<=Math.abs(dy) ) setLocation(ypen_x,ypen_y);
+                    
+                    System.out.println("Collision! xpen"+xpen+" dx"+dx+" ypen"+ypen+" dy"+dy);
+                    // if x penetration was greater than distance moved (thats invalid) and ypenetration was
+                    // less than x penetration and the y penetration was valid
+                    // resolve in y dimension
+                    if ( xpen>Math.abs(dx) && (ypen<xpen) || ypen<=Math.abs(dy) ) setLocation(ypen_x,ypen_y);
+                    //if x penetration is also invalid leave object in collided state
                     else if ( xpen>Math.abs(dx)){
+                        System.out.println("Could not resolve x");
                         setLocation(x,y);
                     }
                 }else if ( ypen>Math.abs(dy) ){
+                    //if ypenetration was invalid move leave object in collided state
                     setLocation(x,y);
-                }
+                    System.out.println("Could not resolve y");
+                }else System.out.println("Collision! ypen"+ypen+" dy"+dy);
             }
             return true;
         }
         return false;
     }
+    /**
+     * Apply gravity to the entities vertical velocity. Will set vertical velocity to 0 if it is on a platform
+     * 
+     * @param g Gravity to apply
+     */
     public void fall(int g){
         if (!onPlatform()){
             vertVelocity+=g;
@@ -131,7 +183,13 @@ public abstract class Entity extends ExtendedActor
             vertVelocity = 0;
         }
     }
+    /**
+     * Kill this entity
+     * 
+     * @return did the entity die successfully
+     */
     public boolean die(){
+        //remove this entity from the world
         getWorld().removeObject(this);
         return true;
     }

@@ -25,6 +25,7 @@ public class MuteControl extends UI
     }*/
     MuteControl(){
         //stop();
+        play();
 
         
 

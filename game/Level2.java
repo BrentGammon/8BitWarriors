@@ -12,7 +12,7 @@ public class Level2 extends MenuItems
      * When an instance is created it will contain the level 2 icon image
      */
     public Level2(){
-        GreenfootImage start = new GreenfootImage("images/Graphics/MENUV2/level2Icon.png");
+        GreenfootImage start = new GreenfootImage("images/LevelSelect/lvl2unlockedRESIZE.png");
         setImage(start);
     }
     

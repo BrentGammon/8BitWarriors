@@ -3,14 +3,14 @@ import java.awt.Color;
 import java.awt.Transparency;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import javax.swing.*;
 /**
- * Write a description of class Player here.
+ * The main player entity. It stores the players key bindings in addition to being the entity in the world
  * 
  * @author Mitchell
- * @version (a version number or a date)
+ * @version S2 2
  */
 public class Player extends Entity implements IFalling, IDamageable
 {
-
+    /** constants for the player*/
     public static final int MOVE_SPEED = 3;
     public static final int JUMP_SPEED = -20;
     public static final int MOVE_SPEED_CAP = 10;
@@ -18,56 +18,57 @@ public class Player extends Entity implements IFalling, IDamageable
     
     public static final int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
-    protected int realY;
-    protected int realX;
-    boolean isDead = false;
     
-
+    /** powerup constants */
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
     private final int ATTACK_BOOST_TIMER = 650;
     
+    /** Time remaining for the powerups */
     private int jumpBoostTimer = 0;
     private int speedBoostTimer = 0;
     private int attackBoostTimer = 0;
     
-    private GreenfootImage front = new GreenfootImage("Player/front.png");
-    private GreenfootImage standingRight = new GreenfootImage("Player/standing.png");
-    private GreenfootImage standingLeft;
+    /** Images for the players animation*/
+    private static final GreenfootImage front = new GreenfootImage("Player/front.png");
+
+    private static final GreenfootImage SHEET = new GreenfootImage("Player/PlayerSpritesheetV4.png");
+    private static final int SHEET_H = 1;
+    private static final int SHEET_W = 4;
+    private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
+    private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
+    private static final int STATE_FRONT = 1, STATE_LEFT = 2, STATE_RIGHT = 3;
+    
     private GreenfootImage jump1Right = new GreenfootImage("Player/jump1.png");
     private GreenfootImage jump2Right = new GreenfootImage("Player/jump2.png");
     private GreenfootImage jump1Left;
     private GreenfootImage jump2Left;
+    private int frame = 0;
+    private int framestate = STATE_FRONT;
 
-    private GreenfootImage moveRight = new GreenfootImage("Player/move.png");
-    private GreenfootImage moveLeft;
-
+    
+    /** is the player facing left or not */
     private boolean facingLeft = false;
 
+    /** the players current weapon object */
     private Attack weapon;
-    
-    
 
+    /** keybinds for the player */
     public static String keyJump;
     public static String keyLeft;
     public static String keyRight;
     public static String keyAttack;
     
     
-
+    /**
+     * Constructor for Player
+     */
     Player(){
-        ///keyLeft = JOptionPane.showInputDialog("Left Key");
-        //keyRight = JOptionPane.showInputDialog("Right Key");
-        //keyJump = JOptionPane.showInputDialog("Jump Key");
-
-        standingLeft = new GreenfootImage(standingRight);
-        standingLeft.mirrorHorizontally();
+        //initiate the facing left sprites
         jump1Left = new GreenfootImage(jump1Right);
         jump1Left.mirrorHorizontally();
         jump2Left = new GreenfootImage(jump2Right);
         jump2Left.mirrorHorizontally();
-        moveLeft = new GreenfootImage(moveRight);
-        moveLeft.mirrorHorizontally();
 
         hasFocus = true;
 
@@ -75,7 +76,10 @@ public class Player extends Entity implements IFalling, IDamageable
         
       
     }   
-
+    
+    /*
+     * When the player is added to the world it sets the player as the focus and spawns in the players weapon 
+     */
     @Override
     public void addedToWorld(World w){
         ((ExtendedWorld)w).setFocus(this);
@@ -120,18 +124,11 @@ public class Player extends Entity implements IFalling, IDamageable
             horzVelocity -= MOVE_SPEED;
             //set direction (whether or not facing left or not)
             facingLeft = true;
-            //set image to standing if on the ground. jumping if in the air
-            setImage(onPlatform()?standingLeft:jump1Left);
         }else if (Greenfoot.isKeyDown(keyRight!=null?keyRight:"RIGHT")){
             horzVelocity += MOVE_SPEED;
-            setImage(onPlatform()?standingRight:jump1Right);
             facingLeft = false;
-        }else{
-            //else set image to facing forward
-            setImage(front);
-            //facingLeft = false;
         }
-        
+        updateSprite();
         //tell weapon what direction we are facing
         weapon.setDirection(facingLeft);
         //if player is pressing an attack key; fire
@@ -176,19 +173,26 @@ public class Player extends Entity implements IFalling, IDamageable
 
     }
 
+    /**
+     * Decrements the speed boost powerup timer
+     */
     public void speedBoostTimer(){
         if (speedBoostTimer-- <= 0){
             System.out.println("Speed boost is over");
         }
     }
-
+    /**
+     * Decrements the jump boost powerup timer
+     */
     public void jumpBoostTimer(){
         
         if(jumpBoostTimer-- == 1){
             System.out.println("Jump boost is over");
         }
     }
-    
+    /**
+     * Decrements the attack boost powerup timer
+     */
     public void attackBoostTimer(){
     
         if(attackBoostTimer-- <= 0){
@@ -197,7 +201,9 @@ public class Player extends Entity implements IFalling, IDamageable
     
     }
 
-
+    /**
+     * Perform motion using velocity variables
+     */
     public void move(){
         boolean movingLeft = horzVelocity<0;
         if (collideMoveLocation(horzVelocity,vertVelocity)){
@@ -206,37 +212,43 @@ public class Player extends Entity implements IFalling, IDamageable
             if (vertVelocity<0 && upBlocked()) vertVelocity = 0;
         }
     }
-
-    public void fall(int g){
-        if (!onPlatform()){
-            vertVelocity+=g;
-        }else{
-            vertVelocity = 0;
-        }
-    }
-
+    /*
+     * On Player death reset the world
+     */
     public boolean die(){
         Greenfoot.setWorld(new World1());
         return true;
-    
-    
     }
-    
-    
-    
-    
-
+    /**
+     * Does the player currently have jump boost
+     * 
+     * @return jump boost on
+     */
     public boolean hasJumpBoost(){
         return jumpBoostTimer > 0;
     }
+    
+    /**
+     * Does the player currently have speed boost
+     * 
+     * @return speed boost on
+     */
     public boolean hasSpeedBoost(){
         return speedBoostTimer > 0;
     }
+    
+    /**
+     * Does the player currently have attack boost
+     * 
+     * @return attack boost on
+     */
     public boolean hasAttackBoost(){
         return attackBoostTimer > 0;
     }
   
-
+    /*
+     * Perform out of bounds check
+     */
     private void checkOutOfBounds(){
         int buffer = 200;
         int realX = getX() + ((ExtendedWorld)getWorld()).getCameraX();
@@ -248,9 +260,47 @@ public class Player extends Entity implements IFalling, IDamageable
         }
     }
     
+    /**
+     * When player takes any damage - die
+     * 
+     * @return damage taken
+     */
     public int doDamage(Actor a, int damage){
         if (damage>0)die();
         return damage;
+    }
+    /**
+     * Internal method to set player sprite to apropriate image
+     */
+    private void updateSprite(){
+        //facing front
+        if (horzVelocity==0){
+                setImage(front);
+                framestate = STATE_FRONT;
+        }else if(facingLeft){
+            if (framestate != STATE_LEFT){
+                framestate = STATE_LEFT;
+                frame = 0;
+            }
+            setImage(jump1Left);
+            if (onPlatform()){
+                getImage().clear();
+                getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
+                getImage().mirrorHorizontally();
+                frame = frame + 1 % (SHEET_H* SHEET_W);
+            }
+        }else{
+            if (framestate != STATE_RIGHT){
+                framestate = STATE_RIGHT;
+                frame = 0;
+            }
+            setImage(jump1Right);
+            if (onPlatform()){
+                getImage().clear();
+                getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
+                frame = frame + 1 % (SHEET_H* SHEET_W);
+            }
+        }  
     }
 
 }

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Grass here.
+ * Variable size grass block
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson
+ * @version S2 2
  */
 public class Grass extends Terrain
 {
@@ -16,6 +16,11 @@ public class Grass extends Terrain
     public Grass(){
         setImage(unit);
     }
+    /**
+     * Constructor for Grass
+     * 
+     * @param width How many times to repeat grass sprite
+     */
     public Grass(int width){
         int unitWidth = unit.getWidth();
         GreenfootImage self = new GreenfootImage(unitWidth*width,unit.getHeight());

@@ -40,15 +40,13 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     }
 
     /**
-     * Act - do whatever the TrackEnemy wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * This contains the movement logic for TrackEnemy
+     * When player is inrange it will move towards the player 
+     * if it reaches the end of platform then it will move away and wait
      */
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
-        // Add your action code here.
-
-        //fall();
         int count = 0;
         List<Player> nearObjects = new ArrayList<Player>();
         nearObjects = getObjectsInRange(350,Player.class);
@@ -144,9 +142,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
         if (a != null){
             Greenfoot.setWorld(new World1());
             return;
-
         }
-
     }
 
     /**
@@ -187,7 +183,11 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
             return false;
         }
     }
-
+    
+    /**
+     * When the object is not on the platform then the object will fall  
+     * @param int g This is the gravity of the object falling
+     */
     public void fall(int g){
         if (!onPlatform()){
             vertVelocity+=g;
@@ -210,7 +210,11 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
             vertVelocity = 0;
         }
     }
-
+    
+    /**
+     * When called this will increment the score counter and add DeadEntity to the world
+     * @return a super call to die
+     */
     public boolean die(){
         Counter.add();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());

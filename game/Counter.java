@@ -28,8 +28,8 @@ import java.awt.Color;
  * }
  * </pre>
  * 
- * @author Neil Brown and Michael Kölling 
- * @version 1.0
+ * @author Sharaz
+ * @version 2.0
  */
 public class Counter extends UI
 {

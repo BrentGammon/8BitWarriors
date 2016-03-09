@@ -64,6 +64,7 @@ public class BasicAttack extends Attack
                 if (facingLeft) getImage().mirrorHorizontally();
             }
         }
+        
     }
     
       public static void stopFind(){

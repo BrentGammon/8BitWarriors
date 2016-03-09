@@ -59,6 +59,7 @@ public class Player extends Entity implements IFalling, IDamageable
     public static String keyRight;
     public static String keyAttack;
     
+    public static boolean removeAttack;
     
     /**
      * Constructor for Player
@@ -74,8 +75,12 @@ public class Player extends Entity implements IFalling, IDamageable
 
         setImage(front);
         
-      
+        removeAttack = false;
     }   
+    
+    public static void removeAttack(){
+        removeAttack = true;
+    }
     
     /*
      * When the player is added to the world it sets the player as the focus and spawns in the players weapon 
@@ -85,6 +90,9 @@ public class Player extends Entity implements IFalling, IDamageable
         ((ExtendedWorld)w).setFocus(this);
         weapon = new BasicAttack(facingLeft,this);
         w.addObject(weapon,getX(),getY());
+        if(removeAttack){
+            w.removeObject(weapon);
+        }
     }
 
     /**
@@ -217,6 +225,7 @@ public class Player extends Entity implements IFalling, IDamageable
      * On Player death reset the world
      */
     public boolean die(){
+        Timer.freeze();
         World world = getWorld();
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
         return true;

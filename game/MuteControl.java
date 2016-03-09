@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MuteControl extends UI
 {
+    //set specified sountrack
     private static GreenfootSound backgroundMusic = new GreenfootSound("01ANightOfDizzySpells.mp3");
     public static boolean isMuted = false;
     protected int currentVolume;
@@ -20,9 +21,7 @@ public class MuteControl extends UI
      * Act - do whatever the MuteControl wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    /* public void started(){
-    backgroundMusic.playLoop();
-    }*/
+
     MuteControl(){
         //stop();
         play();
@@ -35,25 +34,24 @@ public class MuteControl extends UI
 
     public void act() 
     {
-        // backgroundMusic.playLoop();
-        //updateState();
-        //if(Greenfoot.mouseClicked(this)){
-        //   updateState(); 
-        //}
-        if(isMuted){
 
+        if(isMuted){
+            //if is muted, have muted image appear
             setImage(img1);
         }else{
+            //if is not muted, have selected image appear
             setImage(img2);
         }
         if(isMuted==true){
+            //once user has clicked on mute icon, stop music
             stop();
         }
+        //detect if user has clicked on image
         if(Greenfoot.mouseClicked(this))
         {
-
+            
             updateState();
-            //isMuted = !isMuted;
+
         }
         if(!oDown && Greenfoot.isKeyDown("o") && isMuted == false ){
             oDown = true;
@@ -79,13 +77,14 @@ public class MuteControl extends UI
 
     private void updateState()
     {
-
+        //if user has clicked on image to mute, set field to true and paude music
         if(!(isMuted))
         {
             setImage(img1);
             backgroundMusic.pause();
             isMuted=true;
         }
+        //if user has not clicked on image to mute, continue playing music on a constant loop (never ending)
         else {
             setImage(img2);
             backgroundMusic.playLoop();

@@ -13,11 +13,13 @@ public class Gameover extends UI
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public Gameover() {
+        //set image to file of choice
         setImage("gameover.jpg");
     }
     
     public void act() 
     {
+        //if image is clicked when gameover message appears, a new world is created
         if(Greenfoot.mouseClicked(this)){
             Greenfoot.setWorld(new World1());
         }

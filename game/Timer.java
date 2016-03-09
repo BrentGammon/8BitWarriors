@@ -10,21 +10,36 @@ public class Timer extends UI
      */
     private int time = 0;
     private int count = 45;
+    //updated so that incrementing of timer can be stopped once player has died
+    private static boolean isFreeze;
+    
+    public Timer(){
+        isFreeze = false;
+    }
+    
     public void act() 
     {
         // Add your action code here.
         if (getExtendedWorld().isPaused()) return;
         reset();
         isTimeUp();
-        if(counter())
+        //only update counter if field is false
+        if(counter() && !isFreeze)
         {
             time++;
             count = 45;
         }
         display();
+        
 
     }    
-
+    
+    //method called from enemy/player class upon player death, update field so that timer stops increasing
+    public static void freeze(){
+        isFreeze = true;
+        
+    }
+    
     private boolean counter()
     {
         if(count > 0)

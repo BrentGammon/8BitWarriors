@@ -21,11 +21,15 @@ public class MenuSettings extends ExtendedWorld
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
        
         setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
-        showText("Key Bindings",100,100);
-        addObject(new UPControl(),100,150);
-        addObject(new LeftControl(),100,200);
-        addObject(new RightControl(),100,250);
-        addObject(new Home(),50,50);
-        addObject(new AttackControl(),100,302);
+        addObject(new UPControl(),418,331);
+        addObject(new LeftControl(),322,403);
+        addObject(new RightControl(),511,403);
+        addObject(new Home(),47,105);
+        addObject(new AttackControl(),419,511);
+        addObject(new SettingBelowHeading(),415,243);
+        addObject(new SettingBinding(),420,182);
+        addObject(new SettingBelowHeading(),415,243);
+        addObject(new SettingsTitle(),414,97);
+        addObject(new SettingsBanner(),377,33);
     }
 }

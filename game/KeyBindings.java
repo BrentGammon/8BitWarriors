@@ -23,7 +23,7 @@ public abstract class KeyBindings extends MenuItems
         }
         return valid;
     }
-    
+
     /**
      * Checks if the key is not ready in use by another key binding 
      * @param String key the string value this is going to be checked

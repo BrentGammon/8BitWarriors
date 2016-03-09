@@ -1,10 +1,11 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Spikes here.
+ * Spikes will damage the player and kill them, however
+ * the spikes are destroyed by the smart enemnies.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Viktor) 
+ * @version (1.22)
  */
 public class Spikes extends Entity
 {
@@ -17,13 +18,14 @@ public class Spikes extends Entity
     
     int spiType;
     
-    
+    //spikes method getting the image type corresponding to the spike
      public Spikes(int type)
     {
         spiType = type;
         setImage(images[spiType]);
     }
     
+    //main method killing the player or getting killed by the smart enemy
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
@@ -41,12 +43,14 @@ public class Spikes extends Entity
             return;
         }
     }
+    
+    //die method for the class so it can be killed
         public boolean die(){
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
     }
     
-    
+    //gets the spike type and returns it
     public int getType(){
     
         return spiType;

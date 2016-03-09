@@ -26,7 +26,8 @@ public class PowerupDisplay extends UI
     PowerupDisplay(Player player){
         this.player = player;
     }
-
+    
+    //act method performs all the loops, or other methods it is the main method in a class
     public void act() 
     {
         display();

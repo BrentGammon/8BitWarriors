@@ -226,11 +226,14 @@ public class Player extends Entity implements IFalling, IDamageable
      */
     public boolean die(){
         Timer.freeze();
-        World world = getWorld();
         ExtendedWorld world = getExtendedWorld();
+        world.addObject(new DeadEntity(getImage()),getX(),getY());
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
         world.setFocus(null);
-        if (weapon != null) weapon.die();
+        if (weapon != null){
+            world.addObject(new DeadEntity(weapon.getImage()),weapon.getX(),weapon.getY());
+            weapon.die();
+        }
         return super.die();
     }
     /**

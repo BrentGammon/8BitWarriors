@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.TextField;
 /**
- * Write a description of class World1 here.
+ * World that will be removed in final sprint. Serves only as a testbed for entities
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson
+ * @version S2 1
  */
 public class World1Debug extends ExtendedWorld
 {

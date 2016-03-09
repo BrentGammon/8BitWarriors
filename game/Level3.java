@@ -13,7 +13,7 @@ public class Level3 extends MenuItems
      */
     public Level3()
     {
-        GreenfootImage start = new GreenfootImage("images/Graphics/MENUV2/level3Icon.png");
+        GreenfootImage start = new GreenfootImage("images/LevelSelect/lvl3unlockedRESIZE.png");
         setImage(start);
     }
     

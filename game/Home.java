@@ -8,6 +8,10 @@ import greenfoot.*;
  */
 public class Home extends MenuItems
 {
+    public Home()
+    {
+        setImage("/Settings/homebutton.png");
+    }
     /**
      * When the object has been clicked it will load the menu world
      */

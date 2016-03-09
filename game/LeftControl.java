@@ -8,6 +8,10 @@ import javax.swing.*;
  */
 public class LeftControl extends KeyBindings
 {
+    public LeftControl()
+    {
+        setImage("/Settings/left.png");
+    }
     /**
      * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for left movement
      */

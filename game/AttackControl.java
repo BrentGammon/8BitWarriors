@@ -14,7 +14,7 @@ public class AttackControl extends KeyBindings
      */
     public AttackControl()
     {
-        setImage("swordKey.png");
+        setImage("/Settings/Sword.png");
     }
 
     /**

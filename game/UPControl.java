@@ -8,6 +8,10 @@ import javax.swing.*;
  */
 public class UPControl extends KeyBindings
 {
+    public UPControl()
+    {
+        setImage("/Settings/up.png");
+    }
     /**
      * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for up movement
      */

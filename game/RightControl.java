@@ -8,6 +8,10 @@ import javax.swing.*;
  */
 public class RightControl extends KeyBindings
 {
+    public RightControl()
+    {
+        setImage("/Settings/right.png");
+    }
     /**
      * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for right movement
      */

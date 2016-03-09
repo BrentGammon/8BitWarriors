@@ -27,7 +27,6 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         moving(); 
         //get player object and weapon object and store in local variable
         Actor a = getOneIntersectingObject(Player.class);
-        Actor b = getOneIntersectingObject(BasicAttack.class);
         /*if player object has interacted with enemy, then remove its weapon, remove player, freeze the timer,
          * and display the gameover image by adding an object of it to the world
         */
@@ -41,6 +40,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
          Timer.freeze();
          world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
          return;
+            ((Player)a).die();
         }
     }  
     

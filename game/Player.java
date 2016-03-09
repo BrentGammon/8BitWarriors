@@ -227,8 +227,11 @@ public class Player extends Entity implements IFalling, IDamageable
     public boolean die(){
         Timer.freeze();
         World world = getWorld();
+        ExtendedWorld world = getExtendedWorld();
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
-        return true;
+        world.setFocus(null);
+        if (weapon != null) weapon.die();
+        return super.die();
     }
     /**
      * Does the player currently have jump boost

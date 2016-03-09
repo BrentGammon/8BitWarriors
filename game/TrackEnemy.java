@@ -140,8 +140,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
 
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-            Greenfoot.setWorld(new World1());
-            return;
+            ((Player)a).die();
         }
     }
 

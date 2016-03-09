@@ -86,8 +86,6 @@ public class ExtendedWorld extends World
 
         this.useCamera = useCamera;
         setPaintOrder();
-        
-        stillAlive = true;
     }
     
     /**
@@ -111,14 +109,10 @@ public class ExtendedWorld extends World
         for(IFalling actor:actors){
             actor.fall(GRAVITY);
         }
-        if(useCamera && stillAlive){
+        if(useCamera && focus!=null){
             centreCameraOn(focus);
         }
         redrawBackground();
-    }
-    
-    public static void stopFind(){
-        stillAlive = false;
     }
     
     /** Sets the focus of the world

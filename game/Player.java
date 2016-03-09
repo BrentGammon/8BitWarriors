@@ -221,7 +221,7 @@ public class Player extends Entity implements IFalling, IDamageable
             if (vertVelocity<0 && upBlocked()) vertVelocity = 0;
         }
     }
-    /*
+    /**
      * when called, timer is frozen so that it sops increases, animation shows player falling off screen
      * gameover image appears, weapon removed also
      */

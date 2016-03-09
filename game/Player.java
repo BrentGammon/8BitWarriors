@@ -30,7 +30,7 @@ public class Player extends Entity implements IFalling, IDamageable
     private int attackBoostTimer = 0;
     
     /** Images for the players animation*/
-    private GreenfootImage front = new GreenfootImage("Player/front.png");
+    private static final GreenfootImage front = new GreenfootImage("Player/front.png");
 
     private static final GreenfootImage SHEET = new GreenfootImage("Player/PlayerSpritesheetV4.png");
     private static final int SHEET_H = 1;
@@ -124,18 +124,11 @@ public class Player extends Entity implements IFalling, IDamageable
             horzVelocity -= MOVE_SPEED;
             //set direction (whether or not facing left or not)
             facingLeft = true;
-            //set image to standing if on the ground. jumping if in the air
-            updateSprite(STATE_LEFT);
         }else if (Greenfoot.isKeyDown(keyRight!=null?keyRight:"RIGHT")){
             horzVelocity += MOVE_SPEED;
             facingLeft = false;
-            updateSprite(STATE_RIGHT);
-        }else{
-            //else set image to facing forward
-            updateSprite(STATE_FRONT);
-            //facingLeft = false;
         }
-        
+        updateSprite();
         //tell weapon what direction we are facing
         weapon.setDirection(facingLeft);
         //if player is pressing an attack key; fire
@@ -279,39 +272,35 @@ public class Player extends Entity implements IFalling, IDamageable
     /**
      * Internal method to set player sprite to apropriate image
      */
-    private void updateSprite(int state){
-        switch (state){
-            case STATE_FRONT:
+    private void updateSprite(){
+        //facing front
+        if (horzVelocity==0){
                 setImage(front);
-                break;
-            case STATE_LEFT:
-                if (framestate != STATE_LEFT){
-                    framestate = STATE_LEFT;
-                    frame = 0;
-                }
-                if (onPlatform()){
-                    getImage().clear();
-                    getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
-                    getImage().mirrorHorizontally();
-                    frame = frame + 1 % (SHEET_H* SHEET_W);
-                }else{
-                    setImage(jump1Left);
-                }
-                break;
-            case STATE_RIGHT:
-                if (framestate != STATE_RIGHT){
-                    framestate = STATE_RIGHT;
-                    frame = 0;
-                }
-                if (onPlatform()){
-                    getImage().clear();
-                    getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
-                    frame = frame + 1 % (SHEET_H* SHEET_W);
-                }else{
-                    setImage(jump1Right);
-                }
-                break;
-        }
+                framestate = STATE_FRONT;
+        }else if(facingLeft){
+            if (framestate != STATE_LEFT){
+                framestate = STATE_LEFT;
+                frame = 0;
+            }
+            setImage(jump1Left);
+            if (onPlatform()){
+                getImage().clear();
+                getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
+                getImage().mirrorHorizontally();
+                frame = frame + 1 % (SHEET_H* SHEET_W);
+            }
+        }else{
+            if (framestate != STATE_RIGHT){
+                framestate = STATE_RIGHT;
+                frame = 0;
+            }
+            setImage(jump1Right);
+            if (onPlatform()){
+                getImage().clear();
+                getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
+                frame = frame + 1 % (SHEET_H* SHEET_W);
+            }
+        }  
     }
 
 }

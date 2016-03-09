@@ -39,14 +39,21 @@ public class World1 extends ExtendedWorld
         addObject(new PowerupDisplay(p),204,97);
         
         
+        //addObject(new Spikes(1),982,300);
+        //addObject(new Spikes(2),868,300);
+        addObject(new TrackEnemy(),2500,650);
         addObject(new Grass(20),300,885);
+        addObject(new MonkeyEnemy(),700,830);
         addObject(new Grass(20),1350,885);
         addObject(new Grass(10),2375,735);
         addObject(new WoodLog(),1875,807);
         addObject(new WoodLog(),1975,807);
         addObject(new WoodLog(),2075,807);
-        
-        addObject(new DumbEnemy(),696,825);
+        addObject(new PushObject(),2500,600);
+        addObject(new Spikes(0),1500,840);
+        addObject(new Spikes(1),1400,840);
+        addObject(new Spikes(2),1300,840);
+        addObject(new DumbEnemy(),1350,750);
     }
     
 	

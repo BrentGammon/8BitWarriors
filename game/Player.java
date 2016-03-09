@@ -217,9 +217,11 @@ public class Player extends Entity implements IFalling, IDamageable
      * On Player death reset the world
      */
     public boolean die(){
-        World world = getWorld();
+        ExtendedWorld world = getExtendedWorld();
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
-        return true;
+        world.setFocus(null);
+        if (weapon != null) weapon.die();
+        return super.die();
     }
     /**
      * Does the player currently have jump boost

@@ -26,15 +26,8 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         if (getExtendedWorld().isPaused()) return;
         moving(); 
         Actor a = getOneIntersectingObject(Player.class);
-        Actor b = getOneIntersectingObject(BasicAttack.class);
         if (a != null){
-         World world = getWorld();
-         world.removeObject(a);
-         world.removeObject(b);
-         ExtendedWorld.stopFind();
-         BasicAttack.stopFind();
-         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
-         return;
+            ((Player)a).die();
         }
     }  
     

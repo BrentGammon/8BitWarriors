@@ -7,6 +7,7 @@ import greenfoot.*;
  */
 public class DumbEnemy extends Entity implements IDamageable,IFalling
 {
+    private static final int DAMAGE = 1;
     private int health = 2;
     private int speed = 5;
     private int vertVelocity = 0;
@@ -25,22 +26,12 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     {
         if (getExtendedWorld().isPaused()) return;
         moving(); 
-        //get player object and weapon object and store in local variable
-        Actor a = getOneIntersectingObject(Player.class);
         /*if player object has interacted with enemy, then remove its weapon, remove player, freeze the timer,
          * and display the gameover image by adding an object of it to the world
         */
+        Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-         World world = getWorld();
-         Player.removeAttack();
-         world.removeObject(a);
-         world.removeObject(b);
-         ExtendedWorld.stopFind();
-         BasicAttack.stopFind();
-         Timer.freeze();
-         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
-         return;
-            ((Player)a).die();
+            ((Player)a).doDamage(this,DAMAGE);
         }
     }  
     

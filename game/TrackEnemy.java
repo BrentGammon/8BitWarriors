@@ -9,6 +9,7 @@ import java.util.*;
 public class TrackEnemy extends Entity implements IFalling, IDamageable
 {
     public static final int GRAVITY = 2; 
+    public static final int DAMAGE = 1;
     private GreenfootImage standing;
     private GreenfootImage left1;
     private GreenfootImage left2;
@@ -140,7 +141,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
 
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-            ((Player)a).die();
+            ((Player)a).doDamage(this,DAMAGE);
         }
     }
 

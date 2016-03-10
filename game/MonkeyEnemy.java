@@ -92,7 +92,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
             if (health>0) return dmg;
             die();
         }
-        return 0;
+        return dmg;
     }
     /**
      * Perform idle behavior logic
@@ -121,6 +121,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
      */
     public boolean die(){
         Counter.add();
+        if (weapon != null) weapon.die();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
     }

@@ -23,42 +23,15 @@ public abstract class Moveable extends Entity
                     int objectX = getX();
                     if(playerX>objectX){
                         if(isTouching(Player.class)){
-                            move(-10);
+                            collideMoveLocation(-10,0);
                         }
                     }else if(playerX<objectX){
                         if(isTouching(Player.class)){
-                            move(10);
+                            collideMoveLocation(10,0);
                         }
                     }
                 }
             }
-        }
-    }
-    
-    /**
-     * When the object is not on the platform then the object will fall  
-     * @param int g This is the gravity of the object falling
-     */
-    public void fall(int g){
-        if (!onPlatform()){
-            vertVelocity+=g;
-            if(vertVelocity>0){
-                for(int i=0;i<vertVelocity;i++){
-                    moveLocation(0,1);
-                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
-                        vertVelocity = 0;
-                    }
-                }
-            } else if(vertVelocity>0){
-                for(int i=0;i>vertVelocity;i--){
-                    moveLocation(0,-1);
-                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
-                        vertVelocity = 0;
-                    }
-                }
-            }
-        }else{
-            vertVelocity = 0;
         }
     }
 }

@@ -54,10 +54,10 @@ public class Player extends Entity implements IFalling, IDamageable
     private Attack weapon;
 
     /** keybinds for the player */
-    public static String keyJump;
-    public static String keyLeft;
-    public static String keyRight;
-    public static String keyAttack;
+    public static String keyJump = "UP";
+    public static String keyLeft = "LEFT";
+    public static String keyRight = "RIGHT" ;
+    public static String keyAttack = "X" ;
     
     public static boolean removeAttack;
     

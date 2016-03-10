@@ -58,6 +58,10 @@ public class Player extends Entity implements IFalling, IDamageable
     public static String keyLeft = "LEFT";
     public static String keyRight = "RIGHT" ;
     public static String keyAttack = "X" ;
+    public static String keyJump = "SPACE";
+    public static String keyLeft = "LEFT";
+    public static String keyRight = "RIGHT";
+    public static String keyAttack = "X";
     
     public static boolean removeAttack;
     

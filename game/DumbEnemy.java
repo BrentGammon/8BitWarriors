@@ -13,6 +13,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private int vertVelocity = 0;
     protected boolean goLeft = false;
     private boolean hit = false;
+    private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pre ssed in the environment.
@@ -113,12 +114,13 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
      */
     public int doDamage(Actor attacker, int damage){
         health -= damage;
+         attackSound.play();
         if (health<=0){
             die();
         }
         return damage;
     }
-    
+     
     /**
      * When called this will increment the score counter and add DeadEntity to the world
      * @return a super call to die

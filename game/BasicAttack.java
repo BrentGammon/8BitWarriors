@@ -23,6 +23,8 @@ public class BasicAttack extends Attack
     private boolean facingLeft = false;
     private ExtendedActor source;
     
+    
+   
     private static boolean stillAlive;
     
     /**
@@ -88,7 +90,10 @@ public class BasicAttack extends Attack
     public void doDamage(){
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);
         for (IDamageable obj: objs){
-            if (obj!=source) obj.doDamage(source,DAMAGE);
+            if (obj!=source){
+                obj.doDamage(source,DAMAGE);
+               
+            }
         }
     }
 }

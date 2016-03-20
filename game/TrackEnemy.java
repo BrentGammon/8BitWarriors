@@ -24,6 +24,8 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     private int dazedCounter = 0;
     private int standCounter = 0;
     private boolean stand = false;
+    
+    private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     public TrackEnemy()
     {
         standing = new GreenfootImage("stripe standing.png");
@@ -36,6 +38,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
 
     public int doDamage(Actor attacker, int damage){
         health -= damage;
+        attackSound.play();
         if (health<=0) die();
         return damage;
     }

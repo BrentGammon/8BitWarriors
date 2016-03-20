@@ -35,6 +35,7 @@ public class Load extends MenuItems
                 if(actor.equals(this)){
                     start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGameON.png");
                     setImage(start);
+                    getSound().play();
                 }else{
                     start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
                     setImage(start);

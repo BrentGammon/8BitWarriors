@@ -8,7 +8,7 @@ import javax.swing.*;
  */
 public abstract class KeyBindings extends MenuItems
 {
-    private final String[] validBindings = {"q","w","e","r","t","y","u","i","o","p","[","]","a","s","d","f","g","h","j","k","l",";","'","#","/",".","m","n","b","v","c","x","z","LEFT","left","RIGHT","right","UP","up","DOWN","down"};
+    private final String[] validBindings = {"q","w","e","r","t","y","u","i","o","p","[","]","a","s","d","f","g","h","j","k","l",";","'","#","/",".","m","n","b","v","c","x","z","LEFT","left","RIGHT","right","UP","up","DOWN","down","SPACE","space"};
     /**
      * Checks in the string parameter is valid by checking if it is validBindings array
      * @param String key the string that is going to be checked

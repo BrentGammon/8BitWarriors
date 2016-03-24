@@ -1,3 +1,5 @@
+package game;
+
 import greenfoot.*;
 import java.awt.Point;
 import java.awt.Color;

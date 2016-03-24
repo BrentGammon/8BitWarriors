@@ -1,3 +1,5 @@
+package game;
+
 import greenfoot.*;
 import java.io.FileWriter;
 import java.io.IOException;

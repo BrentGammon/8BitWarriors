@@ -1,3 +1,5 @@
+package game;
+
 import greenfoot.*;
 /**
  * Write a description of class IDamageable here.

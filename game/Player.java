@@ -1,3 +1,5 @@
+package game;
+
 import greenfoot.*;
 import java.awt.Color;
 import java.awt.Transparency;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)

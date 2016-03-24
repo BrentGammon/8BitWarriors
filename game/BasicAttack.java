@@ -1,3 +1,5 @@
+package game;
+
 import greenfoot.*;
 import java.util.List;
 

@@ -1,3 +1,5 @@
+package game;
+
 import greenfoot.*;
 //mport javax.swing.*;
 /**

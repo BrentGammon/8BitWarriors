@@ -1,3 +1,5 @@
+package game;
+
 import greenfoot.*;
 /**
  * Start button for the menu

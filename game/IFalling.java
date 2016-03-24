@@ -1,4 +1,4 @@
-package game;
+ 
 
 /**
  * IFalling Actors should impliment the fall method which contains all the logic necessary for when

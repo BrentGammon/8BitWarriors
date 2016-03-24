@@ -12,6 +12,8 @@ public class World1 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
+   protected int WORLD_WIDTH = 10000;
+   protected int WORLD_HEIGHT = 900;
    //private final String gameLevel = "1";
     /**
      * Constructor for objects of class World1.
@@ -20,12 +22,9 @@ public class World1 extends ExtendedWorld
     public World1()
     {
         //call to superclass to use centreCameraOn function
-        super(true);
+        super(600,400, true);
         
         gameLevel = "1";
-        
-        WORLD_WIDTH = 20000;
-        WORLD_HEIGHT = 900;
         Player p = new Player();
         //layer1_xoffset = -200;
         //layer1_yoffset = -100;
@@ -39,6 +38,14 @@ public class World1 extends ExtendedWorld
         addObject(muteControl,676,29);
         addObject(new SaveGame(),750,28);
         addObject(new PowerupDisplay(p),204,97);
+        
+        addObject(new Tree(Tree.LARGE),172,650);
+        
+        addObject(new Tree(Tree.LARGE),586,650);
+        addObject(new Tree(Tree.MED),336,811);
+        addObject(new Tree(Tree.MED),436,811);
+        addObject(new Tree(Tree.MED),536,811);
+        addObject(new Tree(Tree.MED),636,811);
         
         
         //addObject(new Spikes(1),982,300);

@@ -5,8 +5,8 @@ import greenfoot.*;
 /**
  * Write a description of class Gameover here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sharaz
+ * @version 1.0
  */
 public class Gameover extends UI
 {
@@ -15,11 +15,15 @@ public class Gameover extends UI
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public Gameover() {
-        setImage("Counter.png");
+        //set image to file of choice
+        setImage("gameover.jpg");
     }
     
     public void act() 
     {
-        // Add your action code here.
+        //if image is clicked when gameover message appears, a new world is created
+        if(Greenfoot.mouseClicked(this)){
+            Greenfoot.setWorld(new World1());
+        }
     }    
 }

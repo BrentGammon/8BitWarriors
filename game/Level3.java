@@ -15,10 +15,9 @@ public class Level3 extends MenuItems
      */
     public Level3()
     {
-        GreenfootImage start = new GreenfootImage("images/Graphics/MENUV2/level3Icon.png");
+        GreenfootImage start = new GreenfootImage("images/LevelSelect/lvl3unlockedRESIZE.png");
         setImage(start);
     }
-    
     
     /**
      *When clicked it will set the world to level 3 - at the moment print a message to the terminal

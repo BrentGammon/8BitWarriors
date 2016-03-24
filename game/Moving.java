@@ -5,12 +5,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Moving here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sharaz
+ * @version 2.0
  */
 public class Moving extends ExtendedActor
 {
     private int speed = 2;
+    //counter to keep steady increase of directional change 
     private int speedTot = 0;
     
     public Moving(){
@@ -27,16 +28,21 @@ public class Moving extends ExtendedActor
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
+        //once speed is added to horizontal direction, counter (speedTot) is incremented by 1
         setLocation ( getX() + speed, getY() );
-        speedTot += 2;
+        speedTot += 1;
         
+        //if player iteracts wih object, plaer moves at same pace and direction as this objec
         Actor actor = getOneIntersectingObject(null);
         if(actor != null){
             actor.setLocation(actor.getX() + speed, actor.getY());
             
         }
         
-        if(speedTot == 100){
+        /*once counter has reached specified limit, the direction changes to the opposite of current,
+         *and then counter is reset to 0
+        */
+        if(speedTot == 50){
             speed = -speed;
             speedTot = 0;
         }

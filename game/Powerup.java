@@ -19,7 +19,8 @@ public class Powerup extends Entity
         puType = type;
         setImage(images[puType]);
     }
- 
+    
+    //gets the lifespan so it can remove the object when it expires
     public void act()
     {
         if (getExtendedWorld().isPaused()) return;
@@ -27,7 +28,8 @@ public class Powerup extends Entity
         if (lifespan == 0) getWorld().removeObject(this);
      
     }
- 
+    
+    //gets the powerup type and returns it really useful
     public int getType()
     {
         return puType;

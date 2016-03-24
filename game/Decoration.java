@@ -3,10 +3,10 @@ package game;
 import greenfoot.*;
 
 /**
- * Write a description of class Decoractions here.
+ * Stub class used for Organisation and paint order
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson
+ * @version 0.1
  */
 public abstract class Decoration extends ExtendedActor
 {

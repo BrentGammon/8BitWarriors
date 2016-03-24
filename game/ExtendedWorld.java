@@ -74,6 +74,8 @@ public class ExtendedWorld extends World
     
     /** a unique idenifier that is used in the save file to represent the world.*/
     protected String gameLevel;
+    
+    private static boolean stillAlive;
     /**
      * Constructor for objects of class ExtendedWorld.
      */
@@ -109,12 +111,12 @@ public class ExtendedWorld extends World
         for(IFalling actor:actors){
             actor.fall(GRAVITY);
         }
-        if(useCamera){
+        if(useCamera && focus!=null){
             centreCameraOn(focus);
         }
         redrawBackground();
     }
-
+    
     /** Sets the focus of the world
      * 
      * @param obj ExtendedActor to focus on

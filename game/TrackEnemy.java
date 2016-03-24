@@ -11,6 +11,7 @@ import java.util.*;
 public class TrackEnemy extends Entity implements IFalling, IDamageable
 {
     public static final int GRAVITY = 2; 
+    public static final int DAMAGE = 1;
     private GreenfootImage standing;
     private GreenfootImage left1;
     private GreenfootImage left2;
@@ -25,6 +26,8 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     private int dazedCounter = 0;
     private int standCounter = 0;
     private boolean stand = false;
+    
+    private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     public TrackEnemy()
     {
         standing = new GreenfootImage("stripe standing.png");
@@ -37,20 +40,19 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
 
     public int doDamage(Actor attacker, int damage){
         health -= damage;
+        attackSound.play();
         if (health<=0) die();
         return damage;
     }
 
     /**
-     * Act - do whatever the TrackEnemy wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * This contains the movement logic for TrackEnemy
+     * When player is inrange it will move towards the player 
+     * if it reaches the end of platform then it will move away and wait
      */
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
-        // Add your action code here.
-
-        //fall();
         int count = 0;
         List<Player> nearObjects = new ArrayList<Player>();
         nearObjects = getObjectsInRange(350,Player.class);
@@ -144,11 +146,8 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
 
         Actor a = getOneIntersectingObject(Player.class);
         if (a != null){
-            Greenfoot.setWorld(new World1());
-            return;
-
+            ((Player)a).doDamage(this,DAMAGE);
         }
-
     }
 
     /**
@@ -189,7 +188,11 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
             return false;
         }
     }
-
+    
+    /**
+     * When the object is not on the platform then the object will fall  
+     * @param int g This is the gravity of the object falling
+     */
     public void fall(int g){
         if (!onPlatform()){
             vertVelocity+=g;
@@ -212,7 +215,11 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
             vertVelocity = 0;
         }
     }
-
+    
+    /**
+     * When called this will increment the score counter and add DeadEntity to the world
+     * @return a super call to die
+     */
     public boolean die(){
         Counter.add();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());

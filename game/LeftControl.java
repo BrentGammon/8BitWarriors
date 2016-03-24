@@ -1,26 +1,38 @@
 package game;
 
 import greenfoot.*;
-
+import javax.swing.*;
 /**
  * This is used to allow the player to set the key binding for left
  * 
  * @author Brent Gammon
  * @version v0.1
  */
-public class LeftControl extends MenuItems
+public class LeftControl extends KeyBindings
 {
+    public LeftControl()
+    {
+        setImage("/Settings/left.png");
+    }
     /**
-     * Act - do whatever the LeftControl wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for right movement
+     * When the object has been clicked it will ask the player to input a string value this value will be stored as a keybinding for left movement
      */
     public void act() 
     {
        if(Greenfoot.mouseClicked(this))
-       {
-          String x= Greenfoot.ask("Left Key");
-          Player.keyLeft = x;
-       }
+        {
+            String x= Greenfoot.ask("Left Key");
+            if(validKey(x)){
+                if(!(keyInUse(x))){
+                    Player.keyLeft = x;
+                }else{
+                    JOptionPane.showMessageDialog(null, "Key already in use", "Input a key that is not in use",
+                    JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Not a Valid Key", "Input a valid key",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }    
 }

@@ -3,10 +3,9 @@ package game;
 import greenfoot.*;
 
 /**
- * Write a description of class WoodLog here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Basic one way platform that can be stood on but not collided with from the bottom or sides
+ * @author Mitchell Rebuck Watson
+ * @version S2 1
  */
 public class WoodLog extends Terrain implements IPlatform
 {

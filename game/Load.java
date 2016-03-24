@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import javax.swing.*;
 /**
- * This class will will be used for loading the game inforamtion from the save file 
+ * This class will will be used for loading the game infomation from the save file 
  * 
  * @author Brent Gammon
  * @version v0.1
@@ -22,8 +22,12 @@ public class Load extends MenuItems
     public Load(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
         setImage(start);
-    }   
-
+    }  
+    
+    /**
+     * Checks if the mouse is on the object if so then the image is changed to show the player that they are on the object
+     * if clicked then call the load method
+     */
     public void act() 
     {
         MouseInfo mouse = Greenfoot.getMouseInfo();
@@ -33,6 +37,7 @@ public class Load extends MenuItems
                 if(actor.equals(this)){
                     start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGameON.png");
                     setImage(start);
+                    getSound().play();
                 }else{
                     start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
                     setImage(start);
@@ -45,7 +50,9 @@ public class Load extends MenuItems
     }    
     
     /**
-     * 
+     * This will load data from the file SaveFile.txt
+     * @exception FileNotFoundException JOptionPane will appear telling the error to the player
+     * @exception IOException JOptionPane will appear telling the error to the player
      */
     public void loadGame()
     {

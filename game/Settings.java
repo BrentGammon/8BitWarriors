@@ -1,7 +1,6 @@
 package game;
 
 import greenfoot.*;
-
 /**
  * The button for the settings on the menu
  * 
@@ -11,14 +10,16 @@ import greenfoot.*;
 public class Settings extends MenuItems
 {
     private GreenfootImage start;
+    /**
+     * Contructor for Settings
+     * When object is created it will set the image for that object
+     */
     public Settings(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2Settings.png");
         setImage(start);
     }   
     
     /**
-     * Act - do whatever the Start wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
      * Checks if the mouse is on the object if so then the image is changed to show the player that they are on the object
      * if clicked to change the world to the settings menu
      */
@@ -31,6 +32,7 @@ public class Settings extends MenuItems
                 if(actor.equals(this)){
                     start = new GreenfootImage("images/Graphics/MENUV2/M2SettingsON.png");
                     setImage(start);
+                    getSound().play();
                 }else{
                     start = new GreenfootImage("images/Graphics/MENUV2/M2Settings.png");
                     setImage(start);

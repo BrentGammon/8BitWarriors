@@ -3,10 +3,10 @@ package game;
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 /**
- * Write a description of class MenuSettings here.
+ * This world will contain settings for the game, this will be repsented by different objects within the world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon
+ * @version v0.1
  */
 public class MenuSettings extends ExtendedWorld
 {
@@ -14,24 +14,24 @@ public class MenuSettings extends ExtendedWorld
     public static final int GAME_WIDTH = 600;
     /**
      * Constructor for objects of class MenuSettings.
-     * 
+     * This will populate the world with objects that the player can interact with by clicking
      */
     public MenuSettings()
     {
-        //super(false);
         super(GAME_HEIGHT,GAME_WIDTH,false); 
         
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
        
         setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
-        
-        
-        //setImage(new GreenfootImage("KeyBindings",20,Color.white,Color.red,Color.blue));
-        //getWorld().drawImage(key,20,20);
-        showText("Key Bindings",100,100);
-        addObject(new UPControl(),100,150);
-        addObject(new LeftControl(),100,200);
-        addObject(new RightControl(),100,250);
-        addObject(new Home(),50,50);
+        addObject(new UPControl(),418,331);
+        addObject(new LeftControl(),322,403);
+        addObject(new RightControl(),511,403);
+        addObject(new Home(),47,105);
+        addObject(new AttackControl(),419,511);
+        addObject(new SettingBelowHeading(),415,243);
+        addObject(new SettingBinding(),420,182);
+        addObject(new SettingBelowHeading(),415,243);
+        addObject(new SettingsTitle(),414,97);
+        addObject(new SettingsBanner(),377,33);
     }
 }

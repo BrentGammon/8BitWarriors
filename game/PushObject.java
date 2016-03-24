@@ -15,7 +15,9 @@ public class PushObject extends Moveable implements IFalling
      */
     public void act() 
     {
-        fall(3);
         isPushed();
+        if (collideMoveLocation(0,vertVelocity)&&onPlatform()){
+            vertVelocity = 0;
+        }
     }    
 }

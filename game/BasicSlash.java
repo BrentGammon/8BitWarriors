@@ -3,13 +3,14 @@ package game;
 import greenfoot.*;
 import java.util.List;
 /**
- * Write a description of class BasicSlash here.
+ * Entity emitted by a sword when swung that does damage
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson
+ * @version S2 1
  */
 public class BasicSlash extends Entity
 {
+    /** Constants */
     public static final int BASE_SPEED = 10;
     public static final int DAMAGE = 1;
     private static final GreenfootImage img = new GreenfootImage("Projectiles/blueSlash1.png");
@@ -20,12 +21,15 @@ public class BasicSlash extends Entity
     private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
     private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
     
+    /** State variables */
     private ExtendedActor source;
     private int speed;
     private int life = 5;
     private boolean hit = false;
     private int frame = 0;
-    
+    /**
+     * Constructor for BasicSlash
+     */
     public BasicSlash(boolean goLeft, ExtendedActor source){
         int boost = source instanceof Entity? ((Entity)source).getHorzVelocity():0;
         speed = goLeft? -BASE_SPEED+boost: BASE_SPEED+boost;
@@ -61,6 +65,11 @@ public class BasicSlash extends Entity
         }
         return false;
     }
+    /**
+     * Perform hit animation
+     * 
+     * @return has died
+     */
     public boolean hit(){
         getImage().clear();
         getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,-(frame/SHEET_H)*SPRITE_H);

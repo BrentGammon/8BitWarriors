@@ -30,22 +30,29 @@ import java.awt.Color;
  * }
  * </pre>
  * 
- * @author Neil Brown and Michael Kölling 
- * @version 1.0
+ * @author Sharaz
+ * @version 2.0
  */
 public class Counter extends UI
 {
     private static final Color transparent = new Color(0,0,0,0);
     private GreenfootImage background;
     private int value;
+    //counter value
     private static int target;
     private String prefix;
+    //static field changed from dumbenemy's call to counter.add
     private static boolean increment;
     
     public Counter()
     {
         this(new String());
-        setImage("Counter.png");
+        //sets greenfoot image to counter, then uses the value 0 and overlaps these two images
+        GreenfootImage image = new GreenfootImage("Counter.png");
+        GreenfootImage text = new GreenfootImage(prefix + 0, 22, Color.BLACK, transparent);
+        image.drawImage(text, (image.getWidth()-text.getWidth())/2, 
+                        (image.getHeight()-text.getHeight())/2);
+        setImage(image);
     }
 
     /**
@@ -65,21 +72,21 @@ public class Counter extends UI
      */
     public void act() 
     {
+        /*if counter.add is called from enemy, increase the value by one and then update the image
+        with new value*/
         if (increment) {
             value++;
             updateImage();
             increment = false;
         }
-        
-        if(Greenfoot.mouseClicked(this)){
-            System.out.println("sadfj");
-        }
+       
    }
 
     /**
      * Add a new score to the current counter value.  This will animate
      * the counter over consecutive frames until it reaches the new value.
      */
+    //called from enemy class upon its death
     public static void add()
     {
        increment = true;

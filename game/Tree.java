@@ -3,10 +3,10 @@ package game;
 import greenfoot.*;
 
 /**
- * Write a description of class Tree here.
+ * Simple decorative tree. Does literally nothing.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson
+ * @version S2 1
  */
 public class Tree extends Decoration
 {

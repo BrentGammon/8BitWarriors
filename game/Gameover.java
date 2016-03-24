@@ -1,9 +1,7 @@
- 
-
-import greenfoot.*;
+ import greenfoot.*;
 
 /**
- * Write a description of class Gameover here.
+ * Game over screen will appear when character dies.
  * 
  * @author Sharaz
  * @version 1.0
@@ -16,7 +14,7 @@ public class Gameover extends UI
      */
     public Gameover() {
         //set image to file of choice
-        setImage("gameover.jpg");
+        setImage("gameover.png");
     }
     
     public void act() 

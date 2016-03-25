@@ -16,12 +16,19 @@ public class ExtendedWorld extends World
     protected static int WORLD_END = WORLD_HEIGHT;
     protected static int WORLD_WIDTH = 20000;
     
+    
+    
     /** The gravity applied to every IFalling actor */
     protected int GRAVITY = 2;
     
     /** Dimensions of the screen */
     protected static  int GAME_HEIGHT = 600;
     protected static  int GAME_WIDTH = 800;
+    
+    //protected static  int GAME_HEIGHT = 1200;
+    //protected static  int GAME_WIDTH = 1600;
+    
+    
     
     /** The speed to lock the world at */
     public static final int GAME_SPEED = 45;

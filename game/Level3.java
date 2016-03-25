@@ -16,17 +16,17 @@ public class Level3 extends MenuItems
         GreenfootImage start = new GreenfootImage("images/LevelSelect/lvl3unlockedRESIZE.png");
         setImage(start);
     }
-    
+
     /**
      *When clicked it will set the world to level 3 - at the moment print a message to the terminal
      */
     public void act() 
     {
         if(Greenfoot.mouseClicked(this)){
-            //Uncomment when level 3 is implemented
-            //World3 world3 = new World3();
-            //Greenfoot.setWorld(world3);
-            System.out.println("Level 3 selected");
+
+            World3 world3 = new World3();
+            Greenfoot.setWorld(world3);
+
         }
     }    
 }

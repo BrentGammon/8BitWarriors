@@ -151,21 +151,21 @@ public abstract class Entity extends ExtendedActor
                         moveLocation(-cx,0);
                     }
                     
-                    System.out.println("Collision! xpen"+xpen+" dx"+dx+" ypen"+ypen+" dy"+dy);
+                    
                     // if x penetration was greater than distance moved (thats invalid) and ypenetration was
                     // less than x penetration and the y penetration was valid
                     // resolve in y dimension
                     if ( xpen>Math.abs(dx) && (ypen<xpen) || ypen<=Math.abs(dy) ) setLocation(ypen_x,ypen_y);
                     //if x penetration is also invalid leave object in collided state
                     else if ( xpen>Math.abs(dx)){
-                        System.out.println("Could not resolve x");
+  
                         setLocation(x,y);
                     }
                 }else if ( ypen>Math.abs(dy) ){
                     //if ypenetration was invalid move leave object in collided state
                     setLocation(x,y);
-                    System.out.println("Could not resolve y");
-                }else System.out.println("Collision! ypen"+ypen+" dy"+dy);
+                    
+                }
             }
             return true;
         }

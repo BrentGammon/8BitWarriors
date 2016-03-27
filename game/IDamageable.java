@@ -1,3 +1,5 @@
+ 
+
 import greenfoot.*;
 /**
  * Extensiable way for Extended Actors to be able to take damage from any source.

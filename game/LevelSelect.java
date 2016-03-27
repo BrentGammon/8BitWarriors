@@ -1,3 +1,5 @@
+ 
+
 import greenfoot.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -31,6 +33,7 @@ public class LevelSelect extends MenuItems
                 if(actor.equals(this)){
                     start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelectON.png");
                     setImage(start);
+                    getSound().play();
                 }else{
                     start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelect.png");
                     setImage(start);

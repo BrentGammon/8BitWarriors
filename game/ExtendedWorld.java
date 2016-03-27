@@ -1,3 +1,5 @@
+ 
+
 import greenfoot.*;
 import java.awt.Point;
 import java.awt.Color;
@@ -16,12 +18,19 @@ public class ExtendedWorld extends World
     protected static int WORLD_END = WORLD_HEIGHT;
     protected static int WORLD_WIDTH = 20000;
     
+    
+    
     /** The gravity applied to every IFalling actor */
     protected int GRAVITY = 2;
     
     /** Dimensions of the screen */
     protected static  int GAME_HEIGHT = 400;
     protected static  int GAME_WIDTH = 600;
+    
+    //protected static  int GAME_HEIGHT = 1200;
+    //protected static  int GAME_WIDTH = 1600;
+    
+    
     
     /** The speed to lock the world at */
     public static final int GAME_SPEED = 45;
@@ -35,6 +44,10 @@ public class ExtendedWorld extends World
      * layerx_offsets decide the offset at which to paint the background
      * layerx_ytile decides whether or not to tile the background horizontally
     */
+    protected GreenfootImage layer0;
+    protected int layer0_xoffset = 0;
+    protected int layer0_yoffset = 0;
+    protected boolean layer0_ytile = true;
     protected GreenfootImage layer1;
     protected int layer1_xoffset = 0;
     protected int layer1_yoffset = 0;
@@ -80,20 +93,26 @@ public class ExtendedWorld extends World
     public ExtendedWorld(boolean useCamera)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(GAME_WIDTH, GAME_HEIGHT, 1,false); 
-        WORLD_HEIGHT = getWorldHeight();
-        WORLD_WIDTH = getWorldWidth();
-
-        this.useCamera = useCamera;
-        setPaintOrder();
+        this(GAME_WIDTH, GAME_HEIGHT, useCamera); 
     }
     
     /**
      * Constructor for objects of class ExtendedWorld.
-     */
-    public ExtendedWorld(int menuHeight,int menuLength,boolean useCamera)
+     */     
+    public ExtendedWorld(int gameW,int gameH,boolean useCamera)
     {    
-        super(menuHeight, menuLength, 1,false); 
+        this(WORLD_WIDTH,WORLD_HEIGHT,gameW, gameH, useCamera); 
+    }
+    public ExtendedWorld(int worldW, int worldH, int gameW, int gameH, boolean useCamera){
+        super(gameW, gameH, 1,false); 
+        
+        WORLD_HEIGHT = worldH;
+        WORLD_WIDTH = worldW;
+        GAME_HEIGHT = gameH;
+        GAME_WIDTH = gameW;
+        
+        this.useCamera = useCamera;
+        setPaintOrder();
     }
 
     /**
@@ -175,19 +194,41 @@ public class ExtendedWorld extends World
         bg.fill();
         
         //if layer1 is set
+        if (layer0!=null){
+            //if layer1 tiles
+            if(layer1_ytile){
+                int y = layer0_yoffset;
+                int x = layer0_xoffset;
+                //tile background till draw origin is off screen
+                for (int i = x;i<GAME_WIDTH;i+=layer0.getWidth()){
+                    bg.drawImage(layer0,i,y);
+                }
+                
+            }else{
+                //draw background image onto world background
+                bg.drawImage(layer0,0,0);
+            }
+            
+        }
         if (layer1!=null){
             //if layer1 tiles
             if(layer1_ytile){
-                int y = layer1_yoffset;
-                int x = layer1_xoffset;
+                int y = layer1_yoffset + (int)((layer1.getHeight()-GAME_HEIGHT)*( ((double)-cameraY)/(WORLD_HEIGHT)));
+                int x = layer1_xoffset + (int)((layer1.getWidth()-GAME_WIDTH)*(  ((double)-cameraX)/(WORLD_WIDTH)));
+                bg.setColor(Color.RED);
+                System.out.println("layer1 x: "+y+" y:"+x+" co:"+(-cameraY/WORLD_HEIGHT));
+                System.out.println(""+layer1_yoffset+" + "+layer1.getHeight()+" *(-"+cameraY+"/"+WORLD_HEIGHT+") ");
+                
                 //tile background till draw origin is off screen
                 for (int i = x;i<GAME_WIDTH;i+=layer1.getWidth()){
                     bg.drawImage(layer1,i,y);
                 }
                 
             }else{
+                int y = layer1_yoffset + layer1.getHeight()*(-cameraY/WORLD_HEIGHT);
+                int x = layer1_xoffset + layer1.getWidth()*(-cameraX/WORLD_WIDTH);
                 //draw background image onto world background
-                bg.drawImage(layer1,0,0);
+                bg.drawImage(layer1,x,y);
             }
             
         }

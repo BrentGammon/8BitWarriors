@@ -1,3 +1,5 @@
+ 
+
 import greenfoot.*;
 /**
  * The button for the settings on the menu
@@ -30,6 +32,7 @@ public class Settings extends MenuItems
                 if(actor.equals(this)){
                     start = new GreenfootImage("images/Graphics/MENUV2/M2SettingsON.png");
                     setImage(start);
+                    getSound().play();
                 }else{
                     start = new GreenfootImage("images/Graphics/MENUV2/M2Settings.png");
                     setImage(start);

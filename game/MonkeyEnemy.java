@@ -1,3 +1,5 @@
+ 
+
 import greenfoot.*;
 import java.util.List;
 /**
@@ -24,6 +26,8 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
     private boolean facingLeft = false;
     private int idleCooldown = IDLE_COOLDOWN;
     private int health = HEALTH;
+    
+    private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
     /**
      * Constructor for Monkey Enemy
@@ -89,6 +93,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
     public int doDamage(Actor a, int dmg){
         if (a instanceof Player){
             health -= dmg;
+            attackSound.play();
             if (health>0) return dmg;
             die();
         }

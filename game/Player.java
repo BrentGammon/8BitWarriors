@@ -1,3 +1,5 @@
+ 
+
 import greenfoot.*;
 import java.awt.Color;
 import java.awt.Transparency;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
@@ -59,6 +61,10 @@ public class Player extends Entity implements IFalling, IDamageable
     public static String keyRight = "RIGHT" ;
     public static String keyAttack = "X" ;
     
+    
+    /** Sound for the player*/
+    private GreenfootSound jumpSound = new GreenfootSound("JumpPlayer.wav");
+    private GreenfootSound damageSound = new GreenfootSound("PlayerDamage.wav");
     public static boolean removeAttack;
     
     /**
@@ -123,6 +129,7 @@ public class Player extends Entity implements IFalling, IDamageable
         //if the jump key is being held and player is on a platform. Jump
         if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&&onPlatform()){
             moveLocation(0,-1);
+            jumpSound.play();
             vertVelocity = (hasJumpBoost()?-5:0) +JUMP_SPEED;
         }
         
@@ -227,6 +234,7 @@ public class Player extends Entity implements IFalling, IDamageable
      */
     public boolean die(){
         Timer.freeze();
+        damageSound.play();
         ExtendedWorld world = getExtendedWorld();
         world.addObject(new DeadEntity(getImage()),getX(),getY());
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);

@@ -15,6 +15,7 @@ import javax.swing.*;
 public class Load extends MenuItems
 {
     private GreenfootImage start;
+    private boolean selected;
     /**
      * Act - do whatever the Start wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -30,20 +31,16 @@ public class Load extends MenuItems
      */
     public void act() 
     {
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if(mouse != null){
-            Actor actor = mouse.getActor();
-            if(actor!=null){
-                if(actor.equals(this)){
-                    start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGameON.png");
-                    setImage(start);
-                    getSound().play();
-                }else{
-                    start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
-                    setImage(start);
-                }
-            }
-        } 
+        if(isHovered()){
+            if (!selected) getSound().play();
+                start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGameON.png");
+                selected = true;
+                setImage(start);
+        }else{
+            start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
+            selected = false;
+            setImage(start);
+        }
         if(Greenfoot.mouseClicked(this)){
             loadGame();
         }

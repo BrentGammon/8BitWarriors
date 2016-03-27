@@ -10,6 +10,7 @@ import greenfoot.*;
 public class Settings extends MenuItems
 {
     private GreenfootImage start;
+    private boolean selected = false;
     /**
      * Contructor for Settings
      * When object is created it will set the image for that object
@@ -25,20 +26,16 @@ public class Settings extends MenuItems
      */
     public void act() 
     {
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if(mouse != null){
-            Actor actor = mouse.getActor();
-            if(actor!=null){
-                if(actor.equals(this)){
-                    start = new GreenfootImage("images/Graphics/MENUV2/M2SettingsON.png");
-                    setImage(start);
-                    getSound().play();
-                }else{
-                    start = new GreenfootImage("images/Graphics/MENUV2/M2Settings.png");
-                    setImage(start);
-                }
-            }
-        } 
+        if(isHovered()){
+            if (!selected) getSound().play();
+                start = new GreenfootImage("images/Graphics/MENUV2/M2SettingsON.png");
+                selected = true;
+                setImage(start);
+        }else{
+            start = new GreenfootImage("images/Graphics/MENUV2/M2Settings.png");
+            selected = false;
+            setImage(start);
+        }
         if(Greenfoot.mouseClicked(this)){
             World world = getWorld();
             MenuSettings world1 = new MenuSettings();

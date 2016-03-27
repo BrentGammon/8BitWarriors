@@ -34,8 +34,8 @@ public class World1 extends ExtendedWorld
         addObject(new Timer(),52,40);
         addObject(new Counter(),55,67);
         muteControl = new MuteControl();
-        addObject(muteControl,676,29);
-        addObject(new SaveGame(),750,28);
+        addObject(muteControl,490,29);
+        addObject(new SaveGame(),530,28);
         addObject(new PowerupDisplay(p),204,97);
         
         

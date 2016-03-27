@@ -87,8 +87,13 @@ public class Counter extends UI
     //called from enemy class upon its death
     public static void add()
     {
+       target++;
        increment = true;
        
+    }
+    public static void add(int num){
+        target += num;
+        increment = true;
     }
 
     /**

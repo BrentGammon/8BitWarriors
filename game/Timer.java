@@ -54,7 +54,8 @@ public class Timer extends UI
     private void display()
     {
         Color transparent = new Color(0, 0, 0, 0);
-        setImage(new GreenfootImage("Time: " + time, 25, Color.WHITE, transparent));
+        setImage(SpriteHelper.getNumberImage(time));
+        //setImage(new GreenfootImage("Time: " + time, 25, Color.WHITE, transparent));
     }
 
     public void setTime()

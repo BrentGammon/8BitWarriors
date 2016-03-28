@@ -22,5 +22,12 @@ public class MenuItems extends UI
    public GreenfootSound getSound()
    {
        return menuHover;
-    }
+   }
+   
+   public boolean isHovered()
+   {
+       MouseInfo mouse = Greenfoot.getMouseInfo();
+       if (mouse != null) return getWorld().getObjectsAt(mouse.getX(), mouse.getY(),MenuItems.class).contains(this);
+       return false;
+   }
 }

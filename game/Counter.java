@@ -109,8 +109,13 @@ public class Counter extends UI
     
     public static void add()
     {
+       target++;
        increment = true;
        
+    }
+    public static void add(int num){
+        target += num;
+        increment = true;
     }
 
     /**

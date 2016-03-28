@@ -15,6 +15,7 @@ import javax.swing.*;
 public class LevelSelect extends MenuItems
 {
     private GreenfootImage start;
+    private boolean selected = false;
     public LevelSelect(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelect.png");
         setImage(start);
@@ -26,19 +27,15 @@ public class LevelSelect extends MenuItems
      */
     public void act() 
     {
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if(mouse != null){
-            Actor actor = mouse.getActor();
-            if(actor!=null){
-                if(actor.equals(this)){
-                    start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelectON.png");
-                    setImage(start);
-                    getSound().play();
-                }else{
-                    start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelect.png");
-                    setImage(start);
-                }
-            }
+        if(isHovered()){
+            if (!selected) getSound().play();
+                start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelectON.png");
+                selected = true;
+                setImage(start);
+        }else{
+            start = new GreenfootImage("images/Graphics/MENUV2/M2LevelSelect.png");
+            selected = false;
+            setImage(start);
         }
         if(Greenfoot.mouseClicked(this)){
             LevelSelectMenu select = new LevelSelectMenu(getLevelAccess());

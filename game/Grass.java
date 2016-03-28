@@ -18,6 +18,8 @@ public class Grass extends Terrain
     public Grass(){
         setImage(unit);
     }
+    
+    
     /**
      * Constructor for Grass
      * 
@@ -31,6 +33,26 @@ public class Grass extends Terrain
         }
         setImage(self);
         
+    }
+    
+    /**
+     * Constructor for Grass
+     * 
+     * @param width How many times to repeat grass sprite
+     * @param rotation is used to set the rotation of the image 
+     */
+    public Grass(int width,int rotation){
+        int unitWidth = unit.getWidth();
+        //GreenfootImage self = new GreenfootImage(unitWidth*width,unit.getHeight());
+        GreenfootImage self = new GreenfootImage(unitWidth*width,unit.getHeight());
+        for(int x=0;x<width;x++){
+            self.drawImage(unit,x*unitWidth,0);
+        }
+        //self.rotate(rotation);
+        
+        //can the image here not the object
+        this.turn(rotation);
+        setImage(self);
     }
     public void act() 
     {

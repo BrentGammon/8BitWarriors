@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=SaveGame()
+comment0.text=\r\n\ Contructor\ for\ SaveGame\r\n\ This\ will\ set\ the\ image\ for\ the\ object\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ This\ will\ check\ if\ the\ object\ has\ been\ activited\ by\ a\ click\ event\ \r\n\ this\ will\ then\ save\ the\ game\r\n
+comment2.params=
+comment2.target=void\ saveGame()
+comment2.text=\r\n\ This\ function\ will\ save\ the\ following\ items\ to\ a\ external\ text\ file\ called\ SaveFile.txt\r\n\ level\ that\ the\ player\ is\ currently\ on,\ values\ for\ the\ keybindings\ jump,left,right\r\n\ @exception\ if\ an\ error\ has\ occured\ when\ trying\ to\ save\ the\ data\ to\ the\ text\ file\r\n
+comment3.params=upKey
+comment3.target=java.lang.String\ upKey(java.lang.String)
+comment3.text=\r\n\ Checks\ the\ value\ for\ the\ player\ jump\ movement\ if\ the\ player\ hasn't\ changed\ the\ value\ then\ the\ default\ will\ be\ returned\ else\ the\ value\ will\ be\ returned\r\n\ @param\ String\ upKey\ The\ value\ that\ is\ used\ for\ the\ jump\ action\r\n\ @return\ String\ value\ of\ the\ keyboard\ key\ to\ complete\ the\ action\ \r\n
+comment4.params=leftKey
+comment4.target=java.lang.String\ leftKey(java.lang.String)
+comment4.text=\r\n\ Checks\ the\ value\ for\ the\ player\ left\ movement\ if\ the\ player\ hasn't\ changed\ the\ value\ then\ the\ default\ will\ be\ returned\ else\ the\ value\ will\ be\ returned\r\n\ @param\ String\ leftKey\ The\ value\ that\ is\ used\ for\ the\ left\ action\r\n\ @return\ String\ value\ of\ the\ keyboard\ key\ to\ complete\ the\ action\ \r\n
+comment5.params=rightKey
+comment5.target=java.lang.String\ rightKey(java.lang.String)
+comment5.text=\r\n\ Checks\ the\ value\ for\ the\ player\ right\ movement\ if\ the\ player\ hasn't\ changed\ the\ value\ then\ the\ default\ will\ be\ returned\ else\ the\ value\ will\ be\ returned\r\n\ @param\ String\ rightKey\ The\ value\ that\ is\ used\ for\ the\ right\ action\r\n\ @return\ String\ value\ of\ the\ keyboard\ key\ to\ complete\ the\ action\ \r\n
+numComments=6

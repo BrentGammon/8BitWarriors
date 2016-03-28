@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=key
+comment0.target=boolean\ validKey(java.lang.String)
+comment0.text=\r\n\ Checks\ in\ the\ string\ parameter\ is\ valid\ by\ checking\ if\ it\ is\ validBindings\ array\r\n\ @param\ String\ key\ the\ string\ that\ is\ going\ to\ be\ checked\r\n\ @return\ boolean\ if\ the\ string\ key\ is\ a\ valued\ value\ to\ use\r\n
+comment1.params=key
+comment1.target=boolean\ keyInUse(java.lang.String)
+comment1.text=\r\n\ Checks\ if\ the\ key\ is\ not\ ready\ in\ use\ by\ another\ key\ binding\ \r\n\ @param\ String\ key\ the\ string\ value\ this\ is\ going\ to\ be\ checked\r\n\ @return\ boolean\ if\ the\ value\ is\ being\ used\r\n
+numComments=2

@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=type
+comment0.target=Spikes(int)
+comment0.text=\r\n\ spikes\ method\ getting\ the\ image\ type\ corresponding\ to\ the\ spike\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ main\ method\ killing\ the\ player\ or\ getting\ killed\ by\ the\ smart\ enemy\r\n
+comment2.params=
+comment2.target=boolean\ die()
+comment2.text=\r\n\ die\ method\ for\ the\ class\ so\ it\ can\ be\ killed\r\n
+comment3.params=
+comment3.target=int\ getType()
+comment3.text=\r\n\ gets\ the\ spike\ type\ and\ returns\ it\r\n
+numComments=4

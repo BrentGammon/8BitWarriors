@@ -27,24 +27,31 @@ public class World2 extends ExtendedWorld
         WORLD_WIDTH = 20000;
         WORLD_HEIGHT = 900;
         Player p = new Player();
+        //PowerupDisplay pd = new PowerupDisplay();
+        //pd.setPlayer(p);
         //layer1_xoffset = -200;
         //layer1_yoffset = -100;
         layer1 = new GreenfootImage("images/jungleBig.png");
         
         redrawBackground();
         addObject(p,100,826);
-        addObject(new Timer(),52,16);
-        addObject(new Counter(),133,16);
+        addObject(new Timer(),52,35);
+        addObject(new Counter(),55,67);
         muteControl = new MuteControl();
         addObject(muteControl,300,16);
         addObject(new SaveGame(),450,16);
-        addObject(new PowerupDisplay(p),122,40);
+        
+        addObject(new speed(p),320,67);
+        addObject(new Ammo(p),400,67);
+        addObject(new Jump(p),470,67);
         
         
+        //addObject(pd,122,40);
         addObject(new Grass(20),301,885);
         addObject(new Grass(20),1350,885);
         addObject(new DumbEnemy(),700,825);
         addObject(new DumbEnemy(),696,825);
+        //addObject(new Moveable(), 500, 500);
     }
     
     //gets the game level and returns it

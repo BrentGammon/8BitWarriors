@@ -67,6 +67,9 @@ public class Player extends Entity implements IFalling, IDamageable
     private GreenfootSound damageSound = new GreenfootSound("PlayerDamage.wav");
     public static boolean removeAttack;
     
+    //sharaz
+    protected boolean onPushObject;
+    
     /**
      * Constructor for Player
      */
@@ -127,10 +130,11 @@ public class Player extends Entity implements IFalling, IDamageable
         }
 
         //if the jump key is being held and player is on a platform. Jump
-        if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&&onPlatform()){
+        if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&& (onPlatform() || onPushObject)){
             moveLocation(0,-1);
             jumpSound.play();
             vertVelocity = (hasJumpBoost()?-5:0) +JUMP_SPEED;
+            onPushObject = false;
         }
         
         //if player is moving in a direction
@@ -229,6 +233,7 @@ public class Player extends Entity implements IFalling, IDamageable
         }
     }
     /**
+     * sharaz + mitchell
      * when called, timer is frozen so that it sops increases, animation shows player falling off screen
      * gameover image appears, weapon removed also
      */
@@ -236,8 +241,11 @@ public class Player extends Entity implements IFalling, IDamageable
         Timer.freeze();
         damageSound.play();
         ExtendedWorld world = getExtendedWorld();
+        Timer.end();
+        Counter.end();
         world.addObject(new DeadEntity(getImage()),getX(),getY());
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
+        
         world.setFocus(null);
         if (weapon != null){
             world.addObject(new DeadEntity(weapon.getImage()),weapon.getX(),weapon.getY());

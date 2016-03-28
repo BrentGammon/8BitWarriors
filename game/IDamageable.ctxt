@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=attacker\ damage
+comment0.target=int\ doDamage(greenfoot.Actor,\ int)
+comment0.text=\r\n\ Do\ damage\ to\ this\ object.\ Returns\ damage\ done.\r\n\ @param\ attacker\ The\ actor\ that\ is\ the\ source\ of\ the\ attack.\ It\ may\ not\ be\ the\ actor\ that\ calls\ the\ method\r\n\ @param\ damage\ The\ damage\ to\ deal\r\n\ \r\n\ @return\ The\ damage\ that\ was\ recieved\r\n
+numComments=1

@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=
+comment0.target=TrackEnemy()
+comment1.params=attacker\ damage
+comment1.target=int\ doDamage(greenfoot.Actor,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ This\ contains\ the\ movement\ logic\ for\ TrackEnemy\r\n\ When\ player\ is\ inrange\ it\ will\ move\ towards\ the\ player\ \r\n\ if\ it\ reaches\ the\ end\ of\ platform\ then\ it\ will\ move\ away\ and\ wait\r\n
+comment3.params=
+comment3.target=void\ changeDirection()
+comment3.text=\r\n\ When\ invoked\ this\ will\ flip\ the\ value\ of\ goLeft\r\n
+comment4.params=
+comment4.target=boolean\ onPlatform()
+comment4.text=\r\n\ Checks\ if\ the\ instance\ is\ touching\ the\ Terrain\r\n\ @return\ boolean\ if\ touching\ return\ true\ else\ false\r\n
+comment5.params=
+comment5.target=boolean\ endPlatform()
+comment5.text=\r\n\ Checks\ if\ TrackEnemy\ is\ on\ the\ terrain\r\n\ @return\ boolean\ true\ if\ TrackEnemy\ is\ on\ the\ terrain\r\n
+comment6.params=g
+comment6.target=void\ fall(int)
+comment6.text=\r\n\ When\ the\ object\ is\ not\ on\ the\ platform\ then\ the\ object\ will\ fall\ \ \r\n\ @param\ int\ g\ This\ is\ the\ gravity\ of\ the\ object\ falling\r\n
+comment7.params=
+comment7.target=boolean\ die()
+comment7.text=\r\n\ When\ called\ this\ will\ increment\ the\ score\ counter\ and\ add\ DeadEntity\ to\ the\ world\r\n\ @return\ a\ super\ call\ to\ die\r\n
+numComments=8

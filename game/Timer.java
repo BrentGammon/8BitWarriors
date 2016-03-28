@@ -3,20 +3,29 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 import java.awt.Transparency;
-
+/**
+ * Write a description of class MuteControl here.
+ * 
+ * @author (Viktor + Sharaz) 
+ *
+ */
 public class Timer extends UI
 {
     /**
      * Act - do whatever the Timer wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int time = 0;
+    private static int time = 0;
     private int count = 45;
-    //updated so that incrementing of timer can be stopped once player has died
+    //sharaz, updated so that incrementing of timer can be stopped once player has died
     private static boolean isFreeze;
+    //sharaz, called by player die method 
+    private static boolean end;
     
     public Timer(){
+        //sharaz, set default values 
         isFreeze = false;
+        end = false;
     }
     
     public void act() 
@@ -25,23 +34,33 @@ public class Timer extends UI
         if (getExtendedWorld().isPaused()) return;
         reset();
         isTimeUp();
-        //only update counter if field is false
+        //sharaz,only update counter if field is false
         if(counter() && !isFreeze)
         {
             time++;
             count = 45;
         }
         display();
-        
-
+        //sharaz,remove this object if player dies
+        if(end){
+            World world = getWorld();
+            world.removeObject(this);
+        }
     }    
+    //sharaz, called from players die method
+    public static void end(){
+        end = true;
+    }
     
-    //method called from enemy/player class upon player death, update field so that timer stops increasing
+    //sharaz,method called from enemy/player class upon player death, update field so that timer stops increasing
     public static void freeze(){
         isFreeze = true;
         
     }
-    
+    //sharaz, time at which player dies
+    public static int getFinalTime(){
+        return time;
+    }
     //this is a boolean counter that starts a loop counting down
     private boolean counter()
     {

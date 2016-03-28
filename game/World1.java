@@ -27,18 +27,23 @@ public class World1 extends ExtendedWorld
         WORLD_WIDTH = 20000;
         WORLD_HEIGHT = 900;
         Player p = new Player();
+        //PowerupDisplay pd = new PowerupDisplay();
+        //pd.setPlayer(p);
         //layer1_xoffset = -200;
         //layer1_yoffset = -100;
         layer1 = new GreenfootImage("images/jungleBig.png");
         
         redrawBackground();
         addObject(p,100,826);
-        addObject(new Timer(),52,40);
+        addObject(new Timer(),52,35);
         addObject(new Counter(),55,67);
         muteControl = new MuteControl();
         addObject(muteControl,676,29);
         addObject(new SaveGame(),750,28);
-        addObject(new PowerupDisplay(p),204,97);
+        addObject(new speed(p),320,67);
+        addObject(new Ammo(p),400,67);
+        addObject(new Jump(p),470,67);
+        //addObject(pd,55,110);
         
         
         //addObject(new Spikes(1),982,300);
@@ -48,14 +53,15 @@ public class World1 extends ExtendedWorld
         addObject(new MonkeyEnemy(),700,830);
         addObject(new Grass(20),1350,885);
         addObject(new Grass(10),2375,735);
-        addObject(new WoodLog(),1875,807);
-        addObject(new WoodLog(),1975,807);
-        addObject(new WoodLog(),2075,807);
-        addObject(new PushObject(),2500,600);
-        addObject(new Spikes(0),1500,840);
-        addObject(new Spikes(1),1400,840);
-        addObject(new Spikes(2),1300,840);
+        addObject(new WoodLog(),1875,735);
+        addObject(new WoodLog(),1975,735);
+        addObject(new WoodLog(),2075,735);
+        addObject(new PushObject(),1700,750);
+        //addObject(new Spikes(0),1500,840);
+        //addObject(new Spikes(1),1400,840);
+        //addObject(new Spikes(2),1300,840);
         addObject(new DumbEnemy(),1350,750);
+        
     }
     
 	

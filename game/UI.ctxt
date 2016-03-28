@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ExtendedWorld\ getExtendedWorld()
+comment0.text=\r\n\ Get\ the\ objects\ current\ world.\ If\ the\ world\ isnt\ extended\ returns\ null\ instead\r\n
+numComments=1

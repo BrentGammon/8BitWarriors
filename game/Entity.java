@@ -172,9 +172,9 @@ public abstract class Entity extends ExtendedActor
                     setLocation(x,y);
                     
                 }
-                    //System.out.println("Could not resolve y");
-                }//else System.out.println("Collision! ypen"+ypen+" dy"+dy);
-            }
+                  
+                }
+            
             return true;
         }
         return false;

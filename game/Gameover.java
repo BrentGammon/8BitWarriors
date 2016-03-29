@@ -20,8 +20,20 @@ public class Gameover extends UI
     public void act() 
     {
         //if image is clicked when gameover message appears, a new world is created
+        ExtendedWorld world = (ExtendedWorld) getWorld();
+        String levelLoad = world.getLevel();
+        
         if(Greenfoot.mouseClicked(this)){
-            Greenfoot.setWorld(new World1());
+            if(levelLoad.equals("1")){
+               Greenfoot.setWorld(new World1()); 
+            }
+            if(levelLoad.equals("2")){
+                Greenfoot.setWorld(new World2());
+            }
+            if(levelLoad.equals("3")){
+                Greenfoot.setWorld(new World3());
+            }
+            
         }
     }    
 }

@@ -41,8 +41,8 @@ public class World2 extends ExtendedWorld
         addObject(new PowerupDisplay(p),122,40);
         
         
-        addObject(new Grass(20),301,885);
-        addObject(new Grass(20),1350,885);
+        addObject(new Grass(20,2),301,885);
+        addObject(new Grass(20,2),1350,885);
         addObject(new DumbEnemy(),700,825);
         addObject(new DumbEnemy(),696,825);
     }

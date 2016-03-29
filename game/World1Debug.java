@@ -37,15 +37,15 @@ public class World1Debug extends ExtendedWorld
         addObject(new PowerupDisplay(p),170,100);
         addObject(p,100,100);
         
-        addObject(new Grass(6),135,300);
-        addObject(new Grass(11),600,300);
+        addObject(new Grass(6,1),135,300);
+        addObject(new Grass(11,1),600,300);
         addObject(new PushObject(),190,240);
         // for(int i =50;i<=950;i+=50){
             // if(!(i==300||i==350)){
                 // addObject(new Grass(),i,300);
             // }
         // }
-        addObject(new Grass(20),450,600);
+        addObject(new Grass(20,1),450,600);
         // for(int i =50;i<=1100;i+=50){
                 // addObject(new Grass(),i,600);
         // }

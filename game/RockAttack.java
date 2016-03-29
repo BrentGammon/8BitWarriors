@@ -1,10 +1,10 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class RockAttack here.
+ * This is the object that the proal will spawn, this will fall and damage the player
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon 
+ * @version S3 29/03/16
  */
 public class RockAttack extends Attack implements IFalling
 {
@@ -17,54 +17,43 @@ public class RockAttack extends Attack implements IFalling
      */
     public void act() 
     {
-        List <Actor> intersecting = getIntersectingObjects(Grass.class);
-        if(intersecting.size()>0){
-            //if(intersects(Grass.class)){
-               doDamage();
-                die();
-            //}
+        List <Actor> intersecting = getIntersectingObjects(Actor.class);
+        for(Actor a : intersecting){
+            if(a instanceof Player){
+                doDamage();
+            }
         }
-
-    }  
-
+    }
+    
+    
+    /**
+     * Constructor for RockAttack
+     * @param boolean direction what dirctin the obvject is facing
+     * @param ExtendedActor source this is the actor that is spawning this object into the world
+     */
     public RockAttack(boolean direction, ExtendedActor source)
     {
         super(direction,source);
         this.source = source;
-        //this.direction = direction;
-
     }
-
-    public void fire()
-    {
-
-    }
+    
+    /**
+     * This method does not do anything had to implmented so it could extend attack but this is not needed
+     */
+    public void fire(){}
 
     /**
      * When the object is not on the platform then the object will fall  
      * @param int g This is the gravity of the object falling
      */
     public void fall(int g){
-        if (!onPlatform()){
-            vertVelocity+=g;
-            if(vertVelocity>0){
-                for(int i=0;i<vertVelocity;i++){
-                    moveLocation(0,1);
-                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
-                        vertVelocity = 0;
-                    }
-                }
-            } else if(vertVelocity>0){
-                for(int i=0;i>vertVelocity;i--){
-                    moveLocation(0,-1);
-                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
-                        vertVelocity = 0;
-                    }
-                }
+
+        vertVelocity+=g;
+        if(vertVelocity>0){
+            for(int i=0;i<vertVelocity;i++){
+                moveLocation(0,1);
             }
-        }else{
-            vertVelocity = 0;
-        }
+        } 
     }
 
     /**
@@ -75,11 +64,13 @@ public class RockAttack extends Attack implements IFalling
         for (IDamageable obj: objs){
             if (obj!=source){
                 obj.doDamage(source,DAMAGE);
-
             }
         }
     }
-
+    
+    /**
+     * When invoked this method will cause the object to die
+     */
     public boolean die(){
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();

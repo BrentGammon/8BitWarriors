@@ -16,20 +16,20 @@ public class Player extends Entity implements IFalling, IDamageable
     public static final int JUMP_SPEED = -20;
     public static final int MOVE_SPEED_CAP = 10;
     public static final int SPEED_BOOST_CAP = 15;
-
+    
     public static final int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
-
+    
     /** powerup constants */
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
     private final int ATTACK_BOOST_TIMER = 650;
-
+    
     /** Time remaining for the powerups */
     private int jumpBoostTimer = 0;
     private int speedBoostTimer = 0;
     private int attackBoostTimer = 0;
-
+    
     /** Images for the players animation*/
     private static final GreenfootImage front = new GreenfootImage("Player/front.png");
 
@@ -39,7 +39,7 @@ public class Player extends Entity implements IFalling, IDamageable
     private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
     private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
     private static final int STATE_FRONT = 1, STATE_LEFT = 2, STATE_RIGHT = 3;
-
+    
     private GreenfootImage jump1Right = new GreenfootImage("Player/jump1.png");
     private GreenfootImage jump2Right = new GreenfootImage("Player/jump2.png");
     private GreenfootImage jump1Left;
@@ -47,6 +47,7 @@ public class Player extends Entity implements IFalling, IDamageable
     private int frame = 0;
     private int framestate = STATE_FRONT;
 
+    
     /** is the player facing left or not */
     private boolean facingLeft = false;
 
@@ -58,12 +59,16 @@ public class Player extends Entity implements IFalling, IDamageable
     public static String keyLeft = "LEFT";
     public static String keyRight = "RIGHT" ;
     public static String keyAttack = "X" ;
-
+    
+    
     /** Sound for the player*/
     private GreenfootSound jumpSound = new GreenfootSound("JumpPlayer.wav");
     private GreenfootSound damageSound = new GreenfootSound("PlayerDamage.wav");
     public static boolean removeAttack;
-
+    
+    //sharaz
+    protected boolean onPushObject;
+    
     /**
      * Constructor for Player
      */
@@ -77,14 +82,14 @@ public class Player extends Entity implements IFalling, IDamageable
         hasFocus = true;
 
         setImage(front);
-
+        
         removeAttack = false;
     }   
-
+    
     public static void removeAttack(){
         removeAttack = true;
     }
-
+    
     /*
      * When the player is added to the world it sets the player as the focus and spawns in the players weapon 
      */
@@ -124,10 +129,11 @@ public class Player extends Entity implements IFalling, IDamageable
         }
 
         //if the jump key is being held and player is on a platform. Jump
-        if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&&onPlatform()){
+        if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&& (onPlatform() || onPushObject)){
             moveLocation(0,-1);
             jumpSound.play();
             vertVelocity = (hasJumpBoost()?-5:0) +JUMP_SPEED;
+            onPushObject = false;
         }
         
         //if player is moving in a direction
@@ -160,6 +166,7 @@ public class Player extends Entity implements IFalling, IDamageable
     }
 
   
+    
     /**
      * This function checks whether or not the player is touching any powerup items and removes them. 
      */
@@ -175,6 +182,7 @@ public class Player extends Entity implements IFalling, IDamageable
             if (kind == Powerup.JUMP_PU){
                 jumpBoostTimer = JUMP_BOOST_TIMER;
             }
+            
 
             if (kind == Powerup.AMMO_PU){
                 attackBoostTimer = ATTACK_BOOST_TIMER;
@@ -197,6 +205,7 @@ public class Player extends Entity implements IFalling, IDamageable
      * Decrements the jump boost powerup timer
      */
     public void jumpBoostTimer(){
+        
 
         if(jumpBoostTimer-- == 1){
             System.out.println("Jump boost is over");
@@ -207,6 +216,7 @@ public class Player extends Entity implements IFalling, IDamageable
      * Decrements the attack boost powerup timer
      */
     public void attackBoostTimer(){
+    
 
         if(attackBoostTimer-- <= 0){
             System.out.println("Attack boost is over");
@@ -227,6 +237,7 @@ public class Player extends Entity implements IFalling, IDamageable
     }
 
     /**
+     * sharaz + mitchell
      * when called, timer is frozen so that it sops increases, animation shows player falling off screen
      * gameover image appears, weapon removed also
      */
@@ -234,8 +245,11 @@ public class Player extends Entity implements IFalling, IDamageable
         Timer.freeze();
         damageSound.play();
         ExtendedWorld world = getExtendedWorld();
+        Timer.end();
+        Counter.end();
         world.addObject(new DeadEntity(getImage()),getX(),getY());
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
+        
         world.setFocus(null);
         if (weapon != null){
             world.addObject(new DeadEntity(weapon.getImage()),weapon.getX(),weapon.getY());
@@ -252,6 +266,7 @@ public class Player extends Entity implements IFalling, IDamageable
     public boolean hasJumpBoost(){
         return jumpBoostTimer > 0;
     }
+    
 
     /**
      * Does the player currently have speed boost
@@ -261,6 +276,7 @@ public class Player extends Entity implements IFalling, IDamageable
     public boolean hasSpeedBoost(){
         return speedBoostTimer > 0;
     }
+    
 
     /**
      * Does the player currently have attack boost
@@ -270,6 +286,7 @@ public class Player extends Entity implements IFalling, IDamageable
     public boolean hasAttackBoost(){
         return attackBoostTimer > 0;
     }
+  
 
     /*
      * Perform out of bounds check
@@ -284,6 +301,7 @@ public class Player extends Entity implements IFalling, IDamageable
             die();
         }
     }
+    
 
     /**
      * When player takes any damage - die
@@ -301,6 +319,8 @@ public class Player extends Entity implements IFalling, IDamageable
     private void updateSprite(){
         //facing front
         if (horzVelocity==0){
+                setImage(front);
+                framestate = STATE_FRONT;
             setImage(front);
             framestate = STATE_FRONT;
         }else if(facingLeft){

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=type
+comment0.target=Powerup(int)
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=int\ getType()
+numComments=3

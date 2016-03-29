@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=direction\ source
+comment0.target=Attack(boolean,\ ExtendedActor)
+comment0.text=\r\n\ Used\ for\ the\ direction\ of\ where\ the\ object\ will\ spawn\ agisnt\ the\ player\r\n
+comment1.params=direction
+comment1.target=void\ setDirection(boolean)
+comment2.params=
+comment2.target=void\ fire()
+comment2.text=\r\nabstract\ method\ fire\ wil\ be\ implemented\ by\ sub\ classes\r\n
+numComments=3

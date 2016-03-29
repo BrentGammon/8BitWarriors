@@ -25,20 +25,27 @@ public class World1Debug extends ExtendedWorld
         gameLevel = "1";
         WORLD_WIDTH = 1920;
         Player p = new Player();
+        //PowerupDisplay pd = new PowerupDisplay();
+        //pd.setPlayer(p);
         layer1 = new GreenfootImage("images/jungleBig.png");
         redrawBackground();
         
         
-        addObject(new Counter(),100,50);
+        addObject(new Counter(),55,67);
         muteControl = new MuteControl();
         addObject(muteControl,700,50);
         addObject(new SaveGame(),750,50);
-        addObject(new Timer(),100,150);
-        addObject(new PowerupDisplay(p),170,100);
+        addObject(new Timer(),52,35);
+        //addObject(pd,170,100);
         addObject(p,100,100);
         
-        addObject(new Grass(6,1),135,300);
-        addObject(new Grass(11,1),600,300);
+        addObject(new speed(p),320,67);
+        addObject(new Ammo(p),400,67);
+        addObject(new Jump(p),470,67);
+       
+        
+        addObject(new Grass(6),135,300);
+        addObject(new Grass(11),600,300);
         addObject(new PushObject(),190,240);
         // for(int i =50;i<=950;i+=50){
             // if(!(i==300||i==350)){
@@ -46,6 +53,7 @@ public class World1Debug extends ExtendedWorld
             // }
         // }
         addObject(new Grass(20,1),450,600);
+        
         // for(int i =50;i<=1100;i+=50){
                 // addObject(new Grass(),i,600);
         // }

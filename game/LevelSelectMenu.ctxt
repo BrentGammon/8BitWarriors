@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=levels
+comment0.target=LevelSelectMenu(java.lang.String)
+comment0.text=\r\n\ Will\ populate\ the\ world\ with\ objects\ such\ as\ a\ home\ buttons\ and\ level\ select\ buttons\ will\ vary\ on\ the\ paramter\ value.\r\n\ @param\ String\ levels\ This\ will\ be\ the\ amount\ for\ level\ select\ buttons\ for\ example\ if\ value\ is\ "3"\ then\ buttons\ 1,2,3\ will\ be\ shown\r\n\ \r\n
+comment1.params=
+comment1.target=void\ addLevel1()
+comment1.text=\r\nWhen\ invoked\ it\ will\ add\ a\ Level1\ instance\ into\ the\ world\ at\ a\ specifed\ location\ \r\n
+comment2.params=
+comment2.target=void\ addLevel2()
+comment2.text=\r\n\ When\ invoked\ it\ will\ add\ a\ Level2\ instance\ into\ the\ world\ at\ a\ specifed\ location\ \r\n
+comment3.params=
+comment3.target=void\ addLevel3()
+comment3.text=\r\n\ When\ invoked\ it\ will\ add\ a\ Level3\ instance\ into\ the\ world\ at\ a\ specifed\ location\r\n
+comment4.params=
+comment4.target=void\ addLevel2Locked()
+comment4.text=\r\n\ When\ invoked\ it\ will\ add\ a\ Level2Locked\ instance\ into\ the\ world\ at\ a\ specifed\ location\r\n
+comment5.params=
+comment5.target=void\ addLevel3Locked()
+comment5.text=\r\n\ When\ invoked\ it\ will\ add\ a\ Level3Locked\ instance\ into\ the\ world\ at\ a\ specifed\ location\r\n
+numComments=6

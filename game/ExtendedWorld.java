@@ -24,8 +24,8 @@ public class ExtendedWorld extends World
     protected int GRAVITY = 2;
     
     /** Dimensions of the screen */
-    protected static int GAME_HEIGHT = 600;
-    protected static int GAME_WIDTH = 800;
+    protected static  int GAME_HEIGHT = 400;
+    protected static  int GAME_WIDTH = 600;
     
     //protected static  int GAME_HEIGHT = 1200;
     //protected static  int GAME_WIDTH = 1600;

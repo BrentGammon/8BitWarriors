@@ -37,12 +37,15 @@ public class Counter extends UI
 {
     private static final Color transparent = new Color(0,0,0,0);
     private GreenfootImage background;
-    private int value;
+    private static int value;
     //counter value
     private static int target;
     private String prefix;
     //static field changed from dumbenemy's call to counter.add
     private static boolean increment;
+    
+    //called upon player death to remove counter object from world (see act)
+    private static boolean end;
     
     public Counter()
     {
@@ -50,9 +53,11 @@ public class Counter extends UI
         //sets greenfoot image to counter, then uses the value 0 and overlaps these two images
         GreenfootImage image = new GreenfootImage("Counter.png");
         GreenfootImage text = new GreenfootImage(prefix + 0, 22, Color.BLACK, transparent);
+        //concatenate text with counter image
         image.drawImage(text, (image.getWidth()-text.getWidth())/2, 
                         (image.getHeight()-text.getHeight())/2);
         setImage(image);
+        end=false;
     }
 
     /**
@@ -67,30 +72,50 @@ public class Counter extends UI
         updateImage();
     }
     
+   
+    
     /**
      * Animate the display to count up (or down) to the current target value.
      */
     public void act() 
     {
+        //ExtendedWorld world = getExtendedWorld();
+        //setLocation(world.getWidth()/2, world.getHeight()/2);
         /*if counter.add is called from enemy, increase the value by one and then update the image
         with new value*/
+        
         if (increment) {
             value++;
             updateImage();
             increment = false;
         }
        
-   }
-
+        //remove object upon player death
+        if(end){
+            World world = getWorld();
+            world.removeObject(this);
+        }
+    }
+    
+    //method called from player die method
+    public static void end(){
+        end = true;
+    }
+    
     /**
      * Add a new score to the current counter value.  This will animate
      * the counter over consecutive frames until it reaches the new value.
      */
-    //called from enemy class upon its death
+    
     public static void add()
     {
+       target++;
        increment = true;
        
+    }
+    public static void add(int num){
+        target += num;
+        increment = true;
     }
 
     /**
@@ -100,7 +125,11 @@ public class Counter extends UI
     {
         return target;
     }
-
+    
+    //return final value (player dies, no longer increasing)
+    public static int getFinalVal(){
+        return value;
+    }
    
     
     /**

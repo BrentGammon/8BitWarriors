@@ -69,13 +69,55 @@ public class World1 extends ExtendedWorld
         //addObject(new Spikes(2),1300,840);
         addObject(new DumbEnemy(),1350,750);
         
+        addObject(new WoodLog(),2752,582);
+        addObject(new WoodLog(),2752,735);
+        addObject(new Grass(10,1),3114,735);
+        
+        
+        addObject(new Tree(Tree.LARGE),3114,500);
+        addObject(new Tree(Tree.LARGE),3114,200);
+        
+        addObject(new WoodLog(),3214,615);
+        addObject(new WoodLog(),3214,485);
+        
+        addObject(new WoodLog(),3014,550);
+        addObject(new WoodLog(),3014,420);
+        
+        addObject(new WoodLog(),3014,290);
+        addObject(new WoodLog(),3214,355);
+        
+        addObject(new WoodLog(),2811,288);
+        
+        addObject(new Grass(20,1),2250,310);
+        
+        addObject(new WoodLog(),2216,213);
+        addObject(new Spikes(0),2239,264);
+        addObject(new Wall(2,1),2161,205);
+        
+        addObject(new Spikes(0),1888,264);
+        addObject(new Spikes(0),1908,264);
+        addObject(new Spikes(0),1928,264);
+        
+        addObject(new Spikes(0),2008,264);
+        addObject(new Spikes(0),2028,264);
+        addObject(new Spikes(0),2048,264);
+        
+        addObject(new Tree(Tree.LARGE),1500,650);
+        addObject(new Tree(Tree.LARGE),1500,350);
+        addObject(new Tree(Tree.LARGE),1500,50);
+        
+        addObject(new WoodLog(),1208,214);
+        addObject(new WoodLog(),1369,214);
+        addObject(new WoodLog(),1533,214);
+        addObject(new WoodLog(),1711,214);
+        addObject(new Grass(5,1),1025,256);
     }
     
-	
-	/**
-	*Method returns the String value of gameLevel
-	*@return String gameLevel
-	*/
+    
+    /**
+    *Method returns the String value of gameLevel
+    *@return String gameLevel
+    */
     public String getLevel()
     {
         return gameLevel;

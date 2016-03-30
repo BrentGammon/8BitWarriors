@@ -14,10 +14,10 @@ public class WoodLog extends Terrain implements IPlatform
     }
     public WoodLog(int size){
         
-        if (size <= 1) this();
+        if (size <= 1) setImage("Terrain/logbase.png");
         else{
-            GreenfootImage unit = new GreenfootImage("Terrain/logbase.png")
-            GreenfootImage ext = new GreenfootImage("Terrain/logbase.png")
+            GreenfootImage unit = new GreenfootImage("Terrain/logbase.png");
+            GreenfootImage ext = new GreenfootImage("Terrain/logbase.png");
         }
         setImage("Terrain/logbase.png");
     }

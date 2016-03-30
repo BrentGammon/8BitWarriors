@@ -12,8 +12,6 @@ public class World1 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
-   protected int WORLD_WIDTH = 10000;
-   protected int WORLD_HEIGHT = 900;
    //private final String gameLevel = "1";
     /**
      * Constructor for objects of class World1.
@@ -22,7 +20,7 @@ public class World1 extends ExtendedWorld
     public World1()
     {
         //call to superclass to use centreCameraOn function
-        super(600,400, true);
+        super(3900,900,600,400, true);
         
         gameLevel = "1";
         Player p = new Player();
@@ -68,7 +66,11 @@ public class World1 extends ExtendedWorld
         //addObject(new Spikes(1),1400,840);
         //addObject(new Spikes(2),1300,840);
         addObject(new DumbEnemy(),1350,750);
+        addObject(new DumbEnemy(),1450,750);
+        addObject(new DumbEnemy(),1550,750);
+        addObject(new DumbEnemy(),2155,117);
         
+        addObject(new Wall(5,1),-22,675);
         addObject(new WoodLog(),2752,582);
         addObject(new WoodLog(),2752,735);
         addObject(new Grass(10,1),3114,735);
@@ -76,6 +78,14 @@ public class World1 extends ExtendedWorld
         
         addObject(new Tree(Tree.LARGE),3114,500);
         addObject(new Tree(Tree.LARGE),3114,200);
+        
+        addObject(new Grass(),3361,700);
+        addObject(new Grass(),3406,670);
+        addObject(new Grass(),3451,640);
+        addObject(new Grass(),3496,610);
+        addObject(new Grass(),3541,580);
+        addObject(new Wall(9,1),3945,307);
+        addObject(new Grass(8,1),3744,550);
         
         addObject(new WoodLog(),3214,615);
         addObject(new WoodLog(),3214,485);
@@ -111,6 +121,9 @@ public class World1 extends ExtendedWorld
         addObject(new WoodLog(),1533,214);
         addObject(new WoodLog(),1711,214);
         addObject(new Grass(5,1),1025,256);
+        addObject(new EndFlag(),951,171);
+        
+        addObject(new SuperMonkeyEnemy(),3790,465);
     }
     
     

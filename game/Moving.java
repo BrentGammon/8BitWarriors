@@ -35,7 +35,15 @@ public class Moving extends ExtendedActor
         //if player iteracts wih object, plaer moves at same pace and direction as this objec
         Actor actor = getOneIntersectingObject(null);
         if(actor != null){
-            actor.setLocation(actor.getX() + speed, actor.getY());
+            if(actor instanceof Player){
+            Player p = (Player) actor;
+            p.setLocation(p.getX() + speed, p.getY());
+        }
+        if(actor instanceof BasicAttack){
+            BasicAttack b = (BasicAttack) actor;
+            b.setLocation(b.getX() + speed, b.getY());
+        }
+        
             
         }
         

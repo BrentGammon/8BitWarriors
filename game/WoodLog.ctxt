@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=WoodLog()
+comment1.params=
+comment1.target=int\ getTop()
+comment2.params=e
+comment2.target=boolean\ canSupportEntity(Entity)
+comment3.params=
+comment3.target=boolean\ bottomIsCollidable()
+numComments=4

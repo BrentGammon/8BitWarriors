@@ -15,7 +15,22 @@ public class Grass extends Terrain
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private GreenfootImage unit = new GreenfootImage("Terrain/grass.png");
+    private GreenfootImage unit3 = new GreenfootImage("Terrain/brick.png");
+    
     public Grass(){
+        //         if(levelDesign.equals("1")){
+        //             unit = new GreenfootImage("Terrain/grass.png");
+        //         }
+        //         if(levelDesign.equals("3")){
+        //             unit = new GreenfootImage("Terrain/brick.png");
+        //         }
+        //         ExtendedWorld w = (ExtendedWorld) getWorld();
+        //         if(w.getLevel().equals("1")){
+        //             unit = new GreenfootImage("Terrain/grass.png");
+        //         }
+        //         if(w.getLevel().equals("3")){
+        //             unit = new GreenfootImage("Terrain/brick.png");
+        //         }
         setImage(unit);
     }
     
@@ -25,7 +40,10 @@ public class Grass extends Terrain
      * 
      * @param width How many times to repeat grass sprite
      */
-    public Grass(int width){
+    public Grass(int width,int LevelDesign){
+        if(LevelDesign==3){
+            unit = unit3;
+        }
         int unitWidth = unit.getWidth();
         GreenfootImage self = new GreenfootImage(unitWidth*width,unit.getHeight());
         for(int x=0;x<width;x++){
@@ -35,25 +53,7 @@ public class Grass extends Terrain
         
     }
     
-    /**
-     * Constructor for Grass
-     * 
-     * @param width How many times to repeat grass sprite
-     * @param rotation is used to set the rotation of the image 
-     */
-    public Grass(int width,int rotation){
-        int unitWidth = unit.getWidth();
-        //GreenfootImage self = new GreenfootImage(unitWidth*width,unit.getHeight());
-        GreenfootImage self = new GreenfootImage(unitWidth*width,unit.getHeight());
-        for(int x=0;x<width;x++){
-            self.drawImage(unit,x*unitWidth,0);
-        }
-        //self.rotate(rotation);
-        
-        //can the image here not the object
-        this.turn(rotation);
-        setImage(self);
-    }
+   
     public void act() 
     {
         // Add your action code here.

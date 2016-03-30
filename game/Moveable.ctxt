@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ isPushed()
+comment0.text=\r\n\ This\ method\ will\ get\ the\ player\ coordinates\ and\ when\ the\ player\ touches\ the\ object\ it\ will\ calulate\ the\ movement\ that\ the\ objects\ needs\ to\ do\ from\ those\ values\ \ \r\n
+numComments=1

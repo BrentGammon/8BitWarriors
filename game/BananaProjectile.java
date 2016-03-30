@@ -66,11 +66,17 @@ public class BananaProjectile extends Attack implements IFalling
         //calculate time of travel with constant horz velocity
         int travelTime = Math.abs(dx)/MOVE_SPEED;
         
+        double initAngle = Math.tan(dy/dx);
+        initAngle = initAngle<45?45:initAngle;
+            
         //solve for vertical velocity
         vertVelocity = travelTime * -GRAVITY /2;
         horzVelocity = dx>0?MOVE_SPEED:-MOVE_SPEED;
+        double angle1 = Math.toDegrees(Math.atan(MathHelper.trajectoryEquationRoot1(20,GRAVITY,Math.abs(dx),-dy)));
+        double angle2 = Math.toDegrees(Math.atan(MathHelper.trajectoryEquationRoot2(20,GRAVITY,Math.abs(dx),-dy)));
+        System.out.println(angle1);
+        System.out.println(angle2);
         
-        //set self to thrown
         thrown = true;
         damaging = true;
     }

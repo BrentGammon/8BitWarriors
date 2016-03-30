@@ -1,5 +1,5 @@
 3
-UP
+SPACE
 LEFT
 RIGHT
 X

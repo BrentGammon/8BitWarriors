@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Level1()
+comment0.text=\r\n\ When\ an\ instance\ is\ created\ it\ will\ contain\ the\ level\ 1\ icon\ image\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\nWhen\ clicked\ it\ will\ set\ the\ world\ to\ level\ 1\r\n
+numComments=2

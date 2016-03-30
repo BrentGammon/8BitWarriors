@@ -1,4 +1,3 @@
- 
 
 import greenfoot.*;
 import java.awt.Color;
@@ -65,7 +64,9 @@ public class Player extends Entity implements IFalling, IDamageable
     /** Sound for the player*/
     private GreenfootSound jumpSound = new GreenfootSound("JumpPlayer.wav");
     private GreenfootSound damageSound = new GreenfootSound("PlayerDamage.wav");
-    public static boolean removeAttack;
+    
+    //sharaz
+    protected boolean onPushObject;
     
     /**
      * Constructor for Player
@@ -81,12 +82,7 @@ public class Player extends Entity implements IFalling, IDamageable
 
         setImage(front);
         
-        removeAttack = false;
     }   
-    
-    public static void removeAttack(){
-        removeAttack = true;
-    }
     
     /*
      * When the player is added to the world it sets the player as the focus and spawns in the players weapon 
@@ -96,9 +92,6 @@ public class Player extends Entity implements IFalling, IDamageable
         ((ExtendedWorld)w).setFocus(this);
         weapon = new BasicAttack(facingLeft,this);
         w.addObject(weapon,getX(),getY());
-        if(removeAttack){
-            w.removeObject(weapon);
-        }
     }
 
     /**
@@ -127,10 +120,11 @@ public class Player extends Entity implements IFalling, IDamageable
         }
 
         //if the jump key is being held and player is on a platform. Jump
-        if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&&onPlatform()){
+        if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&& (onPlatform() || onPushObject)){
             moveLocation(0,-1);
             jumpSound.play();
             vertVelocity = (hasJumpBoost()?-5:0) +JUMP_SPEED;
+            onPushObject = false;
         }
         
         //if player is moving in a direction
@@ -161,8 +155,7 @@ public class Player extends Entity implements IFalling, IDamageable
         checkOutOfBounds();
 
     }
-    
-    
+
   
     
     /**
@@ -181,6 +174,7 @@ public class Player extends Entity implements IFalling, IDamageable
                 jumpBoostTimer = JUMP_BOOST_TIMER;
             }
             
+
             if (kind == Powerup.AMMO_PU){
                 attackBoostTimer = ATTACK_BOOST_TIMER;
             }
@@ -197,24 +191,28 @@ public class Player extends Entity implements IFalling, IDamageable
             System.out.println("Speed boost is over");
         }
     }
+
     /**
      * Decrements the jump boost powerup timer
      */
     public void jumpBoostTimer(){
         
+
         if(jumpBoostTimer-- == 1){
             System.out.println("Jump boost is over");
         }
     }
+
     /**
      * Decrements the attack boost powerup timer
      */
     public void attackBoostTimer(){
     
+
         if(attackBoostTimer-- <= 0){
             System.out.println("Attack boost is over");
         }
-    
+
     }
 
     /**
@@ -228,7 +226,9 @@ public class Player extends Entity implements IFalling, IDamageable
             if (vertVelocity<0 && upBlocked()) vertVelocity = 0;
         }
     }
+
     /**
+     * sharaz + mitchell
      * when called, timer is frozen so that it sops increases, animation shows player falling off screen
      * gameover image appears, weapon removed also
      */
@@ -236,8 +236,11 @@ public class Player extends Entity implements IFalling, IDamageable
         Timer.freeze();
         damageSound.play();
         ExtendedWorld world = getExtendedWorld();
+        Timer.end();
+        Counter.end();
         world.addObject(new DeadEntity(getImage()),getX(),getY());
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
+        
         world.setFocus(null);
         if (weapon != null){
             world.addObject(new DeadEntity(weapon.getImage()),weapon.getX(),weapon.getY());
@@ -245,6 +248,7 @@ public class Player extends Entity implements IFalling, IDamageable
         }
         return super.die();
     }
+
     /**
      * Does the player currently have jump boost
      * 
@@ -254,6 +258,7 @@ public class Player extends Entity implements IFalling, IDamageable
         return jumpBoostTimer > 0;
     }
     
+
     /**
      * Does the player currently have speed boost
      * 
@@ -263,6 +268,7 @@ public class Player extends Entity implements IFalling, IDamageable
         return speedBoostTimer > 0;
     }
     
+
     /**
      * Does the player currently have attack boost
      * 
@@ -272,6 +278,7 @@ public class Player extends Entity implements IFalling, IDamageable
         return attackBoostTimer > 0;
     }
   
+
     /*
      * Perform out of bounds check
      */
@@ -286,6 +293,7 @@ public class Player extends Entity implements IFalling, IDamageable
         }
     }
     
+
     /**
      * When player takes any damage - die
      * 
@@ -295,6 +303,7 @@ public class Player extends Entity implements IFalling, IDamageable
         if (damage>0)die();
         return damage;
     }
+
     /**
      * Internal method to set player sprite to apropriate image
      */
@@ -303,6 +312,8 @@ public class Player extends Entity implements IFalling, IDamageable
         if (horzVelocity==0){
                 setImage(front);
                 framestate = STATE_FRONT;
+            setImage(front);
+            framestate = STATE_FRONT;
         }else if(facingLeft){
             if (framestate != STATE_LEFT){
                 framestate = STATE_LEFT;
@@ -329,5 +340,17 @@ public class Player extends Entity implements IFalling, IDamageable
         }  
     }
 
+    public boolean isFacing(){
+        return facingLeft;
+
+    }
+
+    public void movePlayerLeft(){
+        moveLocation(-1,0);
+    }
+
+    public void movePlayerRight(){
+        moveLocation(1,0);
+    }
 }
 

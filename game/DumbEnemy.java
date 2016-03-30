@@ -60,6 +60,13 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
             direction();
         }
         collideMoveLocation(horzVelocity,1);
+        //sharaz
+        if(isTouching(PushObject.class)){
+            changeDirection();
+            direction();
+        }
+        
+        
     }
     
     /**

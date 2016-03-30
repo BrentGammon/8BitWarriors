@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=facingLeft\ source
+comment0.target=BananaProjectile(boolean,\ ExtendedActor)
+comment0.text=\r\n\ Constructor\ for\ BananaProjectile\r\n\ \r\n\ @param\ facingLeft\ Is\ the\ Actor\ holding\ it\ facing\ left\r\n\ @param\ source\ The\ actor\ using\ the\ weapon\r\n
+comment1.params=a
+comment1.target=void\ setTarget(ExtendedActor)
+comment1.text=\r\n\ Set\ the\ target\ for\ this\ weapon\r\n\ \r\n\ @param\ a\ The\ Extended\ actor\ to\ be\ targeted\r\n
+comment2.params=
+comment2.target=void\ fire()
+comment2.text=\r\n\ Throws\ the\ banana\r\n
+comment3.params=
+comment3.target=void\ act()
+comment3.text=\r\n\ Act\ -\ do\ whatever\ the\ BananaProjectile\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment4.params=
+comment4.target=boolean\ doDamage()
+comment4.text=\r\n\ Does\ damage\ to\ all\ things\ that\ touch\ the\ bananna\r\n
+comment5.params=g
+comment5.target=void\ fall(int)
+comment5.text=\r\n\ Implementation\ of\ IFalling\r\n
+comment6.params=f
+comment6.target=void\ setDirection(boolean)
+comment6.text=\r\n\ Properly\ set\ direction\ of\ image\ when\ do\ \r\n
+numComments=7

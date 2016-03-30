@@ -46,7 +46,7 @@ public class Counter extends UI
     
     public Counter()
     {
-        this(new String());
+        this("Score: ");
         //sets greenfoot image to counter, then uses the value 0 and overlaps these two images
         GreenfootImage image = new GreenfootImage("Counter.png");
         GreenfootImage text = new GreenfootImage(prefix + 0, 22, Color.BLACK, transparent);
@@ -63,6 +63,7 @@ public class Counter extends UI
         background = getImage();  // get image from class
         value = 0;
         target = 0;
+        increment = false;
         this.prefix = prefix;
         updateImage();
     }
@@ -77,7 +78,7 @@ public class Counter extends UI
         if (increment) {
             value++;
             updateImage();
-            increment = false;
+            increment = value<target;
         }
        
    }

@@ -65,6 +65,9 @@ public class BasicSlash extends Entity
         }
         return false;
     }
+    public void fire(){
+        
+    }
     /**
      * Perform hit animation
      * 

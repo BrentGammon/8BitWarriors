@@ -24,6 +24,9 @@ public abstract class Attack extends Entity
     public void setDirection(boolean direction){
         this.direction=direction;
     }
+    public boolean getDirection(){
+        return direction;
+    }
 	/**
 	*abstract method fire wil be implemented by sub classes
 	*/

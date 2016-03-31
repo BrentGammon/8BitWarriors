@@ -15,6 +15,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     protected boolean goLeft = false;
     private boolean hit = false;
     private int frame;
+    private int iframes=0;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
     private static final GreenfootImage SHEET = new GreenfootImage("bug.png");
@@ -35,13 +36,16 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
-        moving(); 
-        /*if player object has interacted with enemy, then remove its weapon, remove player, freeze the timer,
-         * and display the gameover image by adding an object of it to the world
-        */
-        Actor a = getOneIntersectingObject(Player.class);
-        if (a != null){
-            ((Player)a).doDamage(this,DAMAGE);
+        if (iframes>0) iframes--;
+        else{
+            moving(); 
+            /*if player object has interacted with enemy, then remove its weapon, remove player, freeze the timer,
+             * and display the gameover image by adding an object of it to the world
+            */
+            Actor a = getOneIntersectingObject(Player.class);
+            if (a != null){
+                ((Player)a).doDamage(this,DAMAGE);
+            }
         }
         updateSprite();
     }  
@@ -100,12 +104,14 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
      * @return int damage the amount done to the actor
      */
     public int doDamage(Actor attacker, int damage){
-        health -= damage;
-         attackSound.play();
-        if (health<=0){
+        if( iframes==0 ){
+            health -= damage;
+            iframes = 20;
+            attackSound.play();
+            if (health>0) return damage;
             die();
-        }
-        return damage;
+            return damage;
+        }else return 0;
     }
      
     /**
@@ -128,6 +134,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         getImage().clear();
         getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
         if(!goLeft) getImage().mirrorHorizontally();
-        frame = frame + 1 % (SHEET_H* SHEET_W);
+        if (iframes>0&&iframes%10<5) setImage(SpriteHelper.makeWhite( getImage()));
+        else frame = frame + 1 % (SHEET_H* SHEET_W);
     }
 }

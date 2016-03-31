@@ -1,4 +1,3 @@
- 
 
 import greenfoot.*;
 import java.io.BufferedReader;
@@ -24,7 +23,7 @@ public class Load extends MenuItems
         start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
         setImage(start);
     }  
-    
+
     /**
      * Checks if the mouse is on the object if so then the image is changed to show the player that they are on the object
      * if clicked then call the load method
@@ -33,9 +32,9 @@ public class Load extends MenuItems
     {
         if(isHovered()){
             if (!selected) getSound().play();
-                start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGameON.png");
-                selected = true;
-                setImage(start);
+            start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGameON.png");
+            selected = true;
+            setImage(start);
         }else{
             start = new GreenfootImage("images/Graphics/MENUV2/M2LoadGame.png");
             selected = false;
@@ -45,7 +44,7 @@ public class Load extends MenuItems
             loadGame();
         }
     }    
-    
+
     /**
      * This will load data from the file SaveFile.txt
      * @exception FileNotFoundException JOptionPane will appear telling the error to the player
@@ -54,7 +53,7 @@ public class Load extends MenuItems
     public void loadGame()
     {
         String[] data;
-        data = new String[5];
+        data = new String[7];
         try{
             BufferedReader reader = new BufferedReader(new FileReader("SaveFile.txt"));
             int i = 0;
@@ -64,7 +63,7 @@ public class Load extends MenuItems
                 i++;
                 line = reader.readLine();
             }
-            
+
             reader.close();
             loadDetails(data);
         }catch(FileNotFoundException e){
@@ -77,7 +76,7 @@ public class Load extends MenuItems
         }
 
     }
-    
+
     /**
      * This will load a game world and set the keyblindings to the player depending on the string values from the array
      * @param array of String containing data about the items that ate going to be loaded into the game
@@ -89,7 +88,9 @@ public class Load extends MenuItems
         String leftMove = array[2];
         String rightMove = array[3];
         String attack = array.length>=5?array[4]:null;
-        
+        int startTime = Integer.parseInt(array[5]);
+        int startScore = Integer.parseInt(array[6]);
+
         Player.keyJump = upMove;
         Player.keyLeft = leftMove;
         Player.keyRight = rightMove;
@@ -97,15 +98,14 @@ public class Load extends MenuItems
         World world = getWorld();
         ExtendedWorld worlds;
         switch (Integer.parseInt(level)){
-           case 1:   worlds = new World1();
-                        break;
-           //UNCOMMENT WHEN LEVELS ARE IMPLEMENTED INTO THR GAME             
-           case 2:   worlds = new World2();
-                        break;
-           // case "3":   World3 world = new World3();
-           //             break;
-           default:     worlds = new World1();
-                        break;
+            case 1:   worlds = new World1();
+            break;            
+            case 2:   worlds = new World2(startScore,startTime);
+            break;
+            case 3:   worlds = new World3(startScore,startTime);
+            break;
+            default:     worlds = new World1();
+            break;
         }
         Greenfoot.setWorld(worlds);
     }

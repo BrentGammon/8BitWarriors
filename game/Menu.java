@@ -24,7 +24,7 @@ public class Menu extends ExtendedWorld
         super(GAME_HEIGHT,GAME_WIDTH,false); 
         
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
-        setBackground(layer1);
+        setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
 
         addObject(new PlayerFace(),125,85);
         addObject(new RedFace(),700,85);

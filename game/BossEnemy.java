@@ -78,6 +78,7 @@ public class BossEnemy extends Entity implements IDamageable
     public boolean die(){
         Counter.add();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
+        getWorld().addObject(new ScoreIndicator(50), getX(),getY());
         return super.die();
     }
 

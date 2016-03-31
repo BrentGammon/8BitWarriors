@@ -23,7 +23,7 @@ public class Portal extends Entity
         
         Actor a = getOneIntersectingObject(Player.class);
             if (a != null){
-            Greenfoot.setWorld(new World2());
+            Greenfoot.setWorld(new World2(0,0));
             return;
         
         

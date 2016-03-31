@@ -46,6 +46,7 @@ public class SaveGame extends MenuItems
     public void saveGame(){
         System.out.println("Saving the game!");
         ExtendedWorld world =(ExtendedWorld) getWorld();
+        
         try{
             FileWriter writer = new FileWriter("SaveFile.txt");
 
@@ -64,8 +65,12 @@ public class SaveGame extends MenuItems
             //attackkey
             writer.write(Player.keyAttack!=null? Player.keyAttack: "x");
             writer.write("\r\n");
-
             
+            //level start time
+            writer.write(Integer.toString(world.getStartTime()));
+            writer.write("\r\n");
+            //level start score
+            writer.write(Integer.toString(world.getStartScore()));
             writer.close();
         }
         catch(IOException e){

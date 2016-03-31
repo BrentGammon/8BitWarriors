@@ -146,7 +146,7 @@ public class Counter extends UI
     /**
      * Update the image on screen to show the current value.
      */
-    private void updateImage()
+    public void updateImage()
     {
         GreenfootImage image = new GreenfootImage("Counter.png");
         GreenfootImage text = new GreenfootImage(prefix + value, 22, Color.BLACK, transparent);
@@ -159,5 +159,14 @@ public class Counter extends UI
         image.drawImage(text, (image.getWidth()-text.getWidth())/2, 
                         (image.getHeight()-text.getHeight())/2);
         setImage(image);
+    }
+    
+    public void setValue(int value){
+        this.value = value;
+        
+    }
+    
+    public int getValues(){
+        return value;
     }
 }

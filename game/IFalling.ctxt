@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.params=gravity
-comment0.target=void\ fall(int)
-comment0.text=\r\n\ Tell\ actor\ how\ much\ gravity\ is\ affecting\ it\ that\ tick/act\r\n\ \r\n\ @param\ gravity\ gravity\ to\ apply.\ Positive\ is\ down.\r\n
-numComments=1

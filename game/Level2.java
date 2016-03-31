@@ -24,7 +24,7 @@ public class Level2 extends MenuItems
     public void act() 
     {
         if(Greenfoot.mouseClicked(this)){
-            World2 world2 = new World2();
+            World2 world2 = new World2(0,0);
             Greenfoot.setWorld(world2);
         }
     }    

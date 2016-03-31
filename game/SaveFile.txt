@@ -1,5 +1,7 @@
 3
-SPACE
+UP
 LEFT
 RIGHT
 X
+200
+100

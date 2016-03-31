@@ -26,7 +26,7 @@ public class Level3 extends MenuItems
     {
         if(Greenfoot.mouseClicked(this)){
 
-            World3 world3 = new World3();
+            World3 world3 = new World3(0,0);
             Greenfoot.setWorld(world3);
 
         }

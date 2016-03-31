@@ -221,7 +221,8 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
      * @return a super call to die
      */
     public boolean die(){
-        Counter.add();
+        Counter.add(50);
+        getWorld().addObject(new ScoreIndicator(50), getX(),getY());
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         getWorld().addObject(new ScoreIndicator(1), getX(),getY());
         return super.die();

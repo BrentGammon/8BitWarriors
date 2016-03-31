@@ -12,17 +12,24 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private static final int DAMAGE = 1;
     private int health = 2;
     private int speed = 5;
-    private int vertVelocity = 0;
     protected boolean goLeft = false;
     private boolean hit = false;
+    private int frame;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
+    
+    private static final GreenfootImage SHEET = new GreenfootImage("bug.png");
+    private static final int SHEET_H = 1;
+    private static final int SHEET_W = 4;
+    private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
+    private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
+    
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pre ssed in the environment.
      */
     
     public DumbEnemy(){
-      
+        setImage(new GreenfootImage(SPRITE_W,SPRITE_H));
     }
     
     public void act() 
@@ -36,6 +43,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         if (a != null){
             ((Player)a).doDamage(this,DAMAGE);
         }
+        updateSprite();
     }  
     
     
@@ -44,17 +52,14 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
      */
     public void moving()
     {
-        if(onPlatform()&&!isAtEdge()&&endPlatform()){
+        if(onPlatform()&&endPlatform()){
             direction();
         }
-        if(onPlatform()&&!isAtEdge()&&!endPlatform()){
+        if(onPlatform()&&!endPlatform()){
             changeDirection();
             direction();
         }
-        if(onPlatform()&&isAtEdge()&&endPlatform()){
-            changeDirection();
-            direction();
-        }
+        collideMoveLocation(horzVelocity,1);
         //sharaz
         if(isTouching(PushObject.class)){
             changeDirection();
@@ -82,36 +87,9 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     public void direction()
     {
         if(!goLeft){
-            move(1);
+            horzVelocity = 1;
         }else{
-            move(-1); 
-        }
-    }
-    
-    /**
-     * When the object is not on the platform then the object will fall  
-     * @param int g This is the gravity of the object falling
-     */
-    public void fall(int g){
-        if (!onPlatform()){
-            vertVelocity+=g;
-            if(vertVelocity>0){
-                for(int i=0;i<vertVelocity;i++){
-                    moveLocation(0,1);
-                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
-                        vertVelocity = 0;
-                    }
-                }
-            } else if(vertVelocity>0){
-                for(int i=0;i>vertVelocity;i--){
-                    moveLocation(0,-1);
-                    if (!getIntersectingObjects(Terrain.class).isEmpty()){
-                        vertVelocity = 0;
-                    }
-                }
-            }
-        }else{
-            vertVelocity = 0;
+            horzVelocity = -1;
         }
     }
     
@@ -136,9 +114,20 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
      */
     public boolean die(){
         //scoreboard incremented by one
-        Counter.add();
-        getWorld().addObject(new ScoreIndicator(1), getX(),getY());
+        Counter.add(10);
+        getWorld().addObject(new ScoreIndicator(10), getX(),getY());
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
+    }
+    
+    /**
+     * Internal method to set player sprite to apropriate image
+     */
+    private void updateSprite(){
+        //facing front
+        getImage().clear();
+        getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
+        if(!goLeft) getImage().mirrorHorizontally();
+        frame = frame + 1 % (SHEET_H* SHEET_W);
     }
 }

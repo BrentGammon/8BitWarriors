@@ -25,6 +25,7 @@ public class Timer extends UI
         //sharaz, set default values 
         isFreeze = false;
         end = false;
+        time = 0;   
     }
 
     public void act() 

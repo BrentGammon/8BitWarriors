@@ -12,8 +12,8 @@ public class World1 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
-   protected int WORLD_WIDTH = 10000;
-   protected int WORLD_HEIGHT = 900;
+   
+   private boolean bossDefeated = false;
    //private final String gameLevel = "1";
     /**
      * Constructor for objects of class World1.
@@ -22,7 +22,7 @@ public class World1 extends ExtendedWorld
     public World1()
     {
         //call to superclass to use centreCameraOn function
-        super(600,400, true);
+        super(3900,900,600,400, true);
         
         gameLevel = "1";
         Player p = new Player();
@@ -71,14 +71,76 @@ public class World1 extends ExtendedWorld
         //addObject(new Spikes(1),1400,840);
         //addObject(new Spikes(2),1300,840);
         addObject(new DumbEnemy(),1350,750);
+        addObject(new DumbEnemy(),1450,750);
+        addObject(new DumbEnemy(),1550,750);
+        addObject(new DumbEnemy(),2155,117);
         
+        addObject(new Wall(5,1),-22,675);
+        addObject(new WoodLog(),2752,582);
+        addObject(new WoodLog(),2650,645);
+        addObject(new Grass(10,1),3114,735);
+        
+        
+        addObject(new Tree(Tree.LARGE),3114,500);
+        addObject(new Tree(Tree.LARGE),3114,200);
+        
+        addObject(new Grass(),3361,700);
+        addObject(new Grass(),3406,670);
+        addObject(new Grass(),3451,640);
+        addObject(new Grass(),3496,610);
+        addObject(new Grass(),3541,580);
+        addObject(new Wall(9,1),3945,307);
+        addObject(new Grass(8,1),3744,550);
+        
+        addObject(new WoodLog(),2811,288);
+        
+        addObject(new Grass(20,1),2250,310);
+        
+        addObject(new WoodLog(),2216,213);
+        addObject(new Spikes(0),2239,264);
+        addObject(new Wall(2,1),2161,205);
+        
+        addObject(new Spikes(0),1888,264);
+        addObject(new Spikes(0),1908,264);
+        addObject(new Spikes(0),1928,264);
+        
+        addObject(new Spikes(0),2008,264);
+        addObject(new Spikes(0),2028,264);
+        addObject(new Spikes(0),2048,264);
+        
+        addObject(new Tree(Tree.LARGE),1500,650);
+        addObject(new Tree(Tree.LARGE),1500,350);
+        addObject(new Tree(Tree.LARGE),1500,50);
+        
+        addObject(new WoodLog(),1208,214);
+        addObject(new WoodLog(),1369,214);
+        addObject(new WoodLog(),1533,214);
+        addObject(new WoodLog(),1711,214);
+        addObject(new Grass(5,1),1025,256);
+        addObject(new EndFlag(),951,171);
+        
+        addObject(new SuperMonkeyEnemy(),3790,465);
     }
     
-	
-	/**
-	*Method returns the String value of gameLevel
-	*@return String gameLevel
-	*/
+    public void act(){
+        super.act();
+        if (!bossDefeated && getObjects(SuperMonkeyEnemy.class).size()==0){
+            bossDefeated = true;
+            addExtendedActor(new WoodLog(),3214,615);
+            addExtendedActor(new WoodLog(),3214,485);
+        
+            addExtendedActor(new WoodLog(),3014,550);
+            addExtendedActor(new WoodLog(),3014,420);
+        
+            addExtendedActor(new WoodLog(),3014,290);
+            addExtendedActor(new WoodLog(),3214,355);
+        }
+    }
+    
+    /**
+    *Method returns the String value of gameLevel
+    *@return String gameLevel
+    */
     public String getLevel()
     {
         return gameLevel;

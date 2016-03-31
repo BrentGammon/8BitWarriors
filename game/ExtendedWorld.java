@@ -212,8 +212,6 @@ public class ExtendedWorld extends World
                 int y = layer1_yoffset + (int)((layer1.getHeight()-GAME_HEIGHT)*( ((double)-cameraY)/(WORLD_HEIGHT)));
                 int x = layer1_xoffset + (int)((layer1.getWidth()-GAME_WIDTH)*(  ((double)-cameraX)/(WORLD_WIDTH)));
                 bg.setColor(Color.RED);
-                System.out.println("layer1 x: "+y+" y:"+x+" co:"+(-cameraY/WORLD_HEIGHT));
-                System.out.println(""+layer1_yoffset+" + "+layer1.getHeight()+" *(-"+cameraY+"/"+WORLD_HEIGHT+") ");
                 
                 //tile background till draw origin is off screen
                 for (int i = x;i<GAME_WIDTH;i+=layer1.getWidth()){
@@ -372,5 +370,12 @@ public class ExtendedWorld extends World
      */
     public int getStartTime(){
         return startTime;
+    }
+    public void setPause(boolean isPaused){
+        paused = isPaused;
+    }
+    
+    public void addExtendedActor(ExtendedActor a,int x, int y){
+        addObject(a,x - cameraX, y - cameraY);
     }
 }

@@ -1,49 +1,54 @@
- 
-
 import greenfoot.*;
 import java.util.List;
+import java.util.ArrayList;
 /**
- * Simple Monkey Enemy that spawns bananas to throw and hops around
+ * More powerful version of monkey enemy
  * 
  * @author Mitchell Rebuck-Watson
- * @version S2 1
+ * @version S3 1
  */
-public class MonkeyEnemy extends Entity implements IFalling, IDamageable
+public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
 {
     /** Constants */
-    protected static final int HOP_SPEED = -12;
-    protected static final int MOVE_SPEED = 3;
-    protected static final int COOLDOWN = 100;
-    protected static final int IDLE_COOLDOWN = 100;
-    protected static final int HEALTH = 1;
+    public static final int HOP_SPEED = -8;
+    public static final int MOVE_SPEED = 5;
+    public static final int COOLDOWN = 40;
+    public static final int IDLE_COOLDOWN = 200;
+    public static final int MINION_COOLDOWN = 500;
+    public static final int HEALTH = 3;
     /** Sprites */
-    protected GreenfootImage rightSp = new GreenfootImage("images/Graphics/Characters/Antagonist Characters/Monkey Enemy.png");
+    protected GreenfootImage rightSp = new GreenfootImage("images/Graphics/Characters/Antagonist Characters/Super Monkey Enemy.png");
     protected GreenfootImage leftSp;
     /** Weapon variables */
     protected BananaProjectile weapon;
     protected int cooldown = COOLDOWN;
+    private int minionCooldown = MINION_COOLDOWN;
     /** State variables */
     protected boolean facingLeft = false;
     protected int idleCooldown = IDLE_COOLDOWN;
     protected int health = HEALTH;
     
-    private SuperMonkeyEnemy boss;
+    private List<MonkeyEnemy> minions;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
     /**
      * Constructor for Monkey Enemy
      */
-    public MonkeyEnemy(){
+    public SuperMonkeyEnemy(){
+        minions = new ArrayList<MonkeyEnemy>();
+        
         leftSp = new GreenfootImage(rightSp);
         leftSp.mirrorHorizontally();
         setImage(rightSp);
     }
-    public MonkeyEnemy(SuperMonkeyEnemy boss){
-        rightSp = new GreenfootImage("images/Graphics/Characters/Antagonist Characters/Monkey Enemy Minion.png");
-        leftSp = new GreenfootImage(rightSp);
-        leftSp.mirrorHorizontally();
-        setImage(rightSp);
-        this.boss = boss;
+    protected void addedToWorld(World w){
+        MonkeyEnemy m1, m2;
+        m1 = new MonkeyEnemy(this);
+        m2 = new MonkeyEnemy(this);
+        w.addObject(m1,getX()+Greenfoot.getRandomNumber(20)-10,getY());
+        w.addObject(m2,getX()+Greenfoot.getRandomNumber(20)-10,getY());
+        minions.add(m1);
+        minions.add(m2);
     }
     /**
      * Act - do whatever the MonkeyEnemy wants to do. This method is called whenever
@@ -59,16 +64,19 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
         }
         // if not currently in the air
         if (onPlatform()){
+            if (minionCooldown>0)minionCooldown--;
+            
             //if was falling stop
             if (vertVelocity>0) {vertVelocity = 0;}
             // stop horizontal speed
             horzVelocity = 0;
-            List<Player> nearObjects = getObjectsInRange(300,Player.class);
+            List<Player> nearObjects = getObjectsInRange(400,Player.class);
             // if player is near
-            if (nearObjects.size()>0){
+            if (minions.size()==0&&nearObjects.size()>0){
                 //reset idle cooldown
                 idleCooldown = IDLE_COOLDOWN;
                 Player p = nearObjects.get(0);
+                if (Greenfoot.getRandomNumber(minions.size()*2+1)==0) spawnMinion();
                 //if player is further right than monkey
                 if (p.getX()>getX()){
                     setImage(rightSp);
@@ -111,14 +119,10 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
      * Perform idle behavior logic
      */
     private void idle(){
+        if (idleCooldown==1)hop();
         if (idleCooldown-- <= 0){
             idleCooldown = IDLE_COOLDOWN;
-            if(Greenfoot.getRandomNumber(2) == 0){
-                horzVelocity=MOVE_SPEED;
-            } else{
-                horzVelocity=-MOVE_SPEED;
-            }
-            hop();
+            if (Greenfoot.getRandomNumber(minions.size()*2)==0) spawnMinion();
         }
     }
     /**
@@ -133,11 +137,24 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
      * On death increment score and spawn new Dead entity
      */
     public boolean die(){
-        Counter.add(140);
-        getWorld().addObject(new ScoreIndicator(140), getX(),getY());
+        Counter.add(300);
+        getWorld().addObject(new ScoreIndicator(300), getX(),getY());
         if (weapon != null) weapon.die();
-        if (boss != null) boss.minionDeath(this);
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
     }
+    
+    private void spawnMinion(){
+        if (minionCooldown==0){
+            minionCooldown = MINION_COOLDOWN;
+            MonkeyEnemy m = new MonkeyEnemy(this);
+            minions.add(m);
+            getWorld().addObject(m,getX()+Greenfoot.getRandomNumber(20)-10,getY());
+        }
+    }
+    
+    public void minionDeath(MonkeyEnemy m){
+        minions.remove(m);
+    }
 }
+

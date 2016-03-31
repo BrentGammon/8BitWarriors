@@ -64,7 +64,6 @@ public class Player extends Entity implements IFalling, IDamageable
     /** Sound for the player*/
     private GreenfootSound jumpSound = new GreenfootSound("JumpPlayer.wav");
     private GreenfootSound damageSound = new GreenfootSound("PlayerDamage.wav");
-    public static boolean removeAttack;
     
     //sharaz
     protected boolean onPushObject;
@@ -83,12 +82,7 @@ public class Player extends Entity implements IFalling, IDamageable
 
         setImage(front);
         
-        removeAttack = false;
     }   
-    
-    public static void removeAttack(){
-        removeAttack = true;
-    }
     
     /*
      * When the player is added to the world it sets the player as the focus and spawns in the players weapon 
@@ -98,9 +92,6 @@ public class Player extends Entity implements IFalling, IDamageable
         ((ExtendedWorld)w).setFocus(this);
         weapon = new BasicAttack(facingLeft,this);
         w.addObject(weapon,getX(),getY());
-        if(removeAttack){
-            w.removeObject(weapon);
-        }
     }
 
     /**

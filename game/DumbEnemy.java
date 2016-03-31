@@ -23,7 +23,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private static final int SHEET_W = 4;
     private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
     private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
-    
+    private Healthbar healthbar;
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pre ssed in the environment.
@@ -32,7 +32,10 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     public DumbEnemy(){
         setImage(new GreenfootImage(SPRITE_W,SPRITE_H));
     }
-    
+    public void addedToWorld(World w){
+        healthbar = new Healthbar(2,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
+    }
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
@@ -106,6 +109,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     public int doDamage(Actor attacker, int damage){
         if( iframes==0 ){
             health -= damage;
+            healthbar.setHealth(health);
             iframes = 20;
             attackSound.play();
             if (health>0) return damage;
@@ -121,6 +125,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     public boolean die(){
         //scoreboard incremented by one
         Counter.add(10);
+        healthbar.remove();
         getWorld().addObject(new ScoreIndicator(10), getX(),getY());
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();

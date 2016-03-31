@@ -22,6 +22,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
     /** Weapon variables */
     protected BananaProjectile weapon;
     protected int cooldown = COOLDOWN;
+    private Healthbar healthbar;
     /** State variables */
     protected boolean facingLeft = false;
     protected int idleCooldown = IDLE_COOLDOWN;
@@ -45,6 +46,10 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
         leftSp.mirrorHorizontally();
         setImage(rightSp);
         this.boss = boss;
+    }
+    public void addedToWorld(World w){
+        healthbar = new Healthbar(HEALTH,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
     }
     /**
      * Act - do whatever the MonkeyEnemy wants to do. This method is called whenever
@@ -113,6 +118,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
             if (a instanceof Player){
                 cooldown = COOLDOWN;
                 health -= dmg;
+                healthbar.setHealth(health);
                 iframes = 20;
                 vertVelocity = -8;
                 attackSound.play();
@@ -151,6 +157,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
         Counter.add(140);
         getWorld().addObject(new ScoreIndicator(140), getX(),getY());
         if (weapon != null) weapon.die();
+        healthbar.remove();
         if (boss != null) boss.minionDeath(this);
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();

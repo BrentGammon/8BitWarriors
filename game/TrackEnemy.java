@@ -29,6 +29,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     private int standCounter = 0;
     private boolean stand = false;
     
+    private Healthbar healthbar;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     public TrackEnemy()
     {
@@ -39,13 +40,17 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
         right2 = new GreenfootImage("StripeRight2.png");
         setImage(standing);
     }
-
+    public void addedToWorld(World w){
+        healthbar = new Healthbar(health,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
+    }
     public int doDamage(Actor attacker, int damage){
         if( iframes==0 ){
             Attack src = (Attack)getOneIntersectingObject(Attack.class);
             collideMoveLocation(0,-1);
             horzVelocity = src==null?0:src.getDirection()?-4:4;
             health -= damage;
+            healthbar.setHealth(health);
             attackSound.play();
             vertVelocity = -8;
             iframes = 20;
@@ -242,6 +247,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
      */
     public boolean die(){
         Counter.add(50);
+        healthbar.remove();
         getWorld().addObject(new ScoreIndicator(50), getX(),getY());
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         getWorld().addObject(new ScoreIndicator(1), getX(),getY());

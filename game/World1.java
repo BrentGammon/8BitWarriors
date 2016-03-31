@@ -117,7 +117,7 @@ public class World1 extends ExtendedWorld
         addObject(new WoodLog(),1533,214);
         addObject(new WoodLog(),1711,214);
         addObject(new Grass(5,1),1025,256);
-        addObject(new EndFlag(),951,171);
+        addObject(new Flag(),951,192);
         
         addObject(new SuperMonkeyEnemy(),3790,465);
     }

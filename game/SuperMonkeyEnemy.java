@@ -29,6 +29,7 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
     protected int health = HEALTH;
     private int iframes =0;
     
+    private Healthbar healthbar;
     private List<MonkeyEnemy> minions;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
@@ -50,6 +51,8 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
         w.addObject(m2,getX()+Greenfoot.getRandomNumber(20)-10,getY());
         minions.add(m1);
         minions.add(m2);
+        healthbar = new Healthbar(HEALTH,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
     }
     /**
      * Act - do whatever the MonkeyEnemy wants to do. This method is called whenever
@@ -120,6 +123,7 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
         if( iframes==0 ){
             if (a instanceof Player){
                 health -= dmg;
+                healthbar.setHealth(health);
                 iframes = 20;
                 vertVelocity = -8;
                 attackSound.play();
@@ -154,6 +158,7 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
         Counter.add(300);
         getWorld().addObject(new ScoreIndicator(300), getX(),getY());
         if (weapon != null) weapon.die();
+        healthbar.remove();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
     }

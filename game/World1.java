@@ -12,6 +12,8 @@ public class World1 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
+   
+   private boolean bossDefeated = false;
    //private final String gameLevel = "1";
     /**
      * Constructor for objects of class World1.
@@ -72,7 +74,7 @@ public class World1 extends ExtendedWorld
         
         addObject(new Wall(5,1),-22,675);
         addObject(new WoodLog(),2752,582);
-        addObject(new WoodLog(),2752,735);
+        addObject(new WoodLog(),2650,645);
         addObject(new Grass(10,1),3114,735);
         
         
@@ -86,15 +88,6 @@ public class World1 extends ExtendedWorld
         addObject(new Grass(),3541,580);
         addObject(new Wall(9,1),3945,307);
         addObject(new Grass(8,1),3744,550);
-        
-        addObject(new WoodLog(),3214,615);
-        addObject(new WoodLog(),3214,485);
-        
-        addObject(new WoodLog(),3014,550);
-        addObject(new WoodLog(),3014,420);
-        
-        addObject(new WoodLog(),3014,290);
-        addObject(new WoodLog(),3214,355);
         
         addObject(new WoodLog(),2811,288);
         
@@ -126,6 +119,20 @@ public class World1 extends ExtendedWorld
         addObject(new SuperMonkeyEnemy(),3790,465);
     }
     
+    public void act(){
+        super.act();
+        if (!bossDefeated && getObjects(SuperMonkeyEnemy.class).size()==0){
+            bossDefeated = true;
+            addExtendedActor(new WoodLog(),3214,615);
+            addExtendedActor(new WoodLog(),3214,485);
+        
+            addExtendedActor(new WoodLog(),3014,550);
+            addExtendedActor(new WoodLog(),3014,420);
+        
+            addExtendedActor(new WoodLog(),3014,290);
+            addExtendedActor(new WoodLog(),3214,355);
+        }
+    }
     
     /**
     *Method returns the String value of gameLevel

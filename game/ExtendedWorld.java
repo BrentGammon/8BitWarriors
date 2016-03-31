@@ -363,4 +363,8 @@ public class ExtendedWorld extends World
     public void setPause(boolean isPaused){
         paused = isPaused;
     }
+    
+    public void addExtendedActor(ExtendedActor a,int x, int y){
+        addObject(a,x - cameraX, y - cameraY);
+    }
 }

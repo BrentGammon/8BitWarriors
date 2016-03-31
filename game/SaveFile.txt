@@ -3,3 +3,5 @@ UP
 LEFT
 RIGHT
 X
+200
+100

@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.params=
-comment0.target=RightControl()
-comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ When\ the\ object\ has\ been\ clicked\ it\ will\ ask\ the\ player\ to\ input\ a\ string\ value\ this\ value\ will\ be\ stored\ as\ a\ keybinding\ for\ right\ movement\r\n
-numComments=2

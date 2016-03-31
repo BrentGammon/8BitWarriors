@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.params=
-comment0.target=Settings()
-comment0.text=\r\n\ Contructor\ for\ Settings\r\n\ When\ object\ is\ created\ it\ will\ set\ the\ image\ for\ that\ object\r\n
-comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Checks\ if\ the\ mouse\ is\ on\ the\ object\ if\ so\ then\ the\ image\ is\ changed\ to\ show\ the\ player\ that\ they\ are\ on\ the\ object\r\n\ if\ clicked\ to\ change\ the\ world\ to\ the\ settings\ menu\r\n
-numComments=2

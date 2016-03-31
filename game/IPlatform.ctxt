@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.params=a
-comment0.target=boolean\ canSupportEntity(Entity)
-comment0.text=\r\n\ Main\ function\ of\ the\ interface.\ Returns\ the\ boolean\ representing\ if\ the\ given\ actor\r\n\ can\ stand\ on\ it.\r\n\ \r\n\ @param\ a\ The\ entity\ to\ query\r\n
-comment1.params=
-comment1.target=boolean\ bottomIsCollidable()
-numComments=2

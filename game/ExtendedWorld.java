@@ -9,7 +9,7 @@ import java.util.List;
  * ways  and enables extended functionality to ExtendedActors. 
  * 
  * @author Mitchell 
- * @version Sprint2 0.2
+ * @version Sprint3 0.3
  */
 public class ExtendedWorld extends World
 {
@@ -18,19 +18,12 @@ public class ExtendedWorld extends World
     protected static int WORLD_END = WORLD_HEIGHT;
     protected static int WORLD_WIDTH = 20000;
     
-    
-    
     /** The gravity applied to every IFalling actor */
     protected int GRAVITY = 2;
     
     /** Dimensions of the screen */
     protected static  int GAME_HEIGHT = 400;
     protected static  int GAME_WIDTH = 600;
-    
-    //protected static  int GAME_HEIGHT = 1200;
-    //protected static  int GAME_WIDTH = 1600;
-    
-    
     
     /** The speed to lock the world at */
     public static final int GAME_SPEED = 45;
@@ -87,6 +80,9 @@ public class ExtendedWorld extends World
     protected String gameLevel;
     
     private static boolean stillAlive;
+    
+    protected int startScore;
+    protected int startTime;
     /**
      * Constructor for objects of class ExtendedWorld.
      */
@@ -361,5 +357,20 @@ public class ExtendedWorld extends World
     public boolean isPaused(){
         return paused;
     }
-
+    
+    /**
+     * returns the score which has been set at the start of the level
+     * @return int startScore
+     */
+    public int getStartScore(){
+        return startScore;
+    }
+    
+    /**
+     * returns the time which has been set at the start of the level
+     * @return int startTime
+     */
+    public int getStartTime(){
+        return startTime;
+    }
 }

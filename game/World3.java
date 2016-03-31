@@ -4,40 +4,44 @@ import greenfoot.*;
  * Level 3 of the game, this consists of a boss and the end game scenario
  * 
  * @author Brent Gammon
- * @version S3 
+ * @version S3 31/3/16
  */
 public class World3 extends ExtendedWorld
 {
     boolean begin;
     private MuteControl muteControl;
+    protected int WORLD_WIDTH = 10000;
+    protected int WORLD_HEIGHT = 900;
     /**
      * Constructor for objects of class World2.
      * 
      */
-    public World3()
+    public World3(int score, int time)
     {
         //call to superclass to use centreCameraOn function
-        super(true);
-
+        super(600,400,true);
+        startScore = score;
+        startTime = time;
+        Timer timer = new Timer();
+        timer.setTime(time);
+        Counter counter = new Counter();
+        counter.setValue(score);
+        counter.updateImage();
+        addObject(timer,52,35);
+        addObject(counter,55,67);
         gameLevel = "3";
-
-        WORLD_WIDTH = 20000;
-        WORLD_HEIGHT = 900;
-        Player p = new Player();
-        //layer1_xoffset = -200;
-        //layer1_yoffset = -100;
-        layer1 = new GreenfootImage("images/jungleBig.png");
-
+        layer1 = new GreenfootImage("images/Castle BackgroundBig.png");
         redrawBackground();
+        Player p = new Player();
         addObject(new WorldEvents(),0,0);
         addObject(p,100,826);
         addObject(new Wall(30,3),15,779);
-        addObject(new Timer(),52,40);
-        addObject(new Counter(),55,67);
         muteControl = new MuteControl();
-        addObject(muteControl,54,76);
-        addObject(new SaveGame(),54,76);
-        addObject(new PowerupDisplay(p),204,97);
+        addObject(muteControl,490,29);
+        addObject(new SaveGame(),530,28);
+        addObject(new speed(p),320,67);
+        addObject(new Ammo(p),400,67);
+        addObject(new Jump(p),470,67);
         addObject(new Grass(20,3),301,885);
         addObject(new Grass(20,3),751,815);
         addObject(new WoodLog(),1300,790);
@@ -107,7 +111,6 @@ public class World3 extends ExtendedWorld
         return gameLevel;
     }
 
-    
     /**
      *When the application has been paused when this World is loaded it will stop the music 
      */
@@ -129,6 +132,4 @@ public class World3 extends ExtendedWorld
 
         }
     }
-
-   
 }

@@ -12,15 +12,29 @@ public class World2 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
+   //private int startScore;
+   //private int startTime;
    //private final String gameLevel = "2";
     /**
      * Constructor for objects of class World2.
      * 
      */
-    public World2()
+    public World2(int score, int time)
     {
         //call to superclass to use centreCameraOn function
         super(true);
+        startScore = score;
+        startTime = time;
+        
+        Timer timer = new Timer();
+        timer.setTime(time);
+        Counter counter = new Counter();
+        counter.setValue(score);
+        counter.updateImage();
+        
+        addObject(timer,52,35);
+        addObject(counter,55,67);
+        
         
         gameLevel = "2";
         
@@ -35,9 +49,9 @@ public class World2 extends ExtendedWorld
         
         redrawBackground();
         addObject(p,100,826);
-        addObject(new Timer(),52,35);
-        addObject(new Counter(),55,67);
+       
         muteControl = new MuteControl();
+        muteControl.play();
         addObject(muteControl,300,16);
         addObject(new SaveGame(),450,16);
         
@@ -76,5 +90,15 @@ public class World2 extends ExtendedWorld
     {
         if (!isPaused())    muteControl.play();
     }
+    //     
+    //     public int getStartScore(){
+    //         return startScore;
+    //     }
+    //     
+    //     public int getStartTime(){
+    //         return startTime;
+    //     }
+    
+   
 }
 

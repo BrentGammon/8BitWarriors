@@ -34,9 +34,12 @@ public class World1 extends ExtendedWorld
         
         redrawBackground();
         addObject(p,100,826);
-        addObject(new Timer(),52,35);
+        Timer timer = new Timer();
+        timer.setTime(0);
+        addObject(timer,52,35);
         addObject(new Counter(),55,67);
         muteControl = new MuteControl();
+        //muteControl.play();
         addObject(muteControl,490,29);
         addObject(new SaveGame(),530,28);
         addObject(new speed(p),320,67);

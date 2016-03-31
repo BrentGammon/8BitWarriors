@@ -1,4 +1,3 @@
- 
 
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
@@ -21,13 +20,13 @@ public class Timer extends UI
     private static boolean isFreeze;
     //sharaz, called by player die method 
     private static boolean end;
-    
+
     public Timer(){
         //sharaz, set default values 
         isFreeze = false;
         end = false;
     }
-    
+
     public void act() 
     {
         // Add your action code here.
@@ -51,11 +50,11 @@ public class Timer extends UI
     public static void end(){
         end = true;
     }
-    
+
     //sharaz,method called from enemy/player class upon player death, update field so that timer stops increasing
     public static void freeze(){
         isFreeze = true;
-        
+
     }
     //sharaz, time at which player dies
     public static int getFinalTime(){
@@ -88,7 +87,7 @@ public class Timer extends UI
     {
         return time == 999;
     }
-    
+
     //reset method for the timer
     public void reset(){
 
@@ -99,6 +98,16 @@ public class Timer extends UI
 
         }
 
+    }
+
+    
+    public int getTimeValue(){
+        return time;    
+    }
+    
+    public void setTime(int time){
+        this.time = time;
+        
     }
 
 }

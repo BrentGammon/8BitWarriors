@@ -223,6 +223,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     public boolean die(){
         Counter.add();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
+        getWorld().addObject(new ScoreIndicator(1), getX(),getY());
         return super.die();
     }
 }

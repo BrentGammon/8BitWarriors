@@ -1,7 +1,5 @@
- 
 
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class MuteControl here.
  * 
@@ -19,20 +17,9 @@ public class MuteControl extends UI
     private boolean pDown;
     private GreenfootImage img1 = new GreenfootImage("button-red.png");
     private GreenfootImage img2 = new GreenfootImage("button-green.png");
-    /**
-     * Act - do whatever the MuteControl wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-
-    MuteControl(){
-        //stop();
-        play();
-
-    }
 
     public void act() 
     {
-
         if(isMuted){
             //if is muted, have muted image appear
             setImage(img1);
@@ -47,9 +34,7 @@ public class MuteControl extends UI
         //detect if user has clicked on image
         if(Greenfoot.mouseClicked(this))
         {
-            
             updateState();
-
         }
         if(!oDown && Greenfoot.isKeyDown("o") && isMuted == false ){
             oDown = true;
@@ -69,10 +54,17 @@ public class MuteControl extends UI
         }
     }
 
+    /**
+     * this returns he interger value of the background music 
+     * @return int currentVolume he level that the sound is currently on
+     */
     public int getVolume(){
         return currentVolume;
     }
 
+    /**
+     * Changes the image of the mute object and plays/stops music denpding on the state
+     */
     private void updateState()
     {
         //if user has clicked on image to mute, set field to true and paude music
@@ -90,15 +82,25 @@ public class MuteControl extends UI
         }
     }
 
+    /**
+     * Returns the state of the background music 
+     * @return boolean isMuted if the sound is currently muted
+     */
     public boolean getIsMuted()
     {
         return isMuted;
     }
 
+    /**
+     * stops the background music 
+     */
     public void stop(){
         backgroundMusic.stop();
     }
 
+    /**
+     * Plays the backgound music
+     */
     public void play()
     {
         backgroundMusic.play();

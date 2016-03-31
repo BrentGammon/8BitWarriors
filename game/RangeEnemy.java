@@ -78,6 +78,7 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
         //scoreboard incremented by one
         Counter.add();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
+        getWorld().addObject(new ScoreIndicator(1), getX(),getY());
         return super.die();
     }
     

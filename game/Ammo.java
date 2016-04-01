@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Ammo here.
+ * Gives player more ammo, displays if powerup is active or not.
  * 
  * @author sharaz
  */

@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Game over screen will appear when character dies.
  * 
- * @author Sharaz
+ * @authors Sharaz, Mati 
  * @version 1.0
  */
 public class Gameover extends UI

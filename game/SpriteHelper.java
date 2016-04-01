@@ -1,10 +1,10 @@
 import greenfoot.*;
 import java.awt.Color;
 /**
- * Simple image loader to help with managing sprites
+ * Simple image loader to help with managing the sprite sheet.
  * 
- * @author Mitchell Rebuck-Watson
- * @version S3 1
+ * @author Mati Saidzai
+ * @version S3-15 V1.0
  */
 public class SpriteHelper  
 {

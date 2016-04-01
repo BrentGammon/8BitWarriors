@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Wall here.
+ * Setting Wall terrain in the game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @authors Mitchell Rebuck Watson, Mati
+ * @version 0.2
  */
 public class Wall extends Terrain
 {

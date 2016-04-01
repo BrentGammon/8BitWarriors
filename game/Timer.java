@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 import java.awt.Transparency;
 /**
- * Write a description of class MuteControl here.
+ * To display time of game.
  * 
  * @author (Viktor + Sharaz) 
  *

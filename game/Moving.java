@@ -1,9 +1,7 @@
- 
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Moving here.
+ * Moving Image
  * 
  * @author Sharaz
  * @version 2.0

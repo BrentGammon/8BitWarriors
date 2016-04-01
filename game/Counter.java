@@ -30,7 +30,7 @@ import java.awt.Color;
  * }
  * </pre>
  * 
- * @author Sharaz
+ * @authors Sharaz, Mati
  * @version 2.0
  */
 public class Counter extends UI

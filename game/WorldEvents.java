@@ -1,10 +1,10 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class WorldEvents here.
+ * World Events
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent, Mati
+ * @version 0.1
  */
 public class WorldEvents extends Actor
 {

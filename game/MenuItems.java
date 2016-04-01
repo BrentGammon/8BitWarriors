@@ -1,6 +1,4 @@
- 
-
-import greenfoot.*;
+ import greenfoot.*;
 
 /**
  * Super class for the menu elements used for ordering the subclasses

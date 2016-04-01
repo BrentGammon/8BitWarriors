@@ -1,13 +1,11 @@
- 
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 import java.awt.Transparency;
 /**
- * Write a description of class PowerupDisplay here.
+ * Displays powerups. 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @authors Viktor, Mati, Sharaz 
+ * @version 0.1
  */
 public class PowerupDisplay extends UI
 {

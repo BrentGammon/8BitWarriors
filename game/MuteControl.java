@@ -1,10 +1,10 @@
 
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class MuteControl here.
+ * Mutes the sound playing in BG.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sharaz, Mati, Viktor 
+ * @version 0.1
  */
 public class MuteControl extends UI
 {

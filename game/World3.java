@@ -9,7 +9,7 @@ import greenfoot.*;
 public class World3 extends ExtendedWorld
 {
     boolean begin;
-    private MuteControl muteControl;
+    GreenfootSound bgm = new GreenfootSound("castle.mp3");
     protected int WORLD_WIDTH = 10000;
     protected int WORLD_HEIGHT = 900;
     /**
@@ -36,9 +36,6 @@ public class World3 extends ExtendedWorld
         addObject(new WorldEvents(),0,0);
         addObject(p,100,826);
         addObject(new Wall(30,3),15,779);
-        muteControl = new MuteControl();
-        addObject(muteControl,490,29);
-        addObject(new SaveGame(),530,28);
         addObject(new speed(p),320,67);
         addObject(new Ammo(p),400,67);
         addObject(new Jump(p),470,67);
@@ -100,6 +97,7 @@ public class World3 extends ExtendedWorld
         addObject(new Spikes(0),2342,351);
         addObject(new TrackEnemy(),2891,296);
         addObject(new TrackEnemy(),3325,296);
+        MuteControl.setBGM(bgm);
     }
 
     /**
@@ -117,7 +115,7 @@ public class World3 extends ExtendedWorld
     public void stopped()
     {
         super.stopped();
-        muteControl.stop();
+        MuteControl.stop();
     }
 
     /**
@@ -125,11 +123,6 @@ public class World3 extends ExtendedWorld
      */
     public void started()
     {
-        if (!isPaused()){
-            if(!(muteControl.getIsMuted())){
-                muteControl.play();
-            }
-
-        }
+        MuteControl.setBGM(bgm);
     }
 }

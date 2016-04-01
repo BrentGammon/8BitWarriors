@@ -121,7 +121,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
                 healthbar.setHealth(health);
                 iframes = 20;
                 vertVelocity = -8;
-                attackSound.play();
+                MuteControl.playSound(attackSound);
                 if (health>0) return dmg;
                 die();
             }

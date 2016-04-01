@@ -12,7 +12,7 @@ public class World1 extends ExtendedWorld
 {
    boolean begin;
    private MuteControl muteControl;
-   
+   GreenfootSound bgm = new GreenfootSound("forest.mp3");
    private boolean bossDefeated = false;
    //private final String gameLevel = "1";
     /**
@@ -23,7 +23,7 @@ public class World1 extends ExtendedWorld
     {
         //call to superclass to use centreCameraOn function
         super(3900,900,600,400, true);
-        
+        MuteControl.setBGM(bgm);
         gameLevel = "1";
         Player p = new Player();
         //PowerupDisplay pd = new PowerupDisplay();
@@ -40,8 +40,6 @@ public class World1 extends ExtendedWorld
         addObject(new Counter(),55,67);
         muteControl = new MuteControl();
         //muteControl.play();
-        addObject(muteControl,490,29);
-        addObject(new SaveGame(),530,28);
         addObject(new speed(p),320,67);
         addObject(new Ammo(p),400,67);
         addObject(new Jump(p),470,67);
@@ -112,6 +110,11 @@ public class World1 extends ExtendedWorld
         addObject(new Tree(Tree.LARGE),1500,350);
         addObject(new Tree(Tree.LARGE),1500,50);
         
+        addObject(new Tree(Tree.SMALL),1114,823);
+        addObject(new Tree(Tree.SMALL),1264,823);
+        addObject(new Tree(Tree.SMALL),1414,823);
+        addObject(new Tree(Tree.MED),995,811);
+        
         addObject(new WoodLog(),1208,214);
         addObject(new WoodLog(),1369,214);
         addObject(new WoodLog(),1533,214);
@@ -160,12 +163,7 @@ public class World1 extends ExtendedWorld
      */
     public void started()
     {
-        if (!isPaused()){
-            if(!(muteControl.getIsMuted())){
-                muteControl.play();
-            }
-            
-        }
+        MuteControl.setBGM(bgm);
     }
 }
 

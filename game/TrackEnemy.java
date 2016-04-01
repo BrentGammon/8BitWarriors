@@ -51,7 +51,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
             horzVelocity = src==null?0:src.getDirection()?-4:4;
             health -= damage;
             healthbar.setHealth(health);
-            attackSound.play();
+            MuteControl.playSound(attackSound);
             vertVelocity = -8;
             iframes = 20;
             if (health<=0) die();

@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MuteControl extends UI
 {
     //set specified sountrack
-    private static GreenfootSound backgroundMusic = new GreenfootSound("01ANightOfDizzySpells.mp3");
+    private static GreenfootSound backgroundMusic;
     public static boolean isMuted = false;
     protected int currentVolume;
     private int volume = 100;
@@ -26,10 +26,6 @@ public class MuteControl extends UI
         }else{
             //if is not muted, have selected image appear
             setImage(img2);
-        }
-        if(isMuted==true){
-            //once user has clicked on mute icon, stop music
-            stop();
         }
         //detect if user has clicked on image
         if(Greenfoot.mouseClicked(this))
@@ -71,13 +67,13 @@ public class MuteControl extends UI
         if(!(isMuted))
         {
             setImage(img1);
-            backgroundMusic.pause();
+            if(backgroundMusic !=null) backgroundMusic.pause();
             isMuted=true;
         }
         //if user has not clicked on image to mute, continue playing music on a constant loop (never ending)
         else {
             setImage(img2);
-            backgroundMusic.playLoop();
+            if(backgroundMusic !=null) backgroundMusic.playLoop();
             isMuted=false;
         }
     }
@@ -86,7 +82,7 @@ public class MuteControl extends UI
      * Returns the state of the background music 
      * @return boolean isMuted if the sound is currently muted
      */
-    public boolean getIsMuted()
+    public static boolean getIsMuted()
     {
         return isMuted;
     }
@@ -94,15 +90,25 @@ public class MuteControl extends UI
     /**
      * stops the background music 
      */
-    public void stop(){
-        backgroundMusic.stop();
+    public static void stop(){
+        if(backgroundMusic !=null)backgroundMusic.stop();
     }
 
     /**
      * Plays the backgound music
      */
-    public void play()
+    public static void play()
     {
-        backgroundMusic.play();
+        if(backgroundMusic !=null)backgroundMusic.play();
+    }
+    
+    public static void playSound(GreenfootSound s){
+        if(!isMuted)s.play();
+    }
+    
+    public static void setBGM(GreenfootSound s){
+        stop();
+        backgroundMusic = s;
+        if (!isMuted) s.playLoop();
     }
 }

@@ -107,13 +107,16 @@ public class Counter extends UI
      * Add a new score to the current counter value.  This will animate
      * the counter over consecutive frames until it reaches the new value.
      */
-    
     public static void add()
     {
        target++;
        increment = true;
        
     }
+    /**
+     * Add a new score to the current counter value.  This will animate
+     * the counter over consecutive frames until it reaches the new value.
+     */
     public static void add(int num){
         target += num;
         increment = true;
@@ -129,7 +132,7 @@ public class Counter extends UI
     
     //return final value (player dies, no longer increasing)
     public static int getFinalVal(){
-        return value;
+        return target;
     }
    
     

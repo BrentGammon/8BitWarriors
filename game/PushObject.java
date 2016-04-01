@@ -12,6 +12,7 @@ public class PushObject extends Moveable implements IFalling
 
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         setImage("cube.png");
         isPushed();
         if (collideMoveLocation(0,vertVelocity)&&onPlatform()){

@@ -54,6 +54,7 @@ public class Healthbar extends ExtendedActor
          bg.drawRect(0,0,max*5-1,4);
     }
     public void remove(){
+        getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         if (visible)getWorld().removeObject(this);
     }
 }

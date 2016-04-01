@@ -15,6 +15,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     protected boolean goLeft = false;
     private boolean hit = false;
     private int frame;
+    private int iframes=0;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
     private static final GreenfootImage SHEET = new GreenfootImage("bug.png");
@@ -22,7 +23,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private static final int SHEET_W = 4;
     private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
     private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
-    
+    private Healthbar healthbar;
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pre ssed in the environment.
@@ -31,17 +32,23 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     public DumbEnemy(){
         setImage(new GreenfootImage(SPRITE_W,SPRITE_H));
     }
-    
+    public void addedToWorld(World w){
+        healthbar = new Healthbar(2,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
+    }
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
-        moving(); 
-        /*if player object has interacted with enemy, then remove its weapon, remove player, freeze the timer,
-         * and display the gameover image by adding an object of it to the world
-        */
-        Actor a = getOneIntersectingObject(Player.class);
-        if (a != null){
-            ((Player)a).doDamage(this,DAMAGE);
+        if (iframes>0) iframes--;
+        else{
+            moving(); 
+            /*if player object has interacted with enemy, then remove its weapon, remove player, freeze the timer,
+             * and display the gameover image by adding an object of it to the world
+            */
+            Actor a = getOneIntersectingObject(Player.class);
+            if (a != null){
+                ((Player)a).doDamage(this,DAMAGE);
+            }
         }
         updateSprite();
     }  
@@ -100,12 +107,15 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
      * @return int damage the amount done to the actor
      */
     public int doDamage(Actor attacker, int damage){
-        health -= damage;
-         attackSound.play();
-        if (health<=0){
+        if( iframes==0 ){
+            health -= damage;
+            healthbar.setHealth(health);
+            iframes = 20;
+            attackSound.play();
+            if (health>0) return damage;
             die();
-        }
-        return damage;
+            return damage;
+        }else return 0;
     }
      
     /**
@@ -115,6 +125,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     public boolean die(){
         //scoreboard incremented by one
         Counter.add(10);
+        healthbar.remove();
         getWorld().addObject(new ScoreIndicator(10), getX(),getY());
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
@@ -128,6 +139,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         getImage().clear();
         getImage().drawImage(SHEET,-(frame%SHEET_W)*SPRITE_W,0);
         if(!goLeft) getImage().mirrorHorizontally();
-        frame = frame + 1 % (SHEET_H* SHEET_W);
+        if (iframes>0&&iframes%10<5) setImage(SpriteHelper.makeWhite( getImage()));
+        else frame = frame + 1 % (SHEET_H* SHEET_W);
     }
 }

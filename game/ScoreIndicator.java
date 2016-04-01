@@ -20,6 +20,7 @@ public class ScoreIndicator extends ExtendedActor
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
         if (life--==0) getWorld().removeObject(this);
         else{
             moveLocation(0,-1);

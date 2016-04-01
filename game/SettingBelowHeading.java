@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class SettingBelowHeading here.
+ * image that goes under heading, "choose a key below to assign" 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mati
+ * @version 0.1
  */
 public class SettingBelowHeading extends MenuItems
 {

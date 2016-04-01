@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class SettingsBanner here.
+ * Banner for the settings screen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mati
+ * @version 0.1
  */
 public class SettingsBanner extends MenuItems
 {

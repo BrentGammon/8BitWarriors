@@ -1,9 +1,9 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Jump here.
+ * Allows the player to jump higher, displays if powerup is active or not.
  * 
- * @author sharaz
+ * @author Sharaz
  *
  */
 public class Jump extends UI

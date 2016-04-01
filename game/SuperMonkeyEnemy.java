@@ -15,7 +15,7 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
     public static final int COOLDOWN = 40;
     public static final int IDLE_COOLDOWN = 200;
     public static final int MINION_COOLDOWN = 500;
-    public static final int HEALTH = 3;
+    public static final int HEALTH = 2;
     /** Sprites */
     protected GreenfootImage rightSp = new GreenfootImage("images/Graphics/Characters/Antagonist Characters/Super Monkey Enemy.png");
     protected GreenfootImage leftSp;
@@ -27,7 +27,9 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
     protected boolean facingLeft = false;
     protected int idleCooldown = IDLE_COOLDOWN;
     protected int health = HEALTH;
+    private int iframes =0;
     
+    private Healthbar healthbar;
     private List<MonkeyEnemy> minions;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
@@ -49,6 +51,8 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
         w.addObject(m2,getX()+Greenfoot.getRandomNumber(20)-10,getY());
         minions.add(m1);
         minions.add(m2);
+        healthbar = new Healthbar(HEALTH,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
     }
     /**
      * Act - do whatever the MonkeyEnemy wants to do. This method is called whenever
@@ -62,43 +66,52 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
             weapon = new BananaProjectile(facingLeft,this);
             getWorld().addObject(weapon,getX(),getY());
         }
-        // if not currently in the air
-        if (onPlatform()){
-            if (minionCooldown>0)minionCooldown--;
-            
-            //if was falling stop
-            if (vertVelocity>0) {vertVelocity = 0;}
-            // stop horizontal speed
-            horzVelocity = 0;
-            List<Player> nearObjects = getObjectsInRange(400,Player.class);
-            // if player is near
-            if (minions.size()==0&&nearObjects.size()>0){
-                //reset idle cooldown
-                idleCooldown = IDLE_COOLDOWN;
-                Player p = nearObjects.get(0);
-                if (Greenfoot.getRandomNumber(minions.size()*2+1)==0) spawnMinion();
-                //if player is further right than monkey
-                if (p.getX()>getX()){
-                    setImage(rightSp);
-                    facingLeft = false;
-                    horzVelocity=MOVE_SPEED;
-                }else{
-                    setImage(leftSp);
-                    facingLeft = true;
-                    horzVelocity= -MOVE_SPEED;
-                }
-                hop();
-                if (weapon!=null){
-                    //tell weapon what to attack
-                    weapon.setTarget(p);
-                    //if in range throw banana
-                    if (getDistanceTo(p)<250){
-                        weapon.fire();
-                        weapon = null;
-                        cooldown = COOLDOWN;
+        if (iframes>0){
+            if(iframes%10<5){
+                setImage(SpriteHelper.makeWhite(facingLeft?leftSp:rightSp));
+            }else{
+                setImage(facingLeft?leftSp:rightSp);
+            }
+            iframes--;
+        }else{
+            // if not currently in the air
+            if (onPlatform()){
+                if (minionCooldown>0)minionCooldown--;
+                
+                //if was falling stop
+                if (vertVelocity>0) {vertVelocity = 0;}
+                // stop horizontal speed
+                horzVelocity = 0;
+                List<Player> nearObjects = getObjectsInRange(400,Player.class);
+                // if player is near
+                if (minions.size()==0&&nearObjects.size()>0){
+                    //reset idle cooldown
+                    idleCooldown = IDLE_COOLDOWN;
+                    Player p = nearObjects.get(0);
+                    if (Greenfoot.getRandomNumber(minions.size()*2+1)==0) spawnMinion();
+                    //if player is further right than monkey
+                    if (p.getX()>getX()){
+                        setImage(rightSp);
+                        facingLeft = false;
+                        horzVelocity=MOVE_SPEED;
+                    }else{
+                        setImage(leftSp);
+                        facingLeft = true;
+                        horzVelocity= -MOVE_SPEED;
                     }
-                }
-            }else idle();
+                    hop();
+                    if (weapon!=null){
+                        //tell weapon what to attack
+                        weapon.setTarget(p);
+                        //if in range throw banana
+                        if (getDistanceTo(p)<250){
+                            weapon.fire();
+                            weapon = null;
+                            cooldown = COOLDOWN;
+                        }
+                    }
+                }else idle();
+            }
         }
         if (weapon!=null) weapon.setDirection(facingLeft);
         if (collideMoveLocation(horzVelocity,vertVelocity))horzVelocity = 0;
@@ -107,13 +120,18 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
      * can only be hurt by player
      */
     public int doDamage(Actor a, int dmg){
-        if (a instanceof Player){
-            health -= dmg;
-            attackSound.play();
-            if (health>0) return dmg;
-            die();
-        }
-        return dmg;
+        if( iframes==0 ){
+            if (a instanceof Player){
+                health -= dmg;
+                healthbar.setHealth(health);
+                iframes = 20;
+                vertVelocity = -8;
+                attackSound.play();
+                if (health>0) return dmg;
+                die();
+            }
+            return dmg;
+        }else return 0;
     }
     /**
      * Perform idle behavior logic
@@ -140,6 +158,7 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
         Counter.add(300);
         getWorld().addObject(new ScoreIndicator(300), getX(),getY());
         if (weapon != null) weapon.die();
+        healthbar.remove();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
     }

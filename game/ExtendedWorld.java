@@ -108,6 +108,7 @@ public class ExtendedWorld extends World
         GAME_WIDTH = gameW;
         
         this.useCamera = useCamera;
+        addObject(new PauseMenu(),gameW/2,gameH/2);
         setPaintOrder();
     }
 
@@ -118,6 +119,8 @@ public class ExtendedWorld extends World
     public void act(){
         //set game speed every tick so it cant be changed by the slider
         //Greenfoot.setSpeed(GAME_SPEED);
+        String key = Greenfoot.getKey();
+        if (key!=null&& key.equals("escape")) paused = !paused;
         if (paused) return;
         //do gravity
         List<IFalling> actors = getObjects(IFalling.class);
@@ -275,8 +278,8 @@ public class ExtendedWorld extends World
         }
         
         bg.setColor(Color.RED);
-        bg.drawString("cam x: "+cameraX+" y:"+cameraY,20,20);
-        if (paused) bg.drawString("PAUSED",200,200);
+        //bg.drawString("cam x: "+cameraX+" y:"+cameraY,20,20);
+        //if (paused) bg.drawString("PAUSED",200,200);
       
     }
 

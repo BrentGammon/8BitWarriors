@@ -1,9 +1,9 @@
 import greenfoot.*;
 
 /**
- * Write a description of class speed here.
+ * Speed powerup to make the player quicker, displays if powerup is active or not.
  * 
- * @author sharaz
+ * @author Sharaz
  */
 public class speed extends UI
 {

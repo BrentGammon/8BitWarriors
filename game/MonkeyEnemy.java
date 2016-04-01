@@ -15,18 +15,20 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
     protected static final int MOVE_SPEED = 3;
     protected static final int COOLDOWN = 100;
     protected static final int IDLE_COOLDOWN = 100;
-    protected static final int HEALTH = 1;
+    protected static final int HEALTH = 4;
     /** Sprites */
     protected GreenfootImage rightSp = new GreenfootImage("images/Graphics/Characters/Antagonist Characters/Monkey Enemy.png");
     protected GreenfootImage leftSp;
     /** Weapon variables */
     protected BananaProjectile weapon;
     protected int cooldown = COOLDOWN;
+    private Healthbar healthbar;
     /** State variables */
     protected boolean facingLeft = false;
     protected int idleCooldown = IDLE_COOLDOWN;
     protected int health = HEALTH;
     
+    private int iframes = 0;
     private SuperMonkeyEnemy boss;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
@@ -45,6 +47,10 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
         setImage(rightSp);
         this.boss = boss;
     }
+    public void addedToWorld(World w){
+        healthbar = new Healthbar(HEALTH,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
+    }
     /**
      * Act - do whatever the MonkeyEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -58,39 +64,48 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
             getWorld().addObject(weapon,getX(),getY());
         }
         // if not currently in the air
-        if (onPlatform()){
-            //if was falling stop
-            if (vertVelocity>0) {vertVelocity = 0;}
-            // stop horizontal speed
-            horzVelocity = 0;
-            List<Player> nearObjects = getObjectsInRange(300,Player.class);
-            // if player is near
-            if (nearObjects.size()>0){
-                //reset idle cooldown
-                idleCooldown = IDLE_COOLDOWN;
-                Player p = nearObjects.get(0);
-                //if player is further right than monkey
-                if (p.getX()>getX()){
-                    setImage(rightSp);
-                    facingLeft = false;
-                    horzVelocity=MOVE_SPEED;
-                }else{
-                    setImage(leftSp);
-                    facingLeft = true;
-                    horzVelocity= -MOVE_SPEED;
-                }
-                hop();
-                if (weapon!=null){
-                    //tell weapon what to attack
-                    weapon.setTarget(p);
-                    //if in range throw banana
-                    if (getDistanceTo(p)<250){
-                        weapon.fire();
-                        weapon = null;
-                        cooldown = COOLDOWN;
+        if (iframes>0){
+            if(iframes%10<5){
+                setImage(SpriteHelper.makeWhite(facingLeft?leftSp:rightSp));
+            }else{
+                setImage(facingLeft?leftSp:rightSp);
+            }
+            iframes--;
+        }else{
+            if (onPlatform()){
+                //if was falling stop
+                if (vertVelocity>0) {vertVelocity = 0;}
+                // stop horizontal speed
+                horzVelocity = 0;
+                List<Player> nearObjects = getObjectsInRange(300,Player.class);
+                // if player is near
+                if (nearObjects.size()>0){
+                    //reset idle cooldown
+                    idleCooldown = IDLE_COOLDOWN;
+                    Player p = nearObjects.get(0);
+                    //if player is further right than monkey
+                    if (p.getX()>getX()){
+                        setImage(rightSp);
+                        facingLeft = false;
+                        horzVelocity=MOVE_SPEED;
+                    }else{
+                        setImage(leftSp);
+                        facingLeft = true;
+                        horzVelocity= -MOVE_SPEED;
                     }
-                }
-            }else idle();
+                    hop();
+                    if (weapon!=null){
+                        //tell weapon what to attack
+                        weapon.setTarget(p);
+                        //if in range throw banana
+                        if (getDistanceTo(p)<250){
+                            weapon.fire();
+                            weapon = null;
+                            cooldown = COOLDOWN;
+                        }
+                    }
+                }else idle();
+            }
         }
         if (weapon!=null) weapon.setDirection(facingLeft);
         if (collideMoveLocation(horzVelocity,vertVelocity))horzVelocity = 0;
@@ -99,13 +114,19 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
      * can only be hurt by player
      */
     public int doDamage(Actor a, int dmg){
-        if (a instanceof Player){
-            health -= dmg;
-            attackSound.play();
-            if (health>0) return dmg;
-            die();
-        }
-        return dmg;
+        if( iframes==0 ){
+            if (a instanceof Player){
+                cooldown = COOLDOWN;
+                health -= dmg;
+                healthbar.setHealth(health);
+                iframes = 20;
+                vertVelocity = -8;
+                MuteControl.playSound(attackSound);
+                if (health>0) return dmg;
+                die();
+            }
+            return dmg;
+        }else return 0;
     }
     /**
      * Perform idle behavior logic
@@ -136,6 +157,7 @@ public class MonkeyEnemy extends Entity implements IFalling, IDamageable
         Counter.add(140);
         getWorld().addObject(new ScoreIndicator(140), getX(),getY());
         if (weapon != null) weapon.die();
+        healthbar.remove();
         if (boss != null) boss.minionDeath(this);
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();

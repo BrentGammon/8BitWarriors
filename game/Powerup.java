@@ -1,9 +1,10 @@
- 
-
 import greenfoot.*;
-
-
- 
+/**
+ * Power ups. 
+ * 
+ * @author Viktor, Mati
+ * @version 0.1
+ */
 public class Powerup extends Entity
 {
     static int SPEED_PU = 0, JUMP_PU = 1, AMMO_PU = 2; // add as needed giving unique number to each different type of powerup

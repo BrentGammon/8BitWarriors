@@ -13,7 +13,7 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
     private int cooldown = 45;
     private BulletAttack weapon;
     private GreenfootImage sprite = new GreenfootImage("Graphics/Characters/Antagonist Characters/Enemywithbow.png");
-    
+    private Healthbar healthbar;
     /**
      * The constructor of RangeEnemy
      * @param boolean facingLeft the direction that the object is facing
@@ -25,7 +25,10 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
         setImage(sprite);
         this.facingLeft = facingLeft;
     }
-    
+    public void addedToWorld(World w){
+        healthbar = new Healthbar(health,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
+    }
     /**
      * This will cause the object to fire its weapon when its able to do so 
      */
@@ -75,9 +78,10 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
      */
     public boolean die(){
         //scoreboard incremented by one
-        Counter.add();
+        Counter.add(100);
+        healthbar.remove();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
-        getWorld().addObject(new ScoreIndicator(1), getX(),getY());
+        getWorld().addObject(new ScoreIndicator(100), getX(),getY());
         return super.die();
     }
     
@@ -89,7 +93,8 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
      */
     public int doDamage(Actor attacker, int damage){
         health -= damage;
-         //attackSound.play();
+        // MuteControl.playSound(attackSound);
+        healthbar.setHealth(health);
         if (health<=0){
             die();
         }

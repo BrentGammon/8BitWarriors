@@ -1,9 +1,7 @@
- 
-
 import greenfoot.*;
 
 /**
- * Write a description of class Terrain here.
+ * Terrain
  * 
  * @author Mitchell
  * @version S1 1

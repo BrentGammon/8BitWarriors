@@ -86,6 +86,9 @@ public class BasicAttack extends Attack
             getImage().mirrorHorizontally();
         }
     }
+    public boolean getDirection(){
+        return facingLeft;
+    }
     /**
      * Do damage to all things that can be hurt by weapon
      */

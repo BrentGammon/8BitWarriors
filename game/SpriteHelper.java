@@ -1,9 +1,10 @@
 import greenfoot.*;
+import java.awt.Color;
 /**
- * Simple image loader to help with managing sprites
+ * Simple image loader to help with managing the sprite sheet.
  * 
- * @author Mitchell Rebuck-Watson
- * @version S3 1
+ * @author Mati Saidzai
+ * @version S3-15 V1.0
  */
 public class SpriteHelper  
 {
@@ -29,5 +30,13 @@ public class SpriteHelper
             number = number/10;
         }
         return out;
+    }
+    
+    public static GreenfootImage makeWhite(GreenfootImage img){
+        img = new GreenfootImage(img);
+        for (int x = 0; x<img.getWidth(); x++)for(int y=0; y<img.getHeight();y++){
+            img.setColorAt(x,y,new Color(255,255,255,img.getColorAt(x,y).getAlpha()));
+        }
+        return img;
     }
 }

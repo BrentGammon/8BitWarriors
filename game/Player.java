@@ -122,7 +122,7 @@ public class Player extends Entity implements IFalling, IDamageable
         //if the jump key is being held and player is on a platform. Jump
         if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&& (onPlatform() || onPushObject)){
             moveLocation(0,-1);
-            jumpSound.play();
+            MuteControl.playSound(jumpSound);
             vertVelocity = (hasJumpBoost()?-5:0) +JUMP_SPEED;
             onPushObject = false;
         }
@@ -234,7 +234,7 @@ public class Player extends Entity implements IFalling, IDamageable
      */
     public boolean die(){
         Timer.freeze();
-        damageSound.play();
+        MuteControl.playSound(damageSound);
         ExtendedWorld world = getExtendedWorld();
         Timer.end();
         Counter.end();

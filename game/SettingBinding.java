@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class SettingBinding here.
+ * Heading for Keybinding options.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mati 
+ * @version 0.1
  */
 public class SettingBinding extends MenuItems
 {

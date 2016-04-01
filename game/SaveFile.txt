@@ -3,5 +3,5 @@ UP
 LEFT
 RIGHT
 X
-200
-100
+0
+700

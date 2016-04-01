@@ -1,46 +1,41 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class ShieldPower here.
+ * This object will move towards the boss enemey and visually shows to the player that the boss shiled is being powered
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon 
+ * @version SP3 1/4/16
  */
 public class ShieldPower extends Entity
 {
-
     private boolean findCoords = true;
     private int bossX;
     private int bossY;
-    
     private int thisY;
     private int thisX;
+    /**
+     * Contructor for ShieldPower
+     * @param int x the object x position
+     * @param int y the object y position
+     */
     public ShieldPower(int x, int y){
         thisY = y;
         thisX = x;
     }
 
     /**
-     * Act - do whatever the ShieldPower wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+     * This method checks where the boss enemy in the world
+     * Moves the object towards the enemy 
+     * if it intersects the remove it from the world
+     */    
     public void act() 
     {
-
-        //if(findCoords){
-        //    findCoords = false;
-            List <Actor> bossList = getWorld().getObjects(BossEnemy.class);
-            if(bossList.size()>0){
-                BossEnemy be = (BossEnemy)bossList.get(0);
-                bossY = be.getY();
-                //bossY=be.getBossY();
-                bossX = be.getX();
-                //bossX=be.getBossX();
-                //setLocation(x,y);
-            }    
-
-       // }
-
+        List <Actor> bossList = getWorld().getObjects(BossEnemy.class);
+        if(bossList.size()>0){
+            BossEnemy be = (BossEnemy)bossList.get(0);
+            bossY = be.getY();
+            bossX = be.getX();
+        }    
         findBoss();
         List <Actor> remove = getWorld().getObjects(BossEnemy.class);
         if(remove.size()>0){
@@ -48,38 +43,27 @@ public class ShieldPower extends Entity
             if(intersects(bb)){
                 getWorld().removeObject(this);
             }
-
         }
-        
     }
 
+    /**
+     * This method moves the object towards the boss enemy in the world
+     */
     private void findBoss(){
         int xx = getX();
         int yy = getY();
-        
         int tryX=0;
         int tryY=0;
         if(xx<bossX){
-            //xx++;
             tryX= 5;
         }else{
-            //xx--;
             tryX=-5;
         }
         if(yy<bossY){
-            //yy++;
             tryY=5;
         }else{
-            //yy--;
             tryY=-5;
         }
-
-        
-        //if(x==bossX&&y==bossY||x==bossX+10&&y==bossY+10||x==bossX+10&&y==bossY-10||x==bossX-10&&y==bossY+10||x==bossX-10&&y==bossY-10){
-
-        // }
-
-        //moveLocation(xx,yy);
         moveLocation(tryX,tryY);
     }
 }

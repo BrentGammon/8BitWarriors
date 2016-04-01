@@ -35,7 +35,6 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
             weapon = new BulletAttack(facingLeft,this);
             getWorld().addObject(weapon,getX()-7,getY()+7);
         }
-        
         cooldown--;
         if(cooldown==0){
             cooldown=45;

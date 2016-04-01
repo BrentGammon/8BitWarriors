@@ -38,7 +38,7 @@ public class BossShield extends Entity
     }
     
     /**
-     * when called this will remove the obejct from the world
+     * when called this will remove the object from the world
      */
     public void removeObject(){
         getWorld().removeObject(this);

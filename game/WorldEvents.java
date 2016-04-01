@@ -1,38 +1,37 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class WorldEvents here.
+ * Allows the game levels to have events occur understand some scenarios 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon
+ * @version 1/4/16
  */
 public class WorldEvents extends Actor
 {
     private boolean bossWall;
     private GreenfootImage sprite = new GreenfootImage("worldEvents.png");
+    /**
+     * Constructor for WorldEvents
+     */
     public WorldEvents(){
         setImage(sprite);
     }
 
     /**
-     * Act - do whatever the WorldEvents wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Gets the world and checks what level it is.
      */
     public void act() 
     {
-        // Add your action code here.
         ExtendedWorld world =(ExtendedWorld) getWorld();
-        if(world.getLevel().equals("1")){
-
-        }
-        if(world.getLevel().equals("2")){
-
-        }
         if(world.getLevel().equals("3")){
             levelThreeEvents(world);
         }
     }    
 
+    /**
+     * Perform events in level 3
+     * @param Extended world the world what the events are going to occur
+     */
     public void levelThreeEvents(ExtendedWorld world){
         if(!bossWall){
             List <Player> playerList = world.getObjects(Player.class);//.get(0);
@@ -46,7 +45,12 @@ public class WorldEvents extends Actor
             }
         }
     }
-
+    
+    /**
+     * Places a wall into the world when the player enters the boss arena
+     * @param ExtendedWorld world the world that this event will be call in
+     * @param Player player the player in the world
+     */
     public void bossBattleWall(ExtendedWorld world,Player player){
         bossWall=true;
         World3 world3 = (World3) world;

@@ -1,10 +1,10 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class BulletAttack here.
+ * This object gets spawned by the rangeEnemy. This obejct can damage the player
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon 
+ * @version SP3 1/4/16
  */
 public class BulletAttack extends Attack implements IDamageable
 {
@@ -14,6 +14,11 @@ public class BulletAttack extends Attack implements IDamageable
     private static final int DAMAGE = 1;
     private GreenfootImage sprite = new GreenfootImage("Graphics/Characters/Antagonist Characters/arrow.png");
     private int health = 1;
+    /**
+     * Constructor for BulletAttack
+     * @param boolean direction the dirction that the object will travel
+     * @param ExtendedActor source the acotr that spawned this object
+     */
     public BulletAttack(boolean direction,ExtendedActor source){
         super(direction,source);
         this.direction = direction; 
@@ -30,9 +35,11 @@ public class BulletAttack extends Attack implements IDamageable
         fire();
         doDamage();
         timer();
-
     }    
 
+    /**
+     * This method checks the value of removeTimer if this equals to 0 then the obejcts gets removed
+     */
     public void timer(){
         removeTimer--;
         if(removeTimer==0){
@@ -40,13 +47,16 @@ public class BulletAttack extends Attack implements IDamageable
         }
     }
 
+    /**
+     * Move the location of the object 
+     * direction depends on the value of the instance variable direction
+     */
     public void fire(){
         if(direction){
             moveLocation(5,0);
         }else{
             moveLocation(-5,0);
         }
-
     }
 
     /**
@@ -58,8 +68,10 @@ public class BulletAttack extends Attack implements IDamageable
     public int doDamage(Actor attacker, int damage){
         health -= damage;
         //attackSound.play();
-        if (health<=0){
-            die();
+        if(attacker instanceof Player){
+            if (health<=0){
+                die();
+            }
         }
         return damage;
     }
@@ -83,7 +95,6 @@ public class BulletAttack extends Attack implements IDamageable
         for (IDamageable obj: objs){
             if (obj!=source){
                 obj.doDamage(source,DAMAGE);
-
             }
         }
     }

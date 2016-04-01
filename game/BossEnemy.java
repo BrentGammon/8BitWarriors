@@ -12,14 +12,15 @@ public class BossEnemy extends Entity implements IDamageable
     private boolean shield = false;
     private int cooldown = 60;
     private GreenfootImage sprite = new GreenfootImage("boss.png");
-
     private int rangeBarrer = 5;
-
     private int thisX;
     private int thisY;
-    
-    
     private boolean spawnShield = false;
+    /**
+     * Constructor for BossEnemy
+     * @param int x the x position of the object
+     * @param int y the y position of the object
+     */
     public BossEnemy(int x,int y)
     {
         thisX = x;
@@ -34,19 +35,14 @@ public class BossEnemy extends Entity implements IDamageable
     public void act() 
     {
         List<Actor>actors = getObjectsInRange(500,Player.class);
-
         if(actors.size()>0){
             Player p = (Player) actors.get(0);
             if(cooldown==60){
                 RockPortal portal = new RockPortal();
-                //uncommnet to attack
                 getWorld().addObject(portal,p.getX(),p.getY()-200);
             }
         }
-
-        List<EnemyShield> nearObjects = getWorld().getObjects(EnemyShield.class);//new ArrayList<EnemyShield>();
-        //nearObjects = getObjectsInRange(350,EnemyShield.class);
-
+        List<EnemyShield> nearObjects = getWorld().getObjects(EnemyShield.class);
         if(nearObjects.size()>0 && spawnShield==false ){
             shield = true;
             spawnShield = true;
@@ -61,10 +57,6 @@ public class BossEnemy extends Entity implements IDamageable
                 bs.removeObject();
             }
         }
-        
-        
-        
-        
         cooldown--;
         if(cooldown ==0){
             cooldown = 60;
@@ -82,28 +74,46 @@ public class BossEnemy extends Entity implements IDamageable
         return super.die();
     }
 
+    /**
+     * 
+     */
     public int doDamage(Actor attacker, int damage){
         if(shield == false){
             health -= damage;
             //attackSound.play();
             if (health<=0) die();
-
         }
         return damage;
     }
 
+    /**
+     * Gets the value of thisY
+     * @return int thisY
+     */
     public int getBossY(){
         return thisY;
     }
 
+    /**
+     * Gets the value of the Y position
+     * @return int the value of the object Y postition
+     */
     public int getBossyy(){
         return getY();
     }
 
+    /**
+     * Gets the value of the X position
+     * @return int the value of the object X postition
+     */
     public int getBossxx(){
         return getX();
     }
 
+    /**
+     * Gets the value of thisX
+     * @return int thisX
+     */
     public int getBossX()
     {
         return thisX;

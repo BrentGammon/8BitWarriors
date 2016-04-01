@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.params=
+comment0.target=DumbEnemy()
+comment0.text=\r\n\ Act\ -\ do\ whatever\ the\ DumbEnemy\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pre\ ssed\ in\ the\ environment.\r\n
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=void\ moving()
+comment2.text=\r\n\ This\ will\ check\ the\ results\ of\ different\ logic\ methods\ to\ see\ what\ movment\ the\ object\ should\ do\ under\ certain\ scenario\r\n
+comment3.params=
+comment3.target=void\ changeDirection()
+comment3.text=\r\n\ When\ invoked\ it\ will\ flip\ the\ boolean\ value\ for\ goLeft\r\n
+comment4.params=
+comment4.target=void\ direction()
+comment4.text=\r\n\ Move\ the\ object\ 1\ pixel\ direction\ will\ depend\ on\ the\ value\ of\ goLeft\r\n
+comment5.params=attacker\ damage
+comment5.target=int\ doDamage(greenfoot.Actor,\ int)
+comment5.text=\r\n\ Doe\ damage\ to\ the\ actor\ that\ has\ been\ passed\ into\ the\ paramter\r\n\ @param\ Actor\ attacker\ the\ actor\ that\ is\ going\ to\ have\ damage\ done\ to\ them\r\n\ @param\ int\ damage\ the\ strength\ of\ the\ damage\r\n\ @return\ int\ damage\ the\ amount\ done\ to\ the\ actor\r\n
+comment6.params=
+comment6.target=boolean\ die()
+comment6.text=\r\n\ When\ called\ this\ will\ increment\ the\ score\ counter\ and\ add\ DeadEntity\ to\ the\ world\r\n\ @return\ a\ super\ call\ to\ die\r\n
+comment7.params=
+comment7.target=void\ updateSprite()
+comment7.text=\r\n\ Internal\ method\ to\ set\ player\ sprite\ to\ apropriate\ image\r\n
+numComments=8

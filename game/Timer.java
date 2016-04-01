@@ -32,8 +32,12 @@ public class Timer extends UI
     {
         // Add your action code here.
         if (getExtendedWorld().isPaused()) return;
-        reset();
-        isTimeUp();
+
+        if(isTimeUp()){
+            reset();
+        }
+
+        //isTimeUp();
         //sharaz,only update counter if field is false
         if(counter() && !isFreeze)
         {
@@ -91,24 +95,47 @@ public class Timer extends UI
 
     //reset method for the timer
     public void reset(){
+        Timer.freeze();
+        //damageSound.play();
+        ExtendedWorld world = getExtendedWorld();
+        Timer.end();
+        Counter.end();
+        world.addObject(new DeadEntity(getImage()),getX(),getY());
+        world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
 
-        if(isTimeUp()){
+        world.setFocus(null);
+        //         World world = getWorld();
+        //         ExtendedWorld xWorld = (ExtendedWorld) world;
+        //         String level = xWorld.getLevel();
+        //         if(level.equals("1")){
+        //             World1 world1 = (World1) xWorld;
+        //             Greenfoot.setWorld(new World1());
+        //         }
+        //         if(level.equals("2")){
+        //             World2 world2 = (World2) xWorld;
+        //             Greenfoot.setWorld(new World3(world2.getStartScore(),world2.getStartTime()));
+        //         }
+        //         if(level.equals("3")){
+        //             World3 world3 = (World3) xWorld;
+        //             Greenfoot.setWorld(new World3(world3.getStartScore(),world3.getStartTime()));
+        //         }
 
-            Greenfoot.setWorld(new World1());
-            return;
-
-        }
+        //         if(isTimeUp()){
+        // 
+        //             Greenfoot.setWorld(new World1());
+        //             return;
+        // 
+        //         }
 
     }
 
-    
     public int getTimeValue(){
         return time;    
     }
-    
+
     public void setTime(int time){
         this.time = time;
-        
+
     }
 
 }

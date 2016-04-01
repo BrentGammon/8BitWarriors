@@ -12,20 +12,13 @@ public class RockAttack extends Attack implements IFalling
     private ExtendedActor source;
     private static final int DAMAGE = 1;
     /**
-     * Act - do whatever the RockAttack wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     *call methods for each RockAttack act 
      */
     public void act() 
     {
-        List <Actor> intersecting = getIntersectingObjects(Actor.class);
-        for(Actor a : intersecting){
-            if(a instanceof Player){
-                doDamage();
-            }
-        }
+        fire();
     }
-    
-    
+
     /**
      * Constructor for RockAttack
      * @param boolean direction what dirctin the obvject is facing
@@ -36,18 +29,24 @@ public class RockAttack extends Attack implements IFalling
         super(direction,source);
         this.source = source;
     }
-    
+
     /**
-     * This method does not do anything had to implmented so it could extend attack but this is not needed
+     * This method check if the method is intersecting with the player
      */
-    public void fire(){}
+    public void fire(){
+        List <Actor> intersecting = getIntersectingObjects(Actor.class);
+        for(Actor a : intersecting){
+            if(a instanceof Player){
+                doDamage();
+            }
+        }
+    }
 
     /**
      * When the object is not on the platform then the object will fall  
      * @param int g This is the gravity of the object falling
      */
     public void fall(int g){
-
         vertVelocity+=g;
         if(vertVelocity>0){
             for(int i=0;i<vertVelocity;i++){
@@ -67,7 +66,7 @@ public class RockAttack extends Attack implements IFalling
             }
         }
     }
-    
+
     /**
      * When invoked this method will cause the object to die
      */

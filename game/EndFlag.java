@@ -17,14 +17,14 @@ public class EndFlag extends ExtendedActor
      */
     public void act() 
     {
-        if (getOneIntersectingObject(Player.class)!=null){
-            World oldWorld, newWorld;
-            oldWorld = getWorld();
-            if (oldWorld instanceof World1){
-                Greenfoot.setWorld(new World2());
-            }else if(oldWorld instanceof World2){
-                Greenfoot.setWorld(new World3());
-            }
-        }
+//         if (getOneIntersectingObject(Player.class)!=null){
+//             World oldWorld, newWorld;
+//             oldWorld = getWorld();
+//             if (oldWorld instanceof World1){
+//                 Greenfoot.setWorld(new World2());
+//             }else if(oldWorld instanceof World2){
+//                 Greenfoot.setWorld(new World3());
+//             }
+//         }
     }    
 }

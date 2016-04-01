@@ -1,7 +1,7 @@
 import greenfoot.*;
 import java.awt.*;
 /**
- * Write a description of class CreditTextDisplay here.
+ * This obejct is used to generate text to the world
  * 
  * @author Brent Gammon
  * @version SP3 31/3/16
@@ -35,5 +35,22 @@ public class CreditTextDisplay extends MenuItems
         if(typeMessage==-2){
             setImage(new GreenfootImage(""+score,30,white,black,black));
         }
+    }
+    
+    /**
+     * Sets the image of the object 
+     * @param String typeeMessage the texts that willbe displayed
+     * @param int size the size of the text
+     */
+    public CreditTextDisplay(String typeMessage,int size){
+        setImage(new GreenfootImage(typeMessage,size,white,black,black));
+    }
+    
+    /**
+     * set the image of the number paramter makes use of sprite helper to generate image
+     * @param int number the number to be displayed
+     */
+    public CreditTextDisplay(int number){
+        setImage(SpriteHelper.getNumberImage(number));
     }
 }

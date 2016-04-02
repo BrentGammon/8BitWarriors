@@ -1,5 +1,3 @@
- 
-
 import greenfoot.*;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -44,9 +42,7 @@ public class SaveGame extends MenuItems
      * @exception if an error has occured when trying to save the data to the text file
      */
     public void saveGame(){
-        System.out.println("Saving the game!");
         ExtendedWorld world =(ExtendedWorld) getWorld();
-        
         try{
             FileWriter writer = new FileWriter("SaveFile.txt");
 

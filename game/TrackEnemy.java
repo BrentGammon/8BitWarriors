@@ -1,49 +1,51 @@
- 
-
 import greenfoot.*;
 import java.util.*;
 /**
  * TrackEnemy will move towards the player when they are in range.
  * 
  * @author Brent Gammon 
- * @version 0.5
+ * @version S3 2/4/16
  */
 public class TrackEnemy extends Entity implements IFalling, IDamageable
 {
     public static final int GRAVITY = 2; 
     public static final int DAMAGE = 1;
-    private GreenfootImage standing;
-    private GreenfootImage left1;
-    private GreenfootImage left2;
-    private GreenfootImage right1;
-    private GreenfootImage right2;
+    private GreenfootImage sprite1;
+    private GreenfootImage sprite2;
     private int health = 3;
     protected boolean goLeft = false;
-    
     private int iframes = 0;
-
     private int vertVelocity = 0;
-
     private boolean dazed = false;
     private int dazedCounter = 0;
     private int standCounter = 0;
     private boolean stand = false;
-    
     private Healthbar healthbar;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
+    /**
+     * Constructor for TrackEnemy
+     */
     public TrackEnemy()
     {
-        standing = new GreenfootImage("stripe standing.png");
-        left1 = new GreenfootImage("StripeLeft1.png");
-        left2 = new GreenfootImage("StripeLeft2.png");
-        right1 = new GreenfootImage("StripeRight1.png");
-        right2 = new GreenfootImage("StripeRight2.png");
-        setImage(standing);
+        sprite1 = new GreenfootImage("trackLeft1.png");
+        sprite2 = new GreenfootImage("trackLeft2.png");
+        setImage(sprite1);
     }
+    
+    /**
+     * Adds a health bar above the object
+     * @param World w the world that the har bar is being added in
+     */
     public void addedToWorld(World w){
         healthbar = new Healthbar(health,this,40);
         w.addObject(healthbar,getX(),getY()-10);
     }
+    
+    /**
+     * does damage to the actor being passed into the function
+     * @param Actor attacker the actor that damage is being applied to
+     * @param int damage the amount of damage being applied
+     */
     public int doDamage(Actor attacker, int damage){
         if( iframes==0 ){
             Attack src = (Attack)getOneIntersectingObject(Attack.class);
@@ -72,11 +74,11 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
         List<Player> nearObjects = new ArrayList<Player>();
         nearObjects = getObjectsInRange(350,Player.class);
         if (iframes>0){
-            setImage(goLeft?left1:right1);
+            setImage(goLeft?sprite1:sprite2);
             if(iframes%10<5){
-                setImage(SpriteHelper.makeWhite(goLeft?left1:right1));
+                setImage(SpriteHelper.makeWhite(goLeft?sprite1:sprite2));
             }else{
-                setImage(goLeft?left1:right1);
+                setImage(goLeft?sprite1:sprite2);
             }
             iframes--;
         }else{
@@ -92,31 +94,31 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
                                     int enemyX = getX();
     
                                     if(playerX>enemyX){
-                                        if (getImage() == right2){
-                                            setImage(right1);
+                                        if (getImage() == sprite2){
+                                            setImage(sprite1);
                                         }
                                         else{
-                                            setImage(right2);
+                                            setImage(sprite2);
                                         }
                                         move(5);
                                         goLeft = false;
                                     }else if(playerX<enemyX){
-                                        if (getImage() == left2){
-                                            setImage(left1);
+                                        if (getImage() == sprite2){
+                                            setImage(sprite1);
                                         }
                                         else{
-                                            setImage(left2);
+                                            setImage(sprite2);
                                         }
                                         move(-5);
                                         goLeft = true;
                                     }
                                 }else{
-                                    setImage(standing);
+                                    setImage(sprite1);
                                 }
                             }
                         }
                         if(count==0){
-                            setImage(standing);
+                            setImage(sprite1);
                         }   
                     }
                 }
@@ -136,7 +138,7 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     
             if(stand){
                 standCounter++;
-                setImage(standing);
+                setImage(sprite1);
                 if(standCounter>25){
                     stand=false;
                     dazed=false;
@@ -150,19 +152,19 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
                     dazedCounter++;
                     if(goLeft){
                         move(5);
-                        if (getImage() == right2){
-                            setImage(right1);
+                        if (getImage() == sprite2){
+                            setImage(sprite1);
                         }
                         else{
-                            setImage(right2);
+                            setImage(sprite2);
                         }
                     }else{
                         move(-5);
-                        if (getImage() == left2){
-                            setImage(left1);
+                        if (getImage() == sprite2){
+                            setImage(sprite1);
                         }
                         else{
-                            setImage(left2);
+                            setImage(sprite2);
                         }
                     }
                 }

@@ -32,8 +32,12 @@ public class Timer extends UI
     {
         // Add your action code here.
         if (getExtendedWorld().isPaused()) return;
-        reset();
-        isTimeUp();
+
+        if(isTimeUp()){
+            reset();
+        }
+
+        //isTimeUp();
         //sharaz,only update counter if field is false
         if(counter() && !isFreeze)
         {
@@ -91,24 +95,24 @@ public class Timer extends UI
 
     //reset method for the timer
     public void reset(){
+        Timer.freeze();
+        //damageSound.play();
+        ExtendedWorld world = getExtendedWorld();
+        Timer.end();
+        Counter.end();
+        world.addObject(new DeadEntity(getImage()),getX(),getY());
+        world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
 
-        if(isTimeUp()){
-
-            Greenfoot.setWorld(new World1());
-            return;
-
-        }
+        world.setFocus(null);
 
     }
 
-    
     public int getTimeValue(){
         return time;    
     }
-    
+
     public void setTime(int time){
         this.time = time;
-        
     }
 
 }

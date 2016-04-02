@@ -36,7 +36,7 @@ public class Flag extends ExtendedActor
                     count = counter.get(0);
                 }
                 int times = time.getTimeValue();
-                int scores = count.getValues();
+                int scores = count.getValues()+100;
                 if(value.equals("1")){
                     World2 world = new World2(scores,times);
                     Greenfoot.setWorld(world);
@@ -47,6 +47,7 @@ public class Flag extends ExtendedActor
                 }
                 if(value.equals("3")){
                     EndCredits world = new EndCredits(times,scores);
+                    world.highScoreSave();
                     Greenfoot.setWorld(world);
                 }
             }

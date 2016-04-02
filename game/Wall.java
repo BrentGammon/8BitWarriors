@@ -1,9 +1,8 @@
 import greenfoot.*;
-
 /**
  * Setting Wall terrain in the game.
  * 
- * @authors Mitchell Rebuck Watson, Mati
+ * @authors Brent Gammon
  * @version 0.2
  */
 public class Wall extends Terrain
@@ -15,16 +14,11 @@ public class Wall extends Terrain
         if(levelDesign==3){
             unit = unit3;
         }
-        
-        
         int unitHeight = unit.getHeight();
-        
         GreenfootImage self = new GreenfootImage(unit.getWidth(),unitHeight*length);
         for(int x=0;x<length;x++){
             self.drawImage(unit,0,x*unitHeight);
         }
-        //self.rotate(90);
         setImage(self);
-        
     }
 }

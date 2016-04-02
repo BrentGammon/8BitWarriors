@@ -5,20 +5,23 @@ import greenfoot.*;
  * Start button for the menu
  * 
  * @author Brent Gammon 
- * @version v0.1
+ * @version SP3 2/4/16
  */
 public class Start extends MenuItems
 {
     private GreenfootImage start;
     private boolean selected = false;
+    /**
+     * Constructor for the class Start
+     */
     public Start(){
         start = new GreenfootImage("images/Graphics/MENUV2/M2StartGame.png");
         setImage(start);
     }
     
     /**
-     * Checks if the mouse is on the object if so then the image is changed to show the player that they are on the object
-     * if clicked to change the world to the first level
+     * * This will checking two states when the mouse is hover on and off the object to change the image 
+     * When object is clicked it will load world1
      */
     public void act() 
     {

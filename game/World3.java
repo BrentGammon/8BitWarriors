@@ -40,6 +40,7 @@ public class World3 extends ExtendedWorld
         addObject(new Ammo(p),400,67);
         addObject(new Jump(p),470,67);
         addObject(new Grass(20,3),301,885);
+        addObject(new Grass(3,3),1679,590);
         addObject(new Grass(20,3),751,815);
         addObject(new WoodLog(),1300,790);
         addObject(new WoodLog(),1300,690);
@@ -59,7 +60,9 @@ public class World3 extends ExtendedWorld
         addObject(new Grass(30,3),2981,896);
         addObject(new EnemyShield(),2453,837);
         addObject(new WoodLog(),3279,774);
-        addObject(new Wall(30,3),3678,789);
+
+        addObject(new Wall(15,3),3678,201);
+
         addObject(new Grass(10,3),2998,700);
         addObject(new Grass(5,3),3544,695);
         addObject(new EnemyShield(),3631,637);
@@ -97,6 +100,13 @@ public class World3 extends ExtendedWorld
         addObject(new Spikes(0),2342,351);
         addObject(new TrackEnemy(),2891,296);
         addObject(new TrackEnemy(),3325,296);
+
+        addObject(new Wall(3,3),3678,774);
+        addObject(new Grass(5,3),3768,896);
+
+        addObject(new Wall(4,3),3903,795);
+        addObject(new Grass(4,3),3791,691);
+        addObject(new Flag(),3795,830);
         MuteControl.setBGM(bgm);
     }
 

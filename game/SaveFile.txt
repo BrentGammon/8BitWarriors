@@ -4,4 +4,4 @@ LEFT
 RIGHT
 X
 0
-0
+700

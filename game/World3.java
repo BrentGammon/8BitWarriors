@@ -46,7 +46,7 @@ public class World3 extends ExtendedWorld
         addObject(new WoodLog(),1300,690);
         addObject(new WoodLog(),1300,590);
         addObject(new WoodLog(),1300,490);
-        // addObject(new RangeEnemy(false),1500,530);
+        addObject(new RangeEnemy(false),1500,530);
         addObject(new Grass(5,3),1500,590);
         addObject(new Grass(5,3),1000,490);
         addObject(new WoodLog(),800,390);
@@ -58,20 +58,20 @@ public class World3 extends ExtendedWorld
         addObject(new Wall(11,3),1769,502);
         addObject(new Grass(10,3),1972,896);
         addObject(new Grass(30,3),2981,896);
-        // addObject(new EnemyShield(),2453,837);
+        addObject(new EnemyShield(),2453,837);
         addObject(new WoodLog(),3279,774);
 
         addObject(new Wall(15,3),3678,201);
 
         addObject(new Grass(10,3),2998,700);
         addObject(new Grass(5,3),3544,695);
-        //addObject(new EnemyShield(),3631,637);
+        addObject(new EnemyShield(),3631,637);
         addObject(new WoodLog(),2608,621);
         addObject(new WoodLog(),2608,521);
         addObject(new WoodLog(),2608,421);
-        //addObject(new EnemyShield(),2232,337);
+        addObject(new EnemyShield(),2232,337);
         addObject(new Grass(15,3),3057,361);
-        // addObject(new EnemyShield(),3087,304);
+        addObject(new EnemyShield(),3087,304);
         addObject(new WoodLog(),2776,225);
         addObject(new WoodLog(),2875,168);
         addObject(new WoodLog(),3468,300);
@@ -79,27 +79,27 @@ public class World3 extends ExtendedWorld
         addObject(new WoodLog(),3375,176);
         addObject(new WoodLog(),3463,156);
         addObject(new Grass(3,3),3611,108);
-        //addObject(new EnemyShield(),3617,50);
+        addObject(new EnemyShield(),3617,50);
         addObject(new Grass(5,3),3088,167);
         addObject(new BossEnemy(3088,85),3088,85);
         addObject(new Grass(5,3),2316,622);
         addObject(new Grass(5,3),2319,396);
         //enemies
-        //addObject(new TrackEnemy(),636,753);
-        //addObject(new Spikes(1),826,769);
-        //addObject(new DumbEnemy(),950,757);
-        //addObject(new TrackEnemy(),112,299);
-        //addObject(new TrackEnemy(),648,87);
-        //addObject(new TrackEnemy(),882,88);
-        //addObject(new Spikes(2),1287,105);
-        //addObject(new DumbEnemy(),1776,96);
-        //addObject(new RangeEnemy(true),2403,566);
-        //addObject(new TrackEnemy(),2944,835);
-        //addObject(new TrackEnemy(),3058,642);
-        //addObject(new RangeEnemy(false),3567,640);
-        //addObject(new Spikes(0),2342,351);
-        //addObject(new TrackEnemy(),2891,296);
-        //addObject(new TrackEnemy(),3325,296);
+        addObject(new TrackEnemy(),636,753);
+        addObject(new Spikes(1),826,769);
+        addObject(new DumbEnemy(),950,757);
+        addObject(new TrackEnemy(),112,299);
+        addObject(new TrackEnemy(),648,87);
+        addObject(new TrackEnemy(),882,88);
+        addObject(new Spikes(2),1287,105);
+        addObject(new DumbEnemy(),1776,96);
+        addObject(new RangeEnemy(true),2403,566);
+        addObject(new TrackEnemy(),2944,835);
+        addObject(new TrackEnemy(),3058,642);
+        addObject(new RangeEnemy(false),3567,640);
+        addObject(new Spikes(0),2342,351);
+        addObject(new TrackEnemy(),2891,296);
+        addObject(new TrackEnemy(),3325,296);
 
         addObject(new Wall(3,3),3678,774);
         addObject(new Grass(5,3),3768,896);

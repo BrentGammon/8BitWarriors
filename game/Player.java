@@ -7,7 +7,7 @@ import javax.swing.*;
  * The main player entity. It stores the players key bindings in addition to being the entity in the world
  * 
  * @author Mitchell
- * @version S2 2
+ * @version S2 3
  */
 public class Player extends Entity implements IFalling, IDamageable
 {
@@ -53,13 +53,15 @@ public class Player extends Entity implements IFalling, IDamageable
 
     /** the players current weapon object */
     private Attack weapon;
+    private boolean bombThrown = false;
+    private int bombCount = 3;
 
     /** keybinds for the player */
     public static String keyJump = "UP";
     public static String keyLeft = "LEFT";
     public static String keyRight = "RIGHT" ;
     public static String keyAttack = "X" ;
-    
+    public static String keyBomb = "C";
     
     /** Sound for the player*/
     private GreenfootSound jumpSound = new GreenfootSound("JumpPlayer.wav");
@@ -143,7 +145,18 @@ public class Player extends Entity implements IFalling, IDamageable
         //if player is pressing an attack key; fire
         if(Greenfoot.isKeyDown(keyAttack!=null?keyAttack:"X")){
             weapon.fire();
+        }else if(!bombThrown&&bombCount>0&&Greenfoot.isKeyDown(keyBomb)){
+            bombCount--;
+            bombThrown = true;
+            Bomb b = new Bomb(facingLeft,this);
+            getWorld().addObject(b,getX(),getY());
+            b.fire();
+        }else{
+            bombThrown = false;
         }
+            
+            
+        
         
         //if player has speed boost cap speed at speed boost cap else do move speed cap
         int cap = hasSpeedBoost()?SPEED_BOOST_CAP:MOVE_SPEED_CAP; 
@@ -338,6 +351,10 @@ public class Player extends Entity implements IFalling, IDamageable
                 frame = frame + 1 % (SHEET_H* SHEET_W);
             }
         }  
+    }
+    
+    public int getBombs(){
+        return bombCount;
     }
 
     public boolean isFacing(){

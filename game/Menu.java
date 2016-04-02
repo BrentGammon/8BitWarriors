@@ -5,7 +5,7 @@ import greenfoot.*;
  * This world will be the menu for the game, menuItems objects will populate this world to allow the player to navigate the menu
  * 
  * @author Brent Gammon 
- * @version v0.1
+ * @version S3 2/4/16
  */
 public class Menu extends ExtendedWorld
 {
@@ -15,9 +15,6 @@ public class Menu extends ExtendedWorld
      * Constructor for objects of class Menu.
      * Populates the world with objects that the player can click to perform actions
      */
-
-    
-
         
     public Menu()
     {
@@ -33,5 +30,7 @@ public class Menu extends ExtendedWorld
         addObject(new Load(),409,279);
         addObject(new LevelSelect(),413,350);
         addObject(new Settings(),416,423);
+        addObject(new LeaderboardButton(),169,526);
+        addObject(new DevelopersButton(),627,526);
     }
 }

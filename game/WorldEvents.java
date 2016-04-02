@@ -43,9 +43,14 @@ public class WorldEvents extends Actor
                     }
                 }
             }
+
+        }
+        List <BossEnemy> bossList = world.getObjects(BossEnemy.class);
+        if(bossList.size()==0){
+            removeWall(world);
         }
     }
-    
+
     /**
      * Places a wall into the world when the player enters the boss arena
      * @param ExtendedWorld world the world that this event will be call in
@@ -57,4 +62,25 @@ public class WorldEvents extends Actor
         Wall wall = new Wall(30,3);
         world3.addObject(wall,player.getX()-157,player.getY());
     }
+
+    public void removeWall(ExtendedWorld world){
+        World3 world3 = (World3) world;
+        List<Flag> flagList = world3.getObjects(Flag.class);
+        Flag flag = flagList.get(0);
+        List<Wall> wallList = world3.getObjects(Wall.class);
+        //List <Actor> wallList = world3.getObjectsAt(3795,830,null);
+        if(wallList.size()>0){
+            for(Wall a : wallList){
+                System.out.println(a.getRealX() + "  " + a.getRealY());
+                if(a.getRealX()==3678&&a.getRealY()==774){
+                    
+                    world3.removeObject(a);
+                }
+            }
+            //Wall wall = (Wall) wallList.get(0);
+            //world.removeObject(wall);
+        }
+
+    }
+
 }

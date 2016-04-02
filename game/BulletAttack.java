@@ -93,7 +93,7 @@ public class BulletAttack extends Attack implements IDamageable
     public void doDamage(){
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);
         for (IDamageable obj: objs){
-            if (obj!=source){
+            if (obj instanceof Player){
                 obj.doDamage(source,DAMAGE);
             }
         }

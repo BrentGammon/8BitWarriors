@@ -1,5 +1,3 @@
- 
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 
@@ -164,11 +162,18 @@ public class Counter extends UI
         setImage(image);
     }
     
+    /**
+     * Sets the of value
+     * @param int value the value that will be used to update instance variable value
+     */
     public void setValue(int value){
         this.value = value;
-        
     }
     
+    /**
+     * returns the value of value
+     * @return int value
+     */
     public int getValues(){
         return value;
     }

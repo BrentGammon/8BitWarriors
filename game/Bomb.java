@@ -1,16 +1,18 @@
 import greenfoot.*;
 import java.util.List;
 /**
- * Write a description of class Bomb here.
+ * Bomb Attack that is thrown from where the source is standing
  * 
  * @author Mitchell Rebuck-Watson
  * @version (a version number or a date)
  */
 public class Bomb extends Attack implements IFalling
 {
+    /** State Variables */
     private boolean lit = false;
     private int fuse = 48,bombFrame=0;
     
+    /** Constants */
     private static final int DAMAGE = 3;
     
     private static final GreenfootImage SHEET1 = new GreenfootImage("redExplosionx2.png");
@@ -25,6 +27,12 @@ public class Bomb extends Attack implements IFalling
     private static final int SPRITE2_H = SHEET2.getHeight()/SHEET2_H;
     private static final int SPRITE2_W = SHEET2.getWidth()/SHEET2_W;
     
+    /**
+     * Main constructor
+     * 
+     * @param direction is the bomb facing left
+     * @param source owner of the bomb
+     */
     public Bomb(boolean direction, ExtendedActor source){
         super(direction, source);
         setImage(new GreenfootImage(SPRITE2_W,SPRITE2_H));
@@ -52,23 +60,33 @@ public class Bomb extends Attack implements IFalling
             setLocation(getSource().getX(), getSource().getY());
         }
     }
+    /**
+     * Repaint the sprite for the bomb
+     */
     public void updateSprite(){
         GreenfootImage bg = getImage();
         bg.clear();
         
         if (fuse>0){
             bg.drawImage(SHEET2,-(SHEET2_W-1-(fuse/8))*SPRITE2_W,0);
+            if (getDirection())getImage().mirrorHorizontally();
         }
         else{
             bg.drawImage(SHEET1,-(bombFrame%SHEET1_W)*SPRITE1_W,-(bombFrame/SHEET1_H)*SPRITE1_H);
         }
     }
+    /**
+     * Launch the bomb
+     */
     public void fire(){
         lit = true;
         horzVelocity = getDirection()?-7:7;
         vertVelocity = -20;
         
     }
+    /**
+     * Do damage to all damageable objects that touch the sprite
+     */
     public void doDamage(){
         ExtendedActor source = getSource();
         List<IDamageable> objs = getIntersectingObjects(IDamageable.class);

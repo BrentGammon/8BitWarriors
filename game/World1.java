@@ -39,6 +39,7 @@ public class World1 extends ExtendedWorld
         addObject(timer,52,35);
         addObject(new Counter(),55,67);
         muteControl = new MuteControl();
+        addObject(new BombCounter(),80,103);
         //muteControl.play();
         addObject(new speed(p),320,67);
         addObject(new Ammo(p),400,67);

@@ -102,10 +102,18 @@ public class MuteControl extends UI
         if(backgroundMusic !=null)backgroundMusic.play();
     }
     
+    /**
+     * Attempt to play a sound. If the game is muted the sound will be ignored.
+     * 
+     * @param s Sound to be played
+     */
     public static void playSound(GreenfootSound s){
         if(!isMuted)s.play();
     }
     
+    /**
+     * Set the BackGround Music to play. If the game is muted the sound will not be played
+     */
     public static void setBGM(GreenfootSound s){
         stop();
         backgroundMusic = s;

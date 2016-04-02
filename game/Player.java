@@ -53,8 +53,8 @@ public class Player extends Entity implements IFalling, IDamageable
 
     /** the players current weapon object */
     private Attack weapon;
-    private boolean bombThrown = false;
-    private int bombCount = 3;
+    private int bombCooldown = 0;
+    private final int BOMB_COOLDOWN=50;
 
     /** keybinds for the player */
     public static String keyJump = "UP";
@@ -142,17 +142,17 @@ public class Player extends Entity implements IFalling, IDamageable
         updateSprite();
         //tell weapon what direction we are facing
         weapon.setDirection(facingLeft);
+        
+        bombCooldown = Math.max(bombCooldown-1,0);
         //if player is pressing an attack key; fire
         if(Greenfoot.isKeyDown(keyAttack!=null?keyAttack:"X")){
             weapon.fire();
-        }else if(!bombThrown&&bombCount>0&&Greenfoot.isKeyDown(keyBomb)){
-            bombCount--;
-            bombThrown = true;
+        }else if(bombCooldown==0&&BombCounter.getBombs()>0&&Greenfoot.isKeyDown(keyBomb)){
+            BombCounter.useBomb();
+            bombCooldown = BOMB_COOLDOWN;
             Bomb b = new Bomb(facingLeft,this);
             getWorld().addObject(b,getX(),getY());
             b.fire();
-        }else{
-            bombThrown = false;
         }
             
             
@@ -181,15 +181,12 @@ public class Player extends Entity implements IFalling, IDamageable
             pu.die();
             if (kind == Powerup.SPEED_PU) { 
                 speedBoostTimer = SPEED_BOOST_TIMER;
-            }
-
-            if (kind == Powerup.JUMP_PU){
+            }else if (kind == Powerup.JUMP_PU){
                 jumpBoostTimer = JUMP_BOOST_TIMER;
-            }
-            
-
-            if (kind == Powerup.AMMO_PU){
+            }else if (kind == Powerup.AMMO_PU){
                 attackBoostTimer = ATTACK_BOOST_TIMER;
+            }else if (kind == Powerup.BOMB_PU){
+                BombCounter.addBomb();
             }
 
         }
@@ -247,6 +244,7 @@ public class Player extends Entity implements IFalling, IDamageable
      */
     public boolean die(){
         Timer.freeze();
+        BombCounter.reset();
         MuteControl.playSound(damageSound);
         ExtendedWorld world = getExtendedWorld();
         Timer.end();
@@ -353,9 +351,6 @@ public class Player extends Entity implements IFalling, IDamageable
         }  
     }
     
-    public int getBombs(){
-        return bombCount;
-    }
 
     public boolean isFacing(){
         return facingLeft;

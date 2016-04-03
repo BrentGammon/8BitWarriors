@@ -10,6 +10,9 @@ import javax.swing.*;
  */
 public class LeftControl extends KeyBindings
 {
+    /**
+     * Constructor for LeftControl this sets the image of the object
+     */
     public LeftControl()
     {
         setImage("/Settings/left.png");

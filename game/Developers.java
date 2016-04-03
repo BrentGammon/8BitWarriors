@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Developers here.
+ * This world will contain names of all developers that created the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brent Gammon
+ * @version S3 3/4/16
  */
 public class Developers extends ExtendedWorld
 {

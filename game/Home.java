@@ -1,5 +1,3 @@
- 
-
 import greenfoot.*;
 
 /**
@@ -10,6 +8,9 @@ import greenfoot.*;
  */
 public class Home extends MenuItems
 {
+    /**
+     * Constructor for Home this sets the image of the object
+     */
     public Home()
     {
         setImage("/Settings/homebutton.png");

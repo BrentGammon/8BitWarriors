@@ -67,6 +67,9 @@ public class SaveGame extends MenuItems
             writer.write("\r\n");
             //level start score
             writer.write(Integer.toString(world.getStartScore()));
+            writer.write("\r\n");
+            writer.write(Player.keyBomb!=null? Player.keyBomb: "C");
+           
             writer.close();
         }
         catch(IOException e){

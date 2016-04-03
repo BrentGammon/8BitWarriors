@@ -16,20 +16,20 @@ public class Player extends Entity implements IFalling, IDamageable
     public static final int JUMP_SPEED = -20;
     public static final int MOVE_SPEED_CAP = 10;
     public static final int SPEED_BOOST_CAP = 15;
-    
+
     public static final int VERT_SPEED_CAP = 15;
     public static final int FRICTION = 1;
-    
+
     /** powerup constants */
     private final int SPEED_BOOST_TIMER = 360;
     private final int JUMP_BOOST_TIMER = 520;
     private final int ATTACK_BOOST_TIMER = 650;
-    
+
     /** Time remaining for the powerups */
     private int jumpBoostTimer = 0;
     private int speedBoostTimer = 0;
     private int attackBoostTimer = 0;
-    
+
     /** Images for the players animation*/
     private static final GreenfootImage front = new GreenfootImage("Player/front.png");
 
@@ -39,7 +39,7 @@ public class Player extends Entity implements IFalling, IDamageable
     private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
     private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
     private static final int STATE_FRONT = 1, STATE_LEFT = 2, STATE_RIGHT = 3;
-    
+
     private GreenfootImage jump1Right = new GreenfootImage("Player/jump1.png");
     private GreenfootImage jump2Right = new GreenfootImage("Player/jump2.png");
     private GreenfootImage jump1Left;
@@ -47,7 +47,6 @@ public class Player extends Entity implements IFalling, IDamageable
     private int frame = 0;
     private int framestate = STATE_FRONT;
 
-    
     /** is the player facing left or not */
     private boolean facingLeft = false;
 
@@ -62,14 +61,14 @@ public class Player extends Entity implements IFalling, IDamageable
     public static String keyRight = "RIGHT" ;
     public static String keyAttack = "X" ;
     public static String keyBomb = "C";
-    
+
     /** Sound for the player*/
     private GreenfootSound jumpSound = new GreenfootSound("JumpPlayer.wav");
     private GreenfootSound damageSound = new GreenfootSound("PlayerDamage.wav");
-    
+
     //sharaz
     protected boolean onPushObject;
-    
+
     /**
      * Constructor for Player
      */
@@ -83,9 +82,9 @@ public class Player extends Entity implements IFalling, IDamageable
         hasFocus = true;
 
         setImage(front);
-        
+
     }   
-    
+
     /*
      * When the player is added to the world it sets the player as the focus and spawns in the players weapon 
      */
@@ -103,13 +102,13 @@ public class Player extends Entity implements IFalling, IDamageable
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
-        
+
         // if velocity is greater than how much friction reduces then reduce speed by friction (add if negative subtract if positive). Else set to 0
         horzVelocity = horzVelocity>=FRICTION?horzVelocity-=FRICTION:horzVelocity<=-FRICTION?horzVelocity+=FRICTION:0;
-        
+
         // Check for powerups and apply them
         boosts();
-        
+
         //if player has powerup decrement timer.
         if (hasSpeedBoost()){
             speedBoostTimer();
@@ -128,7 +127,7 @@ public class Player extends Entity implements IFalling, IDamageable
             vertVelocity = (hasJumpBoost()?-5:0) +JUMP_SPEED;
             onPushObject = false;
         }
-        
+
         //if player is moving in a direction
         if (Greenfoot.isKeyDown(keyLeft!=null?keyLeft:"LEFT")){
             //apply speed in direction
@@ -142,7 +141,7 @@ public class Player extends Entity implements IFalling, IDamageable
         updateSprite();
         //tell weapon what direction we are facing
         weapon.setDirection(facingLeft);
-        
+
         bombCooldown = Math.max(bombCooldown-1,0);
         //if player is pressing an attack key; fire
         if(Greenfoot.isKeyDown(keyAttack!=null?keyAttack:"X")){
@@ -154,23 +153,20 @@ public class Player extends Entity implements IFalling, IDamageable
             getWorld().addObject(b,getX(),getY());
             b.fire();
         }
-            
-            
-        
-        
+
         //if player has speed boost cap speed at speed boost cap else do move speed cap
         int cap = hasSpeedBoost()?SPEED_BOOST_CAP:MOVE_SPEED_CAP; 
         horzVelocity = Math.min(Math.max(-cap,horzVelocity),cap);
-        
+
         // do motion with calculated
         move();
+
+     
         // check that the player is still within the world.
         checkOutOfBounds();
 
     }
 
-  
-    
     /**
      * This function checks whether or not the player is touching any powerup items and removes them. 
      */
@@ -206,7 +202,6 @@ public class Player extends Entity implements IFalling, IDamageable
      * Decrements the jump boost powerup timer
      */
     public void jumpBoostTimer(){
-        
 
         if(jumpBoostTimer-- == 1){
             System.out.println("Jump boost is over");
@@ -217,7 +212,6 @@ public class Player extends Entity implements IFalling, IDamageable
      * Decrements the attack boost powerup timer
      */
     public void attackBoostTimer(){
-    
 
         if(attackBoostTimer-- <= 0){
             System.out.println("Attack boost is over");
@@ -251,7 +245,7 @@ public class Player extends Entity implements IFalling, IDamageable
         Counter.end();
         world.addObject(new DeadEntity(getImage()),getX(),getY());
         world.addObject(new Gameover(), world.getWidth()/2, world.getHeight()/2);
-        
+
         world.setFocus(null);
         if (weapon != null){
             world.addObject(new DeadEntity(weapon.getImage()),weapon.getX(),weapon.getY());
@@ -268,7 +262,6 @@ public class Player extends Entity implements IFalling, IDamageable
     public boolean hasJumpBoost(){
         return jumpBoostTimer > 0;
     }
-    
 
     /**
      * Does the player currently have speed boost
@@ -278,7 +271,6 @@ public class Player extends Entity implements IFalling, IDamageable
     public boolean hasSpeedBoost(){
         return speedBoostTimer > 0;
     }
-    
 
     /**
      * Does the player currently have attack boost
@@ -288,7 +280,6 @@ public class Player extends Entity implements IFalling, IDamageable
     public boolean hasAttackBoost(){
         return attackBoostTimer > 0;
     }
-  
 
     /*
      * Perform out of bounds check
@@ -303,7 +294,6 @@ public class Player extends Entity implements IFalling, IDamageable
             die();
         }
     }
-    
 
     /**
      * When player takes any damage - die
@@ -321,8 +311,8 @@ public class Player extends Entity implements IFalling, IDamageable
     private void updateSprite(){
         //facing front
         if (horzVelocity==0){
-                setImage(front);
-                framestate = STATE_FRONT;
+            setImage(front);
+            framestate = STATE_FRONT;
             setImage(front);
             framestate = STATE_FRONT;
         }else if(facingLeft){
@@ -351,16 +341,24 @@ public class Player extends Entity implements IFalling, IDamageable
         }  
     }
     
-
+    /**
+     * returns the value of the instacne variable facingLeft
+     * @return boolean facingLeft
+     */
     public boolean isFacing(){
         return facingLeft;
-
     }
-
+    
+    /**
+     * moves the object one pixel left
+     */
     public void movePlayerLeft(){
         moveLocation(-1,0);
     }
-
+    
+    /**
+     * moves the object one pixel right
+     */
     public void movePlayerRight(){
         moveLocation(1,0);
     }

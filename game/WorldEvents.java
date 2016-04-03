@@ -4,7 +4,7 @@ import java.util.*;
  * Allows the game levels to have events occur understand some scenarios 
  * 
  * @author Brent Gammon
- * @version 1/4/16
+ * @version S3 1/4/16
  */
 public class WorldEvents extends Actor
 {
@@ -34,7 +34,7 @@ public class WorldEvents extends Actor
      */
     public void levelThreeEvents(ExtendedWorld world){
         if(!bossWall){
-            List <Player> playerList = world.getObjects(Player.class);//.get(0);
+            List <Player> playerList = world.getObjects(Player.class);
             if(playerList.size()>0){
                 if(playerList.get(0)!=null && playerList.get(0)instanceof Player){
                     Player player = (Player) playerList.get(0);
@@ -62,25 +62,22 @@ public class WorldEvents extends Actor
         Wall wall = new Wall(30,3);
         world3.addObject(wall,player.getX()-157,player.getY());
     }
-
+	
+	/**
+	*This method removes the wall that prevents the player from completeing the final level 
+	*@param ExtendedWorld world the world that this event is occureing at
+	*/
     public void removeWall(ExtendedWorld world){
         World3 world3 = (World3) world;
         List<Flag> flagList = world3.getObjects(Flag.class);
         Flag flag = flagList.get(0);
         List<Wall> wallList = world3.getObjects(Wall.class);
-        //List <Actor> wallList = world3.getObjectsAt(3795,830,null);
         if(wallList.size()>0){
             for(Wall a : wallList){
-                System.out.println(a.getRealX() + "  " + a.getRealY());
                 if(a.getRealX()==3678&&a.getRealY()==774){
-                    
                     world3.removeObject(a);
                 }
             }
-            //Wall wall = (Wall) wallList.get(0);
-            //world.removeObject(wall);
         }
-
     }
-
 }

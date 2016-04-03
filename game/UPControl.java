@@ -10,6 +10,9 @@ import javax.swing.*;
  */
 public class UPControl extends KeyBindings
 {
+    /**
+     * Constructor for UPControl this sets the image
+     */
     public UPControl()
     {
         setImage("/Settings/up.png");

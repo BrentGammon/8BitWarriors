@@ -9,6 +9,9 @@ import greenfoot.*;
  */
 public class WoodLog extends Terrain implements IPlatform
 {
+	/**
+	*Constructor for WoodLog sets the image of the object
+	*/
     public WoodLog(){
         setImage("Terrain/logbase.png");
     }
@@ -29,6 +32,8 @@ public class WoodLog extends Terrain implements IPlatform
         //System.out.println(e.getY()+(e.getHeight()/2) <= getTop());
         return e.getY()+(e.getHeight()/2) <= getTop();
     }
+	
+	
     public boolean bottomIsCollidable(){
         return false;
     }

@@ -1,4 +1,3 @@
- 
 
 import greenfoot.*;
 import java.util.*;
@@ -17,10 +16,10 @@ public abstract class Moveable extends Entity
      */
     public void isPushed()
     {
-        
-            List<Player> nearObjects = new ArrayList<Player>();
-            nearObjects = getObjectsInRange(350,Player.class);
-            if(nearObjects!=null){
+
+        List<Player> nearObjects = new ArrayList<Player>();
+        nearObjects = getObjectsInRange(350,Player.class);
+        if(nearObjects!=null){
             for(Actor x:nearObjects){
                 if(x instanceof Player){
                     Player p = (Player) x;
@@ -34,14 +33,14 @@ public abstract class Moveable extends Entity
                             collideMoveLocation((p.horzVelocity),0);
                         }
                     }
-                        else if(playerX<objectX && !stop){
+                    else if(playerX<objectX && !stop){
                         if(isTouching(Player.class)){
 
                             collideMoveLocation((p.horzVelocity),0);
                         }
                     }
-                    }
-                    }
                 }
+            }
+        }
     }
 }

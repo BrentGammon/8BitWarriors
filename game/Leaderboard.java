@@ -59,8 +59,7 @@ public class Leaderboard extends ExtendedWorld
             addObject(new CreditTextDisplay("No Scored Recorded",40),375,140);
         }
         catch(IOException e){
-            JOptionPane.showMessageDialog(null, "Error Generating Leaderboard", "Load Error",
-                JOptionPane.ERROR_MESSAGE);
+            addObject(new CreditTextDisplay("Error",40),375,140);
         }
     }
 }

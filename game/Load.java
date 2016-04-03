@@ -52,7 +52,7 @@ public class Load extends MenuItems
     public void loadGame()
     {
         String[] data;
-        data = new String[7];
+        data = new String[8];
         try{
             BufferedReader reader = new BufferedReader(new FileReader("SaveFile.txt"));
             int i = 0;
@@ -89,11 +89,13 @@ public class Load extends MenuItems
         String attack = array.length>=5?array[4]:null;
         int startTime = Integer.parseInt(array[5]);
         int startScore = Integer.parseInt(array[6]);
-
+        String bomb = array[7];
+        
         Player.keyJump = upMove;
         Player.keyLeft = leftMove;
         Player.keyRight = rightMove;
         Player.keyAttack = attack;
+        Player.keyBomb = bomb;
         World world = getWorld();
         ExtendedWorld worlds;
         switch (Integer.parseInt(level)){

@@ -1,7 +1,0 @@
-3
-UP
-LEFT
-RIGHT
-X
-0
-700

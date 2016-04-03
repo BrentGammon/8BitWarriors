@@ -1,10 +1,9 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class BossEnemy here.
- * 
+ * This object this the boss enemey for the game, this is able to spawn rocks ontop of the player
  * @author Brent Gammon
- * @version 
+ * @version S3 3/4/16
  */
 public class BossEnemy extends Entity implements IDamageable
 {
@@ -16,6 +15,10 @@ public class BossEnemy extends Entity implements IDamageable
     private int thisX;
     private int thisY;
     private boolean spawnShield = false;
+
+    private Healthbar healthbar;
+    private int iframes=0;
+    private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     /**
      * Constructor for BossEnemy
      * @param int x the x position of the object
@@ -28,18 +31,35 @@ public class BossEnemy extends Entity implements IDamageable
         setImage(sprite);
     }
 
+    public void addedToWorld(World w){
+        healthbar = new Healthbar(health,this,40);
+        w.addObject(healthbar,getX(),getY()-10);
+    }
+
     /**
      * Act - do whatever the BossEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
+        if (getExtendedWorld().isPaused()) return;
+        if (iframes>0){
+
+            if(iframes%10<5){
+                setImage(SpriteHelper.makeWhite(sprite));
+            }else{
+                setImage(sprite);
+            }
+            iframes--;
+        }else{
+            setImage(sprite);
+        }
         List<Actor>actors = getObjectsInRange(500,Player.class);
         if(actors.size()>0){
             Player p = (Player) actors.get(0);
             if(cooldown==60){
                 RockPortal portal = new RockPortal();
-                getWorld().addObject(portal,p.getX(),p.getY()-200);
+                //getWorld().addObject(portal,p.getX(),p.getY()-200);
             }
         }
         List<EnemyShield> nearObjects = getWorld().getObjects(EnemyShield.class);
@@ -68,22 +88,30 @@ public class BossEnemy extends Entity implements IDamageable
      * @return a super call to die
      */
     public boolean die(){
-        Counter.add();
+        Counter.add(500);
+         healthbar.remove();
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
-        getWorld().addObject(new ScoreIndicator(50), getX(),getY());
+        getWorld().addObject(new ScoreIndicator(500), getX(),getY());
         return super.die();
     }
 
     /**
-     * 
+     * does damage to the Actor attacter
+     *@param Actor attacker the object thats damage is occuring 
+     *@param int damage  the amount of damage
      */
     public int doDamage(Actor attacker, int damage){
-        if(shield == false){
-            health -= damage;
-            //attackSound.play();
-            if (health<=0) die();
-        }
-        return damage;
+        if(iframes==0){
+            if(shield == false){
+                health -= damage;
+                healthbar.setHealth(health);
+                MuteControl.playSound(attackSound);
+                iframes = 20;
+
+                if (health<=0) die();
+            }
+            return damage;
+        }else return 0;
     }
 
     /**

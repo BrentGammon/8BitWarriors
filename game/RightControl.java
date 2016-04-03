@@ -10,6 +10,9 @@ import javax.swing.*;
  */
 public class RightControl extends KeyBindings
 {
+    /**
+     * Constructor for RightControl this sets the image of the object
+     */
     public RightControl()
     {
         setImage("/Settings/right.png");

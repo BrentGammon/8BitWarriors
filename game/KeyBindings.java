@@ -4,7 +4,7 @@ import javax.swing.*;
  * This class contains methods to check if the string value that the player has entered is vaild to use to change the keybinding
  * 
  * @author Brent Gammon
- * @version v0.1
+ * @version S3
  */
 public abstract class KeyBindings extends MenuItems
 {
@@ -17,7 +17,7 @@ public abstract class KeyBindings extends MenuItems
     public boolean validKey(String key){
         boolean valid = false;
         for(int i=0;i<validBindings.length;i++){
-            if(validBindings[i].equals(key)){
+            if(validBindings[i].equals(key.toLowerCase())){
                 valid = true;
             }
         }

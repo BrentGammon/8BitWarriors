@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Write a description of class RockPortal here.
+ * Spawns the rock object into the world
  * 
  * @author Brent Gammon 
  * @version S3 29/3/16

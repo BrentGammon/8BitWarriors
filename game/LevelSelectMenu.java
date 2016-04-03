@@ -68,7 +68,6 @@ public class LevelSelectMenu extends ExtendedWorld
      */
     public void addLevel2(){
         addObject(new Level2(),409,367);
-        //need assets
     }
     
     /**
@@ -76,7 +75,6 @@ public class LevelSelectMenu extends ExtendedWorld
      */ 
     public void addLevel3(){
         addObject(new Level3(),670,367);
-        //need assets
     }
     
     /**

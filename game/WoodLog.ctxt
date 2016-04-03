@@ -1,6 +1,7 @@
 #BlueJ class context
 comment0.params=
 comment0.target=WoodLog()
+comment0.text=\r\nConstructor\ for\ WoodLog\ sets\ the\ image\ of\ the\ object\r\n
 comment1.params=size
 comment1.target=WoodLog(int)
 comment2.params=

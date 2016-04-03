@@ -28,14 +28,14 @@ public class BossShield extends Entity
             if(this.isTouching(Player.class)){
                 int playerX = play.getX();
                 int playerY = play.getY();
-                if(!(play.isFacing())){
-                   play.move(-10);
+                if(playerX<this.getX()){
+                    play.move(-10);
                 }else{
-                   play.move(10);
+                    play.move(10);
                 }
             }
         }    
-    }
+   }
     
     /**
      * when called this will remove the object from the world

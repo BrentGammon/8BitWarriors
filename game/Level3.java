@@ -6,7 +6,7 @@ import greenfoot.*;
  * This class will be used in the Level Select Menu, when actived through a click event it will load level 3
  * 
  * @author Brent Gammon
- * @version v0.1
+ * @version S3
  */
 public class Level3 extends MenuItems
 {
@@ -20,7 +20,7 @@ public class Level3 extends MenuItems
     }
 
     /**
-     *When clicked it will set the world to level 3 - at the moment print a message to the terminal
+     *When clicked it will set the world to level 3
      */
     public void act() 
     {

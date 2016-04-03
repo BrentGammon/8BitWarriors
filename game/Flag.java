@@ -16,8 +16,7 @@ public class Flag extends ExtendedActor
     }
    
     /**
-     * Act - do whatever the Flag wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * this will get the players time and score and load the next level 
      */
     public void act() 
     {

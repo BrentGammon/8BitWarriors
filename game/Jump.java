@@ -25,7 +25,6 @@ public class Jump extends UI
     {
         //check players method to see if he has jump boost, if so change image
         if(player.hasJumpBoost()){
-            System.out.println("fu");
             setImage("jumpPU.png");
         }
         else{setImage("jumpUnactive.png");}

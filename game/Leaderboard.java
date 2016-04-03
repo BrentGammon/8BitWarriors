@@ -56,7 +56,7 @@ public class Leaderboard extends ExtendedWorld
                 yPost+=40;
             }
         }catch(FileNotFoundException e){
-            addObject(new CreditTextDisplay("No Scored Recorded",40),375,140);
+            addObject(new CreditTextDisplay("No Score Recorded",40),375,140);
         }
         catch(IOException e){
             addObject(new CreditTextDisplay("Error",40),375,140);

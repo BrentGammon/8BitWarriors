@@ -34,6 +34,7 @@ public abstract class KeyBindings extends MenuItems
         if(Player.keyLeft.equals(key))return true;
         if(Player.keyRight.equals(key))return true;
         if(Player.keyAttack.equals(key))return true;
+        if(Player.keyBomb.equals(key))return true;
         return false;
     }
 }

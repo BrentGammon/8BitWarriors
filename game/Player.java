@@ -7,7 +7,7 @@ import javax.swing.*;
  * The main player entity. It stores the players key bindings in addition to being the entity in the world
  * 
  * @author Mitchell
- * @version S2 2
+ * @version S2 3
  */
 public class Player extends Entity implements IFalling, IDamageable
 {
@@ -53,13 +53,15 @@ public class Player extends Entity implements IFalling, IDamageable
 
     /** the players current weapon object */
     private Attack weapon;
+    private int bombCooldown = 0;
+    private final int BOMB_COOLDOWN=50;
 
     /** keybinds for the player */
     public static String keyJump = "UP";
     public static String keyLeft = "LEFT";
     public static String keyRight = "RIGHT" ;
     public static String keyAttack = "X" ;
-    
+    public static String keyBomb = "C";
     
     /** Sound for the player*/
     private GreenfootSound jumpSound = new GreenfootSound("JumpPlayer.wav");
@@ -140,10 +142,21 @@ public class Player extends Entity implements IFalling, IDamageable
         updateSprite();
         //tell weapon what direction we are facing
         weapon.setDirection(facingLeft);
+        
+        bombCooldown = Math.max(bombCooldown-1,0);
         //if player is pressing an attack key; fire
         if(Greenfoot.isKeyDown(keyAttack!=null?keyAttack:"X")){
             weapon.fire();
+        }else if(bombCooldown==0&&BombCounter.getBombs()>0&&Greenfoot.isKeyDown(keyBomb)){
+            BombCounter.useBomb();
+            bombCooldown = BOMB_COOLDOWN;
+            Bomb b = new Bomb(facingLeft,this);
+            getWorld().addObject(b,getX(),getY());
+            b.fire();
         }
+            
+            
+        
         
         //if player has speed boost cap speed at speed boost cap else do move speed cap
         int cap = hasSpeedBoost()?SPEED_BOOST_CAP:MOVE_SPEED_CAP; 
@@ -168,15 +181,12 @@ public class Player extends Entity implements IFalling, IDamageable
             pu.die();
             if (kind == Powerup.SPEED_PU) { 
                 speedBoostTimer = SPEED_BOOST_TIMER;
-            }
-
-            if (kind == Powerup.JUMP_PU){
+            }else if (kind == Powerup.JUMP_PU){
                 jumpBoostTimer = JUMP_BOOST_TIMER;
-            }
-            
-
-            if (kind == Powerup.AMMO_PU){
+            }else if (kind == Powerup.AMMO_PU){
                 attackBoostTimer = ATTACK_BOOST_TIMER;
+            }else if (kind == Powerup.BOMB_PU){
+                BombCounter.addBomb();
             }
 
         }
@@ -234,6 +244,7 @@ public class Player extends Entity implements IFalling, IDamageable
      */
     public boolean die(){
         Timer.freeze();
+        BombCounter.reset();
         MuteControl.playSound(damageSound);
         ExtendedWorld world = getExtendedWorld();
         Timer.end();
@@ -339,6 +350,7 @@ public class Player extends Entity implements IFalling, IDamageable
             }
         }  
     }
+    
 
     public boolean isFacing(){
         return facingLeft;

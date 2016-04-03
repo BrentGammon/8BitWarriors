@@ -27,6 +27,7 @@ public class World3 extends ExtendedWorld
         Counter counter = new Counter();
         counter.setValue(score);
         counter.updateImage();
+        addObject(new BombCounter(),80,103);
         addObject(timer,52,35);
         addObject(counter,55,67);
         gameLevel = "3";

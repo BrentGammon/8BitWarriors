@@ -43,6 +43,9 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
         leftSp.mirrorHorizontally();
         setImage(rightSp);
     }
+    /**
+     * Extension of Actor. Adds 2 minions to world on spawn
+     */
     protected void addedToWorld(World w){
         MonkeyEnemy m1, m2;
         m1 = new MonkeyEnemy(this);
@@ -159,10 +162,13 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
         getWorld().addObject(new ScoreIndicator(300), getX(),getY());
         if (weapon != null) weapon.die();
         healthbar.remove();
+        getWorld().addObject(new Powerup(Greenfoot.getRandomNumber(4)),getX(),getY() );
         getWorld().addObject(new DeadEntity(getImage()),getX(),getY());
         return super.die();
     }
-    
+    /**
+     * Private method to spawn a minion if cooldown has expired
+     */
     private void spawnMinion(){
         if (minionCooldown==0){
             minionCooldown = MINION_COOLDOWN;
@@ -171,7 +177,9 @@ public class SuperMonkeyEnemy extends Entity implements IFalling, IDamageable
             getWorld().addObject(m,getX()+Greenfoot.getRandomNumber(20)-10,getY());
         }
     }
-    
+    /**
+     * Used by minions to report their death
+     */
     public void minionDeath(MonkeyEnemy m){
         minions.remove(m);
     }

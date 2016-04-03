@@ -19,8 +19,9 @@ public abstract class Attack extends Entity
         this.source = source;
         this.direction = direction;
     }
-   
-    
+    public ExtendedActor getSource(){
+        return source;
+    }
     public void setDirection(boolean direction){
         this.direction=direction;
     }

@@ -27,7 +27,8 @@ public class MenuSettings extends ExtendedWorld
         addObject(new LeftControl(),322,403);
         addObject(new RightControl(),511,403);
         addObject(new Home(),47,105);
-        addObject(new AttackControl(),419,511);
+        addObject(new AttackControl(),322,511);
+        addObject(new BombControl(),511,511);
         addObject(new SettingBelowHeading(),415,243);
         addObject(new SettingBinding(),420,182);
         addObject(new SettingBelowHeading(),415,243);

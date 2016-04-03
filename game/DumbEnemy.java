@@ -111,7 +111,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
             health -= damage;
             healthbar.setHealth(health);
             iframes = 20;
-            attackSound.play();
+            MuteControl.playSound(attackSound);
             if (health>0) return damage;
             die();
             return damage;

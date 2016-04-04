@@ -22,24 +22,15 @@ public class World3 extends ExtendedWorld
         super(600,400,true);
         startScore = score;
         startTime = time;
-        Timer timer = new Timer();
-        timer.setTime(time);
-        Counter counter = new Counter();
-        counter.setValue(score);
-        counter.updateImage();
-        addObject(new BombCounter(),80,103);
-        addObject(timer,52,35);
-        addObject(counter,55,67);
         gameLevel = "3";
         layer1 = new GreenfootImage("images/Castle BackgroundBig.png");
         redrawBackground();
         Player p = new Player();
+        addObject(new Hud(score,time,p),113,62);
+        
         addObject(new WorldEvents(),0,0);
         addObject(p,100,826);
         addObject(new Wall(30,3),15,779);
-        addObject(new speed(p),320,67);
-        addObject(new Ammo(p),400,67);
-        addObject(new Jump(p),470,67);
         addObject(new Grass(20,3),301,885);
         addObject(new Grass(3,3),1679,590);
         addObject(new Grass(20,3),751,815);

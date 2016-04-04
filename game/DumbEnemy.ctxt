@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=
-comment0.target=DumbEnemy()
+comment0.params=LevelDesign
+comment0.target=DumbEnemy(int)
 comment0.text=\r\n\ Act\ -\ do\ whatever\ the\ DumbEnemy\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pre\ ssed\ in\ the\ environment.\r\n
 comment1.params=w
 comment1.target=void\ addedToWorld(greenfoot.World)

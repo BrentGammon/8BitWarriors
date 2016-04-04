@@ -12,6 +12,8 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     public static final int DAMAGE = 1;
     private GreenfootImage sprite1;
     private GreenfootImage sprite2;
+    private GreenfootImage sprite11;
+    private GreenfootImage sprite22;
     private int health = 3;
     protected boolean goLeft = false;
     private int iframes = 0;
@@ -25,11 +27,14 @@ public class TrackEnemy extends Entity implements IFalling, IDamageable
     /**
      * Constructor for TrackEnemy
      */
-    public TrackEnemy()
+    public TrackEnemy(int LevelDesign)
     {
         sprite1 = new GreenfootImage("trackLeft1.png");
+
         sprite2 = new GreenfootImage("trackLeft2.png");
+
         setImage(sprite1);
+      
     }
     
     /**

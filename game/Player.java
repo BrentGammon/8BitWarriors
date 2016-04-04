@@ -57,6 +57,7 @@ public class Player extends Entity implements IFalling, IDamageable
 
     /** keybinds for the player */
     public static String keyJump = "UP";
+    public static String isKeyJump = keyJump;
     public static String keyLeft = "LEFT";
     public static String keyRight = "RIGHT" ;
     public static String keyAttack = "X" ;
@@ -119,6 +120,7 @@ public class Player extends Entity implements IFalling, IDamageable
         if (hasAttackBoost()){
             attackBoostTimer();
         }
+       
 
         //if the jump key is being held and player is on a platform. Jump
         if(Greenfoot.isKeyDown(keyJump!=null?keyJump:"SPACE")&& (onPlatform() || onPushObject)){

@@ -40,10 +40,11 @@ public class PushObject extends Moveable implements IFalling
                     }
                     else{super.stop = false;}
                     //sharaz,bug fix- if player wants to jump then mimix pushobject like terrain and let them jump
-                    if(Greenfoot.isKeyDown("up")){
+                    if(Player.isKeyJump != null){
                         p.onPushObject = true;
                     }
                     else{p.onPushObject = false;}
+
 
                 }
                 //sharaz,if touching actor is basic attack, give it a vertical velocity of 0, i.e stop falling(gravity);

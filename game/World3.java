@@ -77,21 +77,21 @@ public class World3 extends ExtendedWorld
         addObject(new Grass(5,3),2316,622);
         addObject(new Grass(5,3),2319,396);
         //enemies
-        addObject(new TrackEnemy(),636,753);
+        addObject(new TrackEnemy(3),636,753);
         addObject(new Spikes(1),826,769);
-        addObject(new DumbEnemy(),950,757);
-        addObject(new TrackEnemy(),112,299);
+        addObject(new DumbEnemy(3),950,757);
+        addObject(new TrackEnemy(3),112,299);
         //addObject(new TrackEnemy(),648,87);
-        addObject(new TrackEnemy(),882,88);
+        addObject(new TrackEnemy(3),882,88);
         addObject(new Spikes(2),1287,105);
-        addObject(new DumbEnemy(),1776,96);
+        addObject(new DumbEnemy(3),1776,96);
         addObject(new RangeEnemy(true),2403,566);
-        addObject(new TrackEnemy(),2944,835);
-        addObject(new TrackEnemy(),3058,642);
+        addObject(new TrackEnemy(3),2944,835);
+        addObject(new TrackEnemy(3),3058,642);
         addObject(new RangeEnemy(false),3567,640);
         addObject(new Spikes(0),2342,351);
-        addObject(new TrackEnemy(),2891,296);
-        addObject(new DumbEnemy(),3325,296);
+        addObject(new TrackEnemy(3),2891,296);
+        addObject(new DumbEnemy(3),3325,296);
 
         addObject(new Wall(3,3),3678,774);
         addObject(new Grass(5,3),3768,896);

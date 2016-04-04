@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Hud here.
+ * The background and wrapper for the hud elements
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mitchell Rebuck-Watson
+ * @version S3 1
  */
 public class Hud extends UI
 {
@@ -17,6 +17,13 @@ public class Hud extends UI
     private GreenfootImage hudBase;
     private int initScore, initTime;
     private Player player;
+    /**
+     * Main Constructor
+     * 
+     * @param initScore the score to initialise to
+     * @param initTime the time to initialise to
+     * @param player player object
+     */
     public Hud(int initScore, int initTime,Player player){
         this.initScore = initScore;
         this.initTime = initTime;

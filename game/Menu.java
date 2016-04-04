@@ -23,8 +23,8 @@ public class Menu extends ExtendedWorld
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
         setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
 
-        addObject(new PlayerFace(),125,85);
-        addObject(new RedFace(),700,85);
+        addObject(new Face(false),125,85);
+        addObject(new Face(true),700,85);
         addObject(new Title(),415,102);
         addObject(new Start(),419,209 );
         addObject(new Load(),409,279);

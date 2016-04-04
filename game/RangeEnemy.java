@@ -13,6 +13,7 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
     private int cooldown = 90;
     private BulletAttack weapon;
     private GreenfootImage sprite = new GreenfootImage("Graphics/Characters/Antagonist Characters/Enemywithbow.png");
+    private GreenfootImage spriteRight;
     private Healthbar healthbar;
     private int iframes=0;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
@@ -20,13 +21,8 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
      * The constructor of RangeEnemy
      * @param boolean facingLeft the direction that the object is facing
      */
-    public RangeEnemy(boolean facingLeft){
-        if(facingLeft==false){
-            sprite.mirrorHorizontally();
-        }
+    public RangeEnemy(){
         setImage(sprite);
-        this.facingLeft = facingLeft;
-
     }
 
     public void addedToWorld(World w){
@@ -40,6 +36,22 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
     public void act() 
     {
         if (getExtendedWorld().isPaused()) return;
+        int playerX=0;
+        if(getWorld().getObjects(Player.class).size()>0){
+            Player player = (Player) getWorld().getObjects(Player.class).get(0);
+            playerX=player.getRealX();
+        }
+        if(playerX>getRealX()){
+            if(facingLeft){
+                sprite.mirrorHorizontally();
+            }
+            facingLeft=false;
+        }else{
+            if(!facingLeft){
+                sprite.mirrorHorizontally();
+            }
+            facingLeft=true;
+        }
         if (iframes>0){
 
             if(iframes%10<5){
@@ -52,15 +64,16 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
             setImage(sprite);
         }
         if (cooldown==90){
+
             weapon = new BulletAttack(facingLeft,this);
             getWorld().addObject(weapon,getX()-7,getY()+7);
+
         }
         cooldown--;
         if(cooldown==0){
             cooldown=90;
         }
-
-    }  
+    }
 
     /**
      * When the object is not on the platform then the object will fall  
@@ -111,7 +124,7 @@ public class RangeEnemy extends Entity implements IFalling, IDamageable
     public int doDamage(Actor attacker, int damage){
         if(iframes==0){
             health -= damage;
-            // MuteControl.playSound(attackSound);
+            MuteControl.playSound(attackSound);
             healthbar.setHealth(health);
             MuteControl.playSound(attackSound);
             iframes = 20;

@@ -24,8 +24,8 @@ public class Ammo extends UI
         //if player has attack booster then change image
         if(player.hasAttackBoost()){
             System.out.println("fu");
-            setImage("ammoPU.png");
+            setImage("HUD/hudattack.png");
         }
-        else{setImage("ammoUnactive.png");}
+        else{setImage("HUD/hudattackinactive.png");}
     }    
 }

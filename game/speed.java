@@ -22,8 +22,8 @@ public class speed extends UI
         //if player has speed boost change image
         if(player.hasSpeedBoost()){
             System.out.println("fu");
-            setImage("speedPU.png");
+            setImage("HUD/hudspeed.png");
         }
-        else{setImage("speedUnactive.png");}
+        else{setImage("HUD/hudspeedinactive.png");}
     }    
 }

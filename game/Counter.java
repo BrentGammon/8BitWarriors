@@ -28,48 +28,29 @@ import java.awt.Color;
  * }
  * </pre>
  * 
- * @authors Sharaz, Mati
- * @version 2.0
+ * @authors Sharaz, Mati, Mitchell
+ * @version 3.0
  */
 public class Counter extends UI
 {
     private static final Color transparent = new Color(0,0,0,0);
-    private GreenfootImage background;
     private static int value;
     //counter value
     private static int target;
-    private String prefix;
     //static field changed from dumbenemy's call to counter.add
     private static boolean increment;
-    
     //called upon player death to remove counter object from world (see act)
     private static boolean end;
     
     public Counter()
     {
-        this("Score: ");
-        //sets greenfoot image to counter, then uses the value 0 and overlaps these two images
-        GreenfootImage image = new GreenfootImage("Counter.png");
-        GreenfootImage text = new GreenfootImage(prefix + 0, 22, Color.BLACK, transparent);
-        //concatenate text with counter image
-        image.drawImage(text, (image.getWidth()-text.getWidth())/2, 
-                        (image.getHeight()-text.getHeight())/2);
-        setImage(image);
-        end=false;
-    }
-
-    /**
-     * Create a new counter, initialised to 0.
-     */
-    public Counter(String prefix)
-    {
-        background = getImage();  // get image from class
         value = 0;
         target = 0;
         increment = false;
-        this.prefix = prefix;
         updateImage();
+        end=false;
     }
+
     
    
     
@@ -132,34 +113,13 @@ public class Counter extends UI
     public static int getFinalVal(){
         return target;
     }
-   
-    
-    /**
-     * Sets a text prefix that should be displayed before
-     * the counter value (e.g. "Score: ").
-     */
-    public void setPrefix(String prefix)
-    {
-        this.prefix = prefix;
-        updateImage();
-    }
 
     /**
      * Update the image on screen to show the current value.
      */
     public void updateImage()
     {
-        GreenfootImage image = new GreenfootImage("Counter.png");
-        GreenfootImage text = new GreenfootImage(prefix + value, 22, Color.BLACK, transparent);
-        
-        if (text.getWidth() > image.getWidth() - 20)
-        {
-            image.scale(text.getWidth() + 20, image.getHeight());
-        }
-        
-        image.drawImage(text, (image.getWidth()-text.getWidth())/2, 
-                        (image.getHeight()-text.getHeight())/2);
-        setImage(image);
+        setImage(SpriteHelper.getNumberImage(value));
     }
     
     /**

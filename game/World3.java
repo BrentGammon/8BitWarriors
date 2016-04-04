@@ -10,7 +10,7 @@ public class World3 extends ExtendedWorld
 {
     boolean begin;
     GreenfootSound bgm = new GreenfootSound("castle.mp3");
-    protected int WORLD_WIDTH = 10000;
+    protected int WORLD_WIDTH = 4000;
     protected int WORLD_HEIGHT = 900;
     /**
      * Constructor for objects of class World2.

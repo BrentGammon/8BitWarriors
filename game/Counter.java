@@ -128,6 +128,8 @@ public class Counter extends UI
      */
     public void setValue(int value){
         this.value = value;
+        this.target = value;
+        updateImage();
     }
     
     /**

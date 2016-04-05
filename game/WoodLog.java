@@ -29,7 +29,6 @@ public class WoodLog extends Terrain implements IPlatform
     }
     @Override
     public boolean canSupportEntity(Entity e){
-        //System.out.println(e.getY()+(e.getHeight()/2) <= getTop());
         return e.getY()+(e.getHeight()/2) <= getTop();
     }
 	

@@ -110,16 +110,7 @@ public class Player extends Entity implements IFalling, IDamageable
         // Check for powerups and apply them
         boosts();
 
-        //if player has powerup decrement timer.
-        if (hasSpeedBoost()){
-            speedBoostTimer();
-        }
-        if (hasJumpBoost()){
-            jumpBoostTimer();
-        }
-        if (hasAttackBoost()){
-            attackBoostTimer();
-        }
+        
        
 
         //if the jump key is being held and player is on a platform. Jump
@@ -191,35 +182,7 @@ public class Player extends Entity implements IFalling, IDamageable
 
     }
 
-    /**
-     * Decrements the speed boost powerup timer
-     */
-    public void speedBoostTimer(){
-        if (speedBoostTimer-- <= 0){
-            System.out.println("Speed boost is over");
-        }
-    }
 
-    /**
-     * Decrements the jump boost powerup timer
-     */
-    public void jumpBoostTimer(){
-
-        if(jumpBoostTimer-- == 1){
-            System.out.println("Jump boost is over");
-        }
-    }
-
-    /**
-     * Decrements the attack boost powerup timer
-     */
-    public void attackBoostTimer(){
-
-        if(attackBoostTimer-- <= 0){
-            System.out.println("Attack boost is over");
-        }
-
-    }
 
     /**
      * Perform motion using velocity variables

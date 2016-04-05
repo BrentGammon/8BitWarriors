@@ -137,7 +137,6 @@ public abstract class Entity extends ExtendedActor
                 int ypen = 0;
                 while (intersects(t)){
                     ypen++;
-                    //System.out.println("cx: "+cx+", cy: "+cy+", x: "+getX()+", y: "+getY());
                     moveLocation(0,-cy);
                 }
                 //if was actually moving sideways ( need to check horizontal pen )
@@ -151,12 +150,11 @@ public abstract class Entity extends ExtendedActor
                     int xpen = 0;
                     while (intersects(t)){
                         xpen++;
-                        //System.out.println("cx: "+cx+", cy: "+cy+", x: "+getX()+", y: "+getY());
                         moveLocation(-cx,0);
                     }
                     
                     
-                    //System.out.println("Collision! xpen"+xpen+" dx"+dx+" ypen"+ypen+" dy"+dy);
+
                     // if x penetration was greater than distance moved (thats invalid) and ypenetration was
                     // less than x penetration and the y penetration was valid
                     // resolve in y dimension
@@ -164,7 +162,7 @@ public abstract class Entity extends ExtendedActor
                     //if x penetration is also invalid leave object in collided state
                     else if ( xpen>Math.abs(dx)){
   
-                       // System.out.println("Could not resolve x");
+
                         setLocation(x,y);
                     }
                 }else if ( ypen>Math.abs(dy) ){

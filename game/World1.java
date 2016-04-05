@@ -59,10 +59,10 @@ public class World1 extends ExtendedWorld
         //addObject(new Spikes(0),1500,840);
         //addObject(new Spikes(1),1400,840);
         //addObject(new Spikes(2),1300,840);
-        addObject(new DumbEnemy(1),1350,750);
-        addObject(new DumbEnemy(1),1450,750);
-        addObject(new DumbEnemy(1),1550,750);
-        addObject(new DumbEnemy(1),2155,117);
+        addObject(new DumbEnemy(),1350,750);
+        addObject(new DumbEnemy(),1450,750);
+        addObject(new DumbEnemy(),1550,750);
+        addObject(new DumbEnemy(),2155,117);
         
         addObject(new Wall(5,1),-22,675);
         addObject(new WoodLog(),2752,582);

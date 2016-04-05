@@ -130,16 +130,16 @@ public class World2 extends ExtendedWorld
         addObject(new Tree(5),2999,612);
 
         
-        addObject(new DumbEnemy(2),2514,291);
-        addObject(new DumbEnemy(2),2714,291);
-        addObject(new DumbEnemy(2),292,832);
-        addObject(new DumbEnemy(2),410,832);
-        addObject(new DumbEnemy(2),1526,678);
-        addObject(new DumbEnemy(2),2393,291);
-        addObject(new DumbEnemy(2),2649,291);
-        addObject(new DumbEnemy(2),2547,792);
-        addObject(new DumbEnemy(2),2746,792);
-        addObject(new DumbEnemy(2),3685,792);
+        addObject(new MafiaEnemy(),2514,291);
+        addObject(new MafiaEnemy(),2714,291);
+        addObject(new MafiaEnemy(),292,832);
+        addObject(new MafiaEnemy(),410,832);
+        addObject(new MafiaEnemy(),1526,678);
+        addObject(new MafiaEnemy(),2393,291);
+        addObject(new MafiaEnemy(),2649,291);
+        addObject(new MafiaEnemy(),2547,792);
+        addObject(new MafiaEnemy(),2746,792);
+        addObject(new MafiaEnemy(),3685,792);
 
         
         //addObject(new Moveable(), 500, 500);

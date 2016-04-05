@@ -24,8 +24,9 @@ public class Leaderboard extends ExtendedWorld
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
         setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
         
-        addObject(new CreditTextDisplay("Leaderboard",60),420,49);
-        addObject(new Home(),65,50);
+        //addObject(new CreditTextDisplay("Leaderboard",60),420,49);
+        addObject(new LeaderboardBanner(), 420,49); 
+        addObject(new Home(),40,115);
         generateTable();
     }
     
@@ -56,7 +57,8 @@ public class Leaderboard extends ExtendedWorld
                 yPost+=40;
             }
         }catch(FileNotFoundException e){
-            addObject(new CreditTextDisplay("No Score Recorded",40),375,140);
+            //addObject(new CreditTextDisplay("No Score Recorded",40),375,140);
+            addObject(new ScoreText(), 418,140); 
         }
         catch(IOException e){
             addObject(new CreditTextDisplay("Error",40),375,140);

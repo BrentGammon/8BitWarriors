@@ -67,7 +67,7 @@ public class PauseMenu extends UI
         w.addObject(save,242,236);
         w.addObject(mute,458,74);
         w.addObject(home,261,297);
-        w.addObject(title,322,78);
+        w.addObject(title,300,78);
         w.addObject(restart,190,169);
     }
 }

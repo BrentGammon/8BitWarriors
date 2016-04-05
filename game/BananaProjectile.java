@@ -74,8 +74,7 @@ public class BananaProjectile extends Attack implements IFalling
         horzVelocity = dx>0?MOVE_SPEED:-MOVE_SPEED;
         double angle1 = Math.toDegrees(Math.atan(MathHelper.trajectoryEquationRoot1(20,GRAVITY,Math.abs(dx),-dy)));
         double angle2 = Math.toDegrees(Math.atan(MathHelper.trajectoryEquationRoot2(20,GRAVITY,Math.abs(dx),-dy)));
-        System.out.println(angle1);
-        System.out.println(angle2);
+
         
         thrown = true;
         damaging = true;

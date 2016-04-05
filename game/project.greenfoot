@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Tue Apr 05 12:19:28 BST 2016
+#Tue Apr 05 13:40:14 BST 2016
 dependency211.to=Counter
 target33.typeParameters=
 dependency314.to=SpriteHelper
@@ -737,10 +737,10 @@ dependency77.from=DumbEnemy
 target13.height=50
 dependency273.from=DumbEnemy
 target80.editor.width=900
-mainWindow.y=143
+mainWindow.y=299
 dependency140.to=Terrain
 dependency243.to=Home
-mainWindow.x=174
+mainWindow.x=17
 dependency346.to=Hud
 dependency67.to=World1
 dependency309.from=Timer
@@ -1734,8 +1734,8 @@ target21.editor.width=960
 dependency196.from=BossShield
 dependency207.type=UsesDependency
 dependency290.type=UsesDependency
-target75.editor.y=0
-target75.editor.x=960
+target75.editor.y=369
+target75.editor.x=37
 dependency122.type=UsesDependency
 target81.showInterface=false
 target56.naviview.expanded=true
@@ -2342,7 +2342,7 @@ dependency336.type=UsesDependency
 target41.editor.height=728
 dependency55.type=UsesDependency
 dependency321.from=Hud
-world.lastInstantiated=World2
+world.lastInstantiated=World3
 dependency251.type=UsesDependency
 target77.typeParameters=
 target9.showInterface=false

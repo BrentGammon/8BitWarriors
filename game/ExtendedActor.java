@@ -88,7 +88,6 @@ public class ExtendedActor extends Actor
      * @return distance to the target
      */
     public int getDistanceTo(ExtendedActor target){
-        //System.out.println("( ("+getX()+" - "+target.getX()+")^2 + ("+getY()+"
         return (int)Math.sqrt(Math.pow(getX()-target.getX(),2) + Math.pow(getY()-target.getY(),2));
     }
 }

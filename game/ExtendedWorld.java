@@ -374,10 +374,21 @@ public class ExtendedWorld extends World
     public int getStartTime(){
         return startTime;
     }
+    
+    /**
+     * sets the instacne variable paused to the paramter isPaused
+     * @param boolean isPaused
+     */
     public void setPause(boolean isPaused){
         paused = isPaused;
     }
     
+    /**
+     * adds extendedActor into the world
+     * @param ExtendedActor a the acotrs that being placed into the world
+     * @param int x objects X position
+     * @param int y objects Y position
+     */
     public void addExtendedActor(ExtendedActor a,int x, int y){
         addObject(a,x - cameraX, y - cameraY);
     }

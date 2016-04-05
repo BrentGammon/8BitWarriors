@@ -10,7 +10,7 @@ import javax.swing.*;
  * This class allows the player to save what level they are on and their personal key bindings
  * 
  * @author Brent Gammon
- * @version v0.1
+ * @version S3 5/4/16
  */
 public class SaveGame extends MenuItems
 {
@@ -20,7 +20,7 @@ public class SaveGame extends MenuItems
      */
     public SaveGame()
     {
-        GreenfootImage image = new GreenfootImage("images/saveIcon.png");
+        GreenfootImage image = new GreenfootImage("images/PAUSE/savebutton.png");
         setImage(image);
     }
     

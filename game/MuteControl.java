@@ -58,11 +58,11 @@ public class MuteControl extends UI
         return currentVolume;
     }
     public static void decreaseVolume(){
-        volume = Math.max(volume - 10,0)
+        volume = Math.max(volume - 10,0);
         backgroundMusic.setVolume( volume );
     }
     public static void increaseVolume(){
-        volume = Math.min(volume + 10,100)
+        volume = Math.min(volume + 10,100);
         backgroundMusic.setVolume( volume );
     }
     /**

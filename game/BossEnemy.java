@@ -59,7 +59,7 @@ public class BossEnemy extends Entity implements IDamageable
             Player p = (Player) actors.get(0);
             if(cooldown==60){
                 RockPortal portal = new RockPortal();
-                //getWorld().addObject(portal,p.getX(),p.getY()-200);
+                getWorld().addObject(portal,p.getX(),p.getY()-200);
             }
         }
         List<EnemyShield> nearObjects = getWorld().getObjects(EnemyShield.class);

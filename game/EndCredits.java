@@ -44,6 +44,7 @@ public class EndCredits extends ExtendedWorld
         addObject(new CreditTextDisplay(1,score,time),319,71);
         addObject(new CreditTextDisplay(2,score,time),310,123);
         addObject(new CreditTextDisplay(3,score,time),311,174);
+        addObject(new Home(),47,41);
 
     }
     
@@ -95,7 +96,6 @@ public class EndCredits extends ExtendedWorld
         try{
             FileWriter writer = new FileWriter("highscores.txt");
             writer.write(Integer.toString(finalScore));
-            writer.write("\r\n");
             writer.close();
         }
         catch(IOException e){

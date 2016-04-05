@@ -20,16 +20,16 @@ public class Leaderboard extends ExtendedWorld
     public Leaderboard()
     {
         super(GAME_HEIGHT,GAME_WIDTH,false); 
-        
+
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
         setBackground("images/Graphics/MainMenuelements/Menu_BG.png");
-        
+
         //addObject(new CreditTextDisplay("Leaderboard",60),420,49);
         addObject(new LeaderboardBanner(), 420,49); 
         addObject(new Home(),40,115);
         generateTable();
     }
-    
+
     /**
      * Generate the world with the scores from the text file
      * @exception FileNotFound displays message in the world that displays that no scores are reocrded 
@@ -51,13 +51,14 @@ public class Leaderboard extends ExtendedWorld
             reader.close();
             int yPost = 140;
             for(int x =0;x<loadData.length;x++){
-                addObject(new CreditTextDisplay(x+1),375,yPost);
-                showText(": ",415,yPost);
-                addObject(new CreditTextDisplay(Integer.parseInt(loadData[x])),455,yPost);
-                yPost+=40;
+                if(loadData[x]!= null){
+                    addObject(new CreditTextDisplay(x+1),375,yPost);
+                    showText(": ",415,yPost);
+                    addObject(new CreditTextDisplay(Integer.parseInt(loadData[x])),455,yPost);
+                    yPost+=40;
+                }
             }
         }catch(FileNotFoundException e){
-            //addObject(new CreditTextDisplay("No Score Recorded",40),375,140);
             addObject(new ScoreText(), 418,140); 
         }
         catch(IOException e){

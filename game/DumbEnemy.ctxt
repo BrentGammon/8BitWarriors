@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=LevelDesign
-comment0.target=DumbEnemy(int)
+comment0.params=
+comment0.target=DumbEnemy()
 comment0.text=\r\n\ Act\ -\ do\ whatever\ the\ DumbEnemy\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pre\ ssed\ in\ the\ environment.\r\n
 comment1.params=w
 comment1.target=void\ addedToWorld(greenfoot.World)
@@ -24,6 +24,4 @@ comment7.text=\r\n\ When\ called\ this\ will\ increment\ the\ score\ counter\ an
 comment8.params=
 comment8.target=void\ updateSprite()
 comment8.text=\r\n\ Internal\ method\ to\ set\ player\ sprite\ to\ apropriate\ image\r\n
-comment9.params=
-comment9.target=void\ updateSprite2()
-numComments=10
+numComments=9

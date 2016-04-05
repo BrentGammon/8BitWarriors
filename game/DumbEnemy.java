@@ -18,7 +18,8 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private int iframes=0;
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
-    private static final GreenfootImage SHEET = new GreenfootImage("bug.png");
+    private static  GreenfootImage SHEET = new GreenfootImage("bug.png");
+    private static  GreenfootImage SHEET1 = new GreenfootImage("mafia.png");
     private static final int SHEET_H = 1;
     private static final int SHEET_W = 4;
     private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
@@ -29,10 +30,24 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
      * the 'Act' or 'Run' button gets pre ssed in the environment.
      */
     
-    public DumbEnemy(){
-        setImage(new GreenfootImage(SPRITE_W,SPRITE_H));
+    public DumbEnemy(int LevelDesign){
+        if(LevelDesign == 2){
+            SHEET = SHEET1;
+            setImage(new GreenfootImage(SPRITE_W,SPRITE_H));
+          
+        }else if(LevelDesign == 1){
+            
+            SHEET = SHEET;
+            setImage(new GreenfootImage(SPRITE_W,SPRITE_H));
+        }else if(LevelDesign == 3){
+            SHEET = SHEET;
+            setImage(new GreenfootImage(SPRITE_W,SPRITE_H));
+            
+        }
     }
-    public void addedToWorld(World w){
+
+    
+   public void addedToWorld(World w){
         healthbar = new Healthbar(2,this,40);
         w.addObject(healthbar,getX(),getY()-10);
     }

@@ -11,7 +11,7 @@ public class Powerup extends Entity
     static final String[] images = { "speedPU.png", "jumpPU.png", "ammoPU.png" , "bomb Up.png"}; // add as needed; keep the same order as the static final int fields above
  
     int puType; // a value from the list of static final ints above
-    int lifespan = 300; // about 5 to 6 seconds
+    int lifespan = 3000; // about 50 to 60 seconds
     
     
     // a Powerup object can be created with 'new Powerup(Powerup.SPEED_PU)' or similar

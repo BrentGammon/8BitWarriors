@@ -44,6 +44,10 @@ public class Grass extends Terrain
         if(LevelDesign==3){
             unit = unit3;
         }
+        if(LevelDesign==2){
+            
+            unit = unit3;
+        }
         int unitWidth = unit.getWidth();
         GreenfootImage self = new GreenfootImage(unitWidth*width,unit.getHeight());
         for(int x=0;x<width;x++){

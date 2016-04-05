@@ -347,7 +347,7 @@ public class ExtendedWorld extends World
     */
     public void setPaintOrder(){
         // draw order is left is top. anything not mentioned is drawn under.
-        super.setPaintOrder(UI.class,Attack.class,Player.class,Entity.class);
+        super.setPaintOrder(UI.class,Ammo.class,speed.class,Jump.class,BombCounter.class,Counter.class,Timer.class,Hud.class,Attack.class,Player.class,Entity.class);
     }
     
     /**

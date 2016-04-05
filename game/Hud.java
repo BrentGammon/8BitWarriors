@@ -49,13 +49,5 @@ public class Hud extends UI
         getWorld().addObject(jump,getX()-71,getY()+43);
         getWorld().addObject(attack,getX()-44,getY()+43);
         getWorld().addObject(speed,getX()-18,getY()+41);
-    }
-    /**
-     * Act - do whatever the Hud wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+    } 
 }

@@ -7,7 +7,7 @@ import greenfoot.*;
  * @author Brent Gammon 
  * @version S3
  */
-public class DumbEnemy extends Entity implements IDamageable,IFalling
+public class MafiaEnemy extends Entity implements IDamageable,IFalling
 {
     private static final int DAMAGE = 1;
     private int health = 2;
@@ -19,20 +19,28 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
     private GreenfootSound attackSound = new GreenfootSound("AttackHitSound.wav");
     
     private static  GreenfootImage SHEET = new GreenfootImage("bug.png");
+    private static  GreenfootImage SHEET1 = new GreenfootImage("mafia.png");
     private static final int SHEET_H = 1;
     private static final int SHEET_W = 4;
+    private static final int SHEET_H2 = 1;
+    private static final int SHEET_W2 = 4;
     private static final int SPRITE_H = SHEET.getHeight()/SHEET_H;
     private static final int SPRITE_W = SHEET.getWidth()/SHEET_W;
+    private static final int SPRITE_H2 = SHEET1.getHeight()/SHEET_H2;
+    private static final int SPRITE_W2 = SHEET1.getWidth()/SHEET_W2;
     private Healthbar healthbar;
     /**
      * Act - do whatever the DumbEnemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pre ssed in the environment.
      */
     
-    public DumbEnemy(){
-        setImage(new GreenfootImage(SPRITE_W,SPRITE_H));
+    public MafiaEnemy(){
+        setImage(new GreenfootImage(SPRITE_W2,SPRITE_H2));
     }
 
+
+
+    
    public void addedToWorld(World w){
         healthbar = new Healthbar(2,this,40);
         w.addObject(healthbar,getX(),getY()-10);
@@ -52,6 +60,7 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
             }
         }
         updateSprite();
+        updateSprite2();
     }  
     
     
@@ -143,5 +152,13 @@ public class DumbEnemy extends Entity implements IDamageable,IFalling
         if (iframes>0&&iframes%10<5) setImage(SpriteHelper.makeWhite( getImage()));
         else frame = frame + 1 % (SHEET_H* SHEET_W);
     }
-
+    
+      private void updateSprite2(){
+        //facing front
+        getImage().clear();
+        getImage().drawImage(SHEET1,-(frame%SHEET_W2)*SPRITE_W2,0);
+        if(!goLeft) getImage().mirrorHorizontally();
+        if (iframes>0&&iframes%10<5) setImage(SpriteHelper.makeWhite( getImage()));
+        else frame = frame + 1 % (SHEET_H2* SHEET_W2);
+    }
 }

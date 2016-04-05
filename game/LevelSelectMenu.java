@@ -21,9 +21,9 @@ public class LevelSelectMenu extends ExtendedWorld
         super(GAME_HEIGHT,GAME_WIDTH,false); 
       
         layer1 = new GreenfootImage("images/Graphics/MainMenuelements/Menu_BG.png");
-        addObject(new Home(),40,87);
-        addObject(new LevelSelectBanner(),486,33);
-        addObject(new LevelSelectTitle(),412,98);
+        addObject(new Home(),40,115);
+        addObject(new LevelSelectBanner(),427,40);
+        //addObject(new LevelSelectTitle(),412,98);
         
         int view;
         if(levels==null){
@@ -60,34 +60,34 @@ public class LevelSelectMenu extends ExtendedWorld
      *When invoked it will add a Level1 instance into the world at a specifed location 
      */
     public void addLevel1(){
-        addObject(new Level1(),140,367);
+        addObject(new LevelIcon(1,false),140,367);
     }
     
     /**
      * When invoked it will add a Level2 instance into the world at a specifed location 
      */
     public void addLevel2(){
-        addObject(new Level2(),409,367);
+        addObject(new LevelIcon(2,false),409,367);
     }
     
     /**
      * When invoked it will add a Level3 instance into the world at a specifed location
      */ 
     public void addLevel3(){
-        addObject(new Level3(),670,367);
+        addObject(new LevelIcon(3,false),670,367);
     }
     
     /**
      * When invoked it will add a Level2Locked instance into the world at a specifed location
      */
     public void addLevel2Locked(){
-        addObject(new Level2Locked(),409,367);
+        addObject(new LevelIcon(2,true),409,367);
     }
     
     /**
      * When invoked it will add a Level3Locked instance into the world at a specifed location
      */
     public void addLevel3Locked(){
-        addObject(new Level3Locked(),670,367);
+        addObject(new LevelIcon(3,true),670,367);
     }
 }

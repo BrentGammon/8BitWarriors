@@ -16,6 +16,7 @@ public class Grass extends Terrain
      */
     private GreenfootImage unit = new GreenfootImage("Terrain/grass.png");
     private GreenfootImage unit3 = new GreenfootImage("Terrain/brick.png");
+    private GreenfootImage unit4 = new GreenfootImage("Terrain/city.png");
     
     public Grass(){
         //         if(levelDesign.equals("1")){
@@ -46,7 +47,7 @@ public class Grass extends Terrain
         }
         if(LevelDesign==2){
             
-            unit = unit3;
+            unit = unit4;
         }
         int unitWidth = unit.getWidth();
         GreenfootImage self = new GreenfootImage(unitWidth*width,unit.getHeight());

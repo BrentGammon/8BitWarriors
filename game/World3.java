@@ -38,7 +38,7 @@ public class World3 extends ExtendedWorld
         addObject(new WoodLog(),1300,690);
         addObject(new WoodLog(),1300,590);
         addObject(new WoodLog(),1300,490);
-        addObject(new RangeEnemy(false),1500,530);
+        addObject(new RangeEnemy(),1500,530);
         addObject(new Grass(5,3),1500,590);
         addObject(new Grass(5,3),1000,490);
         addObject(new WoodLog(),800,390);
@@ -85,10 +85,10 @@ public class World3 extends ExtendedWorld
         addObject(new TrackEnemy(3),882,88);
         addObject(new Spikes(2),1287,105);
         addObject(new DumbEnemy(3),1776,96);
-        addObject(new RangeEnemy(true),2403,566);
+        addObject(new RangeEnemy(),2403,566);
         addObject(new TrackEnemy(3),2944,835);
         addObject(new TrackEnemy(3),3058,642);
-        addObject(new RangeEnemy(false),3567,640);
+        addObject(new RangeEnemy(),3567,640);
         addObject(new Spikes(0),2342,351);
         addObject(new TrackEnemy(3),2891,296);
         addObject(new DumbEnemy(3),3325,296);

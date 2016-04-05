@@ -24,4 +24,6 @@ comment7.text=\r\n\ When\ called\ this\ will\ increment\ the\ score\ counter\ an
 comment8.params=
 comment8.target=void\ updateSprite()
 comment8.text=\r\n\ Internal\ method\ to\ set\ player\ sprite\ to\ apropriate\ image\r\n
-numComments=9
+comment9.params=
+comment9.target=void\ updateSprite2()
+numComments=10

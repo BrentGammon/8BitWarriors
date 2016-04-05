@@ -24,7 +24,7 @@ public class World2 extends ExtendedWorld
     public World2(int score, int time)
     {
         //call to superclass to use centreCameraOn function
-        super(3900,900,3900,900, true);
+        super(3900,900,600,400, true);
         MuteControl.setBGM(bgm);
         gameLevel = "1";
         Player p = new Player();

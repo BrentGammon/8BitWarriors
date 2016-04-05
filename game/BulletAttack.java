@@ -32,16 +32,20 @@ public class BulletAttack extends Attack implements IDamageable
      */
     public void act() 
     {
+          if (getExtendedWorld().isPaused()) return;
         fire();
         doDamage();
-        timer();
+        remove();
     }    
 
     /**
      * This method checks the value of removeTimer if this equals to 0 then the obejcts gets removed
      */
-    public void timer(){
+    public void remove(){
         removeTimer--;
+        if(this.isTouching(Wall.class)||this.isTouching(Grass.class)){
+            getWorld().removeObject(this);
+        }else
         if(removeTimer==0){
             getWorld().removeObject(this);
         }
@@ -52,7 +56,7 @@ public class BulletAttack extends Attack implements IDamageable
      * direction depends on the value of the instance variable direction
      */
     public void fire(){
-        if(direction){
+        if(!direction){
             moveLocation(5,0);
         }else{
             moveLocation(-5,0);

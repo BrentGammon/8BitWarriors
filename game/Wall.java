@@ -9,6 +9,7 @@ public class Wall extends Terrain
 {
     private GreenfootImage unit = new GreenfootImage("Terrain/grass.png");
     private GreenfootImage unit3 = new GreenfootImage("Terrain/brick.png");
+    private GreenfootImage unit4 = new GreenfootImage("Terrain/level2wall.png");
     
 	/**
 	*Constructor  for Wall
@@ -18,6 +19,10 @@ public class Wall extends Terrain
     public Wall(int length,int levelDesign){
         if(levelDesign==3){
             unit = unit3;
+        }
+        if(levelDesign==2){
+            
+            unit = unit4;
         }
         int unitHeight = unit.getHeight();
         GreenfootImage self = new GreenfootImage(unit.getWidth(),unitHeight*length);

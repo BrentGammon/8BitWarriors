@@ -12,7 +12,7 @@ public class MuteControl extends UI
     private static GreenfootSound backgroundMusic;
     public static boolean isMuted = false;
     protected int currentVolume;
-    private int volume = 100;
+    private static int volume = 100;
     private boolean oDown;
     private boolean pDown;
     private GreenfootImage img1 = new GreenfootImage("button-red.png");
@@ -57,9 +57,16 @@ public class MuteControl extends UI
     public int getVolume(){
         return currentVolume;
     }
-
+    public static void decreaseVolume(){
+        volume = Math.max(volume - 10,0)
+        backgroundMusic.setVolume( volume );
+    }
+    public static void increaseVolume(){
+        volume = Math.min(volume + 10,100)
+        backgroundMusic.setVolume( volume );
+    }
     /**
-     * Changes the image of the mute object and plays/stops music denpding on the state
+     * Changes the image of the mute object and plays/stops music denpding on the 
      */
     private void updateState()
     {
@@ -108,6 +115,7 @@ public class MuteControl extends UI
      * @param s Sound to be played
      */
     public static void playSound(GreenfootSound s){
+        s.setVolume(volume);
         if(!isMuted)s.play();
     }
     

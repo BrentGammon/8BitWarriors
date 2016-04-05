@@ -83,6 +83,10 @@ public class ExtendedWorld extends World
     
     protected int startScore;
     protected int startTime;
+    
+    /** Variables to control the sound */
+    private boolean pDown,oDown;
+    
     /**
      * Constructor for objects of class ExtendedWorld.
      */
@@ -131,6 +135,23 @@ public class ExtendedWorld extends World
             centreCameraOn(focus);
         }
         redrawBackground();
+        
+        
+        if(!oDown && Greenfoot.isKeyDown("o") && MuteControl.getIsMuted() == false ){
+            oDown = true;
+            MuteControl.decreaseVolume();
+        }
+        if (oDown && !Greenfoot.isKeyDown("o") && MuteControl.getIsMuted() == false ){
+            oDown = false;
+        }
+        if(!pDown && Greenfoot.isKeyDown("p") && MuteControl.getIsMuted() == false){
+            pDown = true;
+            MuteControl.increaseVolume();
+        }
+        if(pDown && !Greenfoot.isKeyDown("p") && MuteControl.getIsMuted() == false){
+            pDown = false;
+        }
+        
     }
     
     /** Sets the focus of the world
